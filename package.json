@@ -1,0 +1,33 @@
+{
+  "name": "nodolla_FEC",
+  "version": "1.0.0",
+  "description": "1. Open client/dist/index.html",
+  "main": "webpack.config.js",
+  "scripts": {
+    "start": "live-server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Team-Nodolla/nodolla_FEC.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Team-Nodolla/nodolla_FEC/issues"
+  },
+  "homepage": "https://github.com/Team-Nodolla/nodolla_FEC#readme",
+  "dependencies": {
+    "axios": "^0.21.1",
+    "babel-core": "^6.26.3",
+    "babel-loader": "^8.2.2",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-react": "^6.24.1",
+    "live-server": "^1.2.1",
+    "lodash": "^4.17.21",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
+    "webpack": "^5.24.1",
+    "webpack-cli": "^4.5.0"
+  }
+}
