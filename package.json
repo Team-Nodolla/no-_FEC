@@ -4,7 +4,8 @@
   "description": "1. Open client/dist/index.html",
   "main": "webpack.config.js",
   "scripts": {
-    "start": "live-server"
+    "start": "live-server",
+    "react-dev": "webpack --watch"
   },
   "repository": {
     "type": "git",
@@ -18,11 +19,11 @@
   },
   "homepage": "https://github.com/Team-Nodolla/nodolla_FEC#readme",
   "dependencies": {
+    "@babel/core": "^7.13.1",
+    "@babel/preset-env": "^7.13.5",
+    "@babel/preset-react": "^7.12.13",
     "axios": "^0.21.1",
-    "babel-core": "^6.26.3",
     "babel-loader": "^8.2.2",
-    "babel-preset-env": "^1.7.0",
-    "babel-preset-react": "^6.24.1",
     "live-server": "^1.2.1",
     "lodash": "^4.17.21",
     "react": "^17.0.1",
