@@ -7,4 +7,5 @@
 
 2. Run 'npm install' to load dependencies
 3. Run 'npm run react-dev' to compile jsx components into webpack bundle
-4. Open client/dist/index.html
+4. Run 'npm start' to spin up live-server
+5. Navigate to http://localhost:3000 in your browser
