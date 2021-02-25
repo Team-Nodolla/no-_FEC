@@ -1,3 +1,7 @@
 import React from 'react';
 
-export default
+const RelatedProductsCarousel = () => (
+
+);
+
+export default RelatedProductsCarousel;
