@@ -17,7 +17,7 @@ class App extends React.Component {
       .then((data) => {
         this.setState({
           productId: data.data[0],
-          allProducts: this.state.allProducts.concat(data.data),
+          allProducts: [...this.state.allProducts, data.data],
         });
       });
   }
