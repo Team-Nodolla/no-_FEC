@@ -38,11 +38,13 @@ const App = () => {
   const [allProducts, getAllProducts] = useState([]);
 
   useEffect(() => {
-    axios.get('/products')
-      .then((data) => {
-        getProductID(data.data[0]);
-        getAllProducts([...allProducts, data.data]);
-      });
+    if (productID === '' || allProducts.length === 0) {
+      axios.get('/products')
+        .then((data) => {
+          getProductID(data.data[0]);
+          getAllProducts([...allProducts, data.data]);
+        });
+    }
   }, []);
 
   return (
