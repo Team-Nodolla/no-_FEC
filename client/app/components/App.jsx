@@ -34,22 +34,24 @@ import ProductOverview from './ProductOverview/ProductOverview.jsx';
 // }
 
 const App = () => {
-  const [productID, getProductID] = useState('');
-  const [allProducts, getAllProducts] = useState([]);
+  const [productID, setProductID] = useState(0);
+  const [product, setProduct] = useState({});
+  const [allProducts, setAllProducts] = useState([]);
 
   useEffect(() => {
-    if (productID === '' || allProducts.length === 0) {
+    if (productID === 0 || allProducts.length === 0) {
       axios.get('/products')
         .then((data) => {
-          getProductID(data.data[0]);
-          getAllProducts([...allProducts, data.data]);
+          setProductID(data.data[0].id);
+          setProduct(data.data[0]);
+          setAllProducts([...allProducts, data.data]);
         });
     }
   }, []);
 
   return (
     <div>
-      <ProductOverview product={productID} />
+      <ProductOverview productID={productID} product={product} />
     </div>
   );
 };
