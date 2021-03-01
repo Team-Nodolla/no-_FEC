@@ -1,0 +1,12 @@
+.imageContainer{
+  display: flex;
+}
+
+.categoryAndTitleContainer{
+  float: left;
+  padding-left: 50px;
+}
+
+.summaryContainer{
+  display: block;
+}
