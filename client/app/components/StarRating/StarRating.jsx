@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 // eslint-disable-next-line react/prop-types
-const StarReview = ({ reviewScore }) => {
+const StarReview = ({ reviewScore, setMargin = '20px 0 0 0' }) => {
   const [stars] = useState(reviewScore);
 
   // Rounds the score to the nearest quarter
@@ -21,7 +21,7 @@ const StarReview = ({ reviewScore }) => {
   const missingPercent = `${100 - roundedScore * 20 - quarterOffset}%`;
 
   return (
-    <div id="container">
+    <div id="container" style={{ margin: setMargin }}>
       <EmptyStars />
       <div id="cover" style={{ width: missingPercent }}> </div>
       <FilledStars />
