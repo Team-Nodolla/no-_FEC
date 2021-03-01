@@ -1,3 +1,12 @@
 import React from 'react';
 
-export default
+const ProductInfo = ({ product }) => {
+  return(
+    <div>
+      <h1>{product.slogan}</h1>
+      <p>{product.description}</p>
+    </div>
+  )
+};
+
+export default ProductInfo;

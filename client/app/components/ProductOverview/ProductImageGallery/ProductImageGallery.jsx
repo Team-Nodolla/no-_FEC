@@ -1,10 +1,10 @@
 import React from 'react';
 import DefaultView from './DefaultView/DefaultView.jsx';
+import './ProductImageGallery.css';
 
 const ProductImageGallery = () => {
   return (
-    <div>
-      <h1>Hello</h1>
+    <div className="default-view-container">
       <DefaultView />
     </div>
   );
