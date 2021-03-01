@@ -1,7 +1,6 @@
 import React from 'react';
 
 const ProductCategoryAndTitle = ({ product }) => {
-  console.log(product);
   return (
     <div>
       <p>{product.category}</p>
