@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import ProductOverview from './ProductOverview/ProductOverview.jsx';
+import RatingsAndReviews from './RatingsAndReviews/RatingsAndReviews.jsx';
 
 // class App extends React.Component {
 //   constructor(props) {
@@ -52,6 +53,7 @@ const App = () => {
   return (
     <div>
       <ProductOverview productID={productID} product={product} />
+      <RatingsAndReviews productID={productID} product={product} />
     </div>
   );
 };
