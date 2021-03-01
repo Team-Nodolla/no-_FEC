@@ -1,7 +1,11 @@
 import React from 'react';
+import propTypes from 'proptypes';
+<<<<<<< HEAD
+import './StarRating.css';
+=======
+>>>>>>> a6e195bc5a9a8c4d8ac1fc3de11522f7e44828ab
 
-// eslint-disable-next-line react/prop-types
-const StarReview = ({ reviewScore, setMargin = '20px 0 0 0' }) => {
+const StarRating = ({ reviewScore, setMargin = '20px 0 0 0' }) => {
   // Rounds the score to the nearest quarter
   const roundedScore = Math.round(reviewScore * 4) / 4;
 
@@ -47,4 +51,9 @@ const FilledStars = () => (
   </div>
 );
 
-export default StarReview;
+StarRating.propTypes = {
+  reviewScore: propTypes.number.isRequired,
+  setMargin: propTypes.string.isRequired,
+};
+
+export default StarRating;

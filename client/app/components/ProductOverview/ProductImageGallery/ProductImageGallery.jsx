@@ -1,3 +1,13 @@
 import React from 'react';
+import DefaultView from './DefaultView/DefaultView.jsx';
+import './ProductImageGallery.css';
 
-export default
+const ProductImageGallery = () => {
+  return (
+    <div className='container'>
+      <DefaultView />
+    </div>
+  );
+};
+
+export default ProductImageGallery;

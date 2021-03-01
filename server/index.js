@@ -23,14 +23,13 @@ app.get('/products', (req, res) => {
   axios.get(`${url}/products`, {
     headers: token,
   })
-    .then((data) => res.send(data.data))
+    .then((data) => res.status(200).send(data.data))
     .catch((err) => res.send(err));
 });
 
 app.get('/products/:product_id', (req, res) => {
   console.log('params', req.params.id);
-
-  axios.get(`${url}/products/products/:product_id`, {
+  axios.get(`${url}/products/:product_id`, {
     headers: token,
   })
     .then((data) => res.send(data.data))
