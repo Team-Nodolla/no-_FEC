@@ -9,7 +9,6 @@ const ProductOverview = ({ productID, product }) => {
     // getStyles(() => axios.get(`/products/:${product}/styles`)
     //   .then((data) => console.log(data)))
     //   .catch((err) => console.log('error'));
-    console.log(product);
     return (
       <div>
         <ProductImageGallery />

@@ -4,7 +4,7 @@ import './ProductImageGallery.css';
 
 const ProductImageGallery = () => {
   return (
-    <div className="default-view-container">
+    <div className='container'>
       <DefaultView />
     </div>
   );
