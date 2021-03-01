@@ -27,9 +27,9 @@ app.get('/products', (req, res) => {
     .catch((err) => res.send(err));
 });
 
-app.get('/products/:product_id', (req, res) => {
-  console.log('params', req.params.id);
-  axios.get(`${url}/products/:product_id`, {
+app.get('/products/:product_id/styles', (req, res) => {
+  console.log('params', req.params.product_id);
+  axios.get(`${url}/products/${req.params.product_id}/styles`, {
     headers: token,
   })
     .then((data) => res.send(data.data))

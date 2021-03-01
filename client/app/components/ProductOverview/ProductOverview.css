@@ -1,12 +1,15 @@
-.imageContainer{
-  display: flex;
+.product-overview-container {
+  display:flex;
 }
 
-.categoryAndTitleContainer{
-  float: left;
-  padding-left: 50px;
+.product-image-container {
+  display: block;
 }
 
-.summaryContainer{
+.product-description-container {
+  display: block;
+}
+
+.product-summary-container {
   display: block;
 }

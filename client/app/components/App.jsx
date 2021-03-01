@@ -1,37 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import ProductOverview from './ProductOverview/ProductOverview.jsx';
-
-// class App extends React.Component {
-//   constructor(props) {
-//     super(props);
-
-//     this.state = {
-//       productId: '',
-//       allProducts: [],
-//     };
-//   }
-
-//   componentDidMount() {
-//     const { allProducts } = this.state;
-//     axios.get('/products')
-//       .then((data) => {
-//         this.setState({
-//           productId: data.data[0],
-//           allProducts: [...allProducts, data.data],
-//         });
-//       });
-//   }
-
-//   render() {
-//     const { productId } = this.state;
-//     return (
-//       <div>
-//         <ProductOverview product={productId} />
-//       </div>
-//     );
-//   }
-// }
+import './App.css';
 
 const App = () => {
   const [productID, setProductID] = useState(0);
@@ -39,7 +9,7 @@ const App = () => {
   const [allProducts, setAllProducts] = useState([]);
 
   useEffect(() => {
-    if (productID === 0 || allProducts.length === 0) {
+    if (productID === 0) {
       axios.get('/products')
         .then((data) => {
           setProductID(data.data[0].id);
@@ -50,7 +20,7 @@ const App = () => {
   }, []);
 
   return (
-    <div>
+    <div className="app-container">
       <ProductOverview productID={productID} product={product} />
     </div>
   );
