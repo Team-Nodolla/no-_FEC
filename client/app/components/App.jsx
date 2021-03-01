@@ -1,3 +1,4 @@
+/* eslint-disable import/extensions */
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import ProductOverview from './ProductOverview/ProductOverview.jsx';
