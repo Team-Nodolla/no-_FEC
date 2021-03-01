@@ -1,0 +1,34 @@
+#container {
+  position: relative;
+  width: 90px;
+  height: 16px;
+  background-color: white;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.stars {
+  position: absolute;
+  display: flex;
+  flex-direction: row;
+}
+
+.fa-star {
+  font-size: 16px;
+}
+
+.fas {
+  color: gold;
+}
+
+.empty {
+  z-index: 3;
+}
+
+#cover {
+  position: relative;
+  width: 100%;
+  height: 16px;
+  background-color: white;
+  z-index: 2;
+}
