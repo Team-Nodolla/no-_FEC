@@ -4,10 +4,6 @@ import ProductCategoryAndTitle from './ProductCategoryAndTitle/ProductCategoryAn
 import ProductImageGallery from './ProductImageGallery/ProductImageGallery.jsx';
 
 const ProductOverview = ({ productID, product }) => {
-  //const [styles, getStyles] = useState('');
-    // getStyles(() => axios.get(`/products/:${product}/styles`)
-    //   .then((data) => console.log(data)))
-    //   .catch((err) => console.log('error'));
     return (
       <div>
         <ProductImageGallery />

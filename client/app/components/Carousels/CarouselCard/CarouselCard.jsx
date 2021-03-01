@@ -3,6 +3,7 @@
 import React from 'react';
 import propTypes from 'proptypes';
 import StarRating from '../../StarRating/StarRating.jsx';
+import './CarouselCard.css';
 
 const CarouselCard = ({
   productImage,
@@ -29,7 +30,7 @@ CarouselCard.propTypes = {
   name: propTypes.string.isRequired,
   price: propTypes.number.isRequired,
   stars: propTypes.number.isRequired,
-  buttonFunc: propTypes.function.isRequired,
+  buttonFunc: propTypes.func.isRequired,
 };
 
 export default CarouselCard;
