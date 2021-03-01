@@ -1,11 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 // eslint-disable-next-line react/prop-types
 const StarReview = ({ reviewScore, setMargin = '20px 0 0 0' }) => {
-  const [stars] = useState(reviewScore);
-
   // Rounds the score to the nearest quarter
-  const roundedScore = Math.round(stars * 4) / 4;
+  const roundedScore = Math.round(reviewScore * 4) / 4;
 
   // Create a solely visual offset so a quarter/3-quarter
   // star *looks* more like a quarter than it actually does
