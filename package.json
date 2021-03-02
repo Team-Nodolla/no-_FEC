@@ -6,6 +6,7 @@
   "scripts": {
     "start": "nodemon server/index.js",
     "react-dev": "webpack --watch",
+    "build": "webpack",
     "test": "jest"
   },
   "repository": {
@@ -32,6 +33,7 @@
     "enzyme-adapter-react-16": "^1.15.6",
     "enzyme-to-json": "^3.6.1",
     "express": "^4.17.1",
+    "identity-obj-proxy": "^3.0.0",
     "jest": "^26.6.3",
     "live-server": "^1.2.1",
     "lodash": "^4.17.21",
@@ -54,11 +56,18 @@
     "style-loader": "^2.0.0"
   },
   "babel": {
-    "presets": ["@babel/preset-react", "@babel/preset-env"]
+    "presets": [
+      "@babel/preset-react",
+      "@babel/preset-env"
+    ]
   },
   "jest": {
     "collectCoverage": true,
-    "transform": {"\\.jsx?$": "babel-jest"},
-    "snapshotSerializers": ["enzyme-to-json/serializer"]
+    "transform": {
+      "\\.jsx?$": "babel-jest"
+    },
+    "snapshotSerializers": [
+      "enzyme-to-json/serializer"
+    ]
   }
 }
