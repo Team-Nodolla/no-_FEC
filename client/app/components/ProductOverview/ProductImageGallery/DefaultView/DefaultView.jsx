@@ -20,19 +20,22 @@ const DefaultView = ({ defaultPhoto }) => {
     // };
     return (
       <div className="default-image">
-        <ReactImageMagnify {...{
-          smallImage: {
-            isFluidWidth: true,
-            src: defaultPhoto.url,
-          },
-          largeImage: {
-            src: defaultPhoto.url,
-            width: 1200,
-            height: 1800,
-          },
-        }}
-        />
-        {/* <img alt="display" src={defaultPhoto.url} /> */}
+        <div className="image">
+          <ReactImageMagnify {...{
+            smallImage: {
+              isFluidWidth: true,
+              src: defaultPhoto.url,
+            },
+            largeImage: {
+              src: defaultPhoto.url,
+              width: 1200,
+              height: 1800,
+            },
+          }}
+          />
+        </div>
+        <div className="padding-container">
+        </div>
       </div>
     );
   }

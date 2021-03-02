@@ -21,7 +21,7 @@ const ProductImageGallery = ({ style }) => {
     };
 
     return (
-      <div className="image-gallery-container">
+      <div>
         <button type="submit" onClick={onClickLeftChange}>Left</button>
         <DefaultView defaultPhoto={style.photos[currentPhoto]} />
         <button type="submit" onClick={onClickRightChange}>Right</button>
