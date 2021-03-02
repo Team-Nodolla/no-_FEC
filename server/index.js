@@ -24,16 +24,7 @@ app.get('/products', (req, res) => {
     headers: token,
   })
     .then((data) => res.status(200).send(data.data))
-    .catch((err) => res.send(err));
-});
-
-app.get('/products/:product_id', (req, res) => {
-  console.log('params', req.params.id);
-  axios.get(`${url}/products/${req.params.id}`, {
-    headers: token,
-  })
-    .then((data) => res.send(data.data))
-    .catch((err) => res.send(err));
+    .catch((err) => res.status(418).send(err));
 });
 
 // RATINGS AND REVIEW HANDLERS
