@@ -4,6 +4,7 @@ import axios from 'axios';
 import ProductOverview from './ProductOverview/ProductOverview.jsx';
 import RatingsAndReviews from './RatingsAndReviews/RatingsAndReviews.jsx';
 import CarouselCard from './Carousels/CarouselCard/CarouselCard.jsx';
+import './App.css';
 
 const App = () => {
   const [productID, setProductID] = useState(0);
@@ -11,7 +12,7 @@ const App = () => {
   const [allProducts, setAllProducts] = useState([]);
 
   useEffect(() => {
-    if (productID === 0 || allProducts.length === 0) {
+    if (productID === 0) {
       axios.get('/products')
         .then((data) => {
           setProductID(data.data[0].id);
@@ -34,7 +35,7 @@ const App = () => {
   };
 
   return (
-    <div>
+    <div className="app-container">
       <ProductOverview productID={productID} product={product} />
       <CarouselCard {...dummyProps} />
       <RatingsAndReviews productID={productID} product={product} />
