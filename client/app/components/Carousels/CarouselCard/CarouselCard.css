@@ -18,8 +18,9 @@
   margin: 10px;
 }
 
-#price {
-  color: #808080;
+#old-price {
+  color: rgb(200, 16, 16);
+  text-decoration: line-through;
 }
 
 #action {

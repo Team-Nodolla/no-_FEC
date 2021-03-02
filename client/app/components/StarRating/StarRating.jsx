@@ -1,9 +1,6 @@
 import React from 'react';
 import propTypes from 'proptypes';
-<<<<<<< HEAD
 import './StarRating.css';
-=======
->>>>>>> a6e195bc5a9a8c4d8ac1fc3de11522f7e44828ab
 
 const StarRating = ({ reviewScore, setMargin = '20px 0 0 0' }) => {
   // Rounds the score to the nearest quarter
