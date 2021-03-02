@@ -24,13 +24,17 @@ const ProductOverview = ({ productID, product }) => {
         <div className="product-image-container">
           <ProductImageGallery photos={styles.results} />
         </div>
-        <div className="product-description-container">
-          <ProductCategoryAndTitle styles={styles.results} product={product} />
+        <div className="product-info-container">
+          <div className="product-description-container">
+            <ProductCategoryAndTitle styles={styles.results} product={product} />
+          </div>
+          <div className="product-style-container">
+            <ProductStyleSelector styles={styles.results} />
+          </div>
         </div>
         <div className="product-summary-container">
           <ProductInfo product={product} />
         </div>
-        <ProductStyleSelector styles={styles.results} />
       </div>
     );
   }
