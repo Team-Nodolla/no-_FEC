@@ -24,7 +24,7 @@ app.get('/products', (req, res) => {
     headers: token,
   })
     .then((data) => res.status(200).send(data.data))
-    .catch((err) => res.send(err));
+    .catch((err) => res.status(418).send(err));
 });
 
 app.get('/products/:product_id/styles', (req, res) => {
@@ -32,8 +32,8 @@ app.get('/products/:product_id/styles', (req, res) => {
   axios.get(`${url}/products/${req.params.product_id}/styles`, {
     headers: token,
   })
-    .then((data) => res.send(data.data))
-    .catch((err) => res.send(err));
+    .then((data) => res.status(200).send(data.data))
+    .catch((err) => res.status(418).send(err));
 });
 
 app.listen(port, () => {
