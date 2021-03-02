@@ -7,7 +7,7 @@ const ProductImageGallery = ({ photos }) => {
   if (photos !== undefined) {
     return (
       <div>
-        <DefaultView defaultPhoto={photos[0]} />
+        <DefaultView defaultPhoto={photos[0].photos[0].url} />
       </div>
     );
   }
