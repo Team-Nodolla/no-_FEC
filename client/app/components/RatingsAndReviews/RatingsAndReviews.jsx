@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import propTypes from 'proptypes';
 import './RatingsAndReviews.css';
+import RatingSummary from './RatingSummary/RatingSummary.jsx';
 
 const RatingsAndReviews = ({ productID, product }) => {
   // set up state
@@ -19,6 +20,14 @@ const RatingsAndReviews = ({ productID, product }) => {
         .catch((err) => {
           console.log('error fetching data on mount: ', err);
         });
+      axios.get(`/reviews/meta/${productID}`)
+        .then((response) => {
+          console.log('meta call response data: ', response.data)
+          setMetaData(response.data);
+        })
+        .catch((err) => {
+          console.log('error fetching data on mount: ', err);
+        });
     }
   }, [productID]);
 
@@ -32,10 +41,7 @@ const RatingsAndReviews = ({ productID, product }) => {
       <h3 className="header">RATINGS & REVIEWS</h3>
       <div className="ratingsAndReviewsContainer">
         <div className="breakdownContainer">
-          <div className="ratingSummary">rating summary</div>
-          <div className="percentRecommend">% recommended</div>
-          <div className="ratingBreakdown">rating breakdown</div>
-          <div className="productBreakdown">product breakdown</div>
+          <RatingSummary metaData={metaData} className="ratingSummary" />
         </div>
         <div className="reviewListContainer">
           <div className="sortForm">sort form</div>
