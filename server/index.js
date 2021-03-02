@@ -10,7 +10,7 @@ const port = 3000;
 const url = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-sjo';
 const token = {
   'User-Agent': 'request',
-  'Authorization': config.TOKEN
+  Authorization: config.TOKEN,
 };
 
 app.use(bodyParser.json());
@@ -35,6 +35,34 @@ app.get('/products/:product_id/styles', (req, res) => {
     .then((data) => res.status(200).send(data.data))
     .catch((err) => res.status(418).send(err));
 });
+
+// RATINGS AND REVIEW HANDLERS
+app.get('/reviews/product/:product_id', (req, res) => {
+  axios.get(`${url}/reviews?product_id=${req.params.product_id}`, {
+    headers: token,
+  })
+    .then((response) => {
+      res.status(200).send(response.data);
+    })
+    .catch((err) => {
+      console.log('server error fetching product', err);
+      res.status(500).end();
+    });
+});
+
+app.get('/reviews/meta/:product_id', (req, res) => {
+  axios.get(`${url}/reviews/meta?product_id=${req.params.product_id}`, {
+    headers: token,
+  })
+    .then((response) => {
+      res.status(200).send(response.data);
+    })
+    .catch((err) => {
+      console.log('server error fetching review meta data', err);
+      res.status(500).end();
+    });
+});
+// <------------------------->
 
 app.listen(port, () => {
   // eslint-disable-next-line no-console
