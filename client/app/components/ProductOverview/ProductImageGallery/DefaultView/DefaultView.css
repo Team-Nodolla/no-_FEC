@@ -1,5 +1,5 @@
 .default-image {
+  width: 600;
   display: flex;
-  justify-content: center;
-  height: 90%;
+  height: 100%;
 }

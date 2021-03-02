@@ -3,11 +3,12 @@ import propTypes from 'proptypes';
 import DefaultView from './DefaultView/DefaultView.jsx';
 import './ProductImageGallery.css';
 
-const ProductImageGallery = ({ photos }) => {
-  if (photos !== undefined) {
+
+const ProductImageGallery = ({ style }) => {
+  if (style !== undefined) {
     return (
       <div>
-        <DefaultView defaultPhoto={photos[0].photos[0].url} />
+        <DefaultView defaultPhoto={style.photos} />
       </div>
     );
   }

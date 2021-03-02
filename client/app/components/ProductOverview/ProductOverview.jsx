@@ -12,24 +12,23 @@ const ProductOverview = ({ productID, product }) => {
 
   useEffect(() => {
     if (productID !== 0) {
-      axios.get(`/products/${productID}/styles`)
+      axios.get(`/products/${productID}/default-style`)
         .then((data) => getStyles(data.data))
         .catch((err) => console.log('error'));
     }
   }, [productID]);
-
   if (styles !== undefined) {
     return (
       <div className="product-overview-container">
         <div className="product-image-container">
-          <ProductImageGallery photos={styles.results} />
+          <ProductImageGallery style={styles} />
         </div>
         <div className="product-info-container">
           <div className="product-description-container">
-            <ProductCategoryAndTitle styles={styles.results} product={product} />
+            <ProductCategoryAndTitle product={product} />
           </div>
           <div className="product-style-container">
-            <ProductStyleSelector styles={styles.results} />
+            <ProductStyleSelector styles={styles} />
           </div>
         </div>
         <div className="product-summary-container">
