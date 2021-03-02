@@ -27,15 +27,6 @@ app.get('/products', (req, res) => {
     .catch((err) => res.status(418).send(err));
 });
 
-// app.get('/products/:product_id/styles', (req, res) => {
-//   console.log('params', req.params.product_id);
-//   axios.get(`${url}/products/${req.params.product_id}/styles`, {
-//     headers: token,
-//   })
-//     .then((data) => res.status(200).send(data.data))
-//     .catch((err) => res.status(418).send(err));
-// });
-
 // RATINGS AND REVIEW HANDLERS
 app.get('/reviews/product/:product_id', (req, res) => {
   axios.get(`${url}/reviews?product_id=${req.params.product_id}`, {
