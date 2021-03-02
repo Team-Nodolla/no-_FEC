@@ -29,7 +29,7 @@ app.get('/products', (req, res) => {
 
 app.get('/products/:product_id', (req, res) => {
   console.log('params', req.params.id);
-  axios.get(`${url}/products/:product_id`, {
+  axios.get(`${url}/products/${req.params.id}`, {
     headers: token,
   })
     .then((data) => res.send(data.data))
@@ -63,6 +63,36 @@ app.get('/reviews/meta/:product_id', (req, res) => {
     });
 });
 // <------------------------->
+
+/* *************************** */
+/*  Related Products Carousel  */
+/* *************************** */
+
+// Returns the Default Style of product with ID product_id.
+// If no style is considered the default style, returns the first style
+app.get('/products/:product_id/default-style', (req, res) => {
+  const productID = req.params.product_id;
+  axios.get(`${url}/products/${productID}/styles`, {
+    headers: token,
+  })
+    .then((response) => {
+      const { results } = response.data;
+      let sent = false;
+      for (let i = 0; i < results.length; i += 1) {
+        if (results[i]['default?'] === true) {
+          sent = true;
+          res.status(200).send(results[i]);
+          break;
+        }
+      }
+      if (sent === false) {
+        res.status(200).send(results[0]);
+      }
+    })
+    .catch((err) => {
+      res.status(404).send(err);
+    });
+});
 
 app.listen(port, () => {
   // eslint-disable-next-line no-console
