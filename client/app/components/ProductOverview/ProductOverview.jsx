@@ -8,7 +8,7 @@ import ProductStyleSelector from './ProductStyleSelector/ProductStyleSelector.js
 import './ProductOverview.css';
 
 const ProductOverview = ({ productID, product }) => {
-  const [styles, getStyles] = useState({});
+  const [styles, getStyles] = useState('');
 
   useEffect(() => {
     if (productID !== 0) {
