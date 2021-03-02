@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import ProductOverview from './ProductOverview/ProductOverview.jsx';
+import RatingsAndReviews from './RatingsAndReviews/RatingsAndReviews.jsx';
 import CarouselCard from './Carousels/CarouselCard/CarouselCard.jsx';
 
 const App = () => {
@@ -36,6 +37,7 @@ const App = () => {
     <div>
       <ProductOverview productID={productID} product={product} />
       <CarouselCard {...dummyProps} />
+      <RatingsAndReviews productID={productID} product={product} />
     </div>
   );
 };
