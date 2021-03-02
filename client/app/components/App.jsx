@@ -33,8 +33,8 @@ const App = () => {
   return (
     <div>
       <ProductOverview productID={productID} product={product} />
-      <RatingsAndReviews productID={productID} product={product} />
       <CarouselCard {...dummyProps} />
+      <RatingsAndReviews productID={productID} product={product} />
     </div>
   );
 };
