@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import propTypes from 'proptypes';
+import StarRating from '../../StarRating/StarRating.jsx';
+import './RatingSummary.css'
 
 const RatingSummary = ({ metaData }) => {
   const [averageScore, setAverageScore] = useState(0);
@@ -37,7 +39,7 @@ const RatingSummary = ({ metaData }) => {
       }
       // get average recommendations and turn into percentage
       // add did and didNot recommend together, divide did by total * 100
-      let percentageOfRecommendations = (didRecommend / (didRecommend + didNotRecommend)) * 100;
+      const percentageOfRecommendations = (didRecommend / (didRecommend + didNotRecommend)) * 100;
       setPercentRecommend(percentageOfRecommendations);
     }
   }, [metaData]);
@@ -50,7 +52,7 @@ const RatingSummary = ({ metaData }) => {
     <>
       <div className="ratingSummary">
         {averageScore}
-        <div className="starRating">stars here</div>
+        <StarRating reviewScore={averageScore} className="starRating" />
       </div>
       <div className="percentRecommend">
         {percentRecommend}

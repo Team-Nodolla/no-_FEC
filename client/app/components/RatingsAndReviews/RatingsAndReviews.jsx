@@ -22,7 +22,6 @@ const RatingsAndReviews = ({ productID, product }) => {
         });
       axios.get(`/reviews/meta/${productID}`)
         .then((response) => {
-          console.log('meta call response data: ', response.data)
           setMetaData(response.data);
         })
         .catch((err) => {
