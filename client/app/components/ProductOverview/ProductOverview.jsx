@@ -17,6 +17,7 @@ const ProductOverview = ({ productID, product }) => {
         .catch((err) => console.log('error'));
     }
   }, [productID]);
+
   if (styles !== undefined) {
     return (
       <div className="product-overview-container">

@@ -2,10 +2,9 @@ import React from 'react';
 
 const ProductStyleSelector = ({ styles }) => {
   if (styles !== undefined) {
-    console.log(styles);
     return (
       <div>
-        <h1>Style selectors</h1>
+        <h1>Style Selector</h1>
       </div>
     );
   }
