@@ -6,7 +6,8 @@ import './RatingsAndReviews.css';
 const RatingsAndReviews = ({ productID, product }) => {
   // set up state
   // track current productID as well as the reviews for that product
-  const [reviewList, setReviewList] = useState([]);
+  const [reviewList, setReviewList] = useState({});
+  const [metaData, setMetaData] = useState({});
 
   // on component mount, use the productID to fetch reviews from the server
   useEffect(() => {
@@ -31,7 +32,7 @@ const RatingsAndReviews = ({ productID, product }) => {
       <h3 className="header">RATINGS & REVIEWS</h3>
       <div className="ratingsAndReviewsContainer">
         <div className="breakdownContainer">
-          <div className="averageRating">avg rating</div>
+          <div className="ratingSummary">rating summary</div>
           <div className="percentRecommend">% recommended</div>
           <div className="ratingBreakdown">rating breakdown</div>
           <div className="productBreakdown">product breakdown</div>

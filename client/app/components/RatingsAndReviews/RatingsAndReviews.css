@@ -29,7 +29,7 @@
   min-height: 500px;
 }
 
-.averageRating {
+.ratingSummary {
   border: 3px solid #333;
   background-color: #dfdfdf;
   min-height: 100px;
