@@ -37,14 +37,20 @@ const ProductImageGallery = ({ style }) => {
           ? (
             <div className="image-container">
               <img alt="Left Button" src={LeftBtn} onClick={onClickLeftChange} className={`image-left-btn-${currentPhoto !== 0 ? `active` : `disabled`}`} />
-              <DefaultView onClickImage={onClickZoom} defaultPhoto={style.photos[currentPhoto]} />
+              <DefaultView
+                onClickImage={onClickZoom}
+                defaultPhoto={style.photos[currentPhoto]}
+              />
               <img alt="Right Button" src={RightBtn} onClick={onClickRightChange} className={`image-right-btn-${currentPhoto !== (style.photos.length - 1) ? `active` : `disabled`}`} />
             </div>
           )
           : (
             <div className="modal">
               <button onClick={onClickZoom}>Exit</button>
-              <ExpandedView />
+              <ExpandedView
+                onClickImage={onClickZoom}
+                defaultPhoto={style.photos[currentPhoto]}
+                />
             </div>
           )
         }

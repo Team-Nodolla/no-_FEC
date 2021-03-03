@@ -6,7 +6,7 @@
 .image-right-btn-active {
   display: flex;
   position: absolute;
-  margin-left: 600px;
+  margin-left: 630px;
   margin-top: 337px;
 }
 
@@ -17,7 +17,7 @@
 .image-left-btn-active {
   display: flex;
   position: absolute;
-  margin-left: 100px;
+  margin-left: 70px;
   margin-top: 337px;
 }
 
@@ -28,7 +28,7 @@
 .modal {
   position: fixed; /* Stay in place */
   z-index: 1; /* Sit on top */
-  padding-top: 100px; /* Location of the box */
+  padding-top: 5px; /* Location of the box */
   left: 0;
   top: 0;
   width: 100%; /* Full width */

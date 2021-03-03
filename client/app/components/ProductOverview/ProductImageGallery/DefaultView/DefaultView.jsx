@@ -6,7 +6,7 @@ const DefaultView = ({ onClickImage, defaultPhoto }) => {
   if (defaultPhoto !== undefined) {
     return (
       <div className="default-image">
-        <div onClick={onClickImage} className="image">
+        {/* <div onClick={onClickImage} className="image">
           <ReactImageMagnify {...{
             smallImage: {
               isFluidWidth: true,
@@ -19,12 +19,13 @@ const DefaultView = ({ onClickImage, defaultPhoto }) => {
             },
           }}
           />
+        </div> */}
+          <img className="display-image" onClick={onClickImage} alt="My Main Product Display" src={defaultPhoto.url} />
         </div>
-      </div>
     );
   }
   return (
-    <div></div>
+    <div />
   );
 };
 

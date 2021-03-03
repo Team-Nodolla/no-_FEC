@@ -5,6 +5,12 @@
   margin-left: 150px;
   margin-top: 12px;
 }
-.image {
+/* .image {
+  width: 450px;
+} */
+
+.display-image {
+  cursor: crosshair;
   width: 450px;
 }
+
