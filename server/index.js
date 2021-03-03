@@ -85,6 +85,33 @@ app.get('/products/:product_id/default-style', (req, res) => {
     });
 });
 
+// Returns the IDs of all products related to the product with id product_id
+app.get('/products/:product_id/related', (req, res) => {
+  const productID = req.params.product_id;
+  axios.get(`${url}/products/${productID}/related`, {
+    headers: token,
+  })
+    .then((response) => {
+      res.status(200).send(response.data);
+    })
+    .catch((err) => {
+      res.status(404).send(err);
+    });
+});
+
+app.get('/products/:product_id', (req, res) => {
+  const productID = req.params.product_id;
+  axios.get(`${url}/products/${productID}`, {
+    headers: token,
+  })
+    .then((response) => {
+      res.status(200).send(response.data);
+    })
+    .catch((err) => {
+      res.status(500).send(err);
+    });
+});
+
 app.listen(port, () => {
   // eslint-disable-next-line no-console
   console.log(`server listening on http://localhost:${port}`);
