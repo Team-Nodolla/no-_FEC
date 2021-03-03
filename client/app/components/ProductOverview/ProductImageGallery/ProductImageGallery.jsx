@@ -31,7 +31,7 @@ const ProductImageGallery = ({ style }) => {
 
     return (
       <div>
-        <div className="product-thumbnail"><ProductThumbnailScroll /></div>
+        <div className="product-thumbnail"><ProductThumbnailScroll arrayOfPhoto={style} /></div>
         {
         expandView === false
           ? (

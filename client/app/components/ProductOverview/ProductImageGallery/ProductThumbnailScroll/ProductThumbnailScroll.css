@@ -1,0 +1,17 @@
+.thumbnail-photos {
+  margin-bottom: 5px;
+}
+
+.thumbnail-size {
+  width: 20%;
+}
+
+.thumbnail-single-photo {
+  transition: transform 450ms;
+}
+
+.thumbnail-single-photo:hover {
+  transform: scale(1.08);
+  opacity: 1;
+}
+

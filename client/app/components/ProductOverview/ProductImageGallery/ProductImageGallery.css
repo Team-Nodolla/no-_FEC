@@ -1,10 +1,13 @@
 .image-container {
+  z-index: 1;
   display: flex;
   margin-left: 50px;
 }
 
 .product-thumbnail {
-  display: flex;
+  display:flex;
+  margin-left: 100px;
+  margin-top: 50px;
   position: absolute;
 }
 
