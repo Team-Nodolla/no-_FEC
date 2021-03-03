@@ -15,7 +15,7 @@
 #card-image-container {
   max-width: 300px;
   height: 450px;
-  background-color: gray;
+  background-color: rgb(220, 220, 220);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -40,7 +40,7 @@
 }
 
 #product-name {
-  margin: 10px;
+  margin: 10px 0;
 }
 
 #old-price {
@@ -53,4 +53,5 @@
   right: 5px;
   top: 5px;
   z-index: 2;
+  padding: 3px 7px;
 }
