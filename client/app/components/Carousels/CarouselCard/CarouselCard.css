@@ -1,13 +1,14 @@
 #card {
   position: relative;
-  width: 300px;
+  min-width: 300px;
+  max-width: 300px;
   height: 575px;
   background-color: white;
-  border: 2px solid black;
+  box-shadow: 0 3px 5px #C0C0C0;
 }
 
 #card:hover {
-  box-shadow: 3px 3px 5px #C0C0C0;
+  box-shadow: 0 3px 5px rgb(121, 121, 121);
 }
 
 #product-image {
