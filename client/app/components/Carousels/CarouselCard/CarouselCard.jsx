@@ -31,12 +31,15 @@ const CarouselCard = ({
   return (
     <div id="card" onClick={() => { handleRedirect(id) }} >
       <button id="action" type="button" onClick={() => { buttonFunc(); }}><i className="far fa-star" /></button>
-      <img id="product-image" src={productImage} alt="" />
-      <br />
-      <span className="descriptive" id="category">{category}</span>
-      <h3 className="descriptive" id="product-name">{name}</h3>
-      {displayPrice}
-      <StarRating reviewScore={stars} setMargin="10px 0 0 10px" />
+      <div id="card-image-container">
+        <img id="card-image" src={productImage} alt="" />
+      </div>
+      <div id="descriptive-container">
+        <span className="descriptive" id="category">{category}</span>
+        <h3 className="descriptive" id="product-name">{name}</h3>
+        {displayPrice}
+        <StarRating reviewScore={stars} setMargin="10px 0 0 10px" />
+      </div>
     </div>
   );
 };
