@@ -1,0 +1,22 @@
+.ratingSummary {
+  display: flex;
+  flex-direction: row;
+  background-color: #dfdfdf;
+  min-height: 100px;
+  margin: 10px;
+}
+
+.averageScore {
+  margin: 10px 0 0 35px;
+  font-size: 70px;
+}
+
+.starRating {
+  margin: 25px 0 0 30px;
+}
+
+.percentRecommend {
+  background-color: #dfdfdf;
+  min-height: 20px;
+  margin: 0 0 0 45px;
+}
