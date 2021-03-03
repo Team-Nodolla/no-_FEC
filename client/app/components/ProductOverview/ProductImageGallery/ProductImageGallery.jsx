@@ -39,7 +39,7 @@ const ProductImageGallery = ({ style }) => {
                 src={LeftBtn}
               /> */}
               <button  className={`image-left-btn-${currentPhoto !== 0 ? `active` : `disabled`}`} onClick={onClickLeftChange}>
-                <i alt="Left Button" class="fas fa-chevron-left"></i>
+                <i alt="Left Button" className="fas fa-chevron-left"></i>
               </button>
               <DefaultView
                 onClickImage={onClickZoom}
@@ -52,7 +52,7 @@ const ProductImageGallery = ({ style }) => {
                 className={`image-right-btn-${currentPhoto !== (style.photos.length - 1) ? `active` : `disabled`}`}
               /> */}
       <button  className={`image-right-btn-${currentPhoto !== (style.photos.length - 1) ? `active` : `disabled`}`} onClick={onClickRightChange}>
-                <i alt="Right Button" class="fas fa-chevron-right"></i>
+                <i alt="Right Button" className="fas fa-chevron-right"></i>
               </button>
             </div>
           )
