@@ -40,12 +40,12 @@ const CarouselCard = ({
 };
 
 CarouselCard.propTypes = {
-  productImage: propTypes.string.isRequired,
+  productImage: propTypes.string,
   category: propTypes.string.isRequired,
   name: propTypes.string.isRequired,
   originalPrice: propTypes.string.isRequired,
-  salePrice: propTypes.string.isRequired,
-  stars: propTypes.number.isRequired,
+  salePrice: propTypes.string,
+  stars: propTypes.number,
   buttonFunc: propTypes.func.isRequired,
 };
 
