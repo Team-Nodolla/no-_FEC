@@ -46,7 +46,7 @@ const RatingSummary = ({ metaData }) => {
         <div className="averageScore">
           {averageScore}
         </div>
-        <div className="starRating">
+        <div className="summaryStarRating">
           <StarRating reviewScore={averageScore || null} setMargin={ '0 0 0 0' } />
         </div>
       </div>

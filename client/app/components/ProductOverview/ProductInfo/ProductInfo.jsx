@@ -6,9 +6,9 @@ const ProductInfo = ({ product }) => (
     <p>{product.description}</p>
     <div>
       <p>Share: </p>
-      <i className="fab fa-twitter-square"></i>
-      <i style={{paddingLeft: '10px'}} className="fab fa-facebook-square"></i>
-      <i style={{paddingLeft: '10px'}} className="fab fa-pinterest-square"></i>
+      <i style={{fontSize: '30px'}} className="fab fa-twitter-square"></i>
+      <i style={{paddingLeft: '10px', fontSize: '30px'}} className="fab fa-facebook-square"></i>
+      <i style={{paddingLeft: '10px', fontSize: '30px'}} className="fab fa-pinterest-square"></i>
     </div>
   </div>
 );

@@ -11,10 +11,13 @@
 
 .display-image {
   cursor: crosshair;
-  display: flex;
-  justify-content: center;
-  max-width: 70%;
+  position: absolute;
+  height: 70%;
+
+  /* display: flex;
+  justify-content: center; */
+  /* max-width: 70%;
   height: auto;
-  width: auto;
+  width: auto; */
 }
 
