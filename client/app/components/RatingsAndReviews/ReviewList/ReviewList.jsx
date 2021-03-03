@@ -9,7 +9,7 @@ const ReviewList = ({ reviewList }) => {
   let reviewsArray = [];
 
   reviewList.map((review) => {
-    reviewsArray.push(<ReviewListItem review={review} />);
+    reviewsArray.push(<ReviewListItem review={review} key={review.review_id} />);
   });
 
   return (
