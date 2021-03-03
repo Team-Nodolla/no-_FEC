@@ -11,8 +11,27 @@
   box-shadow: 0 3px 5px rgb(121, 121, 121);
 }
 
-#product-image {
-  border-bottom: 1px solid black;
+#card-image-container {
+  max-width: 300px;
+  max-height: 450px;
+  background-color: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* #card-image {
+  display: block;
+  margin-top: auto;
+  margin-bottom: auto;
+} */
+
+#descriptive-container {
+  position: absolute;
+  bottom: 10px;
+  width: 100%;
+  border-top: 1px solid #C0C0C0;
+  padding-top: 10px;
 }
 
 .descriptive {
