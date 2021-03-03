@@ -22,16 +22,19 @@
   width: 500px;
   border-style: solid;
 }
+
 .product-description-container {
   display: flex;
   background-color: red;
   margin-top: 20px;
 }
+
 .product-style-container {
   display: flex;
   background-color: red;
   margin-top: 20px;
 }
+
 .product-summary-container {
   display: block;
   position: absolute;
