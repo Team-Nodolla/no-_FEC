@@ -1,0 +1,13 @@
+.reviewListItemStarRating {
+  margin: 10px 0 0 10px;
+}
+
+.reviewListItemSummary {
+  font-weight: bold;
+  font-size: large;
+  margin: 10px 0 0 10px;
+}
+
+.reviewListItemBody {
+  margin: 10px 0 0 10px;
+}
