@@ -1,6 +1,14 @@
 .image-container {
+  z-index: 1;
   display: flex;
   margin-left: 50px;
+}
+
+.product-thumbnail {
+  display:flex;
+  margin-left: 100px;
+  margin-top: 50px;
+  position: absolute;
 }
 
 .image-right-btn-active {
@@ -17,7 +25,7 @@
 .image-left-btn-active {
   display: flex;
   position: absolute;
-  margin-left: 70px;
+  margin-left: 120px;
   margin-top: 337px;
 }
 
