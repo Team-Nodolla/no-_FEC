@@ -31,12 +31,27 @@ const RatingSummary = ({ metaData }) => {
       }
       // get average recommendations and turn into percentage
       // add did and didNot recommend together, divide did by total * 100
-      const percentageOfRecommendations = (didRecommend / (didRecommend + didNotRecommend)) * 100;
+      let percentageOfRecommendations = (didRecommend / (didRecommend + didNotRecommend)) * 100;
+      percentageOfRecommendations = Math.round(percentageOfRecommendations * 10) / 10;
       setPercentRecommend(percentageOfRecommendations);
     }
   }, [metaData]);
 
-  // add star component and pass it average rating
+  // conditionally render percent who recommend product if there are 1 or more recommendations
+  const NaNCondition = () => {
+    if (isNaN(percentRecommend)) {
+      return (
+        <>
+        </>
+      );
+    }
+    return (
+      <div className="percentRecommend">
+        {percentRecommend}
+        % recommend this product
+      </div>
+    );
+  };
 
   // pass ratings to rating breakdown component
   // pass characteristcs to product breakdown component
@@ -50,10 +65,7 @@ const RatingSummary = ({ metaData }) => {
           <StarRating reviewScore={averageScore || null} setMargin={ '0 0 0 0' } />
         </div>
       </div>
-      <div className="percentRecommend">
-        {percentRecommend}
-        % recommend this product
-      </div>
+      <NaNCondition />
       <div className="ratingBreakdown">rating breakdown component here</div>
       <div className="productBreakdown">product breakdown component here</div>
     </>
