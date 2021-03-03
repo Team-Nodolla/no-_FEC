@@ -1,12 +1,17 @@
 import React from 'react';
 import './ProductCategoryAndTitle.css';
+import StarRating from '../../StarRating/StarRating.jsx';
 
 const ProductCategoryAndTitle = ({ product }) => {
   return (
     <div className='categoryAndTitleContainer'>
+      <div className="product-star">
+      <StarRating reviewScore={0} setMargin='16px 0 0 0' />
+      <p className='read-all-review'>read all reviews</p>
+      </div>
       <p>{product.category}</p>
-      <h2>{product.name}</h2>
-      <h2>${product.default_price}</h2>
+      <h1>{product.name}</h1>
+      <p>${product.default_price}</p>
     </div>
   );
 };

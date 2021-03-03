@@ -7,7 +7,7 @@
 }
 
 .thumbnail-single-photo {
-  transition: transform 450ms;
+  transition: transform 250ms;
 }
 
 .thumbnail-single-photo:hover {
