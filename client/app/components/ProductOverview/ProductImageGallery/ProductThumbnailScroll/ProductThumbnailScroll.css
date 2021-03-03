@@ -15,3 +15,6 @@
   opacity: 1;
 }
 
+.selected-image {
+  border-style: solid;
+}
