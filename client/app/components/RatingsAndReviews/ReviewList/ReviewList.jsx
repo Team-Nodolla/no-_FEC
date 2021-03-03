@@ -12,8 +12,6 @@ const ReviewList = ({ reviewList }) => {
     reviewsArray.push(<ReviewListItem review={review} />);
   });
 
-  console.log('reviews array: ', reviewsArray);
-
   return (
     <div className="reviewListItemContainer">
       {reviewsArray}
