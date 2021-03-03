@@ -3,6 +3,11 @@
   margin-left: 50px;
 }
 
+.product-thumbnail {
+  display: flex;
+  position: absolute;
+}
+
 .image-right-btn-active {
   display: flex;
   position: absolute;
@@ -17,7 +22,7 @@
 .image-left-btn-active {
   display: flex;
   position: absolute;
-  margin-left: 70px;
+  margin-left: 120px;
   margin-top: 337px;
 }
 
