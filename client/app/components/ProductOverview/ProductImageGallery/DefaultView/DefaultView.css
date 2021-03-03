@@ -2,8 +2,19 @@
   width: 600;
   display: flex;
   height: 90%;
+  margin-left: 150px;
+  margin-top: 12px;
+}
+/* .image {
+  width: 450px;
+} */
+
+.display-image {
+  cursor: crosshair;
+  display: flex;
+  justify-content: center;
+  max-width: 70%;
+  height: auto;
+  width: auto;
 }
 
-.padding-container {
-  width: 800px;
-}
