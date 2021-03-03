@@ -3,8 +3,6 @@ import propTypes from 'proptypes';
 import DefaultView from './DefaultView/DefaultView.jsx';
 import ExpandedView from './ExpandedView/ExpandedView.jsx';
 import './ProductImageGallery.css';
-import RightBtn from './right-btn.png';
-import LeftBtn from './left-btn.png';
 
 const ProductImageGallery = ({ style }) => {
   if (style !== '') {
@@ -36,22 +34,26 @@ const ProductImageGallery = ({ style }) => {
         expandView === false
           ? (
             <div className="image-container">
-              <img
+              {/* <img
                 alt="Left Button"
                 src={LeftBtn}
-                onClick={onClickLeftChange}
-                className={`image-left-btn-${currentPhoto !== 0 ? `active` : `disabled`}`}
-              />
+              /> */}
+              <button  className={`image-left-btn-${currentPhoto !== 0 ? `active` : `disabled`}`} onClick={onClickLeftChange}>
+                <i alt="Left Button" class="fas fa-chevron-left"></i>
+              </button>
               <DefaultView
                 onClickImage={onClickZoom}
                 defaultPhoto={style.photos[currentPhoto]}
               />
-              <img
+              {/* <img
                 alt="Right Button"
                 src={RightBtn}
                 onClick={onClickRightChange}
                 className={`image-right-btn-${currentPhoto !== (style.photos.length - 1) ? `active` : `disabled`}`}
-              />
+              /> */}
+      <button  className={`image-right-btn-${currentPhoto !== (style.photos.length - 1) ? `active` : `disabled`}`} onClick={onClickRightChange}>
+                <i alt="Right Button" class="fas fa-chevron-right"></i>
+              </button>
             </div>
           )
           : (
