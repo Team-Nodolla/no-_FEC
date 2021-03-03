@@ -15,14 +15,14 @@ const RatingsAndReviews = ({ productID }) => {
   // on component mount, use the productID to fetch reviews from the server
   useEffect(() => {
     if (productID !== 0) {
-      axios.get(`/reviews/sort/${sortOrder}/product/${13034}`) // set back to productID
+      axios.get(`/reviews/sort/${sortOrder}/product/${productID}`) // set back to productID
         .then((response) => {
           setReviewList(response.data.results);
         })
         .catch((err) => {
           console.log('error fetching data on mount: ', err);
         });
-      axios.get(`/reviews/meta/${13034}`) // set back to productID
+      axios.get(`/reviews/meta/${productID}`) // set back to productID
         .then((response) => {
           setMetaData(response.data);
         })
@@ -33,7 +33,7 @@ const RatingsAndReviews = ({ productID }) => {
   }, [productID]);
 
   useEffect(() => {
-    axios.get(`/reviews/sort/${sortOrder}/product/${13034}`) // set back to productID
+    axios.get(`/reviews/sort/${sortOrder}/product/${productID}`) // set back to productID
       .then((response) => {
         setReviewList(response.data.results);
       })
