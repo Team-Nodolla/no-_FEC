@@ -8,7 +8,7 @@ const ProductThumbnailScroll = ({ currentPhoto, arrayOfPhoto }) => {
       <div className="test">
         {arrayOfPhoto.photos.map((photo) => {
           return (
-          <div className="thumbnail-photos">
+          <div key={photo.thumbnail_url} className="thumbnail-photos">
             <img className={`${currentPhoto === photo.thumbnail_url ? 'selected-image thumbnail-single-photo thumbnail-size' :`thumbnail-single-photo thumbnail-size`}`} src={photo.thumbnail_url} />
           </div>
           )
