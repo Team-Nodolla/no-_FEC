@@ -31,7 +31,7 @@ const App = () => {
     if (productID !== 0) {
       axios.get(`/products/${productID}/related`)
         .then((response) => {
-          console.log(response.data);
+          // console.log(response.data);
           setRelatedProductIDs(response.data);
         });
     }
