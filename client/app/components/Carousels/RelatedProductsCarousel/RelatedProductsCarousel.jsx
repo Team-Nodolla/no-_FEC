@@ -13,7 +13,7 @@ const RelatedProductsCarousel = ({ relatedProductsIDs }) => {
   useEffect(() => {
     if (relatedProductsIDs.length > 0) {
       const putInState = [];
-      relatedProductsIDs.forEach((id) => { putInState.push({}); });
+      relatedProductsIDs.forEach((id) => { putInState.push({ id }); });
       Promise.all(relatedProductsIDs.map((id) => (
         axios.get(`/products/${id}`)
       )))
@@ -28,7 +28,6 @@ const RelatedProductsCarousel = ({ relatedProductsIDs }) => {
         })
         .then((stylesResponses) => {
           stylesResponses.forEach((response, index) => {
-            console.log(response.data.photos[0].thumbnail_url);
             putInState[index].productImage = response.data.photos[0].thumbnail_url;
             putInState[index].originalPrice = response.data.original_price;
             putInState[index].salePrice = response.data.sale_price;
@@ -40,7 +39,6 @@ const RelatedProductsCarousel = ({ relatedProductsIDs }) => {
         .then((reviewsResponses) => {
           reviewsResponses.forEach((response, index) => {
             const { ratings } = response.data;
-            // console.log(averageRating(ratings));
             putInState[index].stars = averageRating(ratings);
           });
           setAllRelatedProducts(putInState);
@@ -51,19 +49,18 @@ const RelatedProductsCarousel = ({ relatedProductsIDs }) => {
         });
     }
   }, [relatedProductsIDs]);
-  console.log(allRelatedProducts);
 
   return (
     <div>
       <h2 id="title">Related Items</h2>
       <div id="carousel">
-        <button type="button" name="previous" id="previous"><i class="fas fa-arrow-left"></i></button>
+        <button type="button" name="previous" id="previous"><i className="fas fa-arrow-left"></i></button>
         <div id="products">
           {allRelatedProducts.map((relatedProduct) => (
-            <CarouselCard {...relatedProduct} buttonFunc={console.log.bind(null, 'click')} />
+            <CarouselCard key={relatedProduct.id} {...relatedProduct} buttonFunc={console.log.bind(null, 'click')} />
           ))}
         </div>
-        <button type="button" name="next" id="next"><i class="fas fa-arrow-right"></i></button>
+        <button type="button" name="next" id="next"><i className="fas fa-arrow-right"></i></button>
       </div>
     </div>
   );

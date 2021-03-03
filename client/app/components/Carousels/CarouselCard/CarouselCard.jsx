@@ -6,6 +6,7 @@ import StarRating from '../../StarRating/StarRating.jsx';
 import './CarouselCard.css';
 
 const CarouselCard = ({
+  id,
   productImage,
   category,
   name,
@@ -40,6 +41,7 @@ const CarouselCard = ({
 };
 
 CarouselCard.propTypes = {
+  id: propTypes.number.isRequired,
   productImage: propTypes.string,
   category: propTypes.string.isRequired,
   name: propTypes.string.isRequired,
