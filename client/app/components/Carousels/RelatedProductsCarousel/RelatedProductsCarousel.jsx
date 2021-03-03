@@ -54,10 +54,17 @@ const RelatedProductsCarousel = ({ relatedProductsIDs }) => {
   console.log(allRelatedProducts);
 
   return (
-    <div id="carousel">
-      {allRelatedProducts.map((relatedProduct) => (
-        <CarouselCard {...relatedProduct} buttonFunc={ console.log.bind(null, 'click') } />
-      ))}
+    <div>
+      <h2 id="title">Related Items</h2>
+      <div id="carousel">
+        <button type="button" name="previous" id="previous"><i class="fas fa-arrow-left"></i></button>
+        <div id="products">
+          {allRelatedProducts.map((relatedProduct) => (
+            <CarouselCard {...relatedProduct} buttonFunc={console.log.bind(null, 'click')} />
+          ))}
+        </div>
+        <button type="button" name="next" id="next"><i class="fas fa-arrow-right"></i></button>
+      </div>
     </div>
   );
 };
