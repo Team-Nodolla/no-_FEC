@@ -1,0 +1,6 @@
+.expanded-image {
+  margin: auto;
+  display: flex;
+  width: 80%;
+  max-width: 700px;
+}
