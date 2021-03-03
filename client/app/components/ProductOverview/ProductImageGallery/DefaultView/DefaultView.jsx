@@ -3,21 +3,7 @@ import ReactImageMagnify from 'react-image-magnify';
 import './DefaultView.css';
 
 const DefaultView = ({ defaultPhoto }) => {
-  // const [currentPhoto, setCurrentPhoto] = useState(0);
-
   if (defaultPhoto !== undefined) {
-    // const onClickRightChange = () => {
-    //   console.log('clicked right');
-    //   if (currentPhoto !== defaultPhoto.length - 1) {
-    //     setCurrentPhoto(currentPhoto + 1);
-    //   }
-    // };
-    // const onClickLeftChange = () => {
-    //   console.log('clicked left');
-    //   if (currentPhoto > 0) {
-    //     setCurrentPhoto(currentPhoto - 1);
-    //   }
-    // };
     return (
       <div className="default-image">
         <div className="image">
@@ -34,12 +20,9 @@ const DefaultView = ({ defaultPhoto }) => {
           }}
           />
         </div>
-        <div className="padding-container">
-        </div>
       </div>
     );
   }
-
   return (
     <div></div>
   );
