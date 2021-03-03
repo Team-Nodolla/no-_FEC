@@ -29,20 +29,6 @@
   min-height: 500px;
 }
 
-.ratingSummary {
-  border: 3px solid #333;
-  background-color: #dfdfdf;
-  min-height: 100px;
-  margin: 10px;
-}
-
-.percentRecommend {
-  border: 3px solid #333;
-  background-color: #dfdfdf;
-  min-height: 20px;
-  margin: 10px;
-}
-
 .ratingBreakdown {
   border: 3px solid #333;
   background-color: #dfdfdf;
@@ -56,7 +42,6 @@
   min-height: 150px;
   margin: 10px;
 }
-
 
 .sortForm {
   border: 3px solid #333;
