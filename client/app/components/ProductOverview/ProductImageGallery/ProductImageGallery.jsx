@@ -34,12 +34,26 @@ const ProductImageGallery = ({ style }) => {
         expandView === false
           ? (
             <div className="image-container">
-              <i className={`image-left-btn-${currentPhoto !== 0 ? `active` : `disabled`} fas fa-chevron-left`} onClick={onClickLeftChange} alt="Left Button"></i>
+              {/* <img
+                alt="Left Button"
+                src={LeftBtn}
+              /> */}
+              <button  className={`image-left-btn-${currentPhoto !== 0 ? `active` : `disabled`}`} onClick={onClickLeftChange}>
+                <i alt="Left Button" className="fas fa-chevron-left"></i>
+              </button>
               <DefaultView
                 onClickImage={onClickZoom}
                 defaultPhoto={style.photos[currentPhoto]}
               />
-                <i className={`image-right-btn-${currentPhoto !== (style.photos.length - 1) ? `active` : `disabled`} fas fa-chevron-right`} onClick={onClickRightChange}alt="Right Button"></i>
+              {/* <img
+                alt="Right Button"
+                src={RightBtn}
+                onClick={onClickRightChange}
+                className={`image-right-btn-${currentPhoto !== (style.photos.length - 1) ? `active` : `disabled`}`}
+              /> */}
+      <button  className={`image-right-btn-${currentPhoto !== (style.photos.length - 1) ? `active` : `disabled`}`} onClick={onClickRightChange}>
+                <i alt="Right Button" className="fas fa-chevron-right"></i>
+              </button>
             </div>
           )
           : (
