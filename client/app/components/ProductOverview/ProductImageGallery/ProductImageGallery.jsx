@@ -29,31 +29,17 @@ const ProductImageGallery = ({ style }) => {
 
     return (
       <div>
-        <div className="product-thumbnail"><ProductThumbnailScroll currentPhoto={style.photos[currentPhoto].thumbnail_url} arrayOfPhoto={style} /></div>
+        <div className="product-thumbnail"><ProductThumbnailScroll key={style.style_id} currentPhoto={style.photos[currentPhoto].thumbnail_url} arrayOfPhoto={style} /></div>
         {
         expandView === false
           ? (
             <div className="image-container">
-              {/* <img
-                alt="Left Button"
-                src={LeftBtn}
-              /> */}
-              <button  className={`image-left-btn-${currentPhoto !== 0 ? `active` : `disabled`}`} onClick={onClickLeftChange}>
-                <i alt="Left Button" className="fas fa-chevron-left"></i>
-              </button>
+              <i alt="Left Button" onClick={onClickLeftChange} className={`image-left-btn-${currentPhoto !== 0 ? `active` : `disabled`} fas fa-chevron-left`}></i>
               <DefaultView
                 onClickImage={onClickZoom}
                 defaultPhoto={style.photos[currentPhoto]}
               />
-              {/* <img
-                alt="Right Button"
-                src={RightBtn}
-                onClick={onClickRightChange}
-                className={`image-right-btn-${currentPhoto !== (style.photos.length - 1) ? `active` : `disabled`}`}
-              /> */}
-      <button  className={`image-right-btn-${currentPhoto !== (style.photos.length - 1) ? `active` : `disabled`}`} onClick={onClickRightChange}>
-                <i alt="Right Button" className="fas fa-chevron-right"></i>
-              </button>
+              <i alt="Right Button" onClick={onClickRightChange} className={`image-right-btn-${currentPhoto !== (style.photos.length - 1) ? `active` : `disabled`} fas fa-chevron-right`}></i>
             </div>
           )
           : (
