@@ -28,8 +28,8 @@ app.get('/products', (req, res) => {
 });
 
 // RATINGS AND REVIEW HANDLERS
-app.get('/reviews/product/:product_id', (req, res) => {
-  axios.get(`${url}/reviews?product_id=${req.params.product_id}`, {
+app.get('/reviews/sort/:text/product/:product_id', (req, res) => {
+  axios.get(`${url}/reviews?sort=${req.params.text}&product_id=${req.params.product_id}`, {
     headers: token,
   })
     .then((response) => {

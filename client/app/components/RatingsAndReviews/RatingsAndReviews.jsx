@@ -9,11 +9,12 @@ const RatingsAndReviews = ({ productID, product }) => {
   // track current productID as well as the reviews for that product
   const [reviewList, setReviewList] = useState({});
   const [metaData, setMetaData] = useState({});
+  const [sortOrder, setSortOrder] = useState('relevant');
 
   // on component mount, use the productID to fetch reviews from the server
   useEffect(() => {
     if (productID !== 0) {
-      axios.get(`/reviews/product/${productID}`)
+      axios.get(`/reviews/sort/${sortOrder}/product/${productID}`)
         .then((response) => {
           setReviewList(response.data.results);
         })
@@ -30,6 +31,16 @@ const RatingsAndReviews = ({ productID, product }) => {
     }
   }, [productID]);
 
+  useEffect(() => {
+    axios.get(`/reviews/sort/${sortOrder}/product/${productID}`)
+      .then((response) => {
+        setReviewList(response.data.results);
+      })
+      .catch((err) => {
+        console.log('error fetching data on mount: ', err);
+      });
+  }, [sortOrder]);
+
   // render container divs
   // breakdown container: avg rating, rating breakdown, product breakdown, % recommended
   // review list container: sort form, review list, more reviews button, add review button
@@ -43,7 +54,14 @@ const RatingsAndReviews = ({ productID, product }) => {
           <RatingSummary metaData={metaData} className="ratingSummary" />
         </div>
         <div className="reviewListContainer">
-          <div className="sortForm">sort form</div>
+          <form onChange={(event) => { setSortOrder(event.target.value); }} className="sortForm">
+            <label htmlFor="sortForm">Sort on </label>
+            <select id="sortForm" name="sortForm">
+              <option value="relevant">relevant</option>
+              <option value="helpful">helpful</option>
+              <option value="newest">newest</option>
+            </select>
+          </form>
           <div className="reviewList">review list component</div>
           <div className="buttonsContainer">
             <div className="moreReviewsButton">more reviews button</div>
