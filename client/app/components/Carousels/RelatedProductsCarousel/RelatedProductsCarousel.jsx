@@ -28,7 +28,6 @@ const RelatedProductsCarousel = ({ relatedProductsIDs }) => {
         })
         .then((stylesResponses) => {
           stylesResponses.forEach((response, index) => {
-            console.log(response.data.photos[0].thumbnail_url);
             putInState[index].productImage = response.data.photos[0].thumbnail_url;
             putInState[index].originalPrice = response.data.original_price;
             putInState[index].salePrice = response.data.sale_price;
@@ -51,7 +50,6 @@ const RelatedProductsCarousel = ({ relatedProductsIDs }) => {
         });
     }
   }, [relatedProductsIDs]);
-  console.log(allRelatedProducts);
 
   return (
     <div>
