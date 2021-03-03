@@ -21,7 +21,7 @@ const DefaultView = ({ onClickImage, defaultPhoto }) => {
           />
         </div> */}
           <img className="display-image" onClick={onClickImage} alt="My Main Product Display" src={defaultPhoto.url} />
-        </div>
+      </div>
     );
   }
   return (
