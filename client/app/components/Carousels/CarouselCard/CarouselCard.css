@@ -9,6 +9,7 @@
 
 #card:hover {
   box-shadow: 0 3px 5px rgb(121, 121, 121);
+  cursor: pointer;
 }
 
 #card-image-container {
