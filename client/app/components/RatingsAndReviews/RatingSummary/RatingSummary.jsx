@@ -1,28 +1,20 @@
 import React, { useEffect, useState } from 'react';
 import propTypes from 'proptypes';
 import StarRating from '../../StarRating/StarRating.jsx';
-import './RatingSummary.css'
+import getAverageScore from '../../helperFunctions/getAverageScore.jsx';
+import './RatingSummary.css';
 
 const RatingSummary = ({ metaData }) => {
   const [averageScore, setAverageScore] = useState(0);
   const [percentRecommend, setPercentRecommend] = useState(0);
 
   useEffect(() => {
-    let totalScore = 0;
-    let didRecommend = 0;
-    let didNotRecommend = 0;
     if (metaData.ratings) {
-      const ratingsArray = Object.entries(metaData.ratings);
+      let didRecommend = 0;
+      let didNotRecommend = 0;
       const recommendedArray = Object.entries(metaData.recommended);
-      // find average rating
-      for (let i = 0; i < ratingsArray.length; i += 1) {
-        // add up the total score
-        totalScore += ratingsArray[i][0] * ratingsArray[i][1];
-      }
-      // divide the total score by the number of ratings
-      totalScore /= ratingsArray.length;
-      // round to nearest 10th
-      totalScore = Math.round(totalScore * 10) / 10;
+
+      const totalScore = getAverageScore(metaData.ratings);
       setAverageScore(totalScore);
 
       // find average recommended
@@ -52,7 +44,7 @@ const RatingSummary = ({ metaData }) => {
     <>
       <div className="ratingSummary">
         {averageScore}
-        <StarRating reviewScore={averageScore} className="starRating" />
+        <StarRating reviewScore={averageScore || null} className="starRating" />
       </div>
       <div className="percentRecommend">
         {percentRecommend}

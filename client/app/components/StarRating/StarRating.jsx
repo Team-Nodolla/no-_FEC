@@ -61,7 +61,7 @@ const FilledStars = () => (
 
 StarRating.propTypes = {
   reviewScore: propTypes.number,
-  setMargin: propTypes.string.isRequired,
+  setMargin: propTypes.string,
 };
 
 export default StarRating;
