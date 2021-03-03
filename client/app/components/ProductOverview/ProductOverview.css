@@ -16,8 +16,8 @@
 .product-info-container {
   display: flex;
   flex-direction: column;
-  background-color: grey;
-  border-style: solid;
+  /* background-color: grey;
+  border-style: solid; */
   margin: 10px 10px;
   height: 700px;
   width: 500px;
@@ -25,13 +25,13 @@
 
 .product-description-container {
   display: flex;
-  background-color: red;
+  /* background-color: red; */
   margin-top: 20px;
 }
 
 .product-style-container {
   display: flex;
-  background-color: red;
+  /* background-color: red; */
   margin-top: 20px;
 }
 

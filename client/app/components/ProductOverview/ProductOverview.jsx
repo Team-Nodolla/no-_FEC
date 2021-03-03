@@ -39,8 +39,7 @@ const ProductOverview = ({ productID, product }) => {
   }
 
   return (
-    <div>
-    </div>
+    <div />
   );
 };
 

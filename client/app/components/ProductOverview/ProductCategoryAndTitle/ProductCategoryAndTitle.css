@@ -1,0 +1,13 @@
+.product-star {
+  display: flex;
+}
+
+.read-all-review {
+  text-decoration: underline;
+  margin-left: 10px;
+}
+
+.read-all-review:hover{
+  cursor: pointer;
+  color: blue;
+}
