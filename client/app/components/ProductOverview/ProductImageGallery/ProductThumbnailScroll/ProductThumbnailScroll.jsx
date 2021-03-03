@@ -23,6 +23,7 @@ const ProductThumbnailScroll = ({ currentPhoto, arrayOfPhoto }) => {
 };
 
 ProductThumbnailScroll.propTypes = {
+  currentPhoto: propTypes.string.isRequired,
   arrayOfPhoto: propTypes.object.isRequired,
 };
 

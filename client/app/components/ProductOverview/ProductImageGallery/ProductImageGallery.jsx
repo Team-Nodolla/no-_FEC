@@ -6,7 +6,7 @@ import ProductThumbnailScroll from './ProductThumbnailScroll/ProductThumbnailScr
 import './ProductImageGallery.css';
 
 const ProductImageGallery = ({ style }) => {
-  if (style !== '') {
+  if (Object.keys(style).length !== 0) {
     const toggle = false;
     const [currentPhoto, setCurrentPhoto] = useState(0);
     const [expandView, setExpandView] = useState(toggle);
