@@ -2,11 +2,11 @@ import React from 'react';
 import ReactImageMagnify from 'react-image-magnify';
 import './DefaultView.css';
 
-const DefaultView = ({ defaultPhoto }) => {
+const DefaultView = ({ onClickImage, defaultPhoto }) => {
   if (defaultPhoto !== undefined) {
     return (
       <div className="default-image">
-        <div className="image">
+        <div onClick={onClickImage} className="image">
           <ReactImageMagnify {...{
             smallImage: {
               isFluidWidth: true,

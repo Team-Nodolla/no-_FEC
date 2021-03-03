@@ -1,3 +1,9 @@
 import React from 'react';
 
-export default
+const ExpandedView = () => (
+  <div>
+    <h1>Hello</h1>
+  </div>
+)
+
+export default ExpandedView;
