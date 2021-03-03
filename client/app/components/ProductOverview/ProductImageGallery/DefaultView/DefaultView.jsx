@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactImageMagnify from 'react-image-magnify';
+import propTypes from 'proptypes';
 import './DefaultView.css';
 
 const DefaultView = ({ onClickImage, defaultPhoto }) => {
@@ -13,6 +13,11 @@ const DefaultView = ({ onClickImage, defaultPhoto }) => {
   return (
     <div />
   );
+};
+
+DefaultView.propTypes = {
+  onClickImage: propTypes.func.isRequired,
+  defaultPhoto: propTypes.object.isRequired,
 };
 
 export default DefaultView;

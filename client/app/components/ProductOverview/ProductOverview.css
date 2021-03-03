@@ -17,10 +17,10 @@
   display: flex;
   flex-direction: column;
   background-color: grey;
+  border-style: solid;
   margin: 10px 10px;
   height: 700px;
   width: 500px;
-  border-style: solid;
 }
 
 .product-description-container {
