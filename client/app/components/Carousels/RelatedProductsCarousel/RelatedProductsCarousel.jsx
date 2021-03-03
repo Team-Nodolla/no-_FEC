@@ -56,7 +56,7 @@ const RelatedProductsCarousel = ({ relatedProductsIDs, handleRedirect }) => {
   }, [relatedProductsIDs]);
 
   return (
-    <div>
+    <>
       <h2 id="title">Related Items</h2>
       <div id="carousel">
         <button type="button" name="previous" id="previous"><i className="fas fa-arrow-left" /></button>
@@ -72,7 +72,7 @@ const RelatedProductsCarousel = ({ relatedProductsIDs, handleRedirect }) => {
         </div>
         <button type="button" name="next" id="next"><i className="fas fa-arrow-right"></i></button>
       </div>
-    </div>
+    </>
   );
 };
 
