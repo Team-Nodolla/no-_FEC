@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import propTypes from 'proptypes';
 import './ReviewList.css';
 import ReviewListItem from './ReviewListItem/ReviewListItem.jsx';
-import MoreReviewsButton from './ButtonsContainer/MoreReviewsButton.jsx';
+import MoreReviewsButton from './ButtonsContainer/MoreReviewsButton/MoreReviewsButton.jsx';
 
 const ReviewList = ({ reviewList, visibleReviews }) => {
   // const [reviewElements, setReviewElements] = useState([]);
