@@ -1,21 +1,48 @@
+/* eslint-disable react/jsx-one-expression-per-line */
+/* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable quotes */
-import React from 'react';
+import React, { useEffect, useState }from 'react';
 import './ModalWindow.css';
 
 const ModalWindow = ({ handleClose, modalView, productName }) => {
+  const [selectedRecommend, setSelectedRecommend] = useState('');
   const modalClassName = modalView ? "modal display-block" : "modal display-none";
+
+  const handleRecommendChange = (e) => {
+    setSelectedRecommend(e.target.value);
+  };
+
   if (modalView) {
     return (
       <div className={modalClassName}>
         <div className="modalMain">
-          <h2>Write your review</h2>
-          <h3>About the {productName}</h3>
-          {/* <form>
+          <div className="modalTitle">
+            <h2>Write your review</h2>
+            <h3>About the {productName}</h3>
+          </div>
+          <form>
+            {/* on submit, do something */}
+            <div>Overall Rating*: (placeholder)</div>
+            <div className="radio">
+              <label>
+                Do you recommend this product?*:{' '}
+                <label>
+                  Yes
+                  <input type="radio" name="recommendRadio" value="recommendYes" checked={selectedRecommend === "recommendYes"} onChange={handleRecommendChange} required />
+                </label>
+                <label>
+                  No
+                  <input type="radio" name="recommendRadio" value="recommendNo" checked={selectedRecommend === "recommendNo"} onChange={handleRecommendChange} />
+                </label>
+              </label>
+            </div>
 
-          </form> */}
-          <button type="button" onClick={handleClose}>
-            Close
-          </button>
+          </form>
+          <div className="modalButtonContainer">
+            <button type="button" className="modalButton" onClick={handleClose}>
+              Close
+            </button>
+          </div>
         </div>
       </div>
     );

@@ -8,7 +8,7 @@
 }
 
 .modalMain {
-  position:fixed;
+  position: fixed;
   background: white;
   width: 80%;
   height: auto;
@@ -23,4 +23,16 @@
 
 .display-none {
   display: none;
+}
+
+.modalTitle {
+  text-align: center;
+}
+
+.modalButtonContainer {
+  margin: 0;
+  position: absolute;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
 }
