@@ -44,4 +44,17 @@ store.getAll = () => {
   return dataToReturn;
 };
 
+/* ******* */
+/*   has   */
+/* ******* */
+
+// Input: a key to search for in localStorage
+// Output: true if an item with this key exists, false if not
+store.has = (key) => {
+  if (store.get(key)) {
+    return true;
+  }
+  return false;
+};
+
 export default store;
