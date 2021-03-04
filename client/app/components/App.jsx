@@ -12,7 +12,7 @@ import './App.css';
 const App = () => {
   const [currentProduct, setCurrentProduct] = useState({});
 
-  useEffect(() => {
+  const fetchNewProductDetails = () => {
     const putInState = {};
     axios.get('/products')
       .then((productsResponse) => {
@@ -43,6 +43,10 @@ const App = () => {
       .catch((err) => {
         console.error('error fetching on mount: ', err);
       });
+  };
+
+  useEffect(() => {
+    fetchNewProductDetails();
   }, []);
 
   const handleRedirect = (id) => {
