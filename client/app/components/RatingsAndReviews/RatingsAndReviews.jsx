@@ -4,6 +4,7 @@ import propTypes from 'proptypes';
 import './RatingsAndReviews.css';
 import RatingSummary from './RatingSummary/RatingSummary.jsx';
 import ReviewList from './ReviewList/ReviewList.jsx';
+import MoreReviewsButton from './ReviewList/ButtonsContainer/MoreReviewsButton.jsx';
 
 const RatingsAndReviews = ({ productID }) => {
   // set up state
@@ -11,18 +12,19 @@ const RatingsAndReviews = ({ productID }) => {
   const [reviewList, setReviewList] = useState([]);
   const [metaData, setMetaData] = useState({});
   const [sortOrder, setSortOrder] = useState('relevant');
+  const [visibleReviews, setVisibleReviews] = useState(2);
 
   // on component mount, use the productID to fetch reviews from the server
   useEffect(() => {
     if (productID !== 0) {
-      axios.get(`/reviews/sort/${sortOrder}/product/${productID}`)
+      axios.get(`/reviews/sort/${sortOrder}/product/${productID}`) // TODO
         .then((response) => {
           setReviewList(response.data.results);
         })
         .catch((err) => {
           console.log('error fetching data on mount: ', err);
         });
-      axios.get(`/reviews/meta/${productID}`)
+      axios.get(`/reviews/meta/${productID}`) // TODO
         .then((response) => {
           setMetaData(response.data);
         })
@@ -33,7 +35,7 @@ const RatingsAndReviews = ({ productID }) => {
   }, [productID]);
 
   useEffect(() => {
-    axios.get(`/reviews/sort/${sortOrder}/product/${productID}`)
+    axios.get(`/reviews/sort/${sortOrder}/product/${productID}`) // TODO
       .then((response) => {
         setReviewList(response.data.results);
       })
@@ -41,6 +43,20 @@ const RatingsAndReviews = ({ productID }) => {
         console.log('error fetching data on mount: ', err);
       });
   }, [sortOrder]);
+
+  const MoreReviewsButtonRender = () => {
+    if (reviewList.length > visibleReviews) {
+      return (
+        <MoreReviewsButton
+          visibleReviews={visibleReviews}
+          setVisibleReviews={setVisibleReviews}
+        />
+      );
+    }
+    return (
+      <></>
+    );
+  };
 
   return (
     // Below are PLACEHOLDER contents within each element
@@ -60,10 +76,15 @@ const RatingsAndReviews = ({ productID }) => {
             </select>
           </form>
           <div className="reviewList">
-            <ReviewList reviewList={reviewList} />
+            <ReviewList
+              reviewList={reviewList}
+              visibleReviews={visibleReviews}
+            />
           </div>
           <div className="buttonsContainer">
-            <div className="moreReviewsButton">more reviews button</div>
+            <>
+              <MoreReviewsButtonRender />
+            </>
             <div className="addReviewButton">add new review button</div>
           </div>
         </div>
