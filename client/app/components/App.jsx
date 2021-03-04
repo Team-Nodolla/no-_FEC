@@ -76,12 +76,8 @@ const App = () => {
         relatedProductsIDs={relatedProductIDs}
         handleRedirect={handleRedirect}
       />
-<<<<<<< HEAD
       <OutfitCarousel />
       <RatingsAndReviews productID={productID} product={product} />
-=======
-      <RatingsAndReviews productID={productID} product={product} metaData={metaData} />
->>>>>>> origin
     </div>
   );
 };
