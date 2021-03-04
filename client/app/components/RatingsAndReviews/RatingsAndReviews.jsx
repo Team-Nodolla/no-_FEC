@@ -15,7 +15,7 @@ const RatingsAndReviews = ({ productID, metaData }) => {
 
   // on component mount, use the productID to fetch reviews from the server
   useEffect(() => {
-    if (productID !== 0) {
+    if (productID) {
       axios.get(`/reviews/sort/${sortOrder}/product/${productID}`) // TODO
         .then((response) => {
           setReviewList(response.data.results);
@@ -27,13 +27,15 @@ const RatingsAndReviews = ({ productID, metaData }) => {
   }, [productID]);
 
   useEffect(() => {
-    axios.get(`/reviews/sort/${sortOrder}/product/${productID}`) // TODO
-      .then((response) => {
-        setReviewList(response.data.results);
-      })
-      .catch((err) => {
-        console.log('error fetching data on mount: ', err);
-      });
+    if (productID) {
+      axios.get(`/reviews/sort/${sortOrder}/product/${productID}`) // TODO
+        .then((response) => {
+          setReviewList(response.data.results);
+        })
+        .catch((err) => {
+          console.log('error fetching data on mount: ', err);
+        });
+    }
   }, [sortOrder]);
 
   const MoreReviewsButtonRender = () => {
@@ -86,8 +88,9 @@ const RatingsAndReviews = ({ productID, metaData }) => {
 };
 
 RatingsAndReviews.propTypes = {
-  productID: propTypes.number.isRequired,
-  product: propTypes.object.isRequired,
+  productID: propTypes.number,
+  product: propTypes.object,
+  metaData: propTypes.object
 };
 
 export default RatingsAndReviews;

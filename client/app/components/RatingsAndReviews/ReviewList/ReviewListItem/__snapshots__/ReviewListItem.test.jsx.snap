@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`review list item:  it renders when given a review 1`] = `ShallowWrapper {}`;
