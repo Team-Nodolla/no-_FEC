@@ -9,12 +9,20 @@ import './OutfitCarousel.css';
 const OutfitCarousel = ({ productInfo, handleRedirect }) => {
   const [outfitList, setOutfitList] = useState([]);
 
+  const handleActionButtonClick = (id) => {
+    store.delete(id);
+    const newState = outfitList.filter((item) => (
+      item.id !== id
+    ));
+    setOutfitList(newState);
+  };
+
   const cardTemplate = (key, cardDetails) => (
     <CarouselCard
       key={key}
       {...cardDetails}
       handleRedirect={handleRedirect}
-      buttonFunc={console.log.bind(null, 'click')}
+      buttonFunc={handleActionButtonClick}
       carouselType="outfit"
     />
   );
@@ -23,7 +31,6 @@ const OutfitCarousel = ({ productInfo, handleRedirect }) => {
   useEffect(() => {
     if (productInfo.id !== 0) {
       const outfitsInStore = [];
-      console.log(store.getAll());
       store.getAll().forEach((item) => {
         outfitsInStore.push(
           cardTemplate(item.id, item),
@@ -66,7 +73,8 @@ const OutfitCarousel = ({ productInfo, handleRedirect }) => {
 };
 
 OutfitCarousel.propTypes = {
-  productInfo: propTypes.object,
+  productInfo: propTypes.object.isRequired,
+  handleRedirect: propTypes.func.isRequired,
 };
 
 export default OutfitCarousel;
