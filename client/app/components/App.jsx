@@ -69,9 +69,9 @@ const App = () => {
   return (
     <div className="app-container">
       <ProductOverview
-        styles={currentProduct}
-        productID={currentProduct.id}
         product={currentProduct}
+        defaultStyle={currentProduct.defaultStyle}
+        styles={currentProduct.styles}
       />
       <RelatedProductsCarousel
         relatedProductsIDs={currentProduct.relatedProductIDs}

@@ -6,7 +6,7 @@ import ProductThumbnailScroll from './ProductThumbnailScroll/ProductThumbnailScr
 import './ProductImageGallery.css';
 
 const ProductImageGallery = ({ style }) => {
-  if (Object.keys(style).length !== 0) {
+  if (style.length !== 0) {
     const toggle = false;
     const [currentPhoto, setCurrentPhoto] = useState(0);
     const [expandView, setExpandView] = useState(toggle);
@@ -43,7 +43,7 @@ const ProductImageGallery = ({ style }) => {
             </div>
           )
           : (
-            <div onClickImage={onClickZoom} className="modal">
+            <div onClickImage={onClickZoom} className="product-expanded-modal">
               <ExpandedView
                 onClickImage={onClickZoom}
                 defaultPhoto={style.photos[currentPhoto]}
@@ -60,7 +60,7 @@ const ProductImageGallery = ({ style }) => {
 };
 
 ProductImageGallery.propTypes = {
-  style: propTypes.object.isRequired,
+  style: propTypes.array.isRequired,
 };
 
 export default ProductImageGallery;
