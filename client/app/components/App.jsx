@@ -10,13 +10,6 @@ import './App.css';
 
 const App = () => {
   const [currentProduct, setCurrentProduct] = useState({});
-  // const [productID, setProductID] = useState(0);
-  // const [product, setProduct] = useState({});
-  // const [allProducts, setAllProducts] = useState({});
-  // const [relatedProductIDs, setRelatedProductIDs] = useState([]);
-  // const [styles, getStyles] = useState({});
-  // const [metaData, setMetaData] = useState({});
-  // const [averageRating, setAverageRating] = useState(null);
 
   useEffect(() => {
     const putInState = {};
@@ -28,17 +21,14 @@ const App = () => {
         putInState.description = productsResponse.data[0].description;
         putInState.slogan = productsResponse.data[0].slogan;
         return axios.get(`/products/${putInState.id}/default-style`);
-        // setCurrentProduct({ ...putInState });
       })
       .then((defaultStyleResponse) => {
         putInState.originalPrice = defaultStyleResponse.data.original_price;
         putInState.salePrice = defaultStyleResponse.data.sale_price;
         putInState.photos = defaultStyleResponse.data.photos;
-        // putInState.style_id = defaultStyleResponse.data.style_id;
         return axios.get(`/products/${putInState.id}/related`);
       })
       .then((relatedProductsResponse) => {
-        // console.log(relatedProductsResponse.data);
         putInState.relatedProductIDs = relatedProductsResponse.data;
         return axios.get(`/reviews/meta/${putInState.id}`);
       })
@@ -68,19 +58,6 @@ const App = () => {
     //     .catch((err) => { console.error(err); });
     // }
   };
-
-  // const productInfo = {
-  //   id: productID,
-  //   name: product.name ?? 'Product Name',
-  //   category: product.category ?? 'Category',
-  //   productImage: styles?.photos?.[0]?.thumbnail_url ?? null,
-  //   originalPrice: styles.original_price ?? 0,
-  //   salePrice: styles.sale_price ?? null,
-  //   stars: averageRating ?? null,
-  //   handleRedirect,
-  // };
-
-  console.log('what does state have outside?', currentProduct);
 
   return (
     <div className="app-container">
