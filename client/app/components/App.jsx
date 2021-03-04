@@ -16,7 +16,7 @@ const App = () => {
   useEffect(() => {
     if (productID !== 0) {
       axios.get(`/products/${productID}/default-style`)
-        .then((data) => getStyles(data.data))
+        .then((response) => getStyles(response.data))
         .catch((err) => console.error('error', err));
     }
   }, [productID]);
