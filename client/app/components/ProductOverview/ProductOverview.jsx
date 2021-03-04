@@ -11,8 +11,8 @@ const ProductOverview = ({ product, defaultStyle, styles }) => {
   if (styles !== undefined) {
     const [selectedStyle, setSelectedStyle] = useState(styles[0]);
 
-    const handleSelectedStyle = (e) => {
-      console.log('clicked', e.target);
+    const handleSelectedStyle = (style) => {
+      setSelectedStyle(style);
     };
 
     console.log('product:, ', product);

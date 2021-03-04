@@ -8,7 +8,7 @@ const ProductStyleSelector = ({ handleSelectedStyleClick, styles }) => {
         {styles.map((productStyle) => {
           return(
           <div className="styles-thumbnail-list">
-            <img onClick={handleSelectedStyleClick} value={productStyle} style={{borderRadius: '50%', width: '50px', height: '50px'}} src={productStyle.photos[0].thumbnail_url} />
+            <img onClick={() => handleSelectedStyleClick(productStyle)} style={{borderRadius: '50%', width: '50px', height: '50px'}} src={productStyle.photos[0].thumbnail_url} />
           </div>
           )
         })}
