@@ -24,8 +24,8 @@ const App = () => {
         return axios.get(`/products/${putInState.id}/styles`);
       })
       .then((stylesResponse) => {
-        putInState.styles = stylesResponse.data;
-        putInState.defaultStyle = getDefaultStyle(stylesResponse.data);
+        putInState.styles = stylesResponse.data.results;
+        putInState.defaultStyle = getDefaultStyle(putInState.styles);
         putInState.originalPrice = putInState.defaultStyle.original_price;
         putInState.salePrice = putInState.defaultStyle.sale_price;
         putInState.photos = putInState.defaultStyle.photos;
