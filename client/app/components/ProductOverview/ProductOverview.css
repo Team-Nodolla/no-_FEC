@@ -33,7 +33,14 @@
 
 .product-style-container {
   display: flex;
+  flex-direction: row;
   /* background-color: red; */
+  margin-top: 20px;
+}
+
+.product-cart-container {
+  display: flex;
+  background-color: red;
   margin-top: 20px;
 }
 

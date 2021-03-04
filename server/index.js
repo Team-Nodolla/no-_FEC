@@ -99,6 +99,19 @@ app.get('/products/:product_id/styles', (req, res) => {
     });
 });
 
+app.get('/products/:product_id/styles', (req, res) => {
+  const productID = req.params.product_id;
+  axios.get(`${url}/products/${productID}/styles`, {
+    headers: token,
+  })
+    .then((response) => {
+      res.status(200).send(response.data);
+    })
+    .catch((err) => {
+      res.status(500).send(err);
+    });
+});
+
 app.listen(port, () => {
   // eslint-disable-next-line no-console
   console.log(`server listening on http://localhost:${port}`);
