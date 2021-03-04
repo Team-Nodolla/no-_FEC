@@ -12,6 +12,15 @@ const App = () => {
   const [product, setProduct] = useState({});
   const [allProducts, setAllProducts] = useState({});
   const [relatedProductIDs, setRelatedProductIDs] = useState([]);
+  const [styles, getStyles] = useState({});
+
+  useEffect(() => {
+    if (productID !== 0) {
+      axios.get(`/products/${productID}/default-style`)
+        .then((response) => getStyles(response.data))
+        .catch((err) => console.error('error', err));
+    }
+  }, [productID]);
 
   useEffect(() => {
     if (productID === 0) {
@@ -56,7 +65,7 @@ const App = () => {
 
   return (
     <div className="app-container">
-      <ProductOverview productID={productID} product={product} />
+      <ProductOverview styles={styles} productID={productID} product={product} />
       <RelatedProductsCarousel
         relatedProductsIDs={relatedProductIDs}
         handleRedirect={handleRedirect}

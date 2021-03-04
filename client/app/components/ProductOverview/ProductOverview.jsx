@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import React from 'react';
 import propTypes from 'proptypes';
 import ProductCategoryAndTitle from './ProductCategoryAndTitle/ProductCategoryAndTitle.jsx';
 import ProductImageGallery from './ProductImageGallery/ProductImageGallery.jsx';
@@ -7,16 +6,7 @@ import ProductInfo from './ProductInfo/ProductInfo.jsx';
 import ProductStyleSelector from './ProductStyleSelector/ProductStyleSelector.jsx';
 import './ProductOverview.css';
 
-const ProductOverview = ({ productID, product }) => {
-  const [styles, getStyles] = useState({});
-
-  useEffect(() => {
-    if (productID !== 0) {
-      axios.get(`/products/${productID}/default-style`)
-        .then((data) => getStyles(data.data))
-        .catch((err) => console.log('error'));
-    }
-  }, [productID]);
+const ProductOverview = ({ styles, product }) => {
   if (styles !== undefined) {
     return (
       <div className="product-overview-container">
@@ -44,7 +34,7 @@ const ProductOverview = ({ productID, product }) => {
 };
 
 ProductOverview.propTypes = {
-  productID: propTypes.number.isRequired,
+  styles: propTypes.object.isRequired,
   product: propTypes.object.isRequired,
 };
 

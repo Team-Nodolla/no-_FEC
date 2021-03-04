@@ -12,8 +12,12 @@
 .display-image {
   cursor: crosshair;
   position: absolute;
-  height: 70%;
-  max-width: 40%;
+  max-width:70%;
+  max-height:70%;
+  height: auto;
+  width:auto;
+  /* height: 70%;
+  max-width: 40%; */
   /* display: flex;
   justify-content: center; */
   /* max-width: 70%;
