@@ -6,6 +6,7 @@ import RelatedProductsCarousel from './Carousels/RelatedProductsCarousel/Related
 import OutfitCarousel from './Carousels/OutfitCarousel/OutfitCarousel.jsx';
 import RatingsAndReviews from './RatingsAndReviews/RatingsAndReviews.jsx';
 import getAverageRating from './helperFunctions/getAverageRating.jsx';
+import getDefaultStyle from './helperFunctions/getDefaultStyle.jsx';
 import './App.css';
 
 const App = () => {
@@ -20,12 +21,14 @@ const App = () => {
         putInState.category = productsResponse.data[0].category;
         putInState.description = productsResponse.data[0].description;
         putInState.slogan = productsResponse.data[0].slogan;
-        return axios.get(`/products/${putInState.id}/default-style`);
+        return axios.get(`/products/${putInState.id}/styles`);
       })
-      .then((defaultStyleResponse) => {
-        putInState.originalPrice = defaultStyleResponse.data.original_price;
-        putInState.salePrice = defaultStyleResponse.data.sale_price;
-        putInState.photos = defaultStyleResponse.data.photos;
+      .then((stylesResponse) => {
+        putInState.styles = stylesResponse.data.results;
+        putInState.defaultStyle = getDefaultStyle(putInState.styles);
+        putInState.originalPrice = putInState.defaultStyle.original_price;
+        putInState.salePrice = putInState.defaultStyle.sale_price;
+        putInState.photos = putInState.defaultStyle.photos;
         return axios.get(`/products/${putInState.id}/related`);
       })
       .then((relatedProductsResponse) => {

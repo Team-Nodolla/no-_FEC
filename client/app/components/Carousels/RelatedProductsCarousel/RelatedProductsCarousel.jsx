@@ -5,6 +5,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import propTypes from 'proptypes';
 import averageRating from '../../helperFunctions/getAverageRating.jsx';
+import getDefaultStyle from '../../helperFunctions/getDefaultStyle.jsx';
 import CarouselCard from '../CarouselCard/CarouselCard.jsx';
 import './RelatedProductsCarousel.css';
 
@@ -23,14 +24,15 @@ const RelatedProductsCarousel = ({ relatedProductsIDs = [], handleRedirect }) =>
           putInState[index].category = response.data.category;
         });
         return Promise.all(relatedProductsIDs.map((id) => (
-          axios.get(`/products/${id}/default-style`)
+          axios.get(`/products/${id}/styles`)
         )));
       })
       .then((stylesResponses) => {
         stylesResponses.forEach((response, index) => {
-          putInState[index].productImage = response.data.photos[0].thumbnail_url;
-          putInState[index].originalPrice = response.data.original_price;
-          putInState[index].salePrice = response.data.sale_price;
+          const defaultStyle = getDefaultStyle(response.data.results);
+          putInState[index].productImage = defaultStyle.photos[0].thumbnail_url;
+          putInState[index].originalPrice = defaultStyle.original_price;
+          putInState[index].salePrice = defaultStyle.sale_price;
         });
         return Promise.all(relatedProductsIDs.map((id) => (
           axios.get(`/reviews/meta/${id}`)
