@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import ProductOverview from './ProductOverview/ProductOverview.jsx';
 import RelatedProductsCarousel from './Carousels/RelatedProductsCarousel/RelatedProductsCarousel.jsx';
+import OutfitCarousel from './Carousels/OutfitCarousel/OutfitCarousel.jsx';
 import RatingsAndReviews from './RatingsAndReviews/RatingsAndReviews.jsx';
 import './App.css';
 
@@ -60,6 +61,7 @@ const App = () => {
         relatedProductsIDs={relatedProductIDs}
         handleRedirect={handleRedirect}
       />
+      <OutfitCarousel />
       <RatingsAndReviews productID={productID} product={product} />
     </div>
   );
