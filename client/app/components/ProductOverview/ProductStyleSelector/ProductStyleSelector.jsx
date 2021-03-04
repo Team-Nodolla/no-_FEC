@@ -4,10 +4,13 @@ const ProductStyleSelector = ({ styles }) => {
   if (styles !== undefined) {
     return (
       <div className="styles-thumbnail">
-        {/* {styles.results.map(style => {
-          <div className="single-style-thumbnail">
+        {styles.map((productStyle) => {
+          return(
+          <div>
+            <img className="styles-individual-thumbnail" src={productStyle.photos[0].thumbnail_url} />
           </div>
-        })} */}
+          )
+        })}
       </div>
     );
   }

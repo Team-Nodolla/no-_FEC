@@ -59,32 +59,6 @@ app.get('/reviews/meta/:product_id', (req, res) => {
 /*  Related Products Carousel  */
 /* *************************** */
 
-// Returns the Default Style of product with ID product_id.
-// If no style is considered the default style, returns the first style
-app.get('/products/:product_id/default-style', (req, res) => {
-  const productID = req.params.product_id;
-  axios.get(`${url}/products/${productID}/styles`, {
-    headers: token,
-  })
-    .then((response) => {
-      const { results } = response.data;
-      let sent = false;
-      for (let i = 0; i < results.length; i += 1) {
-        if (results[i]['default?'] === true) {
-          sent = true;
-          res.status(200).send(results[i]);
-          break;
-        }
-      }
-      if (sent === false) {
-        res.status(200).send(results[0]);
-      }
-    })
-    .catch((err) => {
-      res.status(404).send(err);
-    });
-});
-
 // Returns the IDs of all products related to the product with id product_id
 app.get('/products/:product_id/related', (req, res) => {
   const productID = req.params.product_id;
@@ -102,6 +76,19 @@ app.get('/products/:product_id/related', (req, res) => {
 app.get('/products/:product_id', (req, res) => {
   const productID = req.params.product_id;
   axios.get(`${url}/products/${productID}`, {
+    headers: token,
+  })
+    .then((response) => {
+      res.status(200).send(response.data);
+    })
+    .catch((err) => {
+      res.status(500).send(err);
+    });
+});
+
+app.get('/products/:product_id/styles', (req, res) => {
+  const productID = req.params.product_id;
+  axios.get(`${url}/products/${productID}/styles`, {
     headers: token,
   })
     .then((response) => {
