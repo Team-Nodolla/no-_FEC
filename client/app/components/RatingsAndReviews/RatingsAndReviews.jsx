@@ -6,11 +6,10 @@ import RatingSummary from './RatingSummary/RatingSummary.jsx';
 import ReviewList from './ReviewList/ReviewList.jsx';
 import MoreReviewsButton from './ReviewList/ButtonsContainer/MoreReviewsButton.jsx';
 
-const RatingsAndReviews = ({ productID }) => {
+const RatingsAndReviews = ({ productID, metaData }) => {
   // set up state
   // track current productID as well as the reviews for that product
   const [reviewList, setReviewList] = useState([]);
-  const [metaData, setMetaData] = useState({});
   const [sortOrder, setSortOrder] = useState('relevant');
   const [visibleReviews, setVisibleReviews] = useState(2);
 
@@ -20,13 +19,6 @@ const RatingsAndReviews = ({ productID }) => {
       axios.get(`/reviews/sort/${sortOrder}/product/${productID}`) // TODO
         .then((response) => {
           setReviewList(response.data.results);
-        })
-        .catch((err) => {
-          console.log('error fetching data on mount: ', err);
-        });
-      axios.get(`/reviews/meta/${productID}`) // TODO
-        .then((response) => {
-          setMetaData(response.data);
         })
         .catch((err) => {
           console.log('error fetching data on mount: ', err);
