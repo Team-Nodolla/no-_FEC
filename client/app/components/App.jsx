@@ -26,7 +26,7 @@ const App = () => {
           // console.log(response.data);
           setRelatedProductIDs(response.data);
         });
-      axios.get(`/reviews/meta/${productID}`) // TODO
+      axios.get(`/reviews/meta/${productID}`)
         .then((response) => {
           setMetaData(response.data);
           setAverageRating(getAverageRating(response.data.ratings));
