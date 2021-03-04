@@ -82,8 +82,8 @@ const App = () => {
           originalPrice: currentProduct?.originalPrice ?? 0,
           salePrice: currentProduct?.salePrice ?? null,
           stars: currentProduct?.averageRating ?? null,
-          handleRedirect,
         }}
+        handleRedirect={handleRedirect}
       />
       <RatingsAndReviews
         productID={currentProduct.id}
