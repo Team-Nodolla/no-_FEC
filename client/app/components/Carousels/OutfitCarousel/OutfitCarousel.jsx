@@ -1,10 +1,28 @@
-import React from 'react';
+/* eslint-disable react/jsx-props-no-spreading */
+/* eslint-disable import/extensions */
+import React, { useState } from 'react';
 import propTypes from 'proptypes';
+import CarouselCard from '../CarouselCard/CarouselCard.jsx';
 import './OutfitCarousel.css';
 
 const OutfitCarousel = ({ productInfo }) => {
-  const handleAddToOutfit = () => {
+  const [outfitList, setOutfitList] = useState([]);
 
+  const handleAddToOutfit = () => {
+    const prevSate = outfitList;
+    console.log(Array.isArray(prevSate));
+    const newCard = (
+      <CarouselCard
+        {...productInfo}
+        buttonFunc={console.log.bind(null, 'click')}
+        carouselType="outfit"
+      />
+    );
+    if (prevSate.length === 0) {
+      setOutfitList([newCard]);
+    } else {
+      setOutfitList([...prevSate, newCard]);
+    }
   };
 
   return (
@@ -16,6 +34,9 @@ const OutfitCarousel = ({ productInfo }) => {
           <br />
           Add To Outfit
         </button>
+        <div>
+          {outfitList}
+        </div>
       </div>
     </>
   );
