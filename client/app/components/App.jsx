@@ -77,7 +77,7 @@ const App = () => {
         handleRedirect={handleRedirect}
       />
       <OutfitCarousel />
-      <RatingsAndReviews productID={productID} product={product} />
+      <RatingsAndReviews productID={productID} product={product} metaData={metaData} />
     </div>
   );
 };
