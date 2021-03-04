@@ -57,4 +57,16 @@ store.has = (key) => {
   return false;
 };
 
+/* ********** */
+/*   remove   */
+/* ********** */
+
+// Input: a key for an item to remove from localStorage
+// Output: returns the value of the removed item
+store.remove = (key) => {
+  const toRemove = store.get(key);
+  localStorage.removeItem(key);
+  return toRemove;
+};
+
 export default store;
