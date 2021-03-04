@@ -4,9 +4,10 @@ import propTypes from 'proptypes';
 import './RatingsAndReviews.css';
 import RatingSummary from './RatingSummary/RatingSummary.jsx';
 import ReviewList from './ReviewList/ReviewList.jsx';
-import MoreReviewsButton from './ReviewList/ButtonsContainer/MoreReviewsButton.jsx';
+import MoreReviewsButton from './ReviewList/ReviewButtonsContainer/MoreReviewsButton/MoreReviewsButton.jsx';
+import AddReviewButton from './ReviewList/ReviewButtonsContainer/AddReviewButton/AddReviewButton.jsx';
 
-const RatingsAndReviews = ({ productID, metaData }) => {
+const RatingsAndReviews = ({ productID, metaData, productName }) => {
   // set up state
   // track current productID as well as the reviews for that product
   const [reviewList, setReviewList] = useState([]);
@@ -16,7 +17,7 @@ const RatingsAndReviews = ({ productID, metaData }) => {
   // on component mount, use the productID to fetch reviews from the server
   useEffect(() => {
     if (productID) {
-      axios.get(`/reviews/sort/${sortOrder}/product/${productID}`) // TODO
+      axios.get(`/reviews/sort/${sortOrder}/product/${13034}`) // TODO productID
         .then((response) => {
           setReviewList(response.data.results);
         })
@@ -28,7 +29,7 @@ const RatingsAndReviews = ({ productID, metaData }) => {
 
   useEffect(() => {
     if (productID) {
-      axios.get(`/reviews/sort/${sortOrder}/product/${productID}`) // TODO
+      axios.get(`/reviews/sort/${sortOrder}/product/${13034}`) // TODO productID
         .then((response) => {
           setReviewList(response.data.results);
         })
@@ -75,11 +76,9 @@ const RatingsAndReviews = ({ productID, metaData }) => {
               visibleReviews={visibleReviews}
             />
           </>
-          <div className="buttonsContainer">
-            <>
-              <MoreReviewsButtonRender />
-            </>
-            <div className="addReviewButton">add new review button</div>
+          <div className="reviewButtonsContainer">
+            <MoreReviewsButtonRender />
+            <AddReviewButton productName={productName} />
           </div>
         </div>
       </div>
