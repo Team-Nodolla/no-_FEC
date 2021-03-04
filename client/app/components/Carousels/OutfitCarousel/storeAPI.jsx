@@ -13,7 +13,9 @@ const store = {};
 // The input is stringifyed to be parsed on a get.
 // Output: N/A
 store.save = (key, value) => {
-  localStorage.setItem(key, JSON.stringify(value));
+  if (!store.has(key)) {
+    localStorage.setItem(key, JSON.stringify(value));
+  }
 };
 
 /* ******* */
