@@ -58,15 +58,25 @@ store.has = (key) => {
 };
 
 /* ********** */
-/*   remove   */
+/*   delete   */
 /* ********** */
 
-// Input: a key for an item to remove from localStorage
-// Output: returns the value of the removed item
-store.remove = (key) => {
+// Input: a key for an item to delete from localStorage
+// Output: returns the value of the deleted item
+store.delete = (key) => {
   const toRemove = store.get(key);
   localStorage.removeItem(key);
   return toRemove;
+};
+
+/* ************* */
+/*   deleteAll   */
+/* ************* */
+
+// Input: N/A
+// Output: N/A
+store.deleteAll = () => {
+  localStorage.clear();
 };
 
 export default store;
