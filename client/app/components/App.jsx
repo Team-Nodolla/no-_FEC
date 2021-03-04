@@ -69,8 +69,6 @@ const App = () => {
     <div className="app-container">
       <ProductOverview
         styles={currentProduct}
-        productID={currentProduct.id}
-        differentStyles={currentProduct.relatedProductIDs}
       />
       <RelatedProductsCarousel
         relatedProductsIDs={currentProduct.relatedProductIDs}

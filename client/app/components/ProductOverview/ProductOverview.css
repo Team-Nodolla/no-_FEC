@@ -37,6 +37,12 @@
   margin-top: 20px;
 }
 
+.product-cart-container {
+  display: flex;
+  background-color: red;
+  margin-top: 20px;
+}
+
 .product-summary-container {
   display: block;
   position: absolute;

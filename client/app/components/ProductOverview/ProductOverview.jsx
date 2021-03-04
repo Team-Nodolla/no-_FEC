@@ -4,11 +4,11 @@ import ProductCategoryAndTitle from './ProductCategoryAndTitle/ProductCategoryAn
 import ProductImageGallery from './ProductImageGallery/ProductImageGallery.jsx';
 import ProductInfo from './ProductInfo/ProductInfo.jsx';
 import ProductStyleSelector from './ProductStyleSelector/ProductStyleSelector.jsx';
+import ProductCart from './ProductCart/ProductCart.jsx';
 import './ProductOverview.css';
 
-const ProductOverview = ({ styles, differentStyles }) => {
+const ProductOverview = ({ styles }) => {
   if (styles !== undefined) {
-    console.log(styles);
     return (
       <div className="product-overview-container">
         <div className="product-image-container">
@@ -19,7 +19,10 @@ const ProductOverview = ({ styles, differentStyles }) => {
             <ProductCategoryAndTitle product={styles} />
           </div>
           <div className="product-style-container">
-            <ProductStyleSelector styles={differentStyles} />
+            <ProductStyleSelector styles={styles} />
+          </div>
+          <div className="product-cart-container">
+            <ProductCart skus={styles.differentStyles} />
           </div>
         </div>
         <div className="product-summary-container">
