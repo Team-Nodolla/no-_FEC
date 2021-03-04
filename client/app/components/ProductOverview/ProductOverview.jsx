@@ -11,8 +11,8 @@ const ProductOverview = ({ product, defaultStyle, styles }) => {
   if (styles !== undefined) {
     const [selectedStyle, setSelectedStyle] = useState(styles[0]);
 
-    const handleSelectedStyle = (style) => {
-      setSelectedStyle(style);
+    const handleSelectedStyle = (e) => {
+      console.log('clicked', e.target);
     };
 
     console.log('product:, ', product);
@@ -28,7 +28,7 @@ const ProductOverview = ({ product, defaultStyle, styles }) => {
             <ProductCategoryAndTitle product={product} />
           </div>
           <div className="product-style-container">
-            <ProductStyleSelector styles={styles} />
+            <ProductStyleSelector handleSelectedStyleClick={handleSelectedStyle} styles={styles} />
           </div>
           <div className="product-cart-container">
             <ProductCart />
