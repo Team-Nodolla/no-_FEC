@@ -14,10 +14,12 @@ const ReviewList = ({ reviewList, visibleReviews }) => {
 
   // review list conditional rendering check
   const ReviewsToRender = () => {
-    if (reviewsArray.length <= visibleReviews) {
+    if (reviewsArray.length <= visibleReviews && reviewList.length > 0) {
       return (
-        <div className="reviewListItemContainer">
-          {reviewsArray}
+        <div className="reviewList">
+          <div className="reviewListItemContainer">
+            {reviewsArray}
+          </div>
         </div>
       );
     }
@@ -27,13 +29,16 @@ const ReviewList = ({ reviewList, visibleReviews }) => {
         reviewsArraySubset.push(reviewsArray[i]);
       }
       return (
-        <>
+        <div className="reviewList">
           <div className="reviewListItemContainer">
             {reviewsArraySubset}
           </div>
-        </>
+        </div>
       );
     }
+    return (
+      <></>
+    );
   };
 
   return (

@@ -75,12 +75,12 @@ const RatingsAndReviews = ({ productID }) => {
               <option value="newest">newest</option>
             </select>
           </form>
-          <div className="reviewList">
+          <>
             <ReviewList
               reviewList={reviewList}
               visibleReviews={visibleReviews}
             />
-          </div>
+          </>
           <div className="buttonsContainer">
             <>
               <MoreReviewsButtonRender />
