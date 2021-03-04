@@ -4,7 +4,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import propTypes from 'proptypes';
-import averageRating from '../../helperFunctions/getAverageScore.jsx';
+import averageRating from '../../helperFunctions/getAverageRating.jsx';
 import CarouselCard from '../CarouselCard/CarouselCard.jsx';
 import './RelatedProductsCarousel.css';
 

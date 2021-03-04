@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import propTypes from 'proptypes';
 import StarRating from '../../StarRating/StarRating.jsx';
-import getAverageScore from '../../helperFunctions/getAverageScore.jsx';
+import getAverageRating from '../../helperFunctions/getAverageRating.jsx';
 import './RatingSummary.css';
 
 const RatingSummary = ({ metaData }) => {
@@ -14,7 +14,7 @@ const RatingSummary = ({ metaData }) => {
       let didNotRecommend = 0;
       const recommendedArray = Object.entries(metaData.recommended);
 
-      const totalScore = getAverageScore(metaData.ratings);
+      const totalScore = getAverageRating(metaData.ratings);
       setAverageScore(totalScore);
 
       // find average recommended

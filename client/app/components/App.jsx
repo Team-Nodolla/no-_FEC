@@ -5,6 +5,7 @@ import ProductOverview from './ProductOverview/ProductOverview.jsx';
 import RelatedProductsCarousel from './Carousels/RelatedProductsCarousel/RelatedProductsCarousel.jsx';
 import OutfitCarousel from './Carousels/OutfitCarousel/OutfitCarousel.jsx';
 import RatingsAndReviews from './RatingsAndReviews/RatingsAndReviews.jsx';
+import getAverageRating from './helperFunctions/getAverageRating.jsx';
 import './App.css';
 
 const App = () => {
@@ -13,12 +14,27 @@ const App = () => {
   const [allProducts, setAllProducts] = useState({});
   const [relatedProductIDs, setRelatedProductIDs] = useState([]);
   const [styles, getStyles] = useState({});
+  const [metaData, setMetaData] = useState({});
+  const [averageRating, setAverageRating] = useState(null);
 
   useEffect(() => {
     if (productID !== 0) {
       axios.get(`/products/${productID}/default-style`)
         .then((response) => getStyles(response.data))
         .catch((err) => console.error('error', err));
+      axios.get(`/products/${productID}/related`)
+        .then((response) => {
+          // console.log(response.data);
+          setRelatedProductIDs(response.data);
+        });
+      axios.get(`/reviews/meta/${productID}`) // TODO
+        .then((response) => {
+          setMetaData(response.data);
+          setAverageRating(getAverageRating(response.data.ratings));
+        })
+        .catch((err) => {
+          console.log('error fetching data on mount: ', err);
+        });
     }
   }, [productID]);
 
@@ -36,16 +52,6 @@ const App = () => {
         });
     }
   }, []);
-
-  useEffect(() => {
-    if (productID !== 0) {
-      axios.get(`/products/${productID}/related`)
-        .then((response) => {
-          // console.log(response.data);
-          setRelatedProductIDs(response.data);
-        });
-    }
-  }, [productID]);
 
   const handleRedirect = (id) => {
     if (allProducts[id]) {
@@ -70,8 +76,12 @@ const App = () => {
         relatedProductsIDs={relatedProductIDs}
         handleRedirect={handleRedirect}
       />
+<<<<<<< HEAD
       <OutfitCarousel />
       <RatingsAndReviews productID={productID} product={product} />
+=======
+      <RatingsAndReviews productID={productID} product={product} metaData={metaData} />
+>>>>>>> origin
     </div>
   );
 };
