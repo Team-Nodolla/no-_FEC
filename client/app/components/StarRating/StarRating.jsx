@@ -24,9 +24,9 @@ const StarRating = ({ reviewScore, setMargin = '20px 0 0 0' }) => {
     const missingPercent = `${100 - roundedScore * 20 - quarterOffset}%`;
 
     display = (
-      <div id="container" style={{ margin: setMargin }}>
+      <div id="star-rating-container" style={{ margin: setMargin }}>
         <EmptyStars />
-        <div id="cover" style={{ width: missingPercent }}> </div>
+        <div id="stars-cover" style={{ width: missingPercent }}> </div>
         <FilledStars />
       </div>
     );
@@ -40,22 +40,22 @@ const StarRating = ({ reviewScore, setMargin = '20px 0 0 0' }) => {
 };
 
 const EmptyStars = () => (
-  <div className="empty stars">
-    <i className="far fa-star" />
-    <i className="far fa-star" />
-    <i className="far fa-star" />
-    <i className="far fa-star" />
-    <i className="far fa-star" />
+  <div className="empty-stars stars">
+    <i className="far fa-star star" />
+    <i className="far fa-star star" />
+    <i className="far fa-star star" />
+    <i className="far fa-star star" />
+    <i className="far fa-star star" />
   </div>
 );
 
 const FilledStars = () => (
-  <div className="full stars">
-    <i className="fas fa-star" />
-    <i className="fas fa-star" />
-    <i className="fas fa-star" />
-    <i className="fas fa-star" />
-    <i className="fas fa-star" />
+  <div className="stars">
+    <i className="full-stars fas fa-star star" />
+    <i className="full-stars fas fa-star star" />
+    <i className="full-stars fas fa-star star" />
+    <i className="full-stars fas fa-star star" />
+    <i className="full-stars fas fa-star star" />
   </div>
 );
 
