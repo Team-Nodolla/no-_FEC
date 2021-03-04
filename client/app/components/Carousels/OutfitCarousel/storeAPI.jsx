@@ -14,10 +14,10 @@ const store = {};
 
 // Description:
 //              Saves a new item to localStorage with the supplied unique key
-//               as its index and the value as its value.
+//              as its index and the value as its value.
 //              The value is stringifyed to be parsed later by store.get().
 //              If an item with the supplied key already exists in localStorage, throws an error
-//               and doesn't save the item.
+//              and doesn't save the item.
 store.save = (key, value) => {
   if (!store.has(key)) {
     localStorage.setItem(key, JSON.stringify(value));
@@ -91,7 +91,7 @@ store.has = (key) => {
 // Description:
 //              Deletes an item in localStorage with the supplied key as its index.
 //              Returns the value of the deleted item, or null if no item with that key
-//               exists in localStorage.
+//              exists in localStorage.
 store.delete = (key) => {
   const toRemove = store.get(key);
   localStorage.removeItem(key);
@@ -133,9 +133,9 @@ store.size = () => (
 
 // Description:
 //              Updates an existing item with that has supplied key as its index
-//               with a new value.
+//              with a new value.
 //              If no item with this key exists in localStorage, throws an error
-//               and doesn't update the item.
+//              and doesn't update the item.
 store.update = (key, newValue) => {
   if (store.has(key)) {
     localStorage.setItem(key, JSON.stringify(newValue));
