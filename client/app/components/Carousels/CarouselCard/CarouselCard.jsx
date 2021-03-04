@@ -39,7 +39,7 @@ const CarouselCard = ({
 
   return (
     <div id="card" onClick={() => { handleRedirect(id) }} >
-      <button id="action" type="button" onClick={() => { buttonFunc(); }}>{actionButtonLook}</button>
+      <button id="action" type="button" onClick={() => { buttonFunc(id); }}>{actionButtonLook}</button>
       <div id="card-image-container">
         <img id="card-image" src={productImage} alt="" />
       </div>
