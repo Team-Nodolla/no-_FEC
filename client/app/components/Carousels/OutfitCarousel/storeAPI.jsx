@@ -9,12 +9,15 @@ const store = {};
 /*   save   */
 /* ******** */
 
-// Input: a key value pair to save to the localStorage.
+// Input: a unique key and a value to save to the localStorage.
 // The input is stringifyed to be parsed on a get.
 // Output: N/A
 store.save = (key, value) => {
   if (!store.has(key)) {
     localStorage.setItem(key, JSON.stringify(value));
+  } else {
+    console.error('An item with this key already exists in localStorage.\n'
+    + 'If you would like to update the item with this key, use store.update()');
   }
 };
 
@@ -90,5 +93,20 @@ store.deleteAll = () => {
 store.size = () => (
   localStorage.length
 );
+
+/* ******** */
+/*   size   */
+/* ******** */
+
+// Input: N/A
+// Output: The number of items stored in localStorage
+store.update = (key, value) => {
+  if (store.has(key)) {
+    localStorage.setItem(key, JSON.stringify(value));
+  } else {
+    console.error('There is no item with this key in localStorage.\n'
+    + 'If you would like to save new item, use store.save()');
+  }
+};
 
 export default store;
