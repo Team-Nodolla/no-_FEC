@@ -86,8 +86,9 @@ const RatingsAndReviews = ({ productID, metaData }) => {
 };
 
 RatingsAndReviews.propTypes = {
-  productID: propTypes.number.isRequired,
-  product: propTypes.object.isRequired,
+  productID: propTypes.number,
+  product: propTypes.object,
+  metaData: propTypes.object
 };
 
 export default RatingsAndReviews;
