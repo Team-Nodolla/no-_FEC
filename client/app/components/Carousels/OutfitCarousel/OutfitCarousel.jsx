@@ -10,7 +10,6 @@ const OutfitCarousel = ({ productInfo }) => {
 
   const handleAddToOutfit = () => {
     const prevSate = outfitList;
-    console.log(Array.isArray(prevSate));
     const newCard = (
       <CarouselCard
         {...productInfo}
