@@ -40,7 +40,7 @@ describe('review list item: ', () => {
 
   test('it renders correct number of divs: ', () => {
     const wrapper = shallow(<ReviewListItem review={review} />);
-
+    // TODO - update this test as I complete review list item
     expect(wrapper.find('div').length).toBe(4);
   });
 });
