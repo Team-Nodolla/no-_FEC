@@ -21,6 +21,7 @@ const App = () => {
     putInState.slogan = productsResponse.data[0].slogan;
     return axios.get(`/products/${putInState.id}/styles`);
   };
+
   const fetchProductStyles = (stylesResponse, putInState) => {
     putInState.styles = stylesResponse.data.results;
     putInState.defaultStyle = getDefaultStyle(putInState.styles);
@@ -28,7 +29,17 @@ const App = () => {
     putInState.salePrice = putInState.defaultStyle.sale_price;
     putInState.photos = putInState.defaultStyle.photos;
     return axios.get(`/products/${putInState.id}/related`);
-  }
+  };
+
+  const fetchRelatedProductsIDs = (relatedProductsResponse, putInState) => {
+    putInState.relatedProductIDs = relatedProductsResponse.data;
+    return axios.get(`/reviews/meta/${putInState.id}`);
+  };
+
+  const fetchMetaDataAndAverageRatings = (metaDataResponse, putInState) => {
+    putInState.metaData = metaDataResponse.data;
+    putInState.averageRating = getAverageRating(metaDataResponse.data.ratings);
+  };
 
   const fetchNewProductDetails = () => {
     const putInState = {};
@@ -39,13 +50,11 @@ const App = () => {
       .then((stylesResponse) => (
         fetchProductStyles(stylesResponse, putInState)
       ))
-      .then((relatedProductsResponse) => {
-        putInState.relatedProductIDs = relatedProductsResponse.data;
-        return axios.get(`/reviews/meta/${putInState.id}`);
-      })
+      .then((relatedProductsResponse) => (
+        fetchRelatedProductsIDs(relatedProductsResponse, putInState)
+      ))
       .then((metaDataResponse) => {
-        putInState.metaData = metaDataResponse.data;
-        putInState.averageRating = getAverageRating(metaDataResponse.data.ratings);
+        fetchMetaDataAndAverageRatings(metaDataResponse, putInState);
         setCurrentProduct({ ...putInState });
       })
       .catch((err) => {
