@@ -9,20 +9,24 @@ import './OutfitCarousel.css';
 const OutfitCarousel = ({ productInfo, handleRedirect }) => {
   const [outfitList, setOutfitList] = useState([]);
 
-  // on Mount
+  const cardTemplate = (key, cardDetails) => (
+    <CarouselCard
+      key={key}
+      {...cardDetails}
+      handleRedirect={handleRedirect}
+      buttonFunc={console.log.bind(null, 'click')}
+      carouselType="outfit"
+    />
+  );
+
+  // after initial data fetch
   useEffect(() => {
     if (productInfo.id !== 0) {
       const outfitsInStore = [];
       console.log(store.getAll());
       store.getAll().forEach((item) => {
         outfitsInStore.push(
-          <CarouselCard
-            key={item.id}
-            {...item}
-            handleRedirect={handleRedirect}
-            buttonFunc={console.log.bind(null, 'click')}
-            carouselType="outfit"
-          />,
+          cardTemplate(item.id, item),
         );
       });
       setOutfitList(outfitsInStore);
@@ -34,14 +38,7 @@ const OutfitCarousel = ({ productInfo, handleRedirect }) => {
     if (productInfo.id !== 0 && !store.has(productInfo.id)) {
       console.log(productInfo.id);
       store.save(productInfo.id, productInfo);
-      const newCard = (
-        <CarouselCard
-          {...productInfo}
-          handleRedirect={handleRedirect}
-          buttonFunc={console.log.bind(null, 'click')}
-          carouselType="outfit"
-        />
-      );
+      const newCard = cardTemplate(productInfo.id, productInfo);
       if (prevSate.length === 0) {
         setOutfitList([newCard]);
       } else {
