@@ -4,8 +4,8 @@ import propTypes from 'proptypes';
 import './RatingsAndReviews.css';
 import RatingSummary from './RatingSummary/RatingSummary.jsx';
 import ReviewList from './ReviewList/ReviewList.jsx';
-import MoreReviewsButton from './ReviewList/ButtonsContainer/MoreReviewsButton/MoreReviewsButton.jsx';
-import AddReviewButton from './ReviewList/ButtonsContainer/AddReviewButton/AddReviewButton.jsx';
+import MoreReviewsButton from './ReviewList/ReviewButtonsContainer/MoreReviewsButton/MoreReviewsButton.jsx';
+import AddReviewButton from './ReviewList/ReviewButtonsContainer/AddReviewButton/AddReviewButton.jsx';
 
 const RatingsAndReviews = ({ productID, metaData, productName }) => {
   // set up state
