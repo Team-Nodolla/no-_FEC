@@ -1,0 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`review list it renders when list is empty 1`] = `ShallowWrapper {}`;
+
+exports[`review list it renders when list is populated 1`] = `ShallowWrapper {}`;
