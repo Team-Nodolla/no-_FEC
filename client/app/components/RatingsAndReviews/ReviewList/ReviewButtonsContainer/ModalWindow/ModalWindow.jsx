@@ -10,7 +10,7 @@ const ModalWindow = ({ handleClose, modalView, productName }) => {
   const [reviewSummary, setReviewSummary] = useState('');
   const [reviewBody, setReviewBody] = useState('');
 
-  const modalClassName = modalView ? "modal display-block" : "modal display-none";
+  const modalClassName = modalView ? "review-modal review-modal-display" : "review-modal review-modal-hide";
 
   const handleRecommendChange = (e) => {
     setSelectedRecommend(e.target.value);
@@ -42,8 +42,8 @@ const ModalWindow = ({ handleClose, modalView, productName }) => {
   if (modalView) {
     return (
       <div className={modalClassName}>
-        <div className="modalMain">
-          <div className="modalTitle">
+        <div className="review-modal-main">
+          <div className="review-modal-title">
             <h2>Write your review</h2>
             <h3>About the {productName}</h3>
           </div>
@@ -79,7 +79,7 @@ const ModalWindow = ({ handleClose, modalView, productName }) => {
               <MinimumRequiredBodyCharacters />
             </div><br></br>
           </form>
-          <div className="modalButtonContainer">
+          <div className="reviewModalButtonContainer">
             <button type="button" className="modalButton" onClick={handleClose}>
               Close
             </button>

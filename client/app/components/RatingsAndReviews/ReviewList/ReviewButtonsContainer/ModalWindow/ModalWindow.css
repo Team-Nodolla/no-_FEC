@@ -1,5 +1,6 @@
-.modal {
+.review-modal {
   position: fixed;
+  z-index: 4;
   top: 0;
   left: 0;
   width:100%;
@@ -7,7 +8,7 @@
   background: rgba(0, 0, 0, 0.6);
 }
 
-.modalMain {
+.review-modal-main {
   position: fixed;
   background: white;
   width: 80%;
@@ -17,19 +18,19 @@
   transform: translate(-50%,-50%);
 }
 
-.display-block {
+.review-modal-display {
   display: block;
 }
 
-.display-none {
+.review-modal-hide {
   display: none;
 }
 
-.modalTitle {
+.review-modal-title {
   text-align: center;
 }
 
-.modalButtonContainer {
+.reviewModalButtonContainer {
   margin: 0;
   position: absolute;
   left: 50%;
