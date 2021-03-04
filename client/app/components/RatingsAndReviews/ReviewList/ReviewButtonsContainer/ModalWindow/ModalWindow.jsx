@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable react/self-closing-comp */
 /* eslint-disable react/jsx-one-expression-per-line */
 /* eslint-disable jsx-a11y/label-has-associated-control */
@@ -5,7 +6,7 @@
 import React, { useEffect, useState }from 'react';
 import './ModalWindow.css';
 
-const ModalWindow = ({ handleClose, modalView, productName }) => {
+const ModalWindow = ({ handleClose, handleReviewSubmit, modalView, productName }) => {
   const [selectedRecommend, setSelectedRecommend] = useState('');
   const [reviewSummary, setReviewSummary] = useState('');
   const [reviewBody, setReviewBody] = useState('');
@@ -111,6 +112,9 @@ const ModalWindow = ({ handleClose, modalView, productName }) => {
           <div className="reviewModalButtonContainer">
             <button type="button" className="modalButton" onClick={handleClose}>
               Close
+            </button>
+            <button type="button" className="review-modal-submit-button" onClick={handleReviewSubmit}>
+              Submit Review
             </button>
           </div>
 

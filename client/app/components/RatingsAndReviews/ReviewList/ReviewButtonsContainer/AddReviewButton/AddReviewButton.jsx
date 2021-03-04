@@ -13,11 +13,17 @@ const AddReviewButton = ({ productName }) => {
     setModalView(!modalView);
   };
 
+  const handleReviewSubmit = (e) => {
+    e.preventDefault();
+    console.log('poggers in the chat');
+  };
+
   return (
     <>
       <button onClick={handleButtonClick} type="button" className="addReviewButton">Add Review +</button>
       <ModalWindow
         handleClose={handleButtonClick}
+        handleReviewSubmit={handleReviewSubmit}
         modalView={modalView}
         productName={productName}
       >
