@@ -1,7 +1,8 @@
 import React from 'react';
+import propTypes from 'proptypes';
 import './OutfitCarousel.css';
 
-const OutfitCarousel = () => {
+const OutfitCarousel = ({ productInfo }) => {
   const handleAddToOutfit = () => {
 
   };
@@ -10,14 +11,18 @@ const OutfitCarousel = () => {
     <>
       <h2 id="outfit-carousel-title">Your Outfit</h2>
       <div id="outfit-carousel">
-        <button id="add-to-outfit-btn">
-          <i className="fas fa-plus-square"></i>
+        <button type="button" id="add-to-outfit-btn" onClick={() => { handleAddToOutfit(); }}>
+          <i className="fas fa-plus-square" />
           <br />
-          {'Add To Outfit'}
+          Add To Outfit
         </button>
       </div>
     </>
   );
+};
+
+OutfitCarousel.propTypes = {
+  productInfo: propTypes.any,
 };
 
 export default OutfitCarousel;

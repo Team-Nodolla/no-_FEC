@@ -20,11 +20,12 @@ const App = () => {
   useEffect(() => {
     if (productID !== 0) {
       axios.get(`/products/${productID}/default-style`)
-        .then((response) => getStyles(response.data))
+        .then((response) => {
+          getStyles(response.data);
+        })
         .catch((err) => console.error('error', err));
       axios.get(`/products/${productID}/related`)
         .then((response) => {
-          // console.log(response.data);
           setRelatedProductIDs(response.data);
         });
       axios.get(`/reviews/meta/${productID}`)
@@ -76,7 +77,18 @@ const App = () => {
         relatedProductsIDs={relatedProductIDs}
         handleRedirect={handleRedirect}
       />
-      <OutfitCarousel />
+      <OutfitCarousel
+        productInfo={{
+          id: productID,
+          name: product.name ?? 'Product Name',
+          category: product.category ?? 'Category',
+          productImage: styles?.photos?.[0]?.thumbnail_url ?? null,
+          originalPrice: styles.original_price ?? 0,
+          salePrice: styles.sale_price ?? null,
+          stars: averageRating ?? null,
+          handleRedirect,
+        }}
+      />
       <RatingsAndReviews productID={productID} product={product} metaData={metaData} />
     </div>
   );

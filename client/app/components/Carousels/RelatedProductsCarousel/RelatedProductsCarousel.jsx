@@ -67,6 +67,7 @@ const RelatedProductsCarousel = ({ relatedProductsIDs, handleRedirect }) => {
               {...relatedProduct}
               buttonFunc={console.log.bind(null, 'click')}
               handleRedirect={handleRedirect}
+              carouselType="related"
             />
           ))}
         </div>
