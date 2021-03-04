@@ -1,12 +1,12 @@
 #carousel {
   position: relative;
   justify-content: space-between;
-  margin: 10px 0 200px 10px;
+  margin: 10px 0 100px 10px;
   min-height: 600px;
   border-top: 1px solid rgb(119, 140, 255);
 }
 
-#title {
+#related-carousel-title {
   margin: 20px 0 0 10px;
 }
 

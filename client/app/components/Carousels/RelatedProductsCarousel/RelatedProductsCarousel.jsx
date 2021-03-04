@@ -57,7 +57,7 @@ const RelatedProductsCarousel = ({ relatedProductsIDs, handleRedirect }) => {
 
   return (
     <>
-      <h2 id="title">Related Items</h2>
+      <h2 id="related-carousel-title">Related Items</h2>
       <div id="carousel">
         <button type="button" name="previous" id="previous"><i className="fas fa-arrow-left" /></button>
         <div id="products">
