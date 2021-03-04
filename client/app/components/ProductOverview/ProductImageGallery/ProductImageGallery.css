@@ -33,7 +33,7 @@
   display: none;
 }
 
-.modal {
+.product-expanded-modal {
   position: fixed; /* Stay in place */
   z-index: 20; /* Sit on top */
   padding-top: 5px; /* Location of the box */
