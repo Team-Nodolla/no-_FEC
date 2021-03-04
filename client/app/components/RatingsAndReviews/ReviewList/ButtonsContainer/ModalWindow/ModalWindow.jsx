@@ -6,10 +6,15 @@ import './ModalWindow.css';
 
 const ModalWindow = ({ handleClose, modalView, productName }) => {
   const [selectedRecommend, setSelectedRecommend] = useState('');
+  const [reviewSummary, setReviewSummary] = useState('');
   const modalClassName = modalView ? "modal display-block" : "modal display-none";
 
   const handleRecommendChange = (e) => {
     setSelectedRecommend(e.target.value);
+  };
+
+  const handleSummaryChange = (e) => {
+    setReviewSummary(e.target.value);
   };
 
   if (modalView) {
@@ -22,7 +27,9 @@ const ModalWindow = ({ handleClose, modalView, productName }) => {
           </div>
           <form>
             {/* on submit, do something */}
-            <div>Overall Rating*: (placeholder)</div>
+            <div>
+              Overall Rating*: (placeholder)
+            </div>
             <div className="radio">
               <label>
                 Do you recommend this product?*:{' '}
@@ -36,7 +43,12 @@ const ModalWindow = ({ handleClose, modalView, productName }) => {
                 </label>
               </label>
             </div>
-
+            <div>
+              <label>
+                Review Summary:{' '}
+                <textarea name="reviewSummary" maxlength="60" rows="3" cols="20" placeholder="Example: Best purchase ever" value={reviewSummary} onChange={handleSummaryChange} />
+              </label>
+            </div>
           </form>
           <div className="modalButtonContainer">
             <button type="button" className="modalButton" onClick={handleClose}>
