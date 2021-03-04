@@ -94,15 +94,15 @@ store.size = () => (
   localStorage.length
 );
 
-/* ******** */
-/*   size   */
-/* ******** */
+/* ********** */
+/*   update   */
+/* ********** */
 
-// Input: N/A
-// Output: The number of items stored in localStorage
-store.update = (key, value) => {
+// Input: a key that already exists in localStorage and a new value
+// Output: N/A
+store.update = (key, newValue) => {
   if (store.has(key)) {
-    localStorage.setItem(key, JSON.stringify(value));
+    localStorage.setItem(key, JSON.stringify(newValue));
   } else {
     console.error('There is no item with this key in localStorage.\n'
     + 'If you would like to save new item, use store.save()');
