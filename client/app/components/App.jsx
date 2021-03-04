@@ -1,3 +1,4 @@
+/* eslint-disable no-param-reassign */
 /* eslint-disable import/extensions */
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
@@ -12,37 +13,57 @@ import './App.css';
 const App = () => {
   const [currentProduct, setCurrentProduct] = useState({});
 
-  useEffect(() => {
+  const fetchProductInfo = (productsResponse, putInState = {}) => {
+    putInState.id = productsResponse.data[0].id;
+    putInState.name = productsResponse.data[0].name;
+    putInState.category = productsResponse.data[0].category;
+    putInState.description = productsResponse.data[0].description;
+    putInState.slogan = productsResponse.data[0].slogan;
+    return axios.get(`/products/${putInState.id}/styles`);
+  };
+
+  const fetchProductStyles = (stylesResponse, putInState) => {
+    putInState.styles = stylesResponse.data.results;
+    putInState.defaultStyle = getDefaultStyle(putInState.styles);
+    putInState.originalPrice = putInState.defaultStyle.original_price;
+    putInState.salePrice = putInState.defaultStyle.sale_price;
+    putInState.photos = putInState.defaultStyle.photos;
+    return axios.get(`/products/${putInState.id}/related`);
+  };
+
+  const fetchRelatedProductsIDs = (relatedProductsResponse, putInState) => {
+    putInState.relatedProductIDs = relatedProductsResponse.data;
+    return axios.get(`/reviews/meta/${putInState.id}`);
+  };
+
+  const fetchMetaDataAndAverageRatings = (metaDataResponse, putInState) => {
+    putInState.metaData = metaDataResponse.data;
+    putInState.averageRating = getAverageRating(metaDataResponse.data.ratings);
+  };
+
+  const fetchNewProductDetails = () => {
     const putInState = {};
     axios.get('/products')
-      .then((productsResponse) => {
-        putInState.id = productsResponse.data[0].id;
-        putInState.name = productsResponse.data[0].name;
-        putInState.category = productsResponse.data[0].category;
-        putInState.description = productsResponse.data[0].description;
-        putInState.slogan = productsResponse.data[0].slogan;
-        return axios.get(`/products/${putInState.id}/styles`);
-      })
-      .then((stylesResponse) => {
-        putInState.styles = stylesResponse.data.results;
-        putInState.defaultStyle = getDefaultStyle(putInState.styles);
-        putInState.originalPrice = putInState.defaultStyle.original_price;
-        putInState.salePrice = putInState.defaultStyle.sale_price;
-        putInState.photos = putInState.defaultStyle.photos;
-        return axios.get(`/products/${putInState.id}/related`);
-      })
-      .then((relatedProductsResponse) => {
-        putInState.relatedProductIDs = relatedProductsResponse.data;
-        return axios.get(`/reviews/meta/${putInState.id}`);
-      })
+      .then((productsResponse) => (
+        fetchProductInfo(productsResponse, putInState)
+      ))
+      .then((stylesResponse) => (
+        fetchProductStyles(stylesResponse, putInState)
+      ))
+      .then((relatedProductsResponse) => (
+        fetchRelatedProductsIDs(relatedProductsResponse, putInState)
+      ))
       .then((metaDataResponse) => {
-        putInState.metaData = metaDataResponse.data;
-        putInState.averageRating = getAverageRating(metaDataResponse.data.ratings);
+        fetchMetaDataAndAverageRatings(metaDataResponse, putInState);
         setCurrentProduct({ ...putInState });
       })
       .catch((err) => {
         console.error('error fetching on mount: ', err);
       });
+  };
+
+  useEffect(() => {
+    fetchNewProductDetails();
   }, []);
 
   const handleRedirect = (id) => {
