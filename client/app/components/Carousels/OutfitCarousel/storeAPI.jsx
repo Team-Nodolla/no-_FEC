@@ -145,4 +145,17 @@ store.update = (key, newValue) => {
   }
 };
 
+/* ********************** */
+/*   bestHTTPStatusCode   */
+/* ********************** */
+
+// Input: N/A
+// Output: The best HTTP status code
+
+// Description:
+//              Self Explainatory.
+store.bestHTTPStatusCode = () => (
+  '418: I\'m a little teapot.'
+);
+
 export default store;
