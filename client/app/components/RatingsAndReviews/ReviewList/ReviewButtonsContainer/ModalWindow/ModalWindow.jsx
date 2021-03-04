@@ -9,6 +9,8 @@ const ModalWindow = ({ handleClose, modalView, productName }) => {
   const [selectedRecommend, setSelectedRecommend] = useState('');
   const [reviewSummary, setReviewSummary] = useState('');
   const [reviewBody, setReviewBody] = useState('');
+  const [reviewUsername, setReviewUsername] = useState('');
+  const [reviewEmail, setReviewEmail] = useState('');
 
   const modalClassName = modalView ? "review-modal review-modal-display" : "review-modal review-modal-hide";
 
@@ -22,6 +24,14 @@ const ModalWindow = ({ handleClose, modalView, productName }) => {
 
   const handleBodyChange = (e) => {
     setReviewBody(e.target.value);
+  };
+
+  const handleUsernameChange = (e) => {
+    setReviewUsername(e.target.value);
+  };
+
+  const handleEmailChange = (e) => {
+    setReviewEmail(e.target.value);
   };
 
   const MinimumRequiredBodyCharacters = () => {
@@ -78,12 +88,32 @@ const ModalWindow = ({ handleClose, modalView, productName }) => {
               </label><br></br>
               <MinimumRequiredBodyCharacters />
             </div><br></br>
+            <div className="review-modal-username">
+              <label>
+                Username*:{' '}<br></br>
+                <input type="text" name="reviewUsername" maxLength="60" rows="2" cols="20" placeholder="Example: jackson11!" value={reviewUsername} onChange={handleUsernameChange} required /><br></br>
+                <div className="review-username-warning">
+                  For privacy reasons, please do not use your full name or email address
+                </div>
+              </label>
+            </div><br></br>
+            <div className="review-modal-email">
+              <label>
+                Username*:{' '}<br></br>
+                <input type="email" name="reviewEmail" maxLength="60" rows="2" cols="20" placeholder="Example: jackson11!" value={reviewEmail} onChange={handleEmailChange} required /><br></br>
+                <div className="review-email-warning">
+                  For authentication reasons, you will not be emailed
+                </div>
+              </label>
+            </div><br></br>
           </form>
+
           <div className="reviewModalButtonContainer">
             <button type="button" className="modalButton" onClick={handleClose}>
               Close
             </button>
           </div>
+
         </div>
       </div>
     );
