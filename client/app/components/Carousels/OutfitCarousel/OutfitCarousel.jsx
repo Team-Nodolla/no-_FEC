@@ -34,7 +34,7 @@ const OutfitCarousel = ({ productInfo }) => {
           <br />
           Add To Outfit
         </button>
-        <div>
+        <div id="outfit-card-container">
           {outfitList}
         </div>
       </div>
