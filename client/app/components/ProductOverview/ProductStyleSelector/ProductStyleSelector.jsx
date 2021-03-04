@@ -7,7 +7,7 @@ const ProductStyleSelector = ({ styles }) => {
         {styles.map((productStyle) => {
           return(
           <div>
-            <img className="styles-individual-thumbnail" src={productStyle.photos[0].thumbnail_url} />
+            <img style={{width: '20%'}} src={productStyle.photos[0].thumbnail_url} />
           </div>
           )
         })}

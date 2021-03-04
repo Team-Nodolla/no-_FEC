@@ -34,12 +34,7 @@ const App = () => {
       .then((relatedProductsResponse) => {
         putInState.relatedProductIDs = relatedProductsResponse.data;
         return axios.get(`/reviews/meta/${putInState.id}`);
-        //return axios.get(`/products/${putInState.id}/styles`);
       })
-      // .then((productStylesResponse) => {
-      //   putInState.differentStyles = productStylesResponse.data;
-      //   return axios.get(`/reviews/meta/${putInState.id}`);
-      // })
       .then((metaDataResponse) => {
         putInState.metaData = metaDataResponse.data;
         putInState.averageRating = getAverageRating(metaDataResponse.data.ratings);
