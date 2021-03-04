@@ -31,6 +31,7 @@ const App = () => {
           slogan,
         };
         setCurrentProduct(putInState);
+        console.log(currentProduct);
       })
       .catch((err) => {
         setCurrentProduct(putInState);
@@ -40,7 +41,7 @@ const App = () => {
 
   useEffect(({ id }) => {
     if (id !== 0) {
-      let putInState = {};
+      const putInState = {};
       axios.get(`/products/${id}/default-style`)
         .then((defaultStyleResponse) => {
           putInState.originalPrice = defaultStyleResponse.data.original_price;
@@ -56,6 +57,7 @@ const App = () => {
           putInState.metaData = metaDataResponse.data;
           putInState.averageRating = getAverageRating(metaDataResponse.data.ratings);
           setCurrentProduct(putInState);
+          console.log('current product: ', currentProduct);
         })
         .catch((err) => {
           setCurrentProduct(putInState);
