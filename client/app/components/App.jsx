@@ -82,7 +82,7 @@ const App = () => {
           handleRedirect,
         }}
       />
-      {/* <RatingsAndReviews productID={currentProduct.id} metaData={currentProduct.metaData} /> */}
+      <RatingsAndReviews productID={currentProduct.id} metaData={currentProduct.metaData} />
     </div>
   );
 };
