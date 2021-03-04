@@ -5,12 +5,23 @@
 
 const store = {};
 
+/* ******** */
+/*   save   */
+/* ******** */
+
+// Input: a key value pair to save to the localStorage.
+// The input is stringifyed to be parsed on a get.
+// Output: N/A
+store.save = (key, value) => {
+  localStorage.setItem(key, JSON.stringify(value));
+};
+
 /* ******* */
 /*   get   */
 /* ******* */
 
 // Input: a key to search for in localStorage
-// Output: a JS data structure (object, array, etc.)
+// Output: A value stored with this key as its index
 store.get = (key) => (
   JSON.parse(localStorage.getItem(key))
 );
