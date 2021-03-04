@@ -23,6 +23,7 @@ const App = () => {
         return axios.get(`/products/${putInState.id}/default-style`);
       })
       .then((defaultStyleResponse) => {
+        putInState.differentStyles = defaultStyleResponse.data;
         putInState.originalPrice = defaultStyleResponse.data.original_price;
         putInState.salePrice = defaultStyleResponse.data.sale_price;
         putInState.photos = defaultStyleResponse.data.photos;
@@ -31,7 +32,12 @@ const App = () => {
       .then((relatedProductsResponse) => {
         putInState.relatedProductIDs = relatedProductsResponse.data;
         return axios.get(`/reviews/meta/${putInState.id}`);
+        //return axios.get(`/products/${putInState.id}/styles`);
       })
+      // .then((productStylesResponse) => {
+      //   putInState.differentStyles = productStylesResponse.data;
+      //   return axios.get(`/reviews/meta/${putInState.id}`);
+      // })
       .then((metaDataResponse) => {
         putInState.metaData = metaDataResponse.data;
         putInState.averageRating = getAverageRating(metaDataResponse.data.ratings);
@@ -64,7 +70,7 @@ const App = () => {
       <ProductOverview
         styles={currentProduct}
         productID={currentProduct.id}
-        product={currentProduct}
+        differentStyles={currentProduct.relatedProductIDs}
       />
       <RelatedProductsCarousel
         relatedProductsIDs={currentProduct.relatedProductIDs}

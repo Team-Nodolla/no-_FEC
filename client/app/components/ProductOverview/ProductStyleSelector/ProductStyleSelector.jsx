@@ -2,15 +2,19 @@ import React from 'react';
 
 const ProductStyleSelector = ({ styles }) => {
   if (styles !== undefined) {
+    console.log(styles);
     return (
-      <div>
-        <h1>Style Selector</h1>
+      <div className="styles-thumbnail">
+        {/* {styles.results.map(style => {
+          <div className="single-style-thumbnail">
+          </div>
+        })} */}
       </div>
     );
   }
 
   return (
-    <div></div>
+    <div />
   );
 };
 export default ProductStyleSelector;

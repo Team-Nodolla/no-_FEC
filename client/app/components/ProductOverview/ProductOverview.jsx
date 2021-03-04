@@ -6,8 +6,9 @@ import ProductInfo from './ProductInfo/ProductInfo.jsx';
 import ProductStyleSelector from './ProductStyleSelector/ProductStyleSelector.jsx';
 import './ProductOverview.css';
 
-const ProductOverview = ({ styles, product }) => {
+const ProductOverview = ({ styles, differentStyles }) => {
   if (styles !== undefined) {
+    console.log(styles);
     return (
       <div className="product-overview-container">
         <div className="product-image-container">
@@ -15,14 +16,14 @@ const ProductOverview = ({ styles, product }) => {
         </div>
         <div className="product-info-container">
           <div className="product-description-container">
-            <ProductCategoryAndTitle product={product} />
+            <ProductCategoryAndTitle product={styles} />
           </div>
           <div className="product-style-container">
-            <ProductStyleSelector styles={styles} />
+            <ProductStyleSelector styles={differentStyles} />
           </div>
         </div>
         <div className="product-summary-container">
-          <ProductInfo product={product} />
+          <ProductInfo product={styles} />
         </div>
       </div>
     );
@@ -35,7 +36,6 @@ const ProductOverview = ({ styles, product }) => {
 
 ProductOverview.propTypes = {
   styles: propTypes.object.isRequired,
-  product: propTypes.object.isRequired,
 };
 
 export default ProductOverview;
