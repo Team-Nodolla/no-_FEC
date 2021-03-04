@@ -58,7 +58,7 @@ const App = () => {
     //     .catch((err) => { console.error(err); });
     // }
   };
-  console.log(currentProduct);
+
   return (
     <div className="app-container">
       <ProductOverview
