@@ -73,7 +73,7 @@ const RatingSummary = ({ metaData }) => {
 };
 
 RatingSummary.propTypes = {
-  metaData: propTypes.object.isRequired
+  metaData: propTypes.object
 };
 
 export default RatingSummary;

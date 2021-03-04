@@ -48,7 +48,7 @@ const ReviewList = ({ reviewList, visibleReviews }) => {
 
 ReviewList.propTypes = {
   reviewList: propTypes.array,
-  visibleReviews: propTypes.number.isRequired,
+  visibleReviews: propTypes.number,
 };
 
 export default ReviewList;
