@@ -1,3 +1,4 @@
+/* eslint-disable react/self-closing-comp */
 /* eslint-disable react/jsx-one-expression-per-line */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable quotes */
@@ -7,6 +8,8 @@ import './ModalWindow.css';
 const ModalWindow = ({ handleClose, modalView, productName }) => {
   const [selectedRecommend, setSelectedRecommend] = useState('');
   const [reviewSummary, setReviewSummary] = useState('');
+  const [reviewBody, setReviewBody] = useState('');
+
   const modalClassName = modalView ? "modal display-block" : "modal display-none";
 
   const handleRecommendChange = (e) => {
@@ -15,6 +18,25 @@ const ModalWindow = ({ handleClose, modalView, productName }) => {
 
   const handleSummaryChange = (e) => {
     setReviewSummary(e.target.value);
+  };
+
+  const handleBodyChange = (e) => {
+    setReviewBody(e.target.value);
+  };
+
+  const MinimumRequiredBodyCharacters = () => {
+    if (reviewBody.length >= 50) {
+      return (
+        <div>
+          Minimum Reached
+        </div>
+      )
+    }
+    return (
+      <div>
+        Minimum required characters left: {50 - reviewBody.length}
+      </div>
+    )
   };
 
   if (modalView) {
@@ -29,7 +51,7 @@ const ModalWindow = ({ handleClose, modalView, productName }) => {
             {/* on submit, do something */}
             <div>
               Overall Rating*: (placeholder)
-            </div>
+            </div><br></br>
             <div className="radio">
               <label>
                 Do you recommend this product?*:{' '}
@@ -42,13 +64,20 @@ const ModalWindow = ({ handleClose, modalView, productName }) => {
                   <input type="radio" name="recommendRadio" value="recommendNo" checked={selectedRecommend === "recommendNo"} onChange={handleRecommendChange} />
                 </label>
               </label>
-            </div>
+            </div><br></br>
             <div>
               <label>
-                Review Summary:{' '}
-                <textarea name="reviewSummary" maxlength="60" rows="3" cols="20" placeholder="Example: Best purchase ever" value={reviewSummary} onChange={handleSummaryChange} />
+                Review Summary:{' '}<br></br>
+                <textarea name="reviewSummary" maxLength="60" rows="3" cols="20" placeholder="Example: Best purchase ever" value={reviewSummary} onChange={handleSummaryChange} />
               </label>
-            </div>
+            </div><br></br>
+            <div>
+              <label>
+                Review Body*:{' '}<br></br>
+                <textarea name="reviewBody" maxLength="1000" minLength="50" rows="4" cols="40" placeholder="Why did you like the product or not?" value={reviewBody} onChange={handleBodyChange} required />
+              </label><br></br>
+              <MinimumRequiredBodyCharacters />
+            </div><br></br>
           </form>
           <div className="modalButtonContainer">
             <button type="button" className="modalButton" onClick={handleClose}>
