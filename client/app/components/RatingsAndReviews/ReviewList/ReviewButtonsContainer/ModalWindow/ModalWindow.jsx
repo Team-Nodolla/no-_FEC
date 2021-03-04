@@ -79,7 +79,7 @@ const ModalWindow = ({ handleClose, modalView, productName }) => {
               <MinimumRequiredBodyCharacters />
             </div><br></br>
           </form>
-          <div className="reviewModalButtonContainer">
+          <div className="modalButtonContainer">
             <button type="button" className="modalButton" onClick={handleClose}>
               Close
             </button>

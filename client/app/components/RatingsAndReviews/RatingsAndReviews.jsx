@@ -76,7 +76,7 @@ const RatingsAndReviews = ({ productID, metaData, productName }) => {
               visibleReviews={visibleReviews}
             />
           </>
-          <div className="buttonsContainer">
+          <div className="reviewButtonsContainer">
             <MoreReviewsButtonRender />
             <AddReviewButton productName={productName} />
           </div>
