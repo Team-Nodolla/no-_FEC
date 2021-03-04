@@ -8,7 +8,7 @@ import averageRating from '../../helperFunctions/getAverageRating.jsx';
 import CarouselCard from '../CarouselCard/CarouselCard.jsx';
 import './RelatedProductsCarousel.css';
 
-const RelatedProductsCarousel = ({ relatedProductsIDs, handleRedirect }) => {
+const RelatedProductsCarousel = ({ relatedProductsIDs = [], handleRedirect }) => {
   const [allRelatedProducts, setAllRelatedProducts] = useState([]);
 
   const fetchRelatedProductsData = () => {
@@ -67,6 +67,7 @@ const RelatedProductsCarousel = ({ relatedProductsIDs, handleRedirect }) => {
               {...relatedProduct}
               buttonFunc={console.log.bind(null, 'click')}
               handleRedirect={handleRedirect}
+              carouselType="related"
             />
           ))}
         </div>
@@ -78,7 +79,7 @@ const RelatedProductsCarousel = ({ relatedProductsIDs, handleRedirect }) => {
 
 RelatedProductsCarousel.propTypes = {
   handleRedirect: propTypes.func.isRequired,
-  relatedProductsIDs: propTypes.array.isRequired,
+  relatedProductsIDs: propTypes.array,
 };
 
 export default RelatedProductsCarousel;

@@ -9,7 +9,7 @@ const RatingSummary = ({ metaData }) => {
   const [percentRecommend, setPercentRecommend] = useState(0);
 
   useEffect(() => {
-    if (metaData.ratings) {
+    if (metaData?.ratings) {
       let didRecommend = 0;
       let didNotRecommend = 0;
       const recommendedArray = Object.entries(metaData.recommended);

@@ -15,9 +15,11 @@ const CarouselCard = ({
   stars,
   buttonFunc,
   handleRedirect,
+  carouselType,
 }) => {
   const [onSale] = useState(Boolean(salePrice));
   let displayPrice;
+  let actionButtonLook;
   if (onSale) {
     displayPrice = (
       <>
@@ -28,9 +30,16 @@ const CarouselCard = ({
   } else {
     displayPrice = <span className="descriptive" id="display-price">{`$${originalPrice}`}</span>;
   }
+
+  if (carouselType === 'related') {
+    actionButtonLook = <i className="far fa-star" />;
+  } else {
+    actionButtonLook = <i className="far fa-times-circle" />;
+  }
+
   return (
     <div id="card" onClick={() => { handleRedirect(id) }} >
-      <button id="action" type="button" onClick={() => { buttonFunc(); }}><i className="far fa-star" /></button>
+      <button id="action" type="button" onClick={() => { buttonFunc(); }}>{actionButtonLook}</button>
       <div id="card-image-container">
         <img id="card-image" src={productImage} alt="" />
       </div>
@@ -54,6 +63,7 @@ CarouselCard.propTypes = {
   stars: propTypes.number,
   buttonFunc: propTypes.func.isRequired,
   handleRedirect: propTypes.func.isRequired,
+  carouselType: propTypes.string.isRequired,
 };
 
 export default CarouselCard;
