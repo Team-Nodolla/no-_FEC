@@ -19,77 +19,54 @@ const App = () => {
   // const [averageRating, setAverageRating] = useState(null);
 
   useEffect(() => {
-    let putInState = {};
+    const putInState = {};
     axios.get('/products')
-      .then((response) => {
-        const [id, name, category, description, slogan] = response.data[0];
-        putInState = {
-          id,
-          name,
-          category,
-          description,
-          slogan,
-        };
-        setCurrentProduct(putInState);
+      .then((productsResponse) => {
+        putInState.id = productsResponse.data[0].id;
+        putInState.name = productsResponse.data[0].name;
+        putInState.category = productsResponse.data[0].category;
+        putInState.description = productsResponse.data[0].description;
+        putInState.slogan = productsResponse.data[0].slogan;
+        return axios.get(`/products/${putInState.id}/default-style`);
+        // setCurrentProduct({ ...putInState });
+      })
+      .then((defaultStyleResponse) => {
+        putInState.originalPrice = defaultStyleResponse.data.original_price;
+        putInState.salePrice = defaultStyleResponse.data.sale_price;
+        putInState.photos = defaultStyleResponse.data.photos;
+        // putInState.style_id = defaultStyleResponse.data.style_id;
+        return axios.get(`/products/${putInState.id}/related`);
+      })
+      .then((relatedProductsResponse) => {
+        // console.log(relatedProductsResponse.data);
+        putInState.relatedProductIDs = relatedProductsResponse.data;
+        return axios.get(`/reviews/meta/${putInState.id}`);
+      })
+      .then((metaDataResponse) => {
+        putInState.metaData = metaDataResponse.data;
+        putInState.averageRating = getAverageRating(metaDataResponse.data.ratings);
+        setCurrentProduct({ ...putInState });
       })
       .catch((err) => {
-        setCurrentProduct(putInState);
         console.error('error fetching on mount: ', err);
       });
   }, []);
 
-  useEffect(({ id }) => {
-    if (id !== 0) {
-      let putInState = {};
-      axios.get(`/products/${id}/default-style`)
-        .then((defaultStyleResponse) => {
-          putInState.originalPrice = defaultStyleResponse.data.original_price;
-          putInState.salePrice = defaultStyleResponse.data.sale_price;
-          putInState.photos = defaultStyleResponse.data.photos;
-          return axios.get(`/products/${id}/related`);
-        })
-        .then((relatedProductsResponse) => {
-          putInState.relatedProductIDs = relatedProductsResponse.data;
-          return axios.get(`/reviews/meta/${id}`);
-        })
-        .then((metaDataResponse) => {
-          putInState.metaData = metaDataResponse.data;
-          putInState.averageRating = getAverageRating(metaDataResponse.data.ratings);
-          setCurrentProduct(putInState);
-        })
-        .catch((err) => {
-          setCurrentProduct(putInState);
-          console.error('error fetching product info: ', err);
-        });
-      // axios.get(`/products/${productID}/related`)
-      //   .then((response) => {
-      //     setRelatedProductIDs(response.data);
-      //   });
-      // axios.get(`/reviews/meta/${productID}`)
-      //   .then((response) => {
-      //     setMetaData(response.data);
-      //     setAverageRating(getAverageRating(response.data.ratings));
-      //   })
-      //   .catch((err) => {
-      //     console.log('error fetching data on mount: ', err);
-      //   });
-    }
-  }, [currentProduct]);
-
   const handleRedirect = (id) => {
-    if (allProducts[id]) {
-      setProductID(id);
-      setProduct(allProducts[id]);
-    } else {
-      axios.get(`/products/${id}`)
-        .then((response) => {
-          const newProduct = response.data;
-          setProduct(newProduct);
-          setProductID(newProduct.id);
-          setAllProducts(...allProducts, { [newProduct.id]: newProduct });
-        })
-        .catch((err) => { console.error(err); });
-    }
+    console.log(id);
+    // if (allProducts[id]) {
+    //   setProductID(id);
+    //   setProduct(allProducts[id]);
+    // } else {
+    //   axios.get(`/products/${id}`)
+    //     .then((response) => {
+    //       const newProduct = response.data;
+    //       setProduct(newProduct);
+    //       setProductID(newProduct.id);
+    //       setAllProducts(...allProducts, { [newProduct.id]: newProduct });
+    //     })
+    //     .catch((err) => { console.error(err); });
+    // }
   };
 
   // const productInfo = {
@@ -103,12 +80,12 @@ const App = () => {
   //   handleRedirect,
   // };
 
-  // console.log(productInfo)
+  console.log('what does state have outside?', currentProduct);
 
   return (
     <div className="app-container">
       <ProductOverview
-        styles={currentProduct.photos}
+        styles={currentProduct}
         productID={currentProduct.id}
         product={currentProduct}
       />
@@ -117,9 +94,18 @@ const App = () => {
         handleRedirect={handleRedirect}
       />
       <OutfitCarousel
-        productInfo={currentProduct}
+        productInfo={{
+          id: currentProduct?.id ?? 0,
+          name: currentProduct?.name ?? 'Product Name',
+          category: currentProduct?.category ?? 'Category',
+          productImage: currentProduct?.photos?.[0]?.thumbnail_url ?? null,
+          originalPrice: currentProduct?.originalPrice ?? 0,
+          salePrice: currentProduct?.salePrice ?? null,
+          stars: currentProduct?.averageRating ?? null,
+          handleRedirect,
+        }}
       />
-      <RatingsAndReviews productID={currentProduct.id} metaData={currentProduct.metaData} />
+      {/* <RatingsAndReviews productID={currentProduct.id} metaData={currentProduct.metaData} /> */}
     </div>
   );
 };
