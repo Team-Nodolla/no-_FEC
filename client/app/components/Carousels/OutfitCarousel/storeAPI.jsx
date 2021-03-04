@@ -79,4 +79,14 @@ store.deleteAll = () => {
   localStorage.clear();
 };
 
+/* ******** */
+/*   size   */
+/* ******** */
+
+// Input: N/A
+// Output: The number of items stored in localStorage
+store.size = () => (
+  localStorage.length
+);
+
 export default store;
