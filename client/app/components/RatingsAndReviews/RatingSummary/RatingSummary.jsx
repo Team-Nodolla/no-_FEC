@@ -62,7 +62,7 @@ const RatingSummary = ({ metaData }) => {
           {averageScore}
         </div>
         <div className="summaryStarRating">
-          <StarRating reviewScore={averageScore || null} setMargin={ '0 0 0 0' } />
+          <StarRating reviewScore={averageScore || null} setMargin="0 0 0 0" />
         </div>
       </div>
       <NaNCondition />
