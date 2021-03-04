@@ -1,7 +1,7 @@
 import React from 'react';
 
 // takes a ratings object (i.e. metaData.ratings)
-const getAverageScore = (ratings) => {
+const getAverageRating = (ratings) => {
   // gathers totalScore
   let totalScore = 0;
   let numberOfRatings = 0;
@@ -24,4 +24,4 @@ const getAverageScore = (ratings) => {
   return totalScore;
 };
 
-export default getAverageScore;
+export default getAverageRating;
