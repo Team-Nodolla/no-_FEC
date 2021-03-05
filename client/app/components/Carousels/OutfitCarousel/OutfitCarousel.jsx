@@ -9,14 +9,6 @@ import './OutfitCarousel.css';
 const OutfitCarousel = ({ productInfo, handleRedirect }) => {
   const [outfitList, setOutfitList] = useState([]);
 
-  const handleActionButtonClick = (id) => {
-    store.delete(id);
-    const newState = outfitList.filter((item) => (
-      item.id !== id
-    ));
-    setOutfitList(newState);
-  };
-
   const cardTemplate = (key, cardDetails) => (
     <CarouselCard
       key={key}
@@ -27,18 +19,32 @@ const OutfitCarousel = ({ productInfo, handleRedirect }) => {
     />
   );
 
+  const populateState = () => {
+    const outfitsInStore = [];
+    store.getAll().forEach((item) => {
+      outfitsInStore.push(
+        cardTemplate(item.id, item),
+      );
+    });
+    setOutfitList(outfitsInStore);
+  };
+
+  // On Action Button Click
+  const handleActionButtonClick = (id) => {
+    store.delete(id);
+    populateState();
+  };
+
   // after initial data fetch
   useEffect(() => {
-    if (productInfo.id !== 0) {
-      const outfitsInStore = [];
-      store.getAll().forEach((item) => {
-        outfitsInStore.push(
-          cardTemplate(item.id, item),
-        );
-      });
-      setOutfitList(outfitsInStore);
-    }
+    populateState();
   }, [productInfo]);
+
+  // useEffect(() => {
+  //   if (outfitList.length !== 0) {
+  //     console.log('here\'s your new state:', outfitList);
+  //   }
+  // }, [outfitList]);
 
   const handleAddToOutfit = () => {
     const prevSate = outfitList;
@@ -66,6 +72,7 @@ const OutfitCarousel = ({ productInfo, handleRedirect }) => {
         </button>
         <hr id="outfit-carousel-divider" />
         <div id="outfit-card-container">
+          {console.log(outfitList)}
           {outfitList}
         </div>
       </div>
