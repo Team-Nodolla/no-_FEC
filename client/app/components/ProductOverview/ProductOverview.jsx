@@ -9,10 +9,6 @@ import './ProductOverview.css';
 
 const ProductOverview = ({ product, styles }) => {
   if (styles !== undefined) {
-    // console.log(product);
-    // console.log(styles);
-    // const [stateProduct, setStateProduct] = useState(product);
-    // const [stateStyles, setStateStyles] = useState(styles);
     const [priceOfProduct, setPriceOfProduct] = useState(product.originalPrice);
     const [selectedStyle, setSelectedStyle] = useState(styles[0]);
 

@@ -8,7 +8,7 @@ const ProductStyleSelector = ({ handleSelectedStyleClick, styles ,styleName}) =>
         <div className="styles-thumbnail-list">
         {styles.map((productStyle) => {
           return(
-            <span>
+            <span key={productStyle.style_id}>
             {/* <i className="far fa-check-circle"></i> */}
             <img className="style-image" onClick={() => handleSelectedStyleClick(productStyle, productStyle.original_price)} style={{paddingLeft: '5px', borderRadius: '50%', width: '50px', height: '50px'}} src={productStyle.photos[0].thumbnail_url} />
             </span>
