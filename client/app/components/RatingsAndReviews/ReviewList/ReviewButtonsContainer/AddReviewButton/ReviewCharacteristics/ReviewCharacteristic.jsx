@@ -1,6 +1,6 @@
 import React from 'react';
 
-const ReviewCharacteristic = ({ name, object }) => {
+const ReviewCharacteristic = ({ name, id }) => {
   if (name === 'Size') {
     let one = 'A size too small';
     let two = '½ a size too small';
@@ -50,13 +50,26 @@ const ReviewCharacteristic = ({ name, object }) => {
         <label>
           {name}*:{' '}
           <label>
-            Yes
-        <input type="radio" name="recommendRadio" value="recommendYes" checked={selectedRecommend === true} onChange={handleRecommendChange} required />
-          </label>
+            1
+            <input type="radio" name="char-btn-one" value="char-btn-one" checked={true} onChange={() => {}} required />
+          </label>{' '}
           <label>
-            No
-        <input type="radio" name="recommendRadio" value="recommendNo" checked={selectedRecommend === false} onChange={handleRecommendChange} />
+            2
+            <input type="radio" name="char-btn-two" value="char-btn-two" checked={false} onChange={() => {}} />
+          </label>{' '}
+          <label>
+            3
+            <input type="radio" name="char-btn-three" value="char-btn-three" checked={false} onChange={() => {}} required />
+          </label>{' '}
+          <label>
+            4
+            <input type="radio" name="char-btn-four" value="char-btn-four" checked={false} onChange={() => {}} />
+          </label>{' '}
+          <label>
+            5
+            <input type="radio" name="char-btn-five" value="char-btn-five" checked={false} onChange={() => {}} required />
           </label>
+
         </label>
       </div><br></br>
     </>

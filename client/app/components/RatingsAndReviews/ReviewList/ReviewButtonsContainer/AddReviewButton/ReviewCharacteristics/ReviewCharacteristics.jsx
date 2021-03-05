@@ -8,13 +8,12 @@ const ReviewCharacteristics = ({ metaData }) => {
   for (const [key, value] of Object.entries(metaData.characteristics)) {
     console.log(key, value) // sting, object
     characteristicArray.push(
-      <ReviewCharacteristic name={key} object={value} />
+      <ReviewCharacteristic name={key} id={value.id} />
     )
   }
 
   return (
-    <>
-    </>
+    characteristicArray
   )
 
   // .forEach((characteristic) => {
