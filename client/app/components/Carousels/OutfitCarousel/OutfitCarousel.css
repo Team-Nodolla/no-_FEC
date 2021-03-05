@@ -38,4 +38,6 @@
   border-style: ridge;
   margin-block-start: 50px;
   margin-block-end: 50px;
+  margin-inline-start: 20px;
+  margin-inline-end: 20px;
 }
