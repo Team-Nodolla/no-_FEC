@@ -5,12 +5,24 @@ const ReviewCharacteristics = ({ metaData }) => {
   // for each characteristic,
   const characteristicArray = [];
 
-  metaData.characteristics.forEach((characteristic) => {
-    console.log('characteristic in forEach: ', characteristic);
+  for (const [key, value] of Object.entries(metaData.characteristics)) {
+    console.log(key, value) // sting, object
     characteristicArray.push(
-      <ReviewCharacteristic characteristic={characteristic} />
-    );
-  });
+      <ReviewCharacteristic name={key} object={value} />
+    )
+  }
+
+  return (
+    <>
+    </>
+  )
+
+  // .forEach((characteristic) => {
+  //   console.log('characteristic in forEach: ', characteristic);
+  //   characteristicArray.push(
+  //     <ReviewCharacteristic characteristic={characteristic} />
+  //   );
+  // });
 };
 
 export default ReviewCharacteristics;
