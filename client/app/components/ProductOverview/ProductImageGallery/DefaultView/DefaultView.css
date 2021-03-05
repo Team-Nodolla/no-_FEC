@@ -9,13 +9,14 @@
   width: 450px;
 } */
 
+
 .display-image {
   cursor: crosshair;
-  position: absolute;
   max-width:70%;
   max-height:70%;
   height: auto;
   width:auto;
+  z-index: 2;
   /* height: 70%;
   max-width: 40%; */
   /* display: flex;

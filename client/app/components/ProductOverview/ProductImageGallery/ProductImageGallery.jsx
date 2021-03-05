@@ -5,7 +5,7 @@ import ExpandedView from './ExpandedView/ExpandedView.jsx';
 import ProductThumbnailScroll from './ProductThumbnailScroll/ProductThumbnailScroll.jsx';
 import './ProductImageGallery.css';
 
-const ProductImageGallery = ({ style }) => {
+const ProductImageGallery = ({ defaultStyle, style }) => {
   if (style.length !== 0) {
     const toggle = false;
     const [currentPhoto, setCurrentPhoto] = useState(0);
@@ -64,7 +64,7 @@ const ProductImageGallery = ({ style }) => {
 };
 
 ProductImageGallery.propTypes = {
-  style: propTypes.array.isRequired,
+  style: propTypes.object
 };
 
 export default ProductImageGallery;
