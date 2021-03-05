@@ -50,11 +50,13 @@ const App = () => {
     putInState.averageRating = getAverageRating(metaDataResponse.data.ratings);
   };
 
-  const fetchNewProductDetails = () => {
+  const fetchNewProductDetails = (id) => {
     const putInState = {};
     axios.get('/products')
       .then((productsResponse) => (
-        fetchProductInfo(productsResponse, putInState)
+        id
+          ? fetchProductInfo(productsResponse, putInState)
+          : fetchFirstProductInfo(productsResponse, putInState)
       ))
       .then((stylesResponse) => (
         fetchProductStyles(stylesResponse, putInState)
