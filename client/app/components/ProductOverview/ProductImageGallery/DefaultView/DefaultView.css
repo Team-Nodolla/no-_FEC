@@ -1,10 +1,12 @@
 .default-image {
-  width: 600px;
+  max-width: 600px;
+  max-height: 600px;
+  width: auto;
   display: flex;
-  height: 600px;
+  height: auto;
   justify-content: center;
-  margin-left: 50px;
-  margin-top: 50px;
+  margin-left:10%;
+  margin-top: 10%;
 }
 /* .image {
   width: 450px;
