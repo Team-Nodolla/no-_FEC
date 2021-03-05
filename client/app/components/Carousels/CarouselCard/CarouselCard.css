@@ -16,6 +16,14 @@
   margin: 0 15px;
 }
 
+.outfit-card:first-of-type {
+  margin-left: 5px;
+}
+
+.outfit-card:last-of-type {
+  margin-right: 5px;
+}
+
 .related-card {
   margin: 0 40px;
 }
