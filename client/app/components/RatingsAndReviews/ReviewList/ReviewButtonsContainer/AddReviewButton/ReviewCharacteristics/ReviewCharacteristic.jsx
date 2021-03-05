@@ -8,8 +8,11 @@ const ReviewCharacteristic = ({ name, id, reviewCharsObj, setReviewCharsObj }) =
   const [qualityCharacteristic, setQualityCharacteristic] = useState(0);
   const [lengthCharacteristic, setLengthCharacteristic] = useState(0);
   const [fitCharacteristic, setFitCharacteristic] = useState(0);
+  const [rowCharSelection, setRowCharSelection] = useState(0);
 
-  let handleSelection = () => {
+  const handleSelection = (e) => {
+    setRowCharSelection(e.target.value);
+    setReviewCharsObj({ ...reviewCharsObj, [id]: Number(e.target.value) });
   };
 
   if (name === 'Size') {
@@ -39,10 +42,6 @@ const ReviewCharacteristic = ({ name, id, reviewCharsObj, setReviewCharsObj }) =
     let three = 'What I expected';
     let four = 'Pretty great';
     let five = 'Perfect';
-    handleSelection = (e) => {
-      setQualityCharacteristic(e.target.value);
-      setReviewCharsObj({ ...reviewCharsObj, [id]: Number(e.target.value) });
-    };
   }
   if (name === 'Length') {
     let one = 'Runs short';
@@ -66,23 +65,23 @@ const ReviewCharacteristic = ({ name, id, reviewCharsObj, setReviewCharsObj }) =
           {name}*:{' '}
           <label>
             1
-            <input type="radio" name="char-btn-one" value={1} checked={qualityCharacteristic === '1'} onChange={handleSelection} required />
+            <input type="radio" name="char-btn-one" value={1} checked={rowCharSelection === '1'} onChange={handleSelection} required />
           </label>{' '}
           <label>
             2
-            <input type="radio" name="char-btn-two" value={2} checked={qualityCharacteristic === '2'} onChange={handleSelection} />
+            <input type="radio" name="char-btn-two" value={2} checked={rowCharSelection === '2'} onChange={handleSelection} />
           </label>{' '}
           <label>
             3
-            <input type="radio" name="char-btn-three" value={3} checked={qualityCharacteristic === '3'} onChange={handleSelection} required />
+            <input type="radio" name="char-btn-three" value={3} checked={rowCharSelection === '3'} onChange={handleSelection} required />
           </label>{' '}
           <label>
             4
-            <input type="radio" name="char-btn-four" value={4} checked={qualityCharacteristic === '4'} onChange={handleSelection} />
+            <input type="radio" name="char-btn-four" value={4} checked={rowCharSelection === '4'} onChange={handleSelection} />
           </label>{' '}
           <label>
             5
-            <input type="radio" name="char-btn-five" value={5} checked={qualityCharacteristic === '5'} onChange={handleSelection} required />
+            <input type="radio" name="char-btn-five" value={5} checked={rowCharSelection === '5'} onChange={handleSelection} required />
           </label>
 
         </label>
