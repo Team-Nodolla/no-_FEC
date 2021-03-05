@@ -17,7 +17,6 @@ const ModalWindow = ({ handleClose, handleReviewSubmit, modalView, productName, 
   const [reviewBody, setReviewBody] = useState('');
   const [reviewUsername, setReviewUsername] = useState('');
   const [reviewEmail, setReviewEmail] = useState('');
-  const [reviewFormCharacteristics, setReviewFormCharacteristics] = useState({});
 
   const modalClassName = modalView ? "review-modal review-modal-display" : "review-modal review-modal-hide";
 
