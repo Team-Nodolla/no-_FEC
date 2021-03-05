@@ -42,9 +42,9 @@
   overflow: hidden;
 }
 
-#card, #card-image-container {
-  border-top-right-radius: 5px;
-  border-top-left-radius: 5px;
+.card, #card-image-container {
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
 }
 
 #card-image {

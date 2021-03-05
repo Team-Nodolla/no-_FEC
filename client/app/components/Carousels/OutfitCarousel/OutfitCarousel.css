@@ -15,7 +15,8 @@
 #add-to-outfit-btn {
   background-color: rgb(220, 220, 220);
   border: 3px solid #000;
-  border-radius: 5px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
   margin: 0 20px;
   font-size: 24px;
   font-weight: 700;
@@ -28,7 +29,7 @@
 }
 
 #outfit-card-container {
-  width: 1300px;
+  width: 1500px;
   display: flex;
   flex-direction: row;
   padding-top: 5px;
