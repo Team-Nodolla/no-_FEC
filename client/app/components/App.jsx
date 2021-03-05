@@ -42,7 +42,6 @@ const App = () => {
 
   const fetchRelatedProductsIDs = (relatedProductsResponse, putInState) => {
     putInState.relatedProductIDs = relatedProductsResponse.data;
-    console.log('relatedProducts:', putInState.relatedProductIDs);
     return axios.get(`/reviews/meta/${putInState.id}`);
   };
 

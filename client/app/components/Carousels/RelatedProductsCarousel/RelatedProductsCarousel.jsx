@@ -18,14 +18,12 @@ const RelatedProductsCarousel = ({ currentProductID, relatedProductsIDs = [], ha
     noDuplicateIDs = noDuplicateIDs.filter((relatedID) => (
       relatedID !== currentProductID
     ));
-    console.log('RelatedCarousel noDups:', noDuplicateIDs);
     noDuplicateIDs.forEach((id) => { putInState.push({ id }); });
     Promise.all(noDuplicateIDs.map((id) => (
       axios.get(`/products/${id}`)
     )))
       .then((productsResponses) => {
         productsResponses.forEach((response, index) => {
-          // console.log('related product response', response.data);
           putInState[index].name = response.data.name;
           putInState[index].category = response.data.category;
         });
@@ -36,7 +34,6 @@ const RelatedProductsCarousel = ({ currentProductID, relatedProductsIDs = [], ha
       .then((stylesResponses) => {
         stylesResponses.forEach((response, index) => {
           const defaultStyle = getDefaultStyle(response.data.results);
-          console.log('default style response:', defaultStyle);
           putInState[index].productImage = defaultStyle.photos[0].thumbnail_url;
           putInState[index].originalPrice = defaultStyle.original_price;
           putInState[index].salePrice = defaultStyle.sale_price;
