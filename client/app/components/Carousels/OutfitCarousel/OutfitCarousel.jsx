@@ -40,16 +40,9 @@ const OutfitCarousel = ({ productInfo, handleRedirect }) => {
     populateState();
   }, [productInfo]);
 
-  // useEffect(() => {
-  //   if (outfitList.length !== 0) {
-  //     console.log('here\'s your new state:', outfitList);
-  //   }
-  // }, [outfitList]);
-
   const handleAddToOutfit = () => {
     const prevSate = outfitList;
     if (productInfo.id !== 0 && !store.has(productInfo.id)) {
-      console.log(productInfo.id);
       store.save(productInfo.id, productInfo);
       const newCard = cardTemplate(productInfo.id, productInfo);
       if (prevSate.length === 0) {
@@ -72,7 +65,6 @@ const OutfitCarousel = ({ productInfo, handleRedirect }) => {
         </button>
         <hr id="outfit-carousel-divider" />
         <div id="outfit-card-container">
-          {console.log(outfitList)}
           {outfitList}
         </div>
       </div>
