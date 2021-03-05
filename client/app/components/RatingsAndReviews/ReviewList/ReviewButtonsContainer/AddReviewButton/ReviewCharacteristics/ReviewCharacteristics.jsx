@@ -7,7 +7,7 @@ const ReviewCharacteristics = ({ metaData, reviewCharsObj, setReviewCharsObj }) 
 
   // eslint-disable-next-line no-restricted-syntax
   for (const [key, value] of Object.entries(metaData.characteristics)) {
-    console.log(key, value); // string, object
+    // console.log(key, value); // string, object
     characteristicArray.push(
       <ReviewCharacteristic
         name={key}
