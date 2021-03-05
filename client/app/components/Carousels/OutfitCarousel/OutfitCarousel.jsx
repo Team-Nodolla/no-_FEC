@@ -50,7 +50,6 @@ const OutfitCarousel = ({ productInfo, handleRedirect }) => {
   }, [productInfo]);
 
   const handleAddToOutfit = () => {
-    console.log('adding to outfit!');
     const prevSate = outfitList;
     if (productInfo.id !== 0 && !store.has(productInfo.id)) {
       store.save(productInfo.id, productInfo);
