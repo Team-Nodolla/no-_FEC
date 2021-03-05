@@ -75,16 +75,19 @@ const ModalWindow = ({ handleClose, handleReviewSubmit, modalView, productName, 
   const OverallRatingStarRating = () => {
     if (reviewRating > 0) {
       return (
-        <>
+        <div className="review-modal-star-wrapper">
           <ReviewModalStarRating reviewScore={reviewRating} setMargin="0 0 0 0" handleStarRatingClick={handleStarRatingClick} />
           <div className="review-rating-explanation">
+            {' '}
             {ratingExplanationArray[reviewRating - 1]}
           </div>
-        </>
+        </div>
       );
     }
     return (
-      <ReviewModalStarRating reviewScore={reviewRating} setMargin="0 0 0 0" handleStarRatingClick={handleStarRatingClick} />
+      <div className="review-modal-star-wrapper">
+        <ReviewModalStarRating reviewScore={reviewRating} setMargin="0 0 0 0" handleStarRatingClick={handleStarRatingClick} />
+      </div>
     );
   };
 
@@ -101,7 +104,7 @@ const ModalWindow = ({ handleClose, handleReviewSubmit, modalView, productName, 
             <div>
               Overall Rating*:{' '}
               <OverallRatingStarRating />
-            </div><br></br>
+            </div><br></br><br></br>
             <div className="radio">
               <label>
                 Do you recommend this product?*:{' '}

@@ -1,6 +1,6 @@
 .review-modal {
   position: fixed;
-  z-index: 4;
+  z-index: 5;
   top: 0;
   left: 0;
   width:100%;
@@ -36,4 +36,17 @@
   left: 50%;
   -ms-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
+}
+
+.review-modal-star-wrapper {
+  width: 500px;
+}
+
+.review-modal-stars {
+  float: left;
+}
+
+.review-rating-explanation {
+  margin-left: 20px;
+  float: left;
 }
