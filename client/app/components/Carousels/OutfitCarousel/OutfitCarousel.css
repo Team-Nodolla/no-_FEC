@@ -63,3 +63,7 @@
 #outfit-back {
   left: 215px;
 }
+
+.outfit-invisible {
+  display: none;
+}

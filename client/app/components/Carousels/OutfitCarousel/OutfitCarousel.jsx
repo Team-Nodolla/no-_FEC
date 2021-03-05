@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/control-has-associated-label */
 /* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable import/extensions */
 import React, { useState, useEffect } from 'react';
@@ -100,7 +101,18 @@ const OutfitCarousel = ({ productInfo, handleRedirect }) => {
           <br />
           Add To Outfit
         </button>
-        <button type="button" id="outfit-back" onClick={handleBack}><i className="fas fa-arrow-left" /></button>
+        <button
+          type="button"
+          id="outfit-back"
+          className={
+            currentlyDisplayed.start === 0
+              ? 'outfit-invisible'
+              : 'outfit-visible'
+          }
+          onClick={handleBack}
+        >
+          <i className="fas fa-arrow-left" />
+        </button>
         <hr className="outfit-carousel-divider" />
         <div id="outfit-card-container">
           {console.log('currentlyDisplayed:', currentlyDisplayed)}
@@ -108,7 +120,18 @@ const OutfitCarousel = ({ productInfo, handleRedirect }) => {
           {currentlyDisplayed.cards}
         </div>
         <hr className="outfit-carousel-divider" />
-        <button type="button" id="outfit-next" onClick={handleNext}><i className="fas fa-arrow-right" /></button>
+        <button
+          type="button"
+          id="outfit-next"
+          className={
+            currentlyDisplayed.end === outfitList.length - 1
+              ? 'outfit-invisible'
+              : 'outfit-visible'
+          }
+          onClick={handleNext}
+        >
+          <i className="fas fa-arrow-right" />
+        </button>
       </div>
     </>
   );
