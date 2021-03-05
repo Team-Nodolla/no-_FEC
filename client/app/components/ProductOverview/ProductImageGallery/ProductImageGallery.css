@@ -5,7 +5,7 @@
 
 .product-thumbnail {
   display:flex;
-  margin-left: 20px;
+  margin-left: -20px;
   margin-top: 50px;
   position: absolute;
 }
@@ -24,7 +24,7 @@
 .image-left-btn-active {
   display: flex;
   position: absolute;
-  margin-left: 90px;
+  margin-left: 10px;
   margin-top: 337px;
 }
 
