@@ -23,6 +23,13 @@ const OutfitCarousel = ({ productInfo, handleRedirect }) => {
 
   const populateState = () => {
     const outfitsInStore = [];
+    outfitsInStore.push(
+      <button type="button" id="add-to-outfit-btn" className="card" onClick={() => { handleAddToOutfit(); }}>
+        <i className="fas fa-plus-square" />
+        <br />
+        Add To Outfit
+      </button>,
+    );
     store.getAll().forEach((item) => {
       outfitsInStore.push(
         cardTemplate(item.id, item),
@@ -96,11 +103,6 @@ const OutfitCarousel = ({ productInfo, handleRedirect }) => {
       <h2 id="outfit-carousel-title">Your Outfit</h2>
       <button type="button" onClick={() => { store.deleteAll(); }}>clear storage</button>
       <div id="outfit-carousel">
-        <button type="button" id="add-to-outfit-btn" onClick={() => { handleAddToOutfit(); }}>
-          <i className="fas fa-plus-square" />
-          <br />
-          Add To Outfit
-        </button>
         <button
           type="button"
           id="outfit-back"
@@ -115,8 +117,6 @@ const OutfitCarousel = ({ productInfo, handleRedirect }) => {
         </button>
         <hr className="outfit-carousel-divider" />
         <div id="outfit-card-container">
-          {console.log('currentlyDisplayed:', currentlyDisplayed)}
-          {console.log('outfitList:', outfitList)}
           {currentlyDisplayed.cards}
         </div>
         <hr className="outfit-carousel-divider" />

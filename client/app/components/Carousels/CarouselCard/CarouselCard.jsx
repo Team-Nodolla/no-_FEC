@@ -32,7 +32,7 @@ const CarouselCard = ({
   }
 
   return (
-    <div id="card" className={`${carouselType}-card`} onClick={() => { handleRedirect(id) }} >
+    <div className={`card ${carouselType}-card`} onClick={() => { handleRedirect(id) }} >
       <button id="card-action-btn" type="button" onClick={(e) => { e.stopPropagation(); buttonFunc(id); }}>
         <i className={
           carouselType === 'related'
