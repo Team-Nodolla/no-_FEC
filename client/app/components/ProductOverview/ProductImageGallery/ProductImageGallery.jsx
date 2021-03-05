@@ -36,7 +36,7 @@ const ProductImageGallery = ({ style }) => {
 
     return (
       <div>
-        <div className="product-thumbnail"><ProductThumbnailScroll onClickChangeThumbnail={onClickChangeThumbnail} key={style.style_id} currentPhoto={style.photos[currentPhoto].thumbnail_url} arrayOfPhoto={style} /></div>
+        <div className="product-thumbnail"><ProductThumbnailScroll onClickRightChange={onClickRightChange} onClickChangeThumbnail={onClickChangeThumbnail} key={style.style_id} currentPhoto={style.photos[currentPhoto].thumbnail_url} arrayOfPhoto={style} /></div>
         {
         expandView === false
           ? (
@@ -52,6 +52,10 @@ const ProductImageGallery = ({ style }) => {
           : (
             <div onClickImage={onClickZoom} className="product-expanded-modal">
               <ExpandedView
+                onClickRightChange={onClickRightChange}
+                style={style}
+                onClickChangeThumbnail={onClickChangeThumbnail}
+                currentPhoto={currentPhoto}
                 onClickImage={onClickZoom}
                 defaultPhoto={style.photos[currentPhoto]}
               />

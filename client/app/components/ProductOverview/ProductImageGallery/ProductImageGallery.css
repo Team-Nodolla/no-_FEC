@@ -8,12 +8,13 @@
   margin-left: -20px;
   margin-top: 50px;
   position: absolute;
+  z-index: 1;
 }
 
 .image-right-btn-active {
   display: flex;
   position: absolute;
-  margin-left: 680px;
+  margin-left: 650px;
   margin-top: 337px;
 }
 
@@ -33,6 +34,7 @@
 }
 
 .product-expanded-modal {
+  align-items: center;
   position: fixed; /* Stay in place */
   z-index: 20; /* Sit on top */
   padding-top: 5px; /* Location of the box */
