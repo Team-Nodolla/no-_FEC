@@ -13,7 +13,16 @@ import './App.css';
 const App = () => {
   const [currentProduct, setCurrentProduct] = useState({});
 
-  const fetchProductInfo = (productsResponse, putInState = {}) => {
+  const fetchProductInfo = (productsResponse, putInState) => {
+    putInState.id = productsResponse.data.id;
+    putInState.name = productsResponse.data.name;
+    putInState.category = productsResponse.data.category;
+    putInState.description = productsResponse.data.description;
+    putInState.slogan = productsResponse.data.slogan;
+    return axios.get(`/products/${putInState.id}/styles`);
+  };
+
+  const fetchFirstProductInfo = (productsResponse, putInState = {}) => {
     putInState.id = productsResponse.data[0].id;
     putInState.name = productsResponse.data[0].name;
     putInState.category = productsResponse.data[0].category;
