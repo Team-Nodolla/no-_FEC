@@ -53,20 +53,6 @@ const RatingsAndReviews = ({ productID, metaData, productName }) => {
     );
   };
 
-  // const AddReviewButtonRender = () => {
-  //   if (metaData?.characteristcs) {
-  //     return (
-
-  //     );
-  //   }
-  //   return (
-  //     <AddReviewButton
-  //       productName={productName}
-  //       productID={productID}
-  //     />
-  //   );
-  // };
-
   return (
     <>
       <h3 className="header">RATINGS & REVIEWS</h3>
