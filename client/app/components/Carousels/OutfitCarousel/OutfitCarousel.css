@@ -8,14 +8,15 @@
 }
 
 #outfit-carousel-title {
-  margin: 20px 0 0 10px;
+  margin: 20px 20px 0 10px;
+  display: inline-block;
 }
 
 #add-to-outfit-btn {
   width: 200px;
   min-width: 200px;
   height: 300px;
-  margin: auto 20px auto 30px;
+  margin: auto 15px auto 15px;
   font-size: 24px;
   font-weight: 700;
   line-height: 36px;
@@ -34,10 +35,10 @@
   overflow: hidden;
 }
 
-#outfit-carousel-divider {
+.outfit-carousel-divider {
   border-style: ridge;
   margin-block-start: 50px;
   margin-block-end: 50px;
-  margin-inline-start: 20px;
-  margin-inline-end: 20px;
+  margin-inline-start: 15px;
+  margin-inline-end: 15px;
 }
