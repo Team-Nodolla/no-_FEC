@@ -1,3 +1,4 @@
+/* eslint-disable import/extensions */
 /* eslint-disable react/prop-types */
 /* eslint-disable react/self-closing-comp */
 /* eslint-disable react/jsx-one-expression-per-line */
@@ -5,6 +6,7 @@
 /* eslint-disable quotes */
 import React, { useEffect, useState }from 'react';
 import './ModalWindow.css';
+import ReviewModalStarRating from './ReviewModalStarRating/ReviewModalStarRating.jsx';
 
 const ModalWindow = ({ handleClose, handleReviewSubmit, modalView, productName }) => {
   const [selectedRecommend, setSelectedRecommend] = useState('');
@@ -12,8 +14,32 @@ const ModalWindow = ({ handleClose, handleReviewSubmit, modalView, productName }
   const [reviewBody, setReviewBody] = useState('');
   const [reviewUsername, setReviewUsername] = useState('');
   const [reviewEmail, setReviewEmail] = useState('');
+  const [reviewRating, setReviewRating] = useState(4);
 
   const modalClassName = modalView ? "review-modal review-modal-display" : "review-modal review-modal-hide";
+
+  const ratingExplanationArray = [
+    '1 star - “Poor”',
+    '2 stars - “Fair”',
+    '3 stars - “Average”',
+    '4 stars - “Good”',
+    '5 stars - “Great”',
+  ];
+
+  const MinimumRequiredBodyCharacters = () => {
+    if (reviewBody.length >= 50) {
+      return (
+        <div>
+          Minimum Reached
+        </div>
+      );
+    }
+    return (
+      <div>
+        Minimum required characters left: {50 - reviewBody.length}
+      </div>
+    );
+  };
 
   const handleRecommendChange = (e) => {
     setSelectedRecommend(e.target.value);
@@ -35,19 +61,24 @@ const ModalWindow = ({ handleClose, handleReviewSubmit, modalView, productName }
     setReviewEmail(e.target.value);
   };
 
-  const MinimumRequiredBodyCharacters = () => {
-    if (reviewBody.length >= 50) {
+  const handleStarRatingClick = (e) => {
+    setReviewRating(e.target.id);
+  };
+
+  const OverallRatingStarRating = () => {
+    if (reviewRating > 0) {
       return (
-        <div>
-          Minimum Reached
-        </div>
-      )
+        <>
+          <ReviewModalStarRating reviewScore={reviewRating} setMargin="0 0 0 0" handleStarRatingClick={handleStarRatingClick} />
+          <div className="review-rating-explanation">
+            {ratingExplanationArray[reviewRating - 1]}
+          </div>
+        </>
+      );
     }
     return (
-      <div>
-        Minimum required characters left: {50 - reviewBody.length}
-      </div>
-    )
+      <ReviewModalStarRating reviewScore={reviewRating} setMargin='0 0 0 0' handleStarRatingClick={handleStarRatingClick} />
+    );
   };
 
   if (modalView) {
@@ -62,6 +93,7 @@ const ModalWindow = ({ handleClose, handleReviewSubmit, modalView, productName }
             {/* on submit, do something */}
             <div>
               Overall Rating*: (placeholder)
+              <OverallRatingStarRating />
             </div><br></br>
             <div className="radio">
               <label>
