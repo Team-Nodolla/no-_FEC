@@ -15,9 +15,9 @@ const ProductOverview = ({ product, defaultStyle, styles }) => {
       setSelectedStyle(style);
     };
 
-    console.log('product:, ', product);
-    console.log('default styles: ', defaultStyle);
-    console.log('styles: ', styles);
+    // console.log('product:, ', product);
+    // console.log('default styles: ', defaultStyle);
+    // console.log('styles: ', styles);
     return (
       <div className="product-overview-container">
         <div className="product-image-container">
