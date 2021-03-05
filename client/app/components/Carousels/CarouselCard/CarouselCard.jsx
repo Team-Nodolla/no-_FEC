@@ -19,7 +19,7 @@ const CarouselCard = ({
 }) => {
   const [onSale] = useState(Boolean(salePrice));
   let displayPrice;
-  let actionButtonLook;
+
   if (onSale) {
     displayPrice = (
       <>
@@ -31,15 +31,11 @@ const CarouselCard = ({
     displayPrice = <span className="descriptive" id="display-price">{`$${originalPrice}`}</span>;
   }
 
-  if (carouselType === 'related') {
-    actionButtonLook = <i className="far fa-star" />;
-  } else {
-    actionButtonLook = <i className="far fa-times-circle" />;
-  }
-
   return (
     <div id="card" onClick={() => { handleRedirect(id) }} >
-      <button id="action" type="button" onClick={() => { buttonFunc(id); }}>{actionButtonLook}</button>
+      <button id="action" type="button" onClick={() => { buttonFunc(id); }}>
+        <i className={carouselType === 'related' ? 'far fa-star' : 'far fa-times-circle'} />
+      </button>
       <div id="card-image-container">
         <img id="card-image" src={productImage} alt="" />
       </div>
