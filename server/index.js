@@ -57,8 +57,6 @@ app.get('/reviews/meta/:product_id', (req, res) => {
 });
 
 app.post('/reviews', (req, res) => {
-  // axios.post(`${url}/reviews?product_id=${req.body.productID}&rating=${req.body.userRating}&recommend=${req.body.userRec}&characteristics=${req.body.userChars}&summary=${req.body.userSummary}&body=${req.body.userBody}&name=${req.body.userNickname}&email=${req.body.userEmail}`)
-
   axios.post(`${url}/reviews`, {
     product_id: req.body.productID,
     rating: req.body.userRating,

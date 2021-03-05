@@ -14,7 +14,17 @@ const AddReviewButton = ({ productName, productID, metaData }) => {
     setModalView(!modalView);
   };
 
-  const handleReviewSubmit = (e, productID, userRating, userRec, userChars, userSummary, userBody, userNickname, userEmail) => {
+  const handleReviewSubmit = (
+    e,
+    productID,
+    userRating,
+    userRec,
+    userChars,
+    userSummary,
+    userBody,
+    userNickname,
+    userEmail,
+  ) => {
     e.preventDefault();
     axios.post('/reviews', {
       productID,
