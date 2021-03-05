@@ -7,7 +7,7 @@ import ProductStyleSelector from './ProductStyleSelector/ProductStyleSelector.js
 import ProductCart from './ProductCart/ProductCart.jsx';
 import './ProductOverview.css';
 
-const ProductOverview = ({ product, defaultStyle, styles }) => {
+const ProductOverview = ({ product, styles }) => {
   if (styles !== undefined) {
     const [priceOfProduct, setPriceOfProduct] = useState(product.originalPrice);
     const [selectedStyle, setSelectedStyle] = useState(styles[0]);
@@ -20,7 +20,7 @@ const ProductOverview = ({ product, defaultStyle, styles }) => {
     return (
       <div className="product-overview-container">
         <div className="product-image-container">
-          <ProductImageGallery defaultStyle={defaultStyle} style={selectedStyle} />
+          <ProductImageGallery style={selectedStyle} />
         </div>
         <div className="product-info-container">
           <div className="product-description-container">
@@ -59,7 +59,6 @@ const ProductOverview = ({ product, defaultStyle, styles }) => {
 
 ProductOverview.propTypes = {
   product: propTypes.object,
-  defaultStyle: propTypes.object,
   styles: propTypes.array,
 };
 

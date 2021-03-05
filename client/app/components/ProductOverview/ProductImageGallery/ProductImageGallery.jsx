@@ -5,8 +5,7 @@ import ExpandedView from './ExpandedView/ExpandedView.jsx';
 import ProductThumbnailScroll from './ProductThumbnailScroll/ProductThumbnailScroll.jsx';
 import './ProductImageGallery.css';
 
-const ProductImageGallery = ({ style }) => {
-  console.log(style)
+const ProductImageGallery = ({ defaultStyle, style }) => {
   if (style.length !== 0) {
     const toggle = false;
     const [currentPhoto, setCurrentPhoto] = useState(0);
