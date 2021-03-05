@@ -9,32 +9,39 @@ import getDefaultStyle from '../../helperFunctions/getDefaultStyle.jsx';
 import CarouselCard from '../CarouselCard/CarouselCard.jsx';
 import './RelatedProductsCarousel.css';
 
-const RelatedProductsCarousel = ({ relatedProductsIDs = [], handleRedirect }) => {
+const RelatedProductsCarousel = ({ currentProductID, relatedProductsIDs = [], handleRedirect }) => {
   const [allRelatedProducts, setAllRelatedProducts] = useState([]);
 
   const fetchRelatedProductsData = () => {
     const putInState = [];
-    relatedProductsIDs.forEach((id) => { putInState.push({ id }); });
-    Promise.all(relatedProductsIDs.map((id) => (
+    let noDuplicateIDs = [...new Set(relatedProductsIDs)]; // Turn it into an array wit no duplicate IDs
+    noDuplicateIDs = noDuplicateIDs.filter((relatedID) => (
+      relatedID !== currentProductID
+    ));
+    console.log('RelatedCarousel noDups:', noDuplicateIDs);
+    noDuplicateIDs.forEach((id) => { putInState.push({ id }); });
+    Promise.all(noDuplicateIDs.map((id) => (
       axios.get(`/products/${id}`)
     )))
       .then((productsResponses) => {
         productsResponses.forEach((response, index) => {
+          // console.log('related product response', response.data);
           putInState[index].name = response.data.name;
           putInState[index].category = response.data.category;
         });
-        return Promise.all(relatedProductsIDs.map((id) => (
+        return Promise.all(noDuplicateIDs.map((id) => (
           axios.get(`/products/${id}/styles`)
         )));
       })
       .then((stylesResponses) => {
         stylesResponses.forEach((response, index) => {
           const defaultStyle = getDefaultStyle(response.data.results);
+          console.log('default style response:', defaultStyle);
           putInState[index].productImage = defaultStyle.photos[0].thumbnail_url;
           putInState[index].originalPrice = defaultStyle.original_price;
           putInState[index].salePrice = defaultStyle.sale_price;
         });
-        return Promise.all(relatedProductsIDs.map((id) => (
+        return Promise.all(noDuplicateIDs.map((id) => (
           axios.get(`/reviews/meta/${id}`)
         )));
       })
@@ -80,6 +87,7 @@ const RelatedProductsCarousel = ({ relatedProductsIDs = [], handleRedirect }) =>
 };
 
 RelatedProductsCarousel.propTypes = {
+  currentProductID: propTypes.number.isRequired,
   handleRedirect: propTypes.func.isRequired,
   relatedProductsIDs: propTypes.array,
 };

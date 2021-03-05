@@ -42,6 +42,7 @@ const App = () => {
 
   const fetchRelatedProductsIDs = (relatedProductsResponse, putInState) => {
     putInState.relatedProductIDs = relatedProductsResponse.data;
+    console.log('relatedProducts:', putInState.relatedProductIDs);
     return axios.get(`/reviews/meta/${putInState.id}`);
   };
 
@@ -90,6 +91,7 @@ const App = () => {
         styles={currentProduct.styles}
       />
       <RelatedProductsCarousel
+        currentProductID={currentProduct.id ?? 0}
         relatedProductsIDs={currentProduct.relatedProductIDs}
         handleRedirect={handleRedirect}
       />
