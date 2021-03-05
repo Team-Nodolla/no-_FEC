@@ -1,6 +1,7 @@
+/* eslint-disable react/prop-types */
 import React, { useState } from 'react';
 
-const ReviewCharacteristic = ({ name, id }) => {
+const ReviewCharacteristic = ({ name, id, reviewCharsObj, setReviewCharsObj }) => {
   const [sizeCharacteristic, setSizeCharacteristic] = useState(0);
   const [widthCharacteristic, setWidthCharacteristic] = useState(0);
   const [comfortCharacteristic, setComfortCharacteristic] = useState(0);
@@ -40,6 +41,7 @@ const ReviewCharacteristic = ({ name, id }) => {
     let five = 'Perfect';
     handleSelection = (e) => {
       setQualityCharacteristic(e.target.value);
+      setReviewCharsObj({ ...reviewCharsObj, [id]: Number(e.target.value) });
     };
   }
   if (name === 'Length') {
