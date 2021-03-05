@@ -1,3 +1,7 @@
 .styles-thumbnail {
   display: flex;
 }
+
+.styles-thumbnail-list {
+  display: flex;
+}

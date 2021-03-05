@@ -28,7 +28,7 @@ const ProductOverview = ({ product, defaultStyle, styles }) => {
             <ProductCategoryAndTitle product={product} />
           </div>
           <div className="product-style-container">
-            <ProductStyleSelector styles={styles} />
+            <ProductStyleSelector handleSelectedStyleClick={handleSelectedStyle} styles={styles} />
           </div>
           <div className="product-cart-container">
             <ProductCart />
