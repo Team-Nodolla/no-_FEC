@@ -5,14 +5,16 @@ const ProductStyleSelector = ({ handleSelectedStyleClick, styles ,styleName}) =>
     return (
       <div className="styles-thumbnail">
         <h2>Styles > {styleName.name}</h2>
+        <div className="styles-thumbnail-list">
         {styles.map((productStyle) => {
           return(
-          <div key={productStyle.style_id} className="styles-thumbnail-list">
-            <i className="far fa-check-circle"></i>
-            <img onClick={() => handleSelectedStyleClick(productStyle, productStyle.original_price)} style={{borderRadius: '50%', width: '50px', height: '50px'}} src={productStyle.photos[0].thumbnail_url} />
-          </div>
+            <span>
+            {/* <i className="far fa-check-circle"></i> */}
+            <img className="style-image" onClick={() => handleSelectedStyleClick(productStyle, productStyle.original_price)} style={{paddingLeft: '5px', borderRadius: '50%', width: '50px', height: '50px'}} src={productStyle.photos[0].thumbnail_url} />
+            </span>
           )
         })}
+        </div>
       </div>
     );
   }
