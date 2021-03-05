@@ -14,7 +14,7 @@ const ModalWindow = ({ handleClose, handleReviewSubmit, modalView, productName }
   const [reviewBody, setReviewBody] = useState('');
   const [reviewUsername, setReviewUsername] = useState('');
   const [reviewEmail, setReviewEmail] = useState('');
-  const [reviewRating, setReviewRating] = useState(4);
+  const [reviewRating, setReviewRating] = useState(0);
 
   const modalClassName = modalView ? "review-modal review-modal-display" : "review-modal review-modal-hide";
 
@@ -92,7 +92,7 @@ const ModalWindow = ({ handleClose, handleReviewSubmit, modalView, productName }
           <form>
             {/* on submit, do something */}
             <div>
-              Overall Rating*: (placeholder)
+              Overall Rating*:{' '}
               <OverallRatingStarRating />
             </div><br></br>
             <div className="radio">
