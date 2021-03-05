@@ -1,16 +1,45 @@
+/* eslint-disable import/extensions */
+/* eslint-disable react/prop-types */
 /* eslint-disable react/self-closing-comp */
 /* eslint-disable react/jsx-one-expression-per-line */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable quotes */
 import React, { useEffect, useState }from 'react';
 import './ModalWindow.css';
+import ReviewModalStarRating from './ReviewModalStarRating/ReviewModalStarRating.jsx';
 
-const ModalWindow = ({ handleClose, modalView, productName }) => {
+const ModalWindow = ({ handleClose, handleReviewSubmit, modalView, productName }) => {
   const [selectedRecommend, setSelectedRecommend] = useState('');
   const [reviewSummary, setReviewSummary] = useState('');
   const [reviewBody, setReviewBody] = useState('');
+  const [reviewUsername, setReviewUsername] = useState('');
+  const [reviewEmail, setReviewEmail] = useState('');
+  const [reviewRating, setReviewRating] = useState(0);
 
   const modalClassName = modalView ? "review-modal review-modal-display" : "review-modal review-modal-hide";
+
+  const ratingExplanationArray = [
+    '1 star - “Poor”',
+    '2 stars - “Fair”',
+    '3 stars - “Average”',
+    '4 stars - “Good”',
+    '5 stars - “Great”',
+  ];
+
+  const MinimumRequiredBodyCharacters = () => {
+    if (reviewBody.length >= 50) {
+      return (
+        <div>
+          Minimum Reached
+        </div>
+      );
+    }
+    return (
+      <div>
+        Minimum required characters left: {50 - reviewBody.length}
+      </div>
+    );
+  };
 
   const handleRecommendChange = (e) => {
     setSelectedRecommend(e.target.value);
@@ -24,19 +53,32 @@ const ModalWindow = ({ handleClose, modalView, productName }) => {
     setReviewBody(e.target.value);
   };
 
-  const MinimumRequiredBodyCharacters = () => {
-    if (reviewBody.length >= 50) {
+  const handleUsernameChange = (e) => {
+    setReviewUsername(e.target.value);
+  };
+
+  const handleEmailChange = (e) => {
+    setReviewEmail(e.target.value);
+  };
+
+  const handleStarRatingClick = (e) => {
+    setReviewRating(e.target.id);
+  };
+
+  const OverallRatingStarRating = () => {
+    if (reviewRating > 0) {
       return (
-        <div>
-          Minimum Reached
-        </div>
-      )
+        <>
+          <ReviewModalStarRating reviewScore={reviewRating} setMargin="0 0 0 0" handleStarRatingClick={handleStarRatingClick} />
+          <div className="review-rating-explanation">
+            {ratingExplanationArray[reviewRating - 1]}
+          </div>
+        </>
+      );
     }
     return (
-      <div>
-        Minimum required characters left: {50 - reviewBody.length}
-      </div>
-    )
+      <ReviewModalStarRating reviewScore={reviewRating} setMargin='0 0 0 0' handleStarRatingClick={handleStarRatingClick} />
+    );
   };
 
   if (modalView) {
@@ -50,7 +92,8 @@ const ModalWindow = ({ handleClose, modalView, productName }) => {
           <form>
             {/* on submit, do something */}
             <div>
-              Overall Rating*: (placeholder)
+              Overall Rating*:{' '}
+              <OverallRatingStarRating />
             </div><br></br>
             <div className="radio">
               <label>
@@ -78,12 +121,35 @@ const ModalWindow = ({ handleClose, modalView, productName }) => {
               </label><br></br>
               <MinimumRequiredBodyCharacters />
             </div><br></br>
+            <div className="review-modal-username">
+              <label>
+                Username*:{' '}<br></br>
+                <input type="text" name="reviewUsername" maxLength="60" rows="2" cols="20" placeholder="Example: jackson11!" value={reviewUsername} onChange={handleUsernameChange} required /><br></br>
+                <div className="review-username-warning">
+                  For privacy reasons, please do not use your full name or email address
+                </div>
+              </label>
+            </div><br></br>
+            <div className="review-modal-email">
+              <label>
+                Username*:{' '}<br></br>
+                <input type="email" name="reviewEmail" maxLength="60" rows="2" cols="20" placeholder="Example: jackson11@email.com" value={reviewEmail} onChange={handleEmailChange} required /><br></br>
+                <div className="review-email-warning">
+                  For authentication reasons, you will not be emailed
+                </div>
+              </label>
+            </div><br></br>
           </form>
+
           <div className="reviewModalButtonContainer">
             <button type="button" className="modalButton" onClick={handleClose}>
               Close
             </button>
+            <button type="button" className="review-modal-submit-button" onClick={handleReviewSubmit}>
+              Submit Review
+            </button>
           </div>
+
         </div>
       </div>
     );
