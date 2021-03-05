@@ -133,7 +133,7 @@ const ModalWindow = ({ handleClose, handleReviewSubmit, modalView, productName }
             <div className="review-modal-email">
               <label>
                 Username*:{' '}<br></br>
-                <input type="email" name="reviewEmail" maxLength="60" rows="2" cols="20" placeholder="Example: jackson11!" value={reviewEmail} onChange={handleEmailChange} required /><br></br>
+                <input type="email" name="reviewEmail" maxLength="60" rows="2" cols="20" placeholder="Example: jackson11@email.com" value={reviewEmail} onChange={handleEmailChange} required /><br></br>
                 <div className="review-email-warning">
                   For authentication reasons, you will not be emailed
                 </div>
