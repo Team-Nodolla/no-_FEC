@@ -5,3 +5,7 @@
 .styles-thumbnail-list {
   display: flex;
 }
+
+.styles-checkmark {
+  margin-left: 20px;
+}

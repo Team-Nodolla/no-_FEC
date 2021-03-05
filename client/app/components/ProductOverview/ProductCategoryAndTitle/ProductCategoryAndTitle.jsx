@@ -2,7 +2,7 @@ import React from 'react';
 import './ProductCategoryAndTitle.css';
 import StarRating from '../../StarRating/StarRating.jsx';
 
-const ProductCategoryAndTitle = ({ product }) => {
+const ProductCategoryAndTitle = ({ price, product }) => {
   return (
     <div className='categoryAndTitleContainer'>
       <div className="product-star">
@@ -11,7 +11,7 @@ const ProductCategoryAndTitle = ({ product }) => {
       </div>
       <p>{product.category}</p>
       <h1>{product.name}</h1>
-      <p>${product.default_price}</p>
+      <p>${price}</p>
     </div>
   );
 };

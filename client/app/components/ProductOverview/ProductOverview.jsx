@@ -9,15 +9,20 @@ import './ProductOverview.css';
 
 const ProductOverview = ({ product, defaultStyle, styles }) => {
   if (styles !== undefined) {
+    console.log(product);
+    const [priceOfProduct, setPriceOfProduct] = useState(product.originalPrice);
     const [selectedStyle, setSelectedStyle] = useState(styles[0]);
 
-    const handleSelectedStyle = (style) => {
+    const handleSelectedStyle = (style, price) => {
+      console.log(price);
       setSelectedStyle(style);
+      setPriceOfProduct(price);
     };
 
     // console.log('product:, ', product);
     // console.log('default styles: ', defaultStyle);
     // console.log('styles: ', styles);
+
     return (
       <div className="product-overview-container">
         <div className="product-image-container">
@@ -25,10 +30,14 @@ const ProductOverview = ({ product, defaultStyle, styles }) => {
         </div>
         <div className="product-info-container">
           <div className="product-description-container">
-            <ProductCategoryAndTitle product={product} />
+            <ProductCategoryAndTitle price={priceOfProduct} product={product} />
           </div>
           <div className="product-style-container">
-            <ProductStyleSelector handleSelectedStyleClick={handleSelectedStyle} styles={styles} />
+            <ProductStyleSelector
+              handleSelectedStyleClick={handleSelectedStyle}
+              styles={styles}
+              styleName={selectedStyle}
+            />
           </div>
           <div className="product-cart-container">
             <ProductCart />
@@ -42,7 +51,15 @@ const ProductOverview = ({ product, defaultStyle, styles }) => {
   }
 
   return (
-    <div />
+    <div className="product-overview-container">
+      <div className="product-image-container" />
+      <div className="product-info-container">
+        <div className="product-description-container" />
+        <div className="product-style-container" />
+        <div className="product-cart-container" />
+      </div>
+      <div className="product-summary-container" />
+    </div>
   );
 };
 
