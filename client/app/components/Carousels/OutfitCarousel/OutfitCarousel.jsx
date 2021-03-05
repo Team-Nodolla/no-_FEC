@@ -8,6 +8,7 @@ import './OutfitCarousel.css';
 
 const OutfitCarousel = ({ productInfo, handleRedirect }) => {
   const [outfitList, setOutfitList] = useState([]);
+  const [currentlyDisplayed, setCurrentlyDisplayed] = useState({});
 
   const cardTemplate = (key, cardDetails) => (
     <CarouselCard
@@ -53,6 +54,30 @@ const OutfitCarousel = ({ productInfo, handleRedirect }) => {
     }
   };
 
+  useEffect(() => {
+    if (outfitList.length > 0) {
+      const toDisplay = {};
+      toDisplay.start = currentlyDisplayed.start ?? 0;
+      toDisplay.end = Math.min(3, outfitList.length - 1);
+      toDisplay.cards = outfitList.filter((card, index) => (
+        index <= toDisplay.end
+      ));
+      setCurrentlyDisplayed({ ...toDisplay });
+    }
+  }, [outfitList.length]);
+
+  const handleNext = () => {
+    if (currentlyDisplayed.end < outfitList.length - 1) {
+      const toDisplay = {};
+      toDisplay.start = currentlyDisplayed.start + 1;
+      toDisplay.end = currentlyDisplayed.end + 1;
+      toDisplay.cards = outfitList;
+      toDisplay.cards.push(outfitList[toDisplay.end]);
+      toDisplay.cards.shift();
+      setCurrentlyDisplayed({ ...toDisplay });
+    }
+  };
+
   return (
     <>
       <h2 id="outfit-carousel-title">Your Outfit</h2>
@@ -66,10 +91,12 @@ const OutfitCarousel = ({ productInfo, handleRedirect }) => {
         <button type="button" id="outfit-back"><i className="fas fa-arrow-left" /></button>
         <hr className="outfit-carousel-divider" />
         <div id="outfit-card-container">
-          {outfitList}
+          {console.log('currentlyDisplayed:', currentlyDisplayed)}
+          {console.log('outfitList:', outfitList)}
+          {currentlyDisplayed.cards}
         </div>
         <hr className="outfit-carousel-divider" />
-        <button type="button" id="outfit-next"><i className="fas fa-arrow-right" /></button>
+        <button type="button" id="outfit-next" onClick={handleNext}><i className="fas fa-arrow-right" /></button>
       </div>
     </>
   );
