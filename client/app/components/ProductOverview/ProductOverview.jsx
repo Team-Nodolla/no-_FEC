@@ -39,7 +39,7 @@ const ProductOverview = ({ product, styles }) => {
             />
           </div>
           <div className="product-cart-container">
-            <ProductCart />
+            <ProductCart selectedStyle={selectedStyle} />
           </div>
         </div>
         <div className="product-summary-container">

@@ -1,12 +1,27 @@
 import React from 'react';
 
-const ProductCart = ({ skus }) => {
-  if (skus !== undefined) {
-    console.log(skus.skus);
+const ProductCart = ({ selectedStyle }) => {
+  if (selectedStyle !== undefined) {
+    const arrayOfSkus = Object.values(selectedStyle.skus);
     return (
-      <div>
-        <p>Hellooooo cart</p>
-      </div>
+      <span>
+        <select value="-">
+          <option>Select A Size</option>
+          {arrayOfSkus.map((skus) => {
+            return (
+              <option value={skus.size}>{skus.size}</option>
+            )
+          })}
+        </select>
+        <select value="-">
+          <option>Select A Quantity</option>
+          {arrayOfSkus.map((skus) => {
+            return (
+              <option value={skus.quantity}>{skus.quantity}</option>
+            )
+          })}
+        </select>
+      </span>
     );
   }
 
