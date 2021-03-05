@@ -69,7 +69,7 @@ const ModalWindow = ({ handleClose, handleReviewSubmit, modalView, productName, 
   };
 
   const handleStarRatingClick = (e) => {
-    setReviewRating(e.target.id);
+    setReviewRating(Number(e.target.id));
   };
 
   const OverallRatingStarRating = () => {
@@ -159,7 +159,7 @@ const ModalWindow = ({ handleClose, handleReviewSubmit, modalView, productName, 
             <button type="button" className="modalButton" onClick={handleClose}>
               Close
             </button>
-            <button type="button" className="review-modal-submit-button" onClick={handleReviewSubmit}>
+            <button type="button" className="review-modal-submit-button" onClick={(event) => { handleReviewSubmit(event, productID, reviewRating, selectedRecommend, reviewCharsObj, reviewSummary, reviewBody, reviewUsername, reviewEmail); }}>
               Submit Review
             </button>
           </div>

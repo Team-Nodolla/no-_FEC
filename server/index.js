@@ -27,7 +27,9 @@ app.get('/products', (req, res) => {
     .catch((err) => res.status(418).send(err));
 });
 
-// RATINGS AND REVIEW HANDLERS
+/* *************************** */
+/*     Ratings and Reviews     */
+/* *************************** */
 app.get('/reviews/sort/:text/product/:product_id', (req, res) => {
   axios.get(`${url}/reviews?sort=${req.params.text}&product_id=${req.params.product_id}`, {
     headers: token,
@@ -51,6 +53,31 @@ app.get('/reviews/meta/:product_id', (req, res) => {
     .catch((err) => {
       console.log('server error fetching review meta data', err);
       res.status(500).end();
+    });
+});
+
+app.post('/reviews', (req, res) => {
+  // axios.post(`${url}/reviews?product_id=${req.body.productID}&rating=${req.body.userRating}&recommend=${req.body.userRec}&characteristics=${req.body.userChars}&summary=${req.body.userSummary}&body=${req.body.userBody}&name=${req.body.userNickname}&email=${req.body.userEmail}`)
+
+  axios.post(`${url}/reviews`, {
+    product_id: req.body.productID,
+    rating: req.body.userRating,
+    summary: req.body.userSummary,
+    body: req.body.userBody,
+    recommend: req.body.userRec,
+    name: req.body.userNickname,
+    email: req.body.userEmail,
+    photos: [],
+    characteristics: req.body.userChars,
+  }, {
+    headers: token,
+  })
+    .then((response) => {
+      res.send(response);
+    })
+    .catch((err) => {
+      console.log('err between server and API during post: ', err);
+      res.status(400).end('error posting review to API');
     });
 });
 // <------------------------->
