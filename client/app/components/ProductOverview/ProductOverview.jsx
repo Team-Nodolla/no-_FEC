@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import propTypes from 'proptypes';
 import ProductCategoryAndTitle from './ProductCategoryAndTitle/ProductCategoryAndTitle.jsx';
 import ProductImageGallery from './ProductImageGallery/ProductImageGallery.jsx';
@@ -11,6 +11,11 @@ const ProductOverview = ({ product, styles }) => {
   if (styles !== undefined) {
     const [priceOfProduct, setPriceOfProduct] = useState(product.originalPrice);
     const [selectedStyle, setSelectedStyle] = useState(styles[0]);
+
+    useEffect(() => {
+      setPriceOfProduct(() => product.originalPrice);
+      setSelectedStyle(() => styles[0]);
+    }, [product, styles]);
 
     const handleSelectedStyle = (style, price) => {
       setSelectedStyle(style);
