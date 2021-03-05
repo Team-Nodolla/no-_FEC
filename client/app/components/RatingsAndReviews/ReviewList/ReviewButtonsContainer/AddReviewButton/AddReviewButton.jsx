@@ -37,7 +37,7 @@ const AddReviewButton = ({ productName, productID, metaData }) => {
       userEmail,
     })
       .then((response) => {
-        console.log(response);
+        console.log('Wow, great success posting a review! Very nice!');
       })
       .catch((err) => {
         console.log('error in review submission: ', err);
