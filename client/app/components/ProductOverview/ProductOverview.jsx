@@ -15,9 +15,9 @@ const ProductOverview = ({ product, defaultStyle, styles }) => {
       setSelectedStyle(style);
     };
 
-    console.log('product:, ', product);
-    console.log('default styles: ', defaultStyle);
-    console.log('styles: ', styles);
+    // console.log('product:, ', product);
+    // console.log('default styles: ', defaultStyle);
+    // console.log('styles: ', styles);
     return (
       <div className="product-overview-container">
         <div className="product-image-container">
@@ -28,7 +28,7 @@ const ProductOverview = ({ product, defaultStyle, styles }) => {
             <ProductCategoryAndTitle product={product} />
           </div>
           <div className="product-style-container">
-            <ProductStyleSelector styles={styles} />
+            <ProductStyleSelector handleSelectedStyleClick={handleSelectedStyle} styles={styles} />
           </div>
           <div className="product-cart-container">
             <ProductCart />
