@@ -64,6 +64,7 @@ const OutfitCarousel = ({ productInfo, handleRedirect }) => {
           <br />
           Add To Outfit
         </button>
+        <hr id="outfit-carousel-divider" />
         <div id="outfit-card-container">
           {outfitList}
         </div>
