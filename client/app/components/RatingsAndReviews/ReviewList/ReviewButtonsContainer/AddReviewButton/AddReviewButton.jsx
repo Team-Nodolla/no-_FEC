@@ -1,5 +1,6 @@
 /* eslint-disable import/extensions */
 import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 import './AddReviewButton.css';
 import StarRating from '../../../../StarRating/StarRating.jsx';
 import ModalWindow from '../ModalWindow/ModalWindow.jsx';
@@ -13,9 +14,35 @@ const AddReviewButton = ({ productName, productID, metaData }) => {
     setModalView(!modalView);
   };
 
-  const handleReviewSubmit = (e) => {
+  const handleReviewSubmit = (
+    e,
+    productID,
+    userRating,
+    userRec,
+    userChars,
+    userSummary,
+    userBody,
+    userNickname,
+    userEmail,
+  ) => {
     e.preventDefault();
-    console.log('poggers in the chat');
+    axios.post('/reviews', {
+      productID,
+      userRating,
+      userRec,
+      userChars,
+      userSummary,
+      userBody,
+      userNickname,
+      userEmail,
+    })
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((err) => {
+        console.log('error in review submission: ', err);
+      });
+    setModalView(!modalView);
   };
 
   return (
