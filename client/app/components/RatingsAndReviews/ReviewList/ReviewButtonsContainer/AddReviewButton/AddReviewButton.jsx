@@ -4,7 +4,7 @@ import './AddReviewButton.css';
 import StarRating from '../../../../StarRating/StarRating.jsx';
 import ModalWindow from '../ModalWindow/ModalWindow.jsx';
 
-const AddReviewButton = ({ productName }) => {
+const AddReviewButton = ({ productName, productID, metaData }) => {
   const [modalView, setModalView] = useState(false);
 
   const handleButtonClick = (e) => {
@@ -26,6 +26,8 @@ const AddReviewButton = ({ productName }) => {
         handleReviewSubmit={handleReviewSubmit}
         modalView={modalView}
         productName={productName}
+        productID={productID}
+        metaData={metaData}
       >
         <p>Modal</p>
       </ModalWindow>

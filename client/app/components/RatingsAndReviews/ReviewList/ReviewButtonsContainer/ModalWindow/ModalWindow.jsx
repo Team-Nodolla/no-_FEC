@@ -4,17 +4,19 @@
 /* eslint-disable react/jsx-one-expression-per-line */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable quotes */
-import React, { useEffect, useState }from 'react';
+import React, { useEffect, useState } from 'react';
 import './ModalWindow.css';
 import ReviewModalStarRating from './ReviewModalStarRating/ReviewModalStarRating.jsx';
+import ReviewCharacteristics from '../AddReviewButton/ReviewCharacteristics/ReviewCharacteristics.jsx';
 
-const ModalWindow = ({ handleClose, handleReviewSubmit, modalView, productName }) => {
+const ModalWindow = ({ handleClose, handleReviewSubmit, modalView, productName, productID, metaData }) => {
+  const [reviewRating, setReviewRating] = useState(0);
   const [selectedRecommend, setSelectedRecommend] = useState('');
+  const [reviewCharsObj, setReviewCharsObj] = useState({});
   const [reviewSummary, setReviewSummary] = useState('');
   const [reviewBody, setReviewBody] = useState('');
   const [reviewUsername, setReviewUsername] = useState('');
   const [reviewEmail, setReviewEmail] = useState('');
-  const [reviewRating, setReviewRating] = useState(0);
 
   const modalClassName = modalView ? "review-modal review-modal-display" : "review-modal review-modal-hide";
 
@@ -42,7 +44,12 @@ const ModalWindow = ({ handleClose, handleReviewSubmit, modalView, productName }
   };
 
   const handleRecommendChange = (e) => {
-    setSelectedRecommend(e.target.value);
+    if (e.target.value === "recommendYes") {
+      setSelectedRecommend(true);
+    }
+    if (e.target.value === "recommendNo") {
+      setSelectedRecommend(false);
+    }
   };
 
   const handleSummaryChange = (e) => {
@@ -77,7 +84,7 @@ const ModalWindow = ({ handleClose, handleReviewSubmit, modalView, productName }
       );
     }
     return (
-      <ReviewModalStarRating reviewScore={reviewRating} setMargin='0 0 0 0' handleStarRatingClick={handleStarRatingClick} />
+      <ReviewModalStarRating reviewScore={reviewRating} setMargin="0 0 0 0" handleStarRatingClick={handleStarRatingClick} />
     );
   };
 
@@ -100,14 +107,21 @@ const ModalWindow = ({ handleClose, handleReviewSubmit, modalView, productName }
                 Do you recommend this product?*:{' '}
                 <label>
                   Yes
-                  <input type="radio" name="recommendRadio" value="recommendYes" checked={selectedRecommend === "recommendYes"} onChange={handleRecommendChange} required />
+                  <input type="radio" name="recommendRadio" value="recommendYes" checked={selectedRecommend === true} onChange={handleRecommendChange} required />
                 </label>
                 <label>
                   No
-                  <input type="radio" name="recommendRadio" value="recommendNo" checked={selectedRecommend === "recommendNo"} onChange={handleRecommendChange} />
+                  <input type="radio" name="recommendRadio" value="recommendNo" checked={selectedRecommend === false} onChange={handleRecommendChange} />
                 </label>
               </label>
             </div><br></br>
+            <div className="review-characteristics">
+              <ReviewCharacteristics
+                metaData={metaData}
+                setReviewCharsObj={setReviewCharsObj}
+                reviewCharsObj={reviewCharsObj}
+              />
+            </div>
             <div>
               <label>
                 Review Summary:{' '}<br></br>
