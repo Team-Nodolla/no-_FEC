@@ -9,14 +9,6 @@ import './OutfitCarousel.css';
 const OutfitCarousel = ({ productInfo, handleRedirect }) => {
   const [outfitList, setOutfitList] = useState([]);
 
-  const handleActionButtonClick = (id) => {
-    store.delete(id);
-    const newState = outfitList.filter((item) => (
-      item.id !== id
-    ));
-    setOutfitList(newState);
-  };
-
   const cardTemplate = (key, cardDetails) => (
     <CarouselCard
       key={key}
@@ -27,23 +19,30 @@ const OutfitCarousel = ({ productInfo, handleRedirect }) => {
     />
   );
 
+  const populateState = () => {
+    const outfitsInStore = [];
+    store.getAll().forEach((item) => {
+      outfitsInStore.push(
+        cardTemplate(item.id, item),
+      );
+    });
+    setOutfitList(outfitsInStore);
+  };
+
+  // On Action Button Click
+  const handleActionButtonClick = (id) => {
+    store.delete(id);
+    populateState();
+  };
+
   // after initial data fetch
   useEffect(() => {
-    if (productInfo.id !== 0) {
-      const outfitsInStore = [];
-      store.getAll().forEach((item) => {
-        outfitsInStore.push(
-          cardTemplate(item.id, item),
-        );
-      });
-      setOutfitList(outfitsInStore);
-    }
+    populateState();
   }, [productInfo]);
 
   const handleAddToOutfit = () => {
     const prevSate = outfitList;
     if (productInfo.id !== 0 && !store.has(productInfo.id)) {
-      console.log(productInfo.id);
       store.save(productInfo.id, productInfo);
       const newCard = cardTemplate(productInfo.id, productInfo);
       if (prevSate.length === 0) {
