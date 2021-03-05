@@ -10,12 +10,13 @@ import ReviewModalStarRating from './ReviewModalStarRating/ReviewModalStarRating
 import ReviewCharacteristics from '../AddReviewButton/ReviewCharacteristics/ReviewCharacteristics.jsx';
 
 const ModalWindow = ({ handleClose, handleReviewSubmit, modalView, productName, productID, metaData }) => {
+  const [reviewRating, setReviewRating] = useState(0);
   const [selectedRecommend, setSelectedRecommend] = useState('');
+  const [reviewCharsObj, setReviewCharsObj] = useState({});
   const [reviewSummary, setReviewSummary] = useState('');
   const [reviewBody, setReviewBody] = useState('');
   const [reviewUsername, setReviewUsername] = useState('');
   const [reviewEmail, setReviewEmail] = useState('');
-  const [reviewRating, setReviewRating] = useState(0);
   const [reviewFormCharacteristics, setReviewFormCharacteristics] = useState({});
 
   const modalClassName = modalView ? "review-modal review-modal-display" : "review-modal review-modal-hide";
@@ -116,7 +117,11 @@ const ModalWindow = ({ handleClose, handleReviewSubmit, modalView, productName, 
               </label>
             </div><br></br>
             <div className="review-characteristics">
-              <ReviewCharacteristics metaData={metaData} />
+              <ReviewCharacteristics
+                metaData={metaData}
+                setReviewCharsObj={setReviewCharsObj}
+                reviewCharsObj={reviewCharsObj}
+              />
             </div>
             <div>
               <label>

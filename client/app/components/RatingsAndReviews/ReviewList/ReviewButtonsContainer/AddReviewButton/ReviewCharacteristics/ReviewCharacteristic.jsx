@@ -1,6 +1,16 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 const ReviewCharacteristic = ({ name, id }) => {
+  const [sizeCharacteristic, setSizeCharacteristic] = useState(0);
+  const [widthCharacteristic, setWidthCharacteristic] = useState(0);
+  const [comfortCharacteristic, setComfortCharacteristic] = useState(0);
+  const [qualityCharacteristic, setQualityCharacteristic] = useState(0);
+  const [lengthCharacteristic, setLengthCharacteristic] = useState(0);
+  const [fitCharacteristic, setFitCharacteristic] = useState(0);
+
+  let handleSelection = () => {
+  };
+
   if (name === 'Size') {
     let one = 'A size too small';
     let two = '½ a size too small';
@@ -28,6 +38,9 @@ const ReviewCharacteristic = ({ name, id }) => {
     let three = 'What I expected';
     let four = 'Pretty great';
     let five = 'Perfect';
+    handleSelection = (e) => {
+      setQualityCharacteristic(e.target.value);
+    };
   }
   if (name === 'Length') {
     let one = 'Runs short';
@@ -51,23 +64,23 @@ const ReviewCharacteristic = ({ name, id }) => {
           {name}*:{' '}
           <label>
             1
-            <input type="radio" name="char-btn-one" value="char-btn-one" checked={true} onChange={() => {}} required />
+            <input type="radio" name="char-btn-one" value={1} checked={qualityCharacteristic === '1'} onChange={handleSelection} required />
           </label>{' '}
           <label>
             2
-            <input type="radio" name="char-btn-two" value="char-btn-two" checked={false} onChange={() => {}} />
+            <input type="radio" name="char-btn-two" value={2} checked={qualityCharacteristic === '2'} onChange={handleSelection} />
           </label>{' '}
           <label>
             3
-            <input type="radio" name="char-btn-three" value="char-btn-three" checked={false} onChange={() => {}} required />
+            <input type="radio" name="char-btn-three" value={3} checked={qualityCharacteristic === '3'} onChange={handleSelection} required />
           </label>{' '}
           <label>
             4
-            <input type="radio" name="char-btn-four" value="char-btn-four" checked={false} onChange={() => {}} />
+            <input type="radio" name="char-btn-four" value={4} checked={qualityCharacteristic === '4'} onChange={handleSelection} />
           </label>{' '}
           <label>
             5
-            <input type="radio" name="char-btn-five" value="char-btn-five" checked={false} onChange={() => {}} required />
+            <input type="radio" name="char-btn-five" value={5} checked={qualityCharacteristic === '5'} onChange={handleSelection} required />
           </label>
 
         </label>
