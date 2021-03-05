@@ -6,6 +6,7 @@ import ProductThumbnailScroll from './ProductThumbnailScroll/ProductThumbnailScr
 import './ProductImageGallery.css';
 
 const ProductImageGallery = ({ style }) => {
+  console.log(style)
   if (style.length !== 0) {
     const toggle = false;
     const [currentPhoto, setCurrentPhoto] = useState(0);
@@ -64,7 +65,7 @@ const ProductImageGallery = ({ style }) => {
 };
 
 ProductImageGallery.propTypes = {
-  style: propTypes.array.isRequired,
+  style: propTypes.object
 };
 
 export default ProductImageGallery;

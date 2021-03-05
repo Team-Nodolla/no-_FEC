@@ -9,24 +9,18 @@ import './ProductOverview.css';
 
 const ProductOverview = ({ product, defaultStyle, styles }) => {
   if (styles !== undefined) {
-    console.log(product);
     const [priceOfProduct, setPriceOfProduct] = useState(product.originalPrice);
     const [selectedStyle, setSelectedStyle] = useState(styles[0]);
 
     const handleSelectedStyle = (style, price) => {
-      console.log(price);
       setSelectedStyle(style);
       setPriceOfProduct(price);
     };
 
-    // console.log('product:, ', product);
-    // console.log('default styles: ', defaultStyle);
-    // console.log('styles: ', styles);
-
     return (
       <div className="product-overview-container">
         <div className="product-image-container">
-          <ProductImageGallery style={selectedStyle} />
+          <ProductImageGallery defaultStyle={defaultStyle} style={selectedStyle} />
         </div>
         <div className="product-info-container">
           <div className="product-description-container">
@@ -64,7 +58,9 @@ const ProductOverview = ({ product, defaultStyle, styles }) => {
 };
 
 ProductOverview.propTypes = {
-  styles: propTypes.object.isRequired,
+  product: propTypes.object,
+  defaultStyle: propTypes.object,
+  styles: propTypes.array,
 };
 
 export default ProductOverview;
