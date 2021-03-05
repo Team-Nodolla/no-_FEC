@@ -27,9 +27,13 @@ const ProductImageGallery = ({ style }) => {
       setExpandView((view) => !view);
     };
 
+    const onClickChangeThumbnail = (photo) => {
+      setCurrentPhoto(photo);
+    };
+
     return (
       <div>
-        <div className="product-thumbnail"><ProductThumbnailScroll key={style.style_id} currentPhoto={style.photos[currentPhoto].thumbnail_url} arrayOfPhoto={style} /></div>
+        <div className="product-thumbnail"><ProductThumbnailScroll onClickChangeThumbnail={onClickChangeThumbnail} key={style.style_id} currentPhoto={style.photos[currentPhoto].thumbnail_url} arrayOfPhoto={style} /></div>
         {
         expandView === false
           ? (
