@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import propTypes from 'proptypes';
 import DefaultView from './DefaultView/DefaultView.jsx';
 import ExpandedView from './ExpandedView/ExpandedView.jsx';
@@ -11,6 +11,9 @@ const ProductImageGallery = ({ style }) => {
     const [currentPhoto, setCurrentPhoto] = useState(0);
     const [expandView, setExpandView] = useState(toggle);
 
+    useEffect(() => {
+      setCurrentPhoto(0);
+    }, [style]);
     const onClickRightChange = () => {
       if (currentPhoto !== style.photos.length - 1) {
         setCurrentPhoto(currentPhoto + 1);
