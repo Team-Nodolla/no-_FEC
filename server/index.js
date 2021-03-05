@@ -71,7 +71,7 @@ app.post('/reviews', (req, res) => {
     headers: token,
   })
     .then((response) => {
-      res.send(response);
+      res.send(response.data);
     })
     .catch((err) => {
       console.log('err between server and API during post: ', err);
