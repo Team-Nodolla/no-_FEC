@@ -13,7 +13,16 @@ import './App.css';
 const App = () => {
   const [currentProduct, setCurrentProduct] = useState({});
 
-  const fetchProductInfo = (productsResponse, putInState = {}) => {
+  const fetchProductInfo = (productsResponse, putInState) => {
+    putInState.id = productsResponse.data.id;
+    putInState.name = productsResponse.data.name;
+    putInState.category = productsResponse.data.category;
+    putInState.description = productsResponse.data.description;
+    putInState.slogan = productsResponse.data.slogan;
+    return axios.get(`/products/${putInState.id}/styles`);
+  };
+
+  const fetchFirstProductInfo = (productsResponse, putInState = {}) => {
     putInState.id = productsResponse.data[0].id;
     putInState.name = productsResponse.data[0].name;
     putInState.category = productsResponse.data[0].category;
@@ -41,11 +50,14 @@ const App = () => {
     putInState.averageRating = getAverageRating(metaDataResponse.data.ratings);
   };
 
-  const fetchNewProductDetails = () => {
+  const fetchNewProductDetails = (id) => {
     const putInState = {};
-    axios.get('/products')
+    const serverEndpoint = id ? `/products/${id}` : '/products';
+    axios.get(serverEndpoint)
       .then((productsResponse) => (
-        fetchProductInfo(productsResponse, putInState)
+        id
+          ? fetchProductInfo(productsResponse, putInState)
+          : fetchFirstProductInfo(productsResponse, putInState)
       ))
       .then((stylesResponse) => (
         fetchProductStyles(stylesResponse, putInState)
@@ -67,20 +79,7 @@ const App = () => {
   }, []);
 
   const handleRedirect = (id) => {
-    console.log(id);
-    // if (allProducts[id]) {
-    //   setProductID(id);
-    //   setProduct(allProducts[id]);
-    // } else {
-    //   axios.get(`/products/${id}`)
-    //     .then((response) => {
-    //       const newProduct = response.data;
-    //       setProduct(newProduct);
-    //       setProductID(newProduct.id);
-    //       setAllProducts(...allProducts, { [newProduct.id]: newProduct });
-    //     })
-    //     .catch((err) => { console.error(err); });
-    // }
+    fetchNewProductDetails(id);
   };
 
   return (
