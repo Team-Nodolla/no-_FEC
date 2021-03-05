@@ -17,7 +17,7 @@ const RatingsAndReviews = ({ productID, metaData, productName }) => {
   // on component mount, use the productID to fetch reviews from the server
   useEffect(() => {
     if (productID) {
-      axios.get(`/reviews/sort/${sortOrder}/product/${13034}`) // TODO productID
+      axios.get(`/reviews/sort/${sortOrder}/product/${productID}`) // TODO productID
         .then((response) => {
           setReviewList(response.data.results);
         })
@@ -29,7 +29,7 @@ const RatingsAndReviews = ({ productID, metaData, productName }) => {
 
   useEffect(() => {
     if (productID) {
-      axios.get(`/reviews/sort/${sortOrder}/product/${13034}`) // TODO productID
+      axios.get(`/reviews/sort/${sortOrder}/product/${productID}`) // TODO productID
         .then((response) => {
           setReviewList(response.data.results);
         })
@@ -53,8 +53,21 @@ const RatingsAndReviews = ({ productID, metaData, productName }) => {
     );
   };
 
+  // const AddReviewButtonRender = () => {
+  //   if (metaData?.characteristcs) {
+  //     return (
+
+  //     );
+  //   }
+  //   return (
+  //     <AddReviewButton
+  //       productName={productName}
+  //       productID={productID}
+  //     />
+  //   );
+  // };
+
   return (
-    // Below are PLACEHOLDER contents within each element
     <>
       <h3 className="header">RATINGS & REVIEWS</h3>
       <div className="ratingsAndReviewsContainer">
@@ -78,7 +91,11 @@ const RatingsAndReviews = ({ productID, metaData, productName }) => {
           </>
           <div className="reviewButtonsContainer">
             <MoreReviewsButtonRender />
-            <AddReviewButton productName={productName} />
+            <AddReviewButton
+              productName={productName}
+              productID={productID}
+              metaData={metaData}
+            />
           </div>
         </div>
       </div>
