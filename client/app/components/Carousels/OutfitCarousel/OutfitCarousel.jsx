@@ -27,7 +27,7 @@ const OutfitCarousel = ({ productInfo, handleRedirect }) => {
       const currState = outfitList;
       const toDisplay = {};
       toDisplay.start = currentlyDisplayed.start ?? 0;
-      toDisplay.end = Math.min(3, outfitList.length - 1);
+      toDisplay.end = Math.min(2, outfitList.length - 1);
       toDisplay.cards = currState.filter((card, index) => (
         index <= toDisplay.end
       ));
