@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import propTypes from 'proptypes';
 import SizeSelector from './SizeSelector/SizeSelector.jsx';
 import QuantitySelector from './QuantitySelector/QuantitySelector.jsx';
 import './ProductCart.css';
@@ -17,7 +18,9 @@ const ProductCart = ({ selectedStyle }) => {
       setSelectedSize(e.target.value);
       arrayOfSkus.forEach((item) => {
         if (item.size === e.target.value) {
-          setSelectedQuantity(item.quantity);
+          if (item.quantity >= 15) {
+            setSelectedQuantity(15);
+          }
         }
       });
     };
@@ -45,9 +48,13 @@ const ProductCart = ({ selectedStyle }) => {
     );
   }
 
-  // return (
-  //   <div />
-  // );
+  return (
+    <div />
+  );
+};
+
+ProductCart.propTypes = {
+  selectedStyle: propTypes.object,
 };
 
 export default ProductCart;
