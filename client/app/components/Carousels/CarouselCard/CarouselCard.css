@@ -11,18 +11,18 @@
   box-shadow: 0 3px 5px rgb(121, 121, 121);
   cursor: pointer;
 }
-/*
-.outfit-card {
-  margin: 0 35px;
-} */
 
-/* .outfit-card:first-of-type {
-  margin-left: 25px;
-} */
-/*
+.outfit-card {
+  margin: 0 50px;
+}
+
+.outfit-card:first-of-type {
+  margin-left: 0;
+}
+
 .outfit-card:last-of-type {
-  margin-right: 5px;
-} */
+  margin-right: 0;
+}
 
 .related-card {
   margin: 0 40px;

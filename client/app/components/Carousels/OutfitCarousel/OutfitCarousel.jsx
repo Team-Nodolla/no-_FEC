@@ -10,7 +10,7 @@ import './OutfitCarousel.css';
 
 const OutfitCarousel = ({ productInfo, handleRedirect }) => {
   const [outfitList, setOutfitList] = useState([...store.getAll()]);
-  const [currentlyDisplayed, setCurrentlyDisplayed] = useState({ cards: [], start: 0, end: 0 });
+  const [currentlyDisplayed, setCurrentlyDisplayed] = useState({ start: 0, end: 0, cards: [] });
 
   // on mount, subscribe to store changes
   useEffect(() => {
@@ -19,16 +19,15 @@ const OutfitCarousel = ({ productInfo, handleRedirect }) => {
     });
   }, []);
 
+  // After state is set
   useEffect(() => {
-    if (outfitList.length > 0) {
-      const currState = outfitList;
-      const toDisplay = {};
-      toDisplay.start = currentlyDisplayed.start ?? 0;
-      toDisplay.end = Math.min(2, outfitList.length - 1);
-      toDisplay.cards = currState.filter((card, index) => (
-        index <= toDisplay.end
+    if (store.size() > 0) {
+      const start = currentlyDisplayed.start;
+      const end = Math.min(2, store.size() - 1);
+      const cards = outfitList.filter((card, index) => (
+        index <= end
       ));
-      setCurrentlyDisplayed({ ...toDisplay });
+      setCurrentlyDisplayed({ start, end, cards });
     }
   }, [outfitList.length]);
 
@@ -43,23 +42,21 @@ const OutfitCarousel = ({ productInfo, handleRedirect }) => {
   );
 
   const handleNext = () => {
-    if (currentlyDisplayed.end < outfitList.length - 1) {
-      const currState = outfitList;
+    if (currentlyDisplayed.end < store.size() - 1) {
       const toDisplay = {};
       toDisplay.start = currentlyDisplayed.start + 1;
       toDisplay.end = currentlyDisplayed.end + 1;
-      toDisplay.cards = currState.slice(toDisplay.start, toDisplay.end + 1);
+      toDisplay.cards = outfitList.slice(toDisplay.start, toDisplay.end + 1);
       setCurrentlyDisplayed({ ...toDisplay });
     }
   };
 
   const handleBack = () => {
     if (currentlyDisplayed.start > 0) {
-      const currState = outfitList;
       const toDisplay = {};
       toDisplay.start = currentlyDisplayed.start - 1;
       toDisplay.end = currentlyDisplayed.end - 1;
-      toDisplay.cards = currState.slice(toDisplay.start, toDisplay.end + 1);
+      toDisplay.cards = outfitList.slice(toDisplay.start, toDisplay.end + 1);
       setCurrentlyDisplayed({ ...toDisplay });
     }
   };
@@ -72,11 +69,7 @@ const OutfitCarousel = ({ productInfo, handleRedirect }) => {
         <button
           type="button"
           id="outfit-back"
-          className={
-            currentlyDisplayed.start === 0
-              ? 'outfit-invisible'
-              : 'outfit-visible'
-          }
+          className={currentlyDisplayed.start === 0 ? 'outfit-invisible' : 'outfit-visible'}
           onClick={handleBack}
         >
           <i className="fas fa-arrow-left" />
@@ -94,11 +87,7 @@ const OutfitCarousel = ({ productInfo, handleRedirect }) => {
         <button
           type="button"
           id="outfit-next"
-          className={
-            currentlyDisplayed.end === outfitList.length - 1
-              ? 'outfit-invisible'
-              : 'outfit-visible'
-          }
+          className={currentlyDisplayed.end === store.size() - 1 ? 'outfit-invisible' : 'outfit-visible'}
           onClick={handleNext}
         >
           <i className="fas fa-arrow-right" />
