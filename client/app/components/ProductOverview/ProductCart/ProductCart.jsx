@@ -5,19 +5,19 @@ const ProductCart = ({ selectedStyle }) => {
     const arrayOfSkus = Object.values(selectedStyle.skus);
     return (
       <span>
-        <select value="-">
+        <select>
           <option>Select A Size</option>
           {arrayOfSkus.map((skus) => {
             return (
-              <option value={skus.size}>{skus.size}</option>
+              <option key={arrayOfSkus.indexOf(skus)} value={skus.size}>{skus.size}</option>
             )
           })}
         </select>
-        <select value="-">
+        <select>
           <option>Select A Quantity</option>
           {arrayOfSkus.map((skus) => {
             return (
-              <option value={skus.quantity}>{skus.quantity}</option>
+              <option key={arrayOfSkus.indexOf(skus)} value={skus.quantity}>{skus.quantity}</option>
             )
           })}
         </select>

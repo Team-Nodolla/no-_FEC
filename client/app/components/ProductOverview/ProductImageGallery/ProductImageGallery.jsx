@@ -51,7 +51,7 @@ const ProductImageGallery = ({
 };
 
 ProductImageGallery.propTypes = {
-  expandView: propTypes.boolean,
+  expandView: propTypes.bool,
   currentPhoto: propTypes.number,
   onClickZoom: propTypes.func,
   onClickChangeThumbnail: propTypes.func,

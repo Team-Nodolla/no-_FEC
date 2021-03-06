@@ -4,7 +4,6 @@ import './ProductThumbnailScroll.css';
 
 const ProductThumbnailScroll = ({ onClickChangeThumbnail, currentPhoto, arrayOfPhoto }) => {
   if (arrayOfPhoto !== undefined && currentPhoto !== undefined) {
-    console.log(currentPhoto);
     return (
       <div className="test">
         {arrayOfPhoto.photos.map((photo) => {
