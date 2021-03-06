@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
 import React, { useEffect, useState } from 'react';
 import StarRating from '../../../StarRating/StarRating.jsx';
+import ReviewListItemThumbnails from './ReviewListItemThumbnails/ReviewListItemThumbnails.jsx';
 import './ReviewListItem.css';
 
 const ReviewListItem = ({ review }) => {
@@ -38,6 +39,15 @@ const ReviewListItem = ({ review }) => {
     );
   };
 
+  const ReviewItemThumbnailRender = () => {
+    if (review.photos.length > 0) {
+      return (
+        <ReviewListItemThumbnails photos={review.photos} />
+      );
+    }
+    return (<></>);
+  };
+
   return (
     <div className="reviewListItem">
       <div className="reviewListItemStarRating">
@@ -52,6 +62,7 @@ const ReviewListItem = ({ review }) => {
         {review.summary}
       </div>
       <ReviewBodyRender />
+      <ReviewItemThumbnailRender />
     </div>
   );
 };
