@@ -81,7 +81,7 @@ const doPublish = () => publish(subscribers, getAll());
 // Description:
 //              Saves a new item to localStorage with the supplied unique key
 //              as its index and the value as its value.
-//              The value is stringifyed to be parsed later by const get().
+//              The value is stringifyed to be parsed later by get().
 //              If an item with the supplied key already exists in localStorage, throws an error
 //              and doesn't save the item.
 const save = (key, value) => {

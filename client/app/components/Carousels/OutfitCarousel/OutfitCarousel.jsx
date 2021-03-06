@@ -9,43 +9,18 @@ import AddToOutfit from './AddToOutfitButton.jsx';
 import './OutfitCarousel.css';
 
 const OutfitCarousel = ({ productInfo, handleRedirect }) => {
-  const [outfitList, setOutfitList] = useState([]);
-  const [currentlyDisplayed, setCurrentlyDisplayed] = useState({});
+  const [outfitList, setOutfitList] = useState([...store.getAll()]);
+  const [currentlyDisplayed, setCurrentlyDisplayed] = useState({ cards: [], start: 0, end: 0 });
 
-  // after initial data fetch
+  // on mount, subscribe to store changes
   useEffect(() => {
+    console.log('subscribe productInfo ID:', productInfo.id);
+
     store.subscribe((outfitsInStore) => {
-      console.log('subscribe productInfo ID:', productInfo.id);
-      const outfitCards = outfitsInStore.map((outfitDetails) => (
-        // cardTemplate(outfitDetails)
-        <CarouselCard
-          key={outfitDetails.id}
-          {...outfitDetails}
-          handleRedirect={handleRedirect}
-          buttonFunc={() => { store.remove(outfitDetails.id); }}
-          carouselType="outfit"
-        />
-      ));
-      setOutfitList([createButton(), ...outfitCards]);
+      console.log('callback productInfo ID:', productInfo.id);
+      setOutfitList(outfitsInStore);
     });
   }, []);
-
-  useEffect(() => {
-    if (productInfo.id !== 0) {
-      setOutfitList([<AddToOutfit
-        productInfo={productInfo}
-      />,
-      ...store.getAll().map((outfitDetails) => (
-        <CarouselCard
-          key={outfitDetails.id}
-          {...outfitDetails}
-          handleRedirect={handleRedirect}
-          buttonFunc={() => { store.remove(outfitDetails.id); }}
-          carouselType="outfit"
-        />
-      ))]);
-    }
-  }, [productInfo]);
 
   useEffect(() => {
     if (outfitList.length > 0) {
@@ -60,25 +35,13 @@ const OutfitCarousel = ({ productInfo, handleRedirect }) => {
     }
   }, [outfitList.length]);
 
-  // const cardTemplate = (cardDetails) => (
-  //   <CarouselCard
-  //     key={cardDetails.id}
-  //     {...cardDetails}
-  //     handleRedirect={handleRedirect}
-  //     buttonFunc={store.remove(cardDetails.id)}
-  //     carouselType="outfit"
-  //   />
-  // );
-
-  // const handleAddToOutfit = () => {
-  //   if (productInfo.id !== 0 && !store.has(productInfo.id)) {
-  //     store.save(productInfo.id, productInfo);
-  //   }
-  // };
-
-  const createButton = () => (
-    <AddToOutfit
-      productInfo={productInfo}
+  const cardTemplate = (cardDetails) => (
+    <CarouselCard
+      key={cardDetails.id}
+      {...cardDetails}
+      handleRedirect={handleRedirect}
+      buttonFunc={() => { store.remove(cardDetails.id); }}
+      carouselType="outfit"
     />
   );
 
@@ -104,6 +67,8 @@ const OutfitCarousel = ({ productInfo, handleRedirect }) => {
     }
   };
 
+  console.log('Outfit Carousel rendered! productInfo:\n', productInfo);
+
   return (
     <>
       <h2 id="outfit-carousel-title">Your Outfit</h2>
@@ -123,7 +88,12 @@ const OutfitCarousel = ({ productInfo, handleRedirect }) => {
         </button>
         <hr className="outfit-carousel-divider" />
         <div id="outfit-card-container">
-          {currentlyDisplayed.cards}
+          <AddToOutfit
+            productInfo={productInfo}
+          />
+          {currentlyDisplayed?.cards?.map((cardDetails) => (
+            cardTemplate(cardDetails)
+          ))}
         </div>
         <hr className="outfit-carousel-divider" />
         <button
