@@ -1,7 +1,9 @@
+/* eslint-disable import/extensions */
 /* eslint-disable react/prop-types */
 import React, { useEffect, useState } from 'react';
 import StarRating from '../../../StarRating/StarRating.jsx';
 import ReviewListItemThumbnails from './ReviewListItemThumbnails/ReviewListItemThumbnails.jsx';
+import ReviewBodyRender from './ReviewBodyRender/ReviewBodyRender.jsx';
 import './ReviewListItem.css';
 
 const ReviewListItem = ({ review }) => {
@@ -19,68 +21,68 @@ const ReviewListItem = ({ review }) => {
     setReviewBodyButtonClass('review-show-more-button-hidden');
   };
 
-  const ReviewBodyRender = () => {
-    if (review.body.length > 250) {
-      return (
-        <>
-          <div className="reviewListItemBody">
-            {reviewTileBody}
-            <div className="review-show-body-link">
-              <button type="button" className={reviewBodyButtonClass} onClick={handleShowMoreBody}>show more</button>
-            </div>
-            <ReviewItemThumbnailRender />
-            <ReviewRecommendRender />
-            <ReviewResponseRender />
-          </div>
-        </>
-      );
-    }
-    return (
-      <div className="reviewListItemBody">
-        {reviewTileBody}<br></br>
-        <ReviewItemThumbnailRender />
-        <ReviewRecommendRender />
-        <ReviewResponseRender />
-      </div>
-    );
-  };
+  // const ReviewBodyRender = () => {
+  //   if (review.body.length > 250) {
+  //     return (
+  //       <>
+  //         <div className="reviewListItemBody">
+  //           {reviewTileBody}
+  //           <div className="review-show-body-link">
+  //             <button type="button" className={reviewBodyButtonClass} onClick={handleShowMoreBody}>show more</button>
+  //           </div>
+  //           <ReviewItemThumbnailRender review={review} />
+  //           <ReviewRecommendRender review={review} />
+  //           <ReviewResponseRender review={review} />
+  //         </div>
+  //       </>
+  //     );
+  //   }
+  //   return (
+  //     <div className="reviewListItemBody">
+  //       {reviewTileBody}<br></br>
+  //       <ReviewItemThumbnailRender review={review} />
+  //       <ReviewRecommendRender review={review} />
+  //       <ReviewResponseRender review={review} />
+  //     </div>
+  //   );
+  // };
 
-  const ReviewItemThumbnailRender = () => {
-    if (review.photos.length > 0) {
-      return (
-        <ReviewListItemThumbnails photos={review.photos} />
-      );
-    }
-    return (<></>);
-  };
+  // const ReviewItemThumbnailRender = () => {
+  //   if (review.photos.length > 0) {
+  //     return (
+  //       <ReviewListItemThumbnails photos={review.photos} />
+  //     );
+  //   }
+  //   return (<></>);
+  // };
 
-  const ReviewResponseRender = () => {
-    if (review.response) {
-      return (
-        <div className="review-response-container">
-          <div className="review-response-header">
-            Response:
-          </div>
-          <div className="review-response-body">
-            {review.response}
-          </div>
-        </div>
-      );
-    }
-    return (<></>);
-  };
+  // const ReviewResponseRender = () => {
+  //   if (review.response) {
+  //     return (
+  //       <div className="review-response-container">
+  //         <div className="review-response-header">
+  //           Response:
+  //         </div>
+  //         <div className="review-response-body">
+  //           {review.response}
+  //         </div>
+  //       </div>
+  //     );
+  //   }
+  //   return (<></>);
+  // };
 
-  const ReviewRecommendRender = () => {
-    if (review.recommend) {
-      return (
-        <div className="review-item-recommend-container">
-          <span>&#10003;</span>
-          <span>I recommend this product</span>
-        </div>
-      );
-    }
-    return (<></>);
-  };
+  // const ReviewRecommendRender = () => {
+  //   if (review.recommend) {
+  //     return (
+  //       <div className="review-item-recommend-container">
+  //         <span>&#10003;</span>
+  //         <span>I recommend this product</span>
+  //       </div>
+  //     );
+  //   }
+  //   return (<></>);
+  // };
 
   return (
     <div className="reviewListItem">
@@ -95,7 +97,12 @@ const ReviewListItem = ({ review }) => {
       <div className="reviewListItemSummary">
         {review.summary}
       </div>
-      <ReviewBodyRender />
+      <ReviewBodyRender
+        review={review}
+        reviewTileBody={reviewTileBody}
+        reviewBodyButtonClass={reviewBodyButtonClass}
+        handleShowMoreBody={handleShowMoreBody}
+      />
     </div>
   );
 };

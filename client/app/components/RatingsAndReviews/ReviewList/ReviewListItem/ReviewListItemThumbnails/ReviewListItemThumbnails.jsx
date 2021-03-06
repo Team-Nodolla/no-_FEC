@@ -29,7 +29,7 @@ const ReviewListItemThumbnails = ({ photos }) => {
   }
 
   return photos.map((photo) => (
-    <div className="review-item-thumbnail">
+    <div key={photo.url} className="review-item-thumbnail">
       <img src={photo.url} alt="" width={reviewThumbnailWidth} height={reviewThumbnailHeight} onClick={(event) => { handleImageClick(event, photo.url); }}></img>
       {'  '}
     </div>
