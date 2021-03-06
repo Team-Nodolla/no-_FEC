@@ -4,12 +4,13 @@ import './ProductThumbnailScroll.css';
 
 const ProductThumbnailScroll = ({ onClickChangeThumbnail, currentPhoto, arrayOfPhoto }) => {
   if (arrayOfPhoto !== undefined && currentPhoto !== undefined) {
+    console.log(currentPhoto);
     return (
       <div className="test">
         {arrayOfPhoto.photos.map((photo) => {
           return (
           <div key={photo.thumbnail_url} className="thumbnail-photos">
-            <img onClick={() => onClickChangeThumbnail(arrayOfPhoto.photos.indexOf(photo))} className={`${currentPhoto === photo.thumbnail_url ? 'selected-image thumbnail-single-photo thumbnail-size' :`thumbnail-single-photo thumbnail-size`}`} src={photo.thumbnail_url} />
+            <img onClick={() => onClickChangeThumbnail(arrayOfPhoto.photos.indexOf(photo))} className={`${currentPhoto === photo.thumbnail_url ? 'selected-image  thumbnail-size' :`thumbnail-size`}`} src={photo.thumbnail_url} />
           </div>
           )
         })}
