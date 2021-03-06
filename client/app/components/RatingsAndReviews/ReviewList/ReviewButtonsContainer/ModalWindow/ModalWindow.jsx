@@ -100,7 +100,6 @@ const ModalWindow = ({ handleClose, handleReviewSubmit, modalView, productName, 
             <h3>About the {productName}</h3>
           </div>
           <form>
-            {/* on submit, do something */}
             <div>
               Overall Rating*:{' '}
               <OverallRatingStarRating />
