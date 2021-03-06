@@ -35,7 +35,7 @@
 #card-image-container {
   max-width: 300px;
   height: 450px;
-  background-color: rgb(220, 220, 220);
+  background-color: rgb(242, 242, 242);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -47,10 +47,14 @@
   border-top-left-radius: 10px;
 }
 
-#card-image {
+#card-image, #card-no-image {
   display: block;
   margin-top: auto;
   margin-bottom: auto;
+}
+
+#card-no-image {
+  max-width: 300px;
 }
 
 #descriptive-container {

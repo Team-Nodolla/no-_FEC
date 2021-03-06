@@ -7,7 +7,7 @@ import './CarouselCard.css';
 
 const CarouselCard = ({
   id,
-  productImage,
+  productImage = 'https://watertownbusinesscoalition.com/assets/images/no_image_available.jpeg',
   category,
   name,
   originalPrice,
@@ -42,7 +42,16 @@ const CarouselCard = ({
         />
       </button>
       <div id="card-image-container">
-        <img id="card-image" src={productImage} alt={`${name}`} />
+        {productImage
+          ? <img id="card-image" src={productImage} alt={`${name}`} />
+          : (
+            <img
+              id="card-no-image"
+              src="https://watertownbusinesscoalition.com/assets/images/no_image_available.jpeg"
+              alt={`${name}`}
+            />
+          )
+        }
       </div>
       <div id="descriptive-container">
         <span className="descriptive" id="category">{category}</span>
