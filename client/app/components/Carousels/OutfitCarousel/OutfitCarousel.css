@@ -49,23 +49,3 @@
 .outfit-carousel-divider:first-of-type {
   margin-inline-start: 50px;
 }
-
-#outfit-next, #outfit-back {
-  position: absolute;
-  z-index: 5;
-  top: 40%;
-  height: 20%;
-  margin: auto 5px;
-}
-
-#outfit-next {
-  right: 10px;
-}
-
-#outfit-back {
-  left: 10px;
-}
-
-.outfit-invisible {
-  display: none;
-}

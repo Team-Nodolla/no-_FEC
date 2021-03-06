@@ -6,11 +6,20 @@ import propTypes from 'proptypes';
 import CarouselCard from '../CarouselCard/CarouselCard.jsx';
 import store from './storeAPI.js';
 import AddToOutfit from './AddToOutfitButton.jsx';
+import NextButton from '../CarouselButtons/CarouselNextButton.jsx';
+import BackButton from '../CarouselButtons/CarouselBackButton.jsx';
 import './OutfitCarousel.css';
 
 const OutfitCarousel = ({ productInfo, handleRedirect }) => {
   const [outfitList, setOutfitList] = useState([...store.getAll()]);
-  const [currentlyDisplayed, setCurrentlyDisplayed] = useState({ start: 0, end: 0, cards: [] });
+  const [currentlyDisplayed, setCurrentlyDisplayed] = useState(
+    {
+      start: 0,
+      atStart: true,
+      end: 0,
+      atEnd: false,
+      cards: []
+    });
 
   // on mount, subscribe to store changes
   useEffect(() => {
@@ -19,15 +28,16 @@ const OutfitCarousel = ({ productInfo, handleRedirect }) => {
     });
   }, []);
 
-  // After state is set
+  // After outfitList state is set
   useEffect(() => {
     if (store.size() > 0) {
-      const start = currentlyDisplayed.start;
-      const end = Math.min(2, store.size() - 1);
-      const cards = outfitList.filter((card, index) => (
+      let {start, atStart, end, atEnd, cards} = currentlyDisplayed;
+      end = Math.min(2, store.size() - 1);
+      atEnd = (end === store.size() - 1);
+      cards = outfitList.filter((card, index) => (
         index <= end
       ));
-      setCurrentlyDisplayed({ start, end, cards });
+      setCurrentlyDisplayed({ start, atStart, end, atEnd, cards });
     }
   }, [outfitList.length]);
 
@@ -43,21 +53,25 @@ const OutfitCarousel = ({ productInfo, handleRedirect }) => {
 
   const handleNext = () => {
     if (currentlyDisplayed.end < store.size() - 1) {
-      const toDisplay = {};
-      toDisplay.start = currentlyDisplayed.start + 1;
-      toDisplay.end = currentlyDisplayed.end + 1;
-      toDisplay.cards = outfitList.slice(toDisplay.start, toDisplay.end + 1);
-      setCurrentlyDisplayed({ ...toDisplay });
+      let { start, atStart, end, atEnd, cards } = currentlyDisplayed;
+      start++;
+      end++;
+      atStart = false;
+      atEnd = end === store.size() - 1 ? true : false;
+      cards = outfitList.slice(start, end + 1);
+      setCurrentlyDisplayed({ start, atStart, end, atEnd, cards });
     }
   };
 
   const handleBack = () => {
     if (currentlyDisplayed.start > 0) {
-      const toDisplay = {};
-      toDisplay.start = currentlyDisplayed.start - 1;
-      toDisplay.end = currentlyDisplayed.end - 1;
-      toDisplay.cards = outfitList.slice(toDisplay.start, toDisplay.end + 1);
-      setCurrentlyDisplayed({ ...toDisplay });
+      let { start, atStart, end, atEnd, cards } = currentlyDisplayed;
+      start--;
+      end--;
+      atStart = start === 0 ? true : false;
+      atEnd = end === store.size() - 1 ? true : false;
+      cards = outfitList.slice(start, end + 1);
+      setCurrentlyDisplayed({ start, atStart, end, atEnd, cards });
     }
   };
 
@@ -66,14 +80,7 @@ const OutfitCarousel = ({ productInfo, handleRedirect }) => {
       <h2 id="outfit-carousel-title">Your Outfit</h2>
       <button type="button" onClick={() => { store.removeAll(); }}>clear storage</button>
       <div id="outfit-carousel">
-        <button
-          type="button"
-          id="outfit-back"
-          className={currentlyDisplayed.start === 0 ? 'outfit-invisible' : 'outfit-visible'}
-          onClick={handleBack}
-        >
-          <i className="fas fa-arrow-left" />
-        </button>
+        <BackButton atStart={currentlyDisplayed.atStart} handleBack={handleBack} />
         <hr className="outfit-carousel-divider" />
         <div id="outfit-card-container">
           <AddToOutfit
@@ -84,14 +91,7 @@ const OutfitCarousel = ({ productInfo, handleRedirect }) => {
           ))}
         </div>
         <hr className="outfit-carousel-divider" />
-        <button
-          type="button"
-          id="outfit-next"
-          className={currentlyDisplayed.end === store.size() - 1 ? 'outfit-invisible' : 'outfit-visible'}
-          onClick={handleNext}
-        >
-          <i className="fas fa-arrow-right" />
-        </button>
+        <NextButton atEnd={currentlyDisplayed.atEnd} handleNext={handleNext} />
       </div>
     </>
   );
