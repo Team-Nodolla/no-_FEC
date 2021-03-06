@@ -35,6 +35,7 @@
 .product-style-container {
   display: flex;
   flex-direction: row;
+  width: 340px;
   /* background-color: red; */
   margin-top: 20px;
 }
