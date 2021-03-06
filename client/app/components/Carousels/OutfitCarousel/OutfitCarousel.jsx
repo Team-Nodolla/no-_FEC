@@ -1,66 +1,39 @@
 /* eslint-disable jsx-a11y/control-has-associated-label */
 /* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable import/extensions */
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import propTypes from 'proptypes';
 import CarouselCard from '../CarouselCard/CarouselCard.jsx';
-import store from './storeAPI.jsx';
+import store from './storeAPI.js';
+import AddToOutfit from './AddToOutfitButton.jsx';
 import './OutfitCarousel.css';
 
 const OutfitCarousel = ({ productInfo, handleRedirect }) => {
-  const [outfitList, setOutfitList] = useState([]);
-  const [currentlyDisplayed, setCurrentlyDisplayed] = useState({});
-
-  const cardTemplate = (key, cardDetails) => (
+  const fetchAllFromStore = useCallback(() => (store.getAll().map((item) => (
     <CarouselCard
-      key={key}
-      {...cardDetails}
+      key={item.id}
+      {...item}
       handleRedirect={handleRedirect}
-      buttonFunc={handleActionButtonClick}
+      buttonFunc={() => {
+        store.delete(item.id);
+      }}
       carouselType="outfit"
     />
-  );
-
-  const populateState = () => {
-    const outfitsInStore = [];
-    outfitsInStore.push(
-      <button type="button" id="add-to-outfit-btn" className="card" onClick={() => { handleAddToOutfit(); }}>
-        <i className="fas fa-plus-square" />
-        <br />
-        Add To Outfit
-      </button>,
-    );
-    store.getAll().forEach((item) => {
-      outfitsInStore.push(
-        cardTemplate(item.id, item),
-      );
-    });
-    setOutfitList(outfitsInStore);
-  };
-
-  // On Action Button Click
-  const handleActionButtonClick = (id) => {
-    store.delete(id);
-    populateState();
-  };
+  ))), []);
+  const [outfitList, setOutfitList] = useState([
+    createButton(),
+    store.getAll().map(item => cardTemplate(item.id, item))
+  ]);
+  const [currentlyDisplayed, setCurrentlyDisplayed] = useState({});
 
   // after initial data fetch
   useEffect(() => {
-    populateState();
+    console.log('productInfo.id:', productInfo.id);
+    setOutfitList([
+      createButton(),
+      store.getAll().map(item => cardTemplate(item.id, item))
+    ]);
   }, [productInfo]);
-
-  const handleAddToOutfit = () => {
-    const prevSate = outfitList;
-    if (productInfo.id !== 0 && !store.has(productInfo.id)) {
-      store.save(productInfo.id, productInfo);
-      const newCard = cardTemplate(productInfo.id, productInfo);
-      if (prevSate.length === 0) {
-        setOutfitList([newCard]);
-      } else {
-        setOutfitList([...prevSate, newCard]);
-      }
-    }
-  };
 
   useEffect(() => {
     if (outfitList.length > 0) {
@@ -74,6 +47,43 @@ const OutfitCarousel = ({ productInfo, handleRedirect }) => {
       setCurrentlyDisplayed({ ...toDisplay });
     }
   }, [outfitList.length]);
+
+  const cardTemplate = (key, cardDetails) => (
+    <CarouselCard
+      key={key}
+      {...cardDetails}
+      handleRedirect={handleRedirect}
+      buttonFunc={handleActionButtonClick}
+      carouselType="outfit"
+    />
+  );
+
+  const handleAddToOutfit = () => {
+    const prevState = outfitList;
+    console.log('prevState', prevState);
+    console.log('productInfo.id', productInfo.id);
+    if (productInfo.id !== 0 && !store.has(productInfo.id)) {
+      store.save(productInfo.id, productInfo);
+      const newCard = cardTemplate(productInfo.id, productInfo);
+      if (prevState.length === 0) {
+        setOutfitList([newCard]);
+      } else {
+        setOutfitList([...prevState, newCard]);
+      }
+    }
+  };
+
+  const createButton = () => (
+    <AddToOutfit
+      handleAddToOutfit={handleAddToOutfit}
+    />
+  );
+
+  // On Action Button Click
+  const handleActionButtonClick = (id) => {
+    store.delete(id);
+    populateState();
+  };
 
   const handleNext = () => {
     if (currentlyDisplayed.end < outfitList.length - 1) {

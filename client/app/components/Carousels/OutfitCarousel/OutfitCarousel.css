@@ -28,7 +28,7 @@
 }
 
 #outfit-card-container {
-  width: 1500px;
+  min-width: 1500px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
