@@ -29,6 +29,7 @@ const ReviewListItem = ({ review }) => {
               <button type="button" className={reviewBodyButtonClass} onClick={handleShowMoreBody}>show more</button>
             </div>
             <ReviewItemThumbnailRender />
+            <ReviewResponseRender />
           </div>
         </>
       );
@@ -37,6 +38,7 @@ const ReviewListItem = ({ review }) => {
       <div className="reviewListItemBody">
         {reviewTileBody}<br></br>
         <ReviewItemThumbnailRender />
+        <ReviewResponseRender />
       </div>
     );
   };
@@ -45,6 +47,22 @@ const ReviewListItem = ({ review }) => {
     if (review.photos.length > 0) {
       return (
         <ReviewListItemThumbnails photos={review.photos} />
+      );
+    }
+    return (<></>);
+  };
+
+  const ReviewResponseRender = () => {
+    if (review.response) {
+      return (
+        <div className="review-response-container">
+          <div className="review-response-header">
+            Response:
+          </div>
+          <div className="review-response-body">
+            {review.response}
+          </div>
+        </div>
       );
     }
     return (<></>);
