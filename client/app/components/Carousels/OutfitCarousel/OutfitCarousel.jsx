@@ -19,9 +19,9 @@ const OutfitCarousel = ({ productInfo, handleRedirect }) => {
     });
   }, []);
 
+  // After state is set
   useEffect(() => {
     if (store.size() > 0) {
-      // const toDisplay = {};
       const start = currentlyDisplayed.start;
       const end = Math.min(2, store.size() - 1);
       const cards = outfitList.filter((card, index) => (
@@ -69,11 +69,7 @@ const OutfitCarousel = ({ productInfo, handleRedirect }) => {
         <button
           type="button"
           id="outfit-back"
-          className={
-            currentlyDisplayed.start === 0
-              ? 'outfit-invisible'
-              : 'outfit-visible'
-          }
+          className={currentlyDisplayed.start === 0 ? 'outfit-invisible' : 'outfit-visible'}
           onClick={handleBack}
         >
           <i className="fas fa-arrow-left" />
@@ -91,11 +87,7 @@ const OutfitCarousel = ({ productInfo, handleRedirect }) => {
         <button
           type="button"
           id="outfit-next"
-          className={
-            currentlyDisplayed.end === outfitList.length - 1
-              ? 'outfit-invisible'
-              : 'outfit-visible'
-          }
+          className={currentlyDisplayed.end === store.size() - 1 ? 'outfit-invisible' : 'outfit-visible'}
           onClick={handleNext}
         >
           <i className="fas fa-arrow-right" />
