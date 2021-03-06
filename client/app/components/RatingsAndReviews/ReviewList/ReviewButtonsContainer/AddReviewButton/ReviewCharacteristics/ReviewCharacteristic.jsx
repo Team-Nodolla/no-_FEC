@@ -11,49 +11,49 @@ const ReviewCharacteristic = ({ name, id, reviewCharsObj, setReviewCharsObj }) =
     setReviewCharsObj({ ...reviewCharsObj, [id]: Number(e.target.value) });
   };
 
-  const charObject = {};
+  const reviewCharacteristicsObject = {};
 
   if (name === 'Size') {
-    charObject.one = 'A size too small';
-    charObject.two = '½ a size too small';
-    charObject.three = 'Perfect';
-    charObject.four = '½ a size too big';
-    charObject.five = 'A size too wide';
+    reviewCharacteristicsObject.one = 'A size too small';
+    reviewCharacteristicsObject.two = '½ a size too small';
+    reviewCharacteristicsObject.three = 'Perfect';
+    reviewCharacteristicsObject.four = '½ a size too big';
+    reviewCharacteristicsObject.five = 'A size too wide';
   }
   if (name === 'Width') {
-    charObject.one = 'Too narrow';
-    charObject.two = 'Slightly narrow';
-    charObject.three = 'Perfect';
-    charObject.four = 'Slightly wide';
-    charObject.five = 'Too wide';
+    reviewCharacteristicsObject.one = 'Too narrow';
+    reviewCharacteristicsObject.two = 'Slightly narrow';
+    reviewCharacteristicsObject.three = 'Perfect';
+    reviewCharacteristicsObject.four = 'Slightly wide';
+    reviewCharacteristicsObject.five = 'Too wide';
   }
   if (name === 'Comfort') {
-    charObject.one = 'Uncomfortable';
-    charObject.two = 'Slightly uncomfortable';
-    charObject.three = 'Ok';
-    charObject.four = 'Comfortable';
-    charObject.five = 'Perfect';
+    reviewCharacteristicsObject.one = 'Uncomfortable';
+    reviewCharacteristicsObject.two = 'Slightly uncomfortable';
+    reviewCharacteristicsObject.three = 'Ok';
+    reviewCharacteristicsObject.four = 'Comfortable';
+    reviewCharacteristicsObject.five = 'Perfect';
   }
   if (name === 'Quality') {
-    charObject.one = 'Poor';
-    charObject.two = 'Below average';
-    charObject.three = 'What I expected';
-    charObject.four = 'Pretty great';
-    charObject.five = 'Perfect';
+    reviewCharacteristicsObject.one = 'Poor';
+    reviewCharacteristicsObject.two = 'Below average';
+    reviewCharacteristicsObject.three = 'What I expected';
+    reviewCharacteristicsObject.four = 'Pretty great';
+    reviewCharacteristicsObject.five = 'Perfect';
   }
   if (name === 'Length') {
-    charObject.one = 'Runs short';
-    charObject.two = 'Runs slightly short';
-    charObject.three = 'Perfect';
-    charObject.four = 'Runs slightly long';
-    charObject.five = 'Runs long';
+    reviewCharacteristicsObject.one = 'Runs short';
+    reviewCharacteristicsObject.two = 'Runs slightly short';
+    reviewCharacteristicsObject.three = 'Perfect';
+    reviewCharacteristicsObject.four = 'Runs slightly long';
+    reviewCharacteristicsObject.five = 'Runs long';
   }
   if (name === 'Fit') {
-    charObject.one = 'Runs tight';
-    charObject.two = 'Runs slightly tight';
-    charObject.three = 'Perfect';
-    charObject.four = 'Runs slightly long';
-    charObject.five = 'Runs long';
+    reviewCharacteristicsObject.one = 'Runs tight';
+    reviewCharacteristicsObject.two = 'Runs slightly tight';
+    reviewCharacteristicsObject.three = 'Perfect';
+    reviewCharacteristicsObject.four = 'Runs slightly long';
+    reviewCharacteristicsObject.five = 'Runs long';
   }
 
   const CharExplanationRender = () => {
@@ -61,35 +61,35 @@ const ReviewCharacteristic = ({ name, id, reviewCharsObj, setReviewCharsObj }) =
       if (rowCharSelection === '1') {
         return (
           <div className="characteristic-explanation">
-            { charObject.one }
+            { reviewCharacteristicsObject.one }
           </div>
         );
       }
       if (rowCharSelection === '2') {
         return (
           <div className="characteristic-explanation">
-            { charObject.two}
+            { reviewCharacteristicsObject.two}
           </div>
         );
       }
       if (rowCharSelection === '3') {
         return (
           <div className="characteristic-explanation">
-            { charObject.three}
+            { reviewCharacteristicsObject.three}
           </div>
         );
       }
       if (rowCharSelection === '4') {
         return (
           <div className="characteristic-explanation">
-            { charObject.four}
+            { reviewCharacteristicsObject.four}
           </div>
         );
       }
       if (rowCharSelection === '5') {
         return (
           <div className="characteristic-explanation">
-            { charObject.five}
+            { reviewCharacteristicsObject.five}
           </div>
         );
       }
