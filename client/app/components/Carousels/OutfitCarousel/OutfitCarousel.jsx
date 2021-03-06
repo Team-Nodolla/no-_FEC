@@ -56,7 +56,7 @@ const OutfitCarousel = ({ productInfo, handleRedirect }) => {
       let { start, atStart, end, atEnd, cards } = currentlyDisplayed;
       start++;
       end++;
-      atStart = start === 0 ? true : false;
+      atStart = false;
       atEnd = end === store.size() - 1 ? true : false;
       cards = outfitList.slice(start, end + 1);
       setCurrentlyDisplayed({ start, atStart, end, atEnd, cards });

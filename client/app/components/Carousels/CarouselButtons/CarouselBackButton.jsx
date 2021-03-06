@@ -1,11 +1,12 @@
 import React from 'react';
 import propTypes from 'proptypes';
+import './CarouselButtons.css';
 
 const CarouselBackButton = ({ atStart, handleBack }) => (
   <button
     type="button"
-    id="outfit-back"
-    className={atStart ? 'outfit-invisible' : 'outfit-visible'}
+    id="carousel-btn-back"
+    className={atStart ? 'carousel-btn-invisible' : 'carousel-btn-visible'}
     onClick={handleBack}
   >
     <i className="fas fa-arrow-left" />
@@ -13,8 +14,8 @@ const CarouselBackButton = ({ atStart, handleBack }) => (
 );
 
 CarouselBackButton.propTypes = {
-  atStart: propTypes.bool,
-  handleBack: propTypes.func,
+  atStart: propTypes.bool.isRequired,
+  handleBack: propTypes.func.isRequired,
 };
 
 export default CarouselBackButton;
