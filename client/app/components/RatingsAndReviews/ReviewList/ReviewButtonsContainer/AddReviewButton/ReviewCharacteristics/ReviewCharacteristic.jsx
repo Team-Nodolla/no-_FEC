@@ -2,12 +2,6 @@
 import React, { useState } from 'react';
 
 const ReviewCharacteristic = ({ name, id, reviewCharsObj, setReviewCharsObj }) => {
-  // const [sizeCharacteristic, setSizeCharacteristic] = useState(0);
-  // const [widthCharacteristic, setWidthCharacteristic] = useState(0);
-  // const [comfortCharacteristic, setComfortCharacteristic] = useState(0);
-  // const [qualityCharacteristic, setQualityCharacteristic] = useState(0);
-  // const [lengthCharacteristic, setLengthCharacteristic] = useState(0);
-  // const [fitCharacteristic, setFitCharacteristic] = useState(0);
   const [rowCharSelection, setRowCharSelection] = useState(0);
 
   const handleSelection = (e) => {
