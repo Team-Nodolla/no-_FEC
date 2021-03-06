@@ -1,30 +1,34 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import SizeSelector from './SizeSelector/SizeSelector.jsx';
+import QuantitySelector from './QuantitySelector/QuantitySelector.jsx';
+import './ProductCart.css';
 
 const ProductCart = ({ selectedStyle }) => {
   if (selectedStyle !== undefined) {
+    const [selectedSize, setSelectedSize] = useState(null);
+    const [selectedQuantity, setSelectedQuantity] = useState(null);
     const arrayOfSkus = Object.values(selectedStyle.skus);
+
+    useEffect(() => {
+      setSelectedSize(null);
+    }, [selectedStyle]);
+
+    const onSelectSize = (e) => {
+      setSelectedSize(e.target.value);
+      arrayOfSkus.forEach((item) => {
+        if (item.size === e.target.value) {
+          setSelectedQuantity(item.quantity);
+        }
+      });
+    };
+
     return (
-      <span>
-        <select>
-          <option>Select A Size</option>
-          {arrayOfSkus.map((skus) => {
-            return (
-              <option key={arrayOfSkus.indexOf(skus)} value={skus.size}>{skus.size}</option>
-            )
-          })}
-        </select>
-        <select>
-          <option>Select A Quantity</option>
-          {arrayOfSkus.map((skus) => {
-            return (
-              <option key={arrayOfSkus.indexOf(skus)} value={skus.quantity}>{skus.quantity}</option>
-            )
-          })}
-        </select>
-      </span>
+      <div className="product-option-selectors">
+        <SizeSelector onSelectSize={onSelectSize} arraySkus={arrayOfSkus} />
+        <QuantitySelector selectedSize={selectedSize} sizeQuantity={selectedQuantity} arraySkus={arrayOfSkus} />
+      </div>
     );
   }
-
   return (
     <div />
   );

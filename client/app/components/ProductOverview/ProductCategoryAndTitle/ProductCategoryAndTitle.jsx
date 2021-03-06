@@ -6,7 +6,7 @@ const ProductCategoryAndTitle = ({ price, product }) => {
   return (
     <div className='categoryAndTitleContainer'>
       <div className="product-star">
-      <StarRating reviewScore={0} setMargin='16px 0 0 0' />
+      <StarRating reviewScore={product.averageRating} setMargin='16px 0 0 0' />
       <p className='read-all-review'>read all reviews</p>
       </div>
       <p>{product.category}</p>

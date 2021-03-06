@@ -1,5 +1,5 @@
 import React from 'react';
-
+import './ProductStyleSelector.css';
 const ProductStyleSelector = ({ handleSelectedStyleClick, styles ,styleName}) => {
   if (styles !== undefined) {
     return (
