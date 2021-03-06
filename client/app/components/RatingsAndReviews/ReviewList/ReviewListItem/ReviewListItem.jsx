@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React, { useEffect, useState } from 'react';
 import StarRating from '../../../StarRating/StarRating.jsx';
 import './ReviewListItem.css';
@@ -13,7 +14,9 @@ const ReviewListItem = ({ review }) => {
     <div className="reviewListItem">
       <div className="reviewListItemStarRating">
         <StarRating reviewScore={review.rating} setMargin="0 0 0 0" />
-        <div className="review-date">
+        <div className="review-username-date">
+          {review.reviewer_name}
+          {', '}
           {formattedString}
         </div>
       </div>
