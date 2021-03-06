@@ -3,7 +3,23 @@
 /*   my interaction with localStorage   */
 /* ************************************ */
 
-const store = {};
+const subscribers = new Set();
+
+const subscribe = (cb) => {
+  subscribers.add(cb);
+};
+
+const unsubscribe = (cb) => {
+  subscribers.delete(cb);
+};
+
+const publish = (subs, state) => {
+  subs.forEach((sub) => {
+    sub(state);
+  });
+};
+
+const doPublish = () => publish(subscribers, getAll());
 
 /* ******** */
 /*   save   */
@@ -15,15 +31,16 @@ const store = {};
 // Description:
 //              Saves a new item to localStorage with the supplied unique key
 //              as its index and the value as its value.
-//              The value is stringifyed to be parsed later by store.get().
+//              The value is stringifyed to be parsed later by const get().
 //              If an item with the supplied key already exists in localStorage, throws an error
 //              and doesn't save the item.
-store.save = (key, value) => {
-  if (!store.has(key)) {
+const save = (key, value) => {
+  if (!has(key)) {
     localStorage.setItem(key, JSON.stringify(value));
+    doPublish();
   } else {
     console.error('An item with this key already exists in localStorage.\n'
-    + 'If you would like to update the item with this key, use store.update()');
+      + 'If you would like to update the item with this key, use const update()');
   }
 };
 
@@ -38,7 +55,7 @@ store.save = (key, value) => {
 //              Searchs localStorage for an item with the supplied key as its index.
 //              Returns the value of that item if it is found.
 //              Returns null if no item with this key exists in localStorage
-store.get = (key) => (
+const get = (key) => (
   JSON.parse(localStorage.getItem(key))
 );
 
@@ -52,13 +69,13 @@ store.get = (key) => (
 // Description:
 //              Retreives all items stored in localStorage as an array of objects.
 //              Returns an empty array if no items are currently stored in localStorage.
-store.getAll = () => {
+const getAll = () => {
   const { length, ...relevantData } = localStorage;
   const dataToReturn = [];
   const keys = Object.keys(relevantData);
 
   keys.forEach((key) => {
-    dataToReturn.push(store.get(key));
+    dataToReturn.push(get(key));
   });
 
   return dataToReturn;
@@ -74,41 +91,43 @@ store.getAll = () => {
 // Description:
 //              Searches localStorage for an item with the supplied key.
 //              Returns true if it is found, otherwise returns false.
-store.has = (key) => {
-  if (store.get(key)) {
+const has = (key) => {
+  if (get(key)) {
     return true;
   }
   return false;
 };
 
 /* ********** */
-/*   delete   */
+/*   remove   */
 /* ********** */
 
-// Input: A key for an item to delete from localStorage
-// Output: The value of the deleted item or null
+// Input: A key for an item to remove from localStorage
+// Output: The value of the removed item or null
 
 // Description:
-//              Deletes an item in localStorage with the supplied key as its index.
-//              Returns the value of the deleted item, or null if no item with that key
+//              removes an item in localStorage with the supplied key as its index.
+//              Returns the value of the removed item, or null if no item with that key
 //              exists in localStorage.
-store.delete = (key) => {
-  const toRemove = store.get(key);
+const remove = (key) => {
+  const toRemove = get(key);
   localStorage.removeItem(key);
+  doPublish();
   return toRemove;
 };
 
 /* ************* */
-/*   deleteAll   */
+/*   removeAll   */
 /* ************* */
 
 // Input: N/A
 // Output: N/A
 
 // Description:
-//              Deletes all data from localStorage.
-store.deleteAll = () => {
+//              removes all data from localStorage.
+const removeAll = () => {
   localStorage.clear();
+  doPublish();
 };
 
 /* ******** */
@@ -120,7 +139,7 @@ store.deleteAll = () => {
 
 // Description:
 //              Returns the number of items stored in localStorage
-store.size = () => (
+const size = () => (
   localStorage.length
 );
 
@@ -136,12 +155,13 @@ store.size = () => (
 //              with a new value.
 //              If no item with this key exists in localStorage, throws an error
 //              and doesn't update the item.
-store.update = (key, newValue) => {
-  if (store.has(key)) {
+const update = (key, newValue) => {
+  if (has(key)) {
     localStorage.setItem(key, JSON.stringify(newValue));
+    doPublish();
   } else {
     console.error('There is no item with this key in localStorage.\n'
-    + 'If you would like to save new item, use store.save()');
+      + 'If you would like to save new item, use const save()');
   }
 };
 
@@ -154,8 +174,17 @@ store.update = (key, newValue) => {
 
 // Description:
 //              Self Explainatory.
-store.bestHTTPStatusCode = () => (
+const bestHTTPStatusCode = () => (
   '418: I\'m a little teapot.'
 );
 
-export default store;
+export default {
+  save,
+  remove,
+  removeAll,
+  update,
+  size,
+  subscribe,
+  unsubscribe,
+  bestHTTPStatusCode,
+};
