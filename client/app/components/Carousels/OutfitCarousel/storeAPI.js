@@ -5,6 +5,56 @@
 
 const subscribers = new Set();
 
+/* ******* */
+/*   get   */
+/* ******* */
+
+// Input: a key to search for in localStorage
+// Output: A value stored with this key as its index or null.
+
+// Description:
+//              Searchs localStorage for an item with the supplied key as its index.
+//              Returns the value of that item if it is found.
+//              Returns null if no item with this key exists in localStorage
+const get = (key) => (
+  JSON.parse(localStorage.getItem(key))
+);
+
+/* ********** */
+/*   getAll   */
+/* ********** */
+
+// Input: N/A
+// Output: An array containing all data currently stored in localStorage.
+
+// Description:
+//              Retreives all items stored in localStorage as an array of objects.
+//              Returns an empty array if no items are currently stored in localStorage.
+const getAll = () => {
+  const { length, ...relevantData } = localStorage;
+
+  return Object.keys(relevantData).map((key) => (
+    get(key)
+  ));
+};
+
+/* ******* */
+/*   has   */
+/* ******* */
+
+// Input: a key to search for in localStorage
+// Output: boolean
+
+// Description:
+//              Searches localStorage for an item with the supplied key.
+//              Returns true if it is found, otherwise returns false.
+const has = (key) => {
+  if (get(key)) {
+    return true;
+  }
+  return false;
+};
+
 const subscribe = (cb) => {
   subscribers.add(cb);
 };
@@ -42,60 +92,6 @@ const save = (key, value) => {
     console.error('An item with this key already exists in localStorage.\n'
       + 'If you would like to update the item with this key, use const update()');
   }
-};
-
-/* ******* */
-/*   get   */
-/* ******* */
-
-// Input: a key to search for in localStorage
-// Output: A value stored with this key as its index or null.
-
-// Description:
-//              Searchs localStorage for an item with the supplied key as its index.
-//              Returns the value of that item if it is found.
-//              Returns null if no item with this key exists in localStorage
-const get = (key) => (
-  JSON.parse(localStorage.getItem(key))
-);
-
-/* ********** */
-/*   getAll   */
-/* ********** */
-
-// Input: N/A
-// Output: An array containing all data currently stored in localStorage.
-
-// Description:
-//              Retreives all items stored in localStorage as an array of objects.
-//              Returns an empty array if no items are currently stored in localStorage.
-const getAll = () => {
-  const { length, ...relevantData } = localStorage;
-  const dataToReturn = [];
-  const keys = Object.keys(relevantData);
-
-  keys.forEach((key) => {
-    dataToReturn.push(get(key));
-  });
-
-  return dataToReturn;
-};
-
-/* ******* */
-/*   has   */
-/* ******* */
-
-// Input: a key to search for in localStorage
-// Output: boolean
-
-// Description:
-//              Searches localStorage for an item with the supplied key.
-//              Returns true if it is found, otherwise returns false.
-const has = (key) => {
-  if (get(key)) {
-    return true;
-  }
-  return false;
 };
 
 /* ********** */
@@ -180,9 +176,11 @@ const bestHTTPStatusCode = () => (
 
 export default {
   save,
+  getAll,
   remove,
   removeAll,
   update,
+  has,
   size,
   subscribe,
   unsubscribe,
