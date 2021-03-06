@@ -12,14 +12,20 @@ import './RelatedProductsCarousel.css';
 const RelatedProductsCarousel = ({ currentProductID, relatedProductsIDs = [], handleRedirect }) => {
   const [allRelatedProducts, setAllRelatedProducts] = useState([]);
 
+  useEffect(() => {
+    if (relatedProductsIDs.length > 0) {
+      fetchRelatedProductsData();
+    }
+  }, [relatedProductsIDs]);
+
   const fetchRelatedProductsData = () => {
     const putInState = [];
-    let noDuplicateIDs = [...new Set(relatedProductsIDs)]; // Turn it into an array wit no duplicate IDs
-    noDuplicateIDs = noDuplicateIDs.filter((relatedID) => (
+    let uniqueIDs = [...new Set(relatedProductsIDs)]; // Turn it into an array wit no duplicate IDs
+    uniqueIDs = uniqueIDs.filter((relatedID) => (
       relatedID !== currentProductID
     ));
-    noDuplicateIDs.forEach((id) => { putInState.push({ id }); });
-    Promise.all(noDuplicateIDs.map((id) => (
+    uniqueIDs.forEach((id) => { putInState.push({ id }); });
+    Promise.all(uniqueIDs.map((id) => (
       axios.get(`/products/${id}`)
     )))
       .then((productsResponses) => {
@@ -27,7 +33,7 @@ const RelatedProductsCarousel = ({ currentProductID, relatedProductsIDs = [], ha
           putInState[index].name = response.data.name;
           putInState[index].category = response.data.category;
         });
-        return Promise.all(noDuplicateIDs.map((id) => (
+        return Promise.all(uniqueIDs.map((id) => (
           axios.get(`/products/${id}/styles`)
         )));
       })
@@ -38,7 +44,7 @@ const RelatedProductsCarousel = ({ currentProductID, relatedProductsIDs = [], ha
           putInState[index].originalPrice = defaultStyle.original_price;
           putInState[index].salePrice = defaultStyle.sale_price;
         });
-        return Promise.all(noDuplicateIDs.map((id) => (
+        return Promise.all(uniqueIDs.map((id) => (
           axios.get(`/reviews/meta/${id}`)
         )));
       })
@@ -55,29 +61,31 @@ const RelatedProductsCarousel = ({ currentProductID, relatedProductsIDs = [], ha
       });
   };
 
-  useEffect(() => {
-    if (relatedProductsIDs.length > 0) {
-      fetchRelatedProductsData();
-    }
-  }, [relatedProductsIDs]);
+  const cardTemplate = (cardDetails) => (
+    <CarouselCard
+      key={cardDetails.id}
+      {...cardDetails}
+      buttonFunc={console.log.bind(null, 'click')}
+      handleRedirect={handleRedirect}
+      carouselType="related"
+    />
+  );
 
   return (
     <>
       <h2 id="related-carousel-title">Related Items</h2>
       <div id="carousel">
-        <button type="button" name="previous" id="previous"><i className="fas fa-arrow-left" /></button>
+        <button type="button" name="previous" id="previous">
+          <i className="fas fa-arrow-left" />
+        </button>
         <div id="products">
           {allRelatedProducts.map((relatedProduct) => (
-            <CarouselCard
-              key={relatedProduct.id}
-              {...relatedProduct}
-              buttonFunc={console.log.bind(null, 'click')}
-              handleRedirect={handleRedirect}
-              carouselType="related"
-            />
+            cardTemplate(relatedProduct)
           ))}
         </div>
-        <button type="button" name="next" id="next"><i className="fas fa-arrow-right"></i></button>
+        <button type="button" name="next" id="next">
+          <i className="fas fa-arrow-right" />
+        </button>
       </div>
     </>
   );
