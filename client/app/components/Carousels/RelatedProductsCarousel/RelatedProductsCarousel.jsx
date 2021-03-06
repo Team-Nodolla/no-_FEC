@@ -7,6 +7,8 @@ import propTypes from 'proptypes';
 import averageRating from '../../helperFunctions/getAverageRating.jsx';
 import getDefaultStyle from '../../helperFunctions/getDefaultStyle.jsx';
 import CarouselCard from '../CarouselCard/CarouselCard.jsx';
+import NextButton from '../CarouselButtons/CarouselNextButton.jsx';
+import BackButton from '../CarouselButtons/CarouselBackButton.jsx';
 import './RelatedProductsCarousel.css';
 
 const RelatedProductsCarousel = ({ currentProductID, relatedProductsIDs = [], handleRedirect }) => {
@@ -75,17 +77,13 @@ const RelatedProductsCarousel = ({ currentProductID, relatedProductsIDs = [], ha
     <>
       <h2 id="related-carousel-title">Related Items</h2>
       <div id="carousel">
-        <button type="button" name="previous" id="previous">
-          <i className="fas fa-arrow-left" />
-        </button>
+        <BackButton atStart={false} handleBack={() => {}} />
         <div id="products">
           {allRelatedProducts.map((relatedProduct) => (
             cardTemplate(relatedProduct)
           ))}
         </div>
-        <button type="button" name="next" id="next">
-          <i className="fas fa-arrow-right" />
-        </button>
+        <NextButton atEnd={false} handleNext={() => {}} />
       </div>
     </>
   );
