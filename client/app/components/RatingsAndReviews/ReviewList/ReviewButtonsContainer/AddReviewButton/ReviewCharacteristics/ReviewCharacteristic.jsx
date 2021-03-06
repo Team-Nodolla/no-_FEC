@@ -2,12 +2,12 @@
 import React, { useState } from 'react';
 
 const ReviewCharacteristic = ({ name, id, reviewCharsObj, setReviewCharsObj }) => {
-  const [sizeCharacteristic, setSizeCharacteristic] = useState(0);
-  const [widthCharacteristic, setWidthCharacteristic] = useState(0);
-  const [comfortCharacteristic, setComfortCharacteristic] = useState(0);
-  const [qualityCharacteristic, setQualityCharacteristic] = useState(0);
-  const [lengthCharacteristic, setLengthCharacteristic] = useState(0);
-  const [fitCharacteristic, setFitCharacteristic] = useState(0);
+  // const [sizeCharacteristic, setSizeCharacteristic] = useState(0);
+  // const [widthCharacteristic, setWidthCharacteristic] = useState(0);
+  // const [comfortCharacteristic, setComfortCharacteristic] = useState(0);
+  // const [qualityCharacteristic, setQualityCharacteristic] = useState(0);
+  // const [lengthCharacteristic, setLengthCharacteristic] = useState(0);
+  // const [fitCharacteristic, setFitCharacteristic] = useState(0);
   const [rowCharSelection, setRowCharSelection] = useState(0);
 
   const handleSelection = (e) => {
@@ -15,51 +15,97 @@ const ReviewCharacteristic = ({ name, id, reviewCharsObj, setReviewCharsObj }) =
     setReviewCharsObj({ ...reviewCharsObj, [id]: Number(e.target.value) });
   };
 
+  const charObject = {};
+
   if (name === 'Size') {
-    let one = 'A size too small';
-    let two = '½ a size too small';
-    let three = 'Perfect';
-    let four = '½ a size too big';
-    let five = 'A size too wide';
+    charObject.one = 'A size too small';
+    charObject.two = '½ a size too small';
+    charObject.three = 'Perfect';
+    charObject.four = '½ a size too big';
+    charObject.five = 'A size too wide';
   }
   if (name === 'Width') {
-    let one = 'Too narrow';
-    let two = 'Slightly narrow';
-    let three = 'Perfect';
-    let four = 'Slightly wide';
-    let five = 'Too wide';
+    charObject.one = 'Too narrow';
+    charObject.two = 'Slightly narrow';
+    charObject.three = 'Perfect';
+    charObject.four = 'Slightly wide';
+    charObject.five = 'Too wide';
   }
   if (name === 'Comfort') {
-    let one = 'Uncomfortable';
-    let two = 'Slightly uncomfortable';
-    let three = 'Ok';
-    let four = 'Comfortable';
-    let five = 'Perfect';
+    charObject.one = 'Uncomfortable';
+    charObject.two = 'Slightly uncomfortable';
+    charObject.three = 'Ok';
+    charObject.four = 'Comfortable';
+    charObject.five = 'Perfect';
   }
   if (name === 'Quality') {
-    let one = 'Poor';
-    let two = 'Below average';
-    let three = 'What I expected';
-    let four = 'Pretty great';
-    let five = 'Perfect';
+    charObject.one = 'Poor';
+    charObject.two = 'Below average';
+    charObject.three = 'What I expected';
+    charObject.four = 'Pretty great';
+    charObject.five = 'Perfect';
   }
   if (name === 'Length') {
-    let one = 'Runs short';
-    let two = 'Runs slightly short';
-    let three = 'Perfect';
-    let four = 'Runs slightly long';
-    let five = 'Runs long';
+    charObject.one = 'Runs short';
+    charObject.two = 'Runs slightly short';
+    charObject.three = 'Perfect';
+    charObject.four = 'Runs slightly long';
+    charObject.five = 'Runs long';
   }
   if (name === 'Fit') {
-    let one = 'Runs tight';
-    let two = 'Runs slightly tight';
-    let three = 'Perfect';
-    let four = 'Runs slightly long';
-    let five = 'Runs long';
+    charObject.one = 'Runs tight';
+    charObject.two = 'Runs slightly tight';
+    charObject.three = 'Perfect';
+    charObject.four = 'Runs slightly long';
+    charObject.five = 'Runs long';
   }
+
+  const CharExplanationRender = () => {
+    if (rowCharSelection !== 0) {
+      if (rowCharSelection === '1') {
+        return (
+          <div className="characteristic-explanation">
+            { charObject.one }
+          </div>
+        );
+      }
+      if (rowCharSelection === '2') {
+        return (
+          <div className="characteristic-explanation">
+            { charObject.two}
+          </div>
+        );
+      }
+      if (rowCharSelection === '3') {
+        return (
+          <div className="characteristic-explanation">
+            { charObject.three}
+          </div>
+        );
+      }
+      if (rowCharSelection === '4') {
+        return (
+          <div className="characteristic-explanation">
+            { charObject.four}
+          </div>
+        );
+      }
+      if (rowCharSelection === '5') {
+        return (
+          <div className="characteristic-explanation">
+            { charObject.five}
+          </div>
+        );
+      }
+    }
+    return (
+      <></>
+    );
+  };
 
   return (
     <>
+      <CharExplanationRender />
       <div className="radio">
         <label>
           {name}*:{' '}
