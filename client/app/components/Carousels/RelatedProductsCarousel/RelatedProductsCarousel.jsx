@@ -7,19 +7,49 @@ import propTypes from 'proptypes';
 import averageRating from '../../helperFunctions/getAverageRating.jsx';
 import getDefaultStyle from '../../helperFunctions/getDefaultStyle.jsx';
 import CarouselCard from '../CarouselCard/CarouselCard.jsx';
+import NextButton from '../CarouselButtons/CarouselNextButton.jsx';
+import BackButton from '../CarouselButtons/CarouselBackButton.jsx';
 import './RelatedProductsCarousel.css';
 
 const RelatedProductsCarousel = ({ currentProductID, relatedProductsIDs = [], handleRedirect }) => {
   const [allRelatedProducts, setAllRelatedProducts] = useState([]);
+  const [currentlyDisplayed, setCurrentlyDisplayed] = useState(
+    {
+      start: 0,
+      atStart: true,
+      end: 0,
+      atEnd: true,
+      cards: [],
+    },
+  );
+
+  useEffect(() => {
+    if (relatedProductsIDs.length > 0) {
+      fetchRelatedProductsData();
+    }
+  }, [relatedProductsIDs]);
+
+  useEffect(() => {
+    if (allRelatedProducts.length > 0) {
+      const { start, atStart } = currentlyDisplayed;
+      let { end, atEnd, cards } = currentlyDisplayed;
+      end = Math.min(3, allRelatedProducts.length - 1);
+      atEnd = (end === allRelatedProducts.length - 1);
+      cards = allRelatedProducts.filter((card, index) => (
+        index <= end
+      ));
+      setCurrentlyDisplayed({ start, atStart, end, atEnd, cards });
+    }
+  }, [allRelatedProducts.length]);
 
   const fetchRelatedProductsData = () => {
     const putInState = [];
-    let noDuplicateIDs = [...new Set(relatedProductsIDs)]; // Turn it into an array wit no duplicate IDs
-    noDuplicateIDs = noDuplicateIDs.filter((relatedID) => (
+    let uniqueIDs = [...new Set(relatedProductsIDs)]; // Turn it into an array wit no duplicate IDs
+    uniqueIDs = uniqueIDs.filter((relatedID) => (
       relatedID !== currentProductID
     ));
-    noDuplicateIDs.forEach((id) => { putInState.push({ id }); });
-    Promise.all(noDuplicateIDs.map((id) => (
+    uniqueIDs.forEach((id) => { putInState.push({ id }); });
+    Promise.all(uniqueIDs.map((id) => (
       axios.get(`/products/${id}`)
     )))
       .then((productsResponses) => {
@@ -27,7 +57,7 @@ const RelatedProductsCarousel = ({ currentProductID, relatedProductsIDs = [], ha
           putInState[index].name = response.data.name;
           putInState[index].category = response.data.category;
         });
-        return Promise.all(noDuplicateIDs.map((id) => (
+        return Promise.all(uniqueIDs.map((id) => (
           axios.get(`/products/${id}/styles`)
         )));
       })
@@ -38,7 +68,7 @@ const RelatedProductsCarousel = ({ currentProductID, relatedProductsIDs = [], ha
           putInState[index].originalPrice = defaultStyle.original_price;
           putInState[index].salePrice = defaultStyle.sale_price;
         });
-        return Promise.all(noDuplicateIDs.map((id) => (
+        return Promise.all(uniqueIDs.map((id) => (
           axios.get(`/reviews/meta/${id}`)
         )));
       })
@@ -55,29 +85,51 @@ const RelatedProductsCarousel = ({ currentProductID, relatedProductsIDs = [], ha
       });
   };
 
-  useEffect(() => {
-    if (relatedProductsIDs.length > 0) {
-      fetchRelatedProductsData();
+  const cardTemplate = (cardDetails) => (
+    <CarouselCard
+      key={cardDetails.id}
+      {...cardDetails}
+      buttonFunc={console.log.bind(null, 'click')}
+      handleRedirect={handleRedirect}
+      carouselType="related"
+    />
+  );
+
+  const handleNext = () => {
+    if (currentlyDisplayed.end < allRelatedProducts.length - 1) {
+      let { start, atStart, end, atEnd, cards } = currentlyDisplayed;
+      start += 1;
+      end += 1;
+      atStart = false;
+      atEnd = end === allRelatedProducts.length - 1;
+      cards = allRelatedProducts.slice(start, end + 1);
+      setCurrentlyDisplayed({ start, atStart, end, atEnd, cards });
     }
-  }, [relatedProductsIDs]);
+  };
+
+  const handleBack = () => {
+    if (currentlyDisplayed.start > 0) {
+      let { start, atStart, end, atEnd, cards } = currentlyDisplayed;
+      start -= 1;
+      end -= 1;
+      atStart = start === 0;
+      atEnd = end === allRelatedProducts.length - 1;
+      cards = allRelatedProducts.slice(start, end + 1);
+      setCurrentlyDisplayed({ start, atStart, end, atEnd, cards });
+    }
+  };
 
   return (
     <>
       <h2 id="related-carousel-title">Related Items</h2>
       <div id="carousel">
-        <button type="button" name="previous" id="previous"><i className="fas fa-arrow-left" /></button>
+        <BackButton atStart={currentlyDisplayed.atStart} handleBack={handleBack} />
         <div id="products">
-          {allRelatedProducts.map((relatedProduct) => (
-            <CarouselCard
-              key={relatedProduct.id}
-              {...relatedProduct}
-              buttonFunc={console.log.bind(null, 'click')}
-              handleRedirect={handleRedirect}
-              carouselType="related"
-            />
+          {currentlyDisplayed.cards.map((displayedProduct) => (
+            cardTemplate(displayedProduct)
           ))}
         </div>
-        <button type="button" name="next" id="next"><i className="fas fa-arrow-right"></i></button>
+        <NextButton atEnd={currentlyDisplayed.atEnd} handleNext={handleNext} />
       </div>
     </>
   );
