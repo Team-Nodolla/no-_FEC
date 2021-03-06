@@ -3,8 +3,6 @@
 /*   my interaction with localStorage   */
 /* ************************************ */
 
-const subscribers = new Set();
-
 /* ******* */
 /*   get   */
 /* ******* */
@@ -55,20 +53,81 @@ const has = (key) => {
   return false;
 };
 
+/* ******** */
+/*   size   */
+/* ******** */
+
+// Input: N/A
+// Output: The number of items stored in localStorage
+
+// Description:
+//              Returns the number of items stored in localStorage
+const size = () => (
+  localStorage.length
+);
+
+/* ********************** */
+/*   bestHTTPStatusCode   */
+/* ********************** */
+
+// Input: N/A
+// Output: The best HTTP status code
+
+// Description:
+//              Self Explainatory.
+const bestHTTPStatusCode = () => (
+  '418: I\'m a little teapot.'
+);
+
+const subscribers = new Set();
+
+/* ************* */
+/*   subscribe   */
+/* ************* */
+
+// Input: a callback function
+// Output: N/A
+
+// Description:
+//              Adds a callback function to the list of subscribers to be
+//              called later on in publish()
 const subscribe = (cb) => {
   subscribers.add(cb);
 };
 
+/* *************** */
+/*   unsubscribe   */
+/* *************** */
+
+// Input: a callback function
+// Output: N/A
+
+// Description:
+//              Removes a callback function from the list of subscribers so it
+//              will no longer be called on during publish()
 const unsubscribe = (cb) => {
   subscribers.delete(cb);
 };
 
+/* *********** */
+/*   publish   */
+/* *********** */
+
+// Input: The list of subscribers and all data in localStorage
+// Output: N/A
+
+// Description:
+//              Executes each subscriber callback and supplying it
+//              with all the data stored in localStorage.
+//              This happens on a state change (save / update / remove / removeAll)
 const publish = (subs, state) => {
   subs.forEach((sub) => {
     sub(state);
   });
 };
 
+// Description:
+//              An alias for publish
 const doPublish = () => publish(subscribers, getAll());
 
 /* ******** */
@@ -80,7 +139,7 @@ const doPublish = () => publish(subscribers, getAll());
 
 // Description:
 //              Saves a new item to localStorage with the supplied unique key
-//              as its index and the value as its value.
+//              as its index and the value as its value, then publishes.
 //              The value is stringifyed to be parsed later by get().
 //              If an item with the supplied key already exists in localStorage, throws an error
 //              and doesn't save the item.
@@ -102,7 +161,7 @@ const save = (key, value) => {
 // Output: The value of the removed item or null
 
 // Description:
-//              removes an item in localStorage with the supplied key as its index.
+//              removes an item in localStorage with the supplied key as its index, then publishes.
 //              Returns the value of the removed item, or null if no item with that key
 //              exists in localStorage.
 const remove = (key) => {
@@ -120,24 +179,11 @@ const remove = (key) => {
 // Output: N/A
 
 // Description:
-//              removes all data from localStorage.
+//              removes all data from localStorage, then publishes.
 const removeAll = () => {
   localStorage.clear();
   doPublish();
 };
-
-/* ******** */
-/*   size   */
-/* ******** */
-
-// Input: N/A
-// Output: The number of items stored in localStorage
-
-// Description:
-//              Returns the number of items stored in localStorage
-const size = () => (
-  localStorage.length
-);
 
 /* ********** */
 /*   update   */
@@ -148,7 +194,7 @@ const size = () => (
 
 // Description:
 //              Updates an existing item with that has supplied key as its index
-//              with a new value.
+//              with a new value, then publishes.
 //              If no item with this key exists in localStorage, throws an error
 //              and doesn't update the item.
 const update = (key, newValue) => {
@@ -160,19 +206,6 @@ const update = (key, newValue) => {
       + 'If you would like to save new item, use const save()');
   }
 };
-
-/* ********************** */
-/*   bestHTTPStatusCode   */
-/* ********************** */
-
-// Input: N/A
-// Output: The best HTTP status code
-
-// Description:
-//              Self Explainatory.
-const bestHTTPStatusCode = () => (
-  '418: I\'m a little teapot.'
-);
 
 export default {
   save,
