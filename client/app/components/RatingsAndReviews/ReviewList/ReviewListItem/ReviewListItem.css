@@ -1,8 +1,13 @@
 .reviewListItemStarRating {
   margin: 10px 0 0 10px;
   display: flex;
+  flex-direction: row;
 }
 
+.review-username-date {
+  margin-right: 10px;
+  margin-left: auto;
+}
 
 .reviewListItemSummary {
   font-weight: bold;
