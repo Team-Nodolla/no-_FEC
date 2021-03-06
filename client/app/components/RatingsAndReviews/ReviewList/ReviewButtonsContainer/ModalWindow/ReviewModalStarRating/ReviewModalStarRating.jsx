@@ -24,7 +24,7 @@ const ReviewModalStarRating = ({ reviewScore, setMargin = '20px 0 0 0', handleSt
     const missingPercent = `${100 - roundedScore * 20 - quarterOffset}%`;
 
     display = (
-      <div id="star-rating-container" style={{ margin: setMargin }}>
+      <div id="star-rating-container" className="review-modal-stars" style={{ margin: setMargin }}>
         <EmptyStars handleStarRatingClick={handleStarRatingClick} />
         <div id="stars-cover" style={{ width: missingPercent }}> </div>
         <FilledStars handleStarRatingClick={handleStarRatingClick} />
@@ -40,7 +40,7 @@ const ReviewModalStarRating = ({ reviewScore, setMargin = '20px 0 0 0', handleSt
 };
 
 const EmptyStars = ({ handleStarRatingClick }) => (
-  <div className="empty-stars stars">
+  <div className="empty-stars stars review-modal-stars">
     <i onClick={handleStarRatingClick} id={1} className="far fa-star star" />
     <i onClick={handleStarRatingClick} id={2} className="far fa-star star" />
     <i onClick={handleStarRatingClick} id={3} className="far fa-star star" />
@@ -50,7 +50,7 @@ const EmptyStars = ({ handleStarRatingClick }) => (
 );
 
 const FilledStars = ({ handleStarRatingClick }) => (
-  <div className="stars">
+  <div className="stars review-modal-stars">
     <i className="full-stars fas fa-star star" />
     <i className="full-stars fas fa-star star" />
     <i className="full-stars fas fa-star star" />

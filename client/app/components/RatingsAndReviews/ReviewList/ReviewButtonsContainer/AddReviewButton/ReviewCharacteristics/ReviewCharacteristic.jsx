@@ -2,86 +2,128 @@
 import React, { useState } from 'react';
 
 const ReviewCharacteristic = ({ name, id, reviewCharsObj, setReviewCharsObj }) => {
-  const [sizeCharacteristic, setSizeCharacteristic] = useState(0);
-  const [widthCharacteristic, setWidthCharacteristic] = useState(0);
-  const [comfortCharacteristic, setComfortCharacteristic] = useState(0);
-  const [qualityCharacteristic, setQualityCharacteristic] = useState(0);
-  const [lengthCharacteristic, setLengthCharacteristic] = useState(0);
-  const [fitCharacteristic, setFitCharacteristic] = useState(0);
   const [rowCharSelection, setRowCharSelection] = useState(0);
 
   const handleSelection = (e) => {
     setRowCharSelection(e.target.value);
+
+    // update parent state
     setReviewCharsObj({ ...reviewCharsObj, [id]: Number(e.target.value) });
   };
 
+  const reviewCharacteristicsObject = {};
+
   if (name === 'Size') {
-    let one = 'A size too small';
-    let two = '½ a size too small';
-    let three = 'Perfect';
-    let four = '½ a size too big';
-    let five = 'A size too wide';
+    reviewCharacteristicsObject.one = 'A size too small';
+    reviewCharacteristicsObject.two = '½ a size too small';
+    reviewCharacteristicsObject.three = 'Perfect';
+    reviewCharacteristicsObject.four = '½ a size too big';
+    reviewCharacteristicsObject.five = 'A size too wide';
   }
   if (name === 'Width') {
-    let one = 'Too narrow';
-    let two = 'Slightly narrow';
-    let three = 'Perfect';
-    let four = 'Slightly wide';
-    let five = 'Too wide';
+    reviewCharacteristicsObject.one = 'Too narrow';
+    reviewCharacteristicsObject.two = 'Slightly narrow';
+    reviewCharacteristicsObject.three = 'Perfect';
+    reviewCharacteristicsObject.four = 'Slightly wide';
+    reviewCharacteristicsObject.five = 'Too wide';
   }
   if (name === 'Comfort') {
-    let one = 'Uncomfortable';
-    let two = 'Slightly uncomfortable';
-    let three = 'Ok';
-    let four = 'Comfortable';
-    let five = 'Perfect';
+    reviewCharacteristicsObject.one = 'Uncomfortable';
+    reviewCharacteristicsObject.two = 'Slightly uncomfortable';
+    reviewCharacteristicsObject.three = 'Ok';
+    reviewCharacteristicsObject.four = 'Comfortable';
+    reviewCharacteristicsObject.five = 'Perfect';
   }
   if (name === 'Quality') {
-    let one = 'Poor';
-    let two = 'Below average';
-    let three = 'What I expected';
-    let four = 'Pretty great';
-    let five = 'Perfect';
+    reviewCharacteristicsObject.one = 'Poor';
+    reviewCharacteristicsObject.two = 'Below average';
+    reviewCharacteristicsObject.three = 'What I expected';
+    reviewCharacteristicsObject.four = 'Pretty great';
+    reviewCharacteristicsObject.five = 'Perfect';
   }
   if (name === 'Length') {
-    let one = 'Runs short';
-    let two = 'Runs slightly short';
-    let three = 'Perfect';
-    let four = 'Runs slightly long';
-    let five = 'Runs long';
+    reviewCharacteristicsObject.one = 'Runs short';
+    reviewCharacteristicsObject.two = 'Runs slightly short';
+    reviewCharacteristicsObject.three = 'Perfect';
+    reviewCharacteristicsObject.four = 'Runs slightly long';
+    reviewCharacteristicsObject.five = 'Runs long';
   }
   if (name === 'Fit') {
-    let one = 'Runs tight';
-    let two = 'Runs slightly tight';
-    let three = 'Perfect';
-    let four = 'Runs slightly long';
-    let five = 'Runs long';
+    reviewCharacteristicsObject.one = 'Runs tight';
+    reviewCharacteristicsObject.two = 'Runs slightly tight';
+    reviewCharacteristicsObject.three = 'Perfect';
+    reviewCharacteristicsObject.four = 'Runs slightly long';
+    reviewCharacteristicsObject.five = 'Runs long';
   }
+
+  const CharExplanationRender = () => {
+    if (rowCharSelection !== 0) {
+      if (rowCharSelection === '1') {
+        return (
+          <div className="characteristic-explanation">
+            { reviewCharacteristicsObject.one }
+          </div>
+        );
+      }
+      if (rowCharSelection === '2') {
+        return (
+          <div className="characteristic-explanation">
+            { reviewCharacteristicsObject.two}
+          </div>
+        );
+      }
+      if (rowCharSelection === '3') {
+        return (
+          <div className="characteristic-explanation">
+            { reviewCharacteristicsObject.three}
+          </div>
+        );
+      }
+      if (rowCharSelection === '4') {
+        return (
+          <div className="characteristic-explanation">
+            { reviewCharacteristicsObject.four}
+          </div>
+        );
+      }
+      if (rowCharSelection === '5') {
+        return (
+          <div className="characteristic-explanation">
+            { reviewCharacteristicsObject.five}
+          </div>
+        );
+      }
+    }
+    return (
+      <></>
+    );
+  };
 
   return (
     <>
+      <CharExplanationRender />
       <div className="radio">
         <label>
           {name}*:{' '}
           <label>
             1
-            <input type="radio" name="char-btn-one" value={1} checked={rowCharSelection === '1'} onChange={handleSelection} required />
+            <input type="radio" name={id} value={1} checked={rowCharSelection === '1'} onChange={handleSelection} required />
           </label>{' '}
           <label>
             2
-            <input type="radio" name="char-btn-two" value={2} checked={rowCharSelection === '2'} onChange={handleSelection} />
+            <input type="radio" name={id} value={2} checked={rowCharSelection === '2'} onChange={handleSelection} />
           </label>{' '}
           <label>
             3
-            <input type="radio" name="char-btn-three" value={3} checked={rowCharSelection === '3'} onChange={handleSelection} required />
+            <input type="radio" name={id} value={3} checked={rowCharSelection === '3'} onChange={handleSelection} required />
           </label>{' '}
           <label>
             4
-            <input type="radio" name="char-btn-four" value={4} checked={rowCharSelection === '4'} onChange={handleSelection} />
+            <input type="radio" name={id} value={4} checked={rowCharSelection === '4'} onChange={handleSelection} />
           </label>{' '}
           <label>
             5
-            <input type="radio" name="char-btn-five" value={5} checked={rowCharSelection === '5'} onChange={handleSelection} required />
+            <input type="radio" name={id} value={5} checked={rowCharSelection === '5'} onChange={handleSelection} required />
           </label>
 
         </label>
