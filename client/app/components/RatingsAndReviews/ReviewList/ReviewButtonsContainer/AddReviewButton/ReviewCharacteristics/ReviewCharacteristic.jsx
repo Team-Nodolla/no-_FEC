@@ -12,6 +12,8 @@ const ReviewCharacteristic = ({ name, id, reviewCharsObj, setReviewCharsObj }) =
 
   const handleSelection = (e) => {
     setRowCharSelection(e.target.value);
+
+    // update parent state
     setReviewCharsObj({ ...reviewCharsObj, [id]: Number(e.target.value) });
   };
 
@@ -111,23 +113,23 @@ const ReviewCharacteristic = ({ name, id, reviewCharsObj, setReviewCharsObj }) =
           {name}*:{' '}
           <label>
             1
-            <input type="radio" name="char-btn-one" value={1} checked={rowCharSelection === '1'} onChange={handleSelection} required />
+            <input type="radio" name={id} value={1} checked={rowCharSelection === '1'} onChange={handleSelection} required />
           </label>{' '}
           <label>
             2
-            <input type="radio" name="char-btn-two" value={2} checked={rowCharSelection === '2'} onChange={handleSelection} />
+            <input type="radio" name={id} value={2} checked={rowCharSelection === '2'} onChange={handleSelection} />
           </label>{' '}
           <label>
             3
-            <input type="radio" name="char-btn-three" value={3} checked={rowCharSelection === '3'} onChange={handleSelection} required />
+            <input type="radio" name={id} value={3} checked={rowCharSelection === '3'} onChange={handleSelection} required />
           </label>{' '}
           <label>
             4
-            <input type="radio" name="char-btn-four" value={4} checked={rowCharSelection === '4'} onChange={handleSelection} />
+            <input type="radio" name={id} value={4} checked={rowCharSelection === '4'} onChange={handleSelection} />
           </label>{' '}
           <label>
             5
-            <input type="radio" name="char-btn-five" value={5} checked={rowCharSelection === '5'} onChange={handleSelection} required />
+            <input type="radio" name={id} value={5} checked={rowCharSelection === '5'} onChange={handleSelection} required />
           </label>
 
         </label>
