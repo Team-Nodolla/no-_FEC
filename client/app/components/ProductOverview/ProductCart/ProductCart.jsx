@@ -22,16 +22,32 @@ const ProductCart = ({ selectedStyle }) => {
       });
     };
 
+    if (
+      arrayOfSkus.length === 1
+      && arrayOfSkus[0].quantity === null
+      && arrayOfSkus[0].size === null) {
+      return (
+        <div>
+          <h1>Out of Stock!</h1>
+        </div>
+      );
+    }
+
     return (
       <div className="product-option-selectors">
         <SizeSelector onSelectSize={onSelectSize} arraySkus={arrayOfSkus} />
-        <QuantitySelector selectedSize={selectedSize} sizeQuantity={selectedQuantity} arraySkus={arrayOfSkus} />
+        <QuantitySelector
+          selectedSize={selectedSize}
+          sizeQuantity={selectedQuantity}
+          arraySkus={arrayOfSkus}
+        />
       </div>
     );
   }
-  return (
-    <div />
-  );
+
+  // return (
+  //   <div />
+  // );
 };
 
 export default ProductCart;
