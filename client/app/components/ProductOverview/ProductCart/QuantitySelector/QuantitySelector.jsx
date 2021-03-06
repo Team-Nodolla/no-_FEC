@@ -1,18 +1,25 @@
 import React from 'react';
-import propTypes from 'proptypes';
 
 const QuantitySelector = ({ selectedSize, sizeQuantity, arraySkus }) => {
   if (arraySkus !== undefined) {
     const arrayOfSize = [];
-    for (let i = 1; i <= sizeQuantity; i += 1) {
+    for (let i = 2; i <= sizeQuantity; i += 1) {
       arrayOfSize.push(i);
     }
     switch (selectedSize) {
-      default:
+      case "Select Size":
         return (
           <div>
             <select>
-              <option>Select A Quantity</option>
+              <option>-</option>
+            </select>
+          </div>
+        );
+      case null:
+        return (
+          <div>
+            <select>
+              <option>-</option>
             </select>
           </div>
         );
@@ -20,7 +27,7 @@ const QuantitySelector = ({ selectedSize, sizeQuantity, arraySkus }) => {
         return (
           <div>
             <select>
-              <option>Select A Quantity</option>
+              <option value={1}>1</option>
               {arrayOfSize.map((quantity) => {
                 return (
                   <option key={quantity} value={quantity}>{quantity}</option>
@@ -29,18 +36,12 @@ const QuantitySelector = ({ selectedSize, sizeQuantity, arraySkus }) => {
             </select>
           </div>
         );
+      default:
+        return (
+          <div />
+        );
     }
   }
-
-  return (
-    <div />
-  );
-};
-
-QuantitySelector.propTypes = {
-  selectedSize: propTypes.string,
-  sizeQuantity: propTypes.number,
-  arraySkus: propTypes.array,
 };
 
 export default QuantitySelector;

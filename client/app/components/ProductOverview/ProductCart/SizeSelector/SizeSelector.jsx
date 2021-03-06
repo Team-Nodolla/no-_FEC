@@ -5,7 +5,6 @@ const SizeSelector = ({ onSelectSize, arraySkus }) => {
     return (
       <div>
         <select onChange={onSelectSize}>
-          <option>Select A Size</option>
           {arraySkus.map((skus) => {
             return (
               <option key={arraySkus.indexOf(skus)} value={skus.size}>{skus.size}</option>

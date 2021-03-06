@@ -1,3 +1,7 @@
 .product-option-selectors {
   display: flex;
 }
+
+.product-quantity-dropdown {
+  margin-left: 40px;
+}
