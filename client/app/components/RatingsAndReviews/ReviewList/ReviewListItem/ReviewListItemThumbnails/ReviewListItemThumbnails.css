@@ -25,3 +25,8 @@
 .review-item-modal-hide {
   display: none;
 }
+
+.review-item-thumbnail {
+  display: inline;
+  cursor: pointer;
+}

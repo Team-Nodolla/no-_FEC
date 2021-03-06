@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable react/self-closing-comp */
 import React, { useState } from 'react';
 import './ReviewListItemThumbnails.css';
@@ -27,9 +29,10 @@ const ReviewListItemThumbnails = ({ photos }) => {
   }
 
   return photos.map((photo) => (
-    <>
+    <div className="review-item-thumbnail">
       <img src={photo.url} alt="" width={reviewThumbnailWidth} height={reviewThumbnailHeight} onClick={(event) => { handleImageClick(event, photo.url); }}></img>
-    </>
+      {'  '}
+    </div>
   ));
 };
 

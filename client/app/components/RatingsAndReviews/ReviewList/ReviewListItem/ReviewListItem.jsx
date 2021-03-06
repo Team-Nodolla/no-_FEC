@@ -25,16 +25,18 @@ const ReviewListItem = ({ review }) => {
         <>
           <div className="reviewListItemBody">
             {reviewTileBody}
-          </div>
-          <div className="review-show-body-link">
-            <button type="button" className={reviewBodyButtonClass} onClick={handleShowMoreBody}>show more</button>
+            <div className="review-show-body-link">
+              <button type="button" className={reviewBodyButtonClass} onClick={handleShowMoreBody}>show more</button>
+            </div>
+            <ReviewItemThumbnailRender />
           </div>
         </>
       );
     }
     return (
       <div className="reviewListItemBody">
-        {reviewTileBody}
+        {reviewTileBody}<br></br>
+        <ReviewItemThumbnailRender />
       </div>
     );
   };
@@ -62,7 +64,6 @@ const ReviewListItem = ({ review }) => {
         {review.summary}
       </div>
       <ReviewBodyRender />
-      <ReviewItemThumbnailRender />
     </div>
   );
 };
