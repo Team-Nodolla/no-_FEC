@@ -3,9 +3,11 @@
 /*   my interaction with localStorage   */
 /* ************************************ */
 
-/* ******* */
-/*   get   */
-/* ******* */
+/* ^ = private */
+
+/* ******** */
+/*   get^   */
+/* ******** */
 
 // Input: a key to search for in localStorage
 // Output: A value stored with this key as its index or null.
@@ -109,9 +111,9 @@ const unsubscribe = (cb) => {
   subscribers.delete(cb);
 };
 
-/* *********** */
-/*   publish   */
-/* *********** */
+/* ************ */
+/*   publish^   */
+/* ************ */
 
 // Input: The list of subscribers and all data in localStorage
 // Output: N/A
