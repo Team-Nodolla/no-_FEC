@@ -14,10 +14,7 @@ const OutfitCarousel = ({ productInfo, handleRedirect }) => {
 
   // on mount, subscribe to store changes
   useEffect(() => {
-    console.log('subscribe productInfo ID:', productInfo.id);
-
     store.subscribe((outfitsInStore) => {
-      console.log('callback productInfo ID:', productInfo.id);
       setOutfitList(outfitsInStore);
     });
   }, []);
@@ -66,8 +63,6 @@ const OutfitCarousel = ({ productInfo, handleRedirect }) => {
       setCurrentlyDisplayed({ ...toDisplay });
     }
   };
-
-  console.log('Outfit Carousel rendered! productInfo:\n', productInfo);
 
   return (
     <>

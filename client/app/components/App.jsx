@@ -84,7 +84,6 @@ const App = () => {
 
   return (
     <div className="app-container">
-      {console.log('currentProduct.id:', currentProduct?.id)}
       <ProductOverview
         product={currentProduct}
         defaultStyle={currentProduct.defaultStyle}

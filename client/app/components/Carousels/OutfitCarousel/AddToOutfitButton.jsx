@@ -7,7 +7,6 @@ const AddToOutfit = ({ productInfo }) => (
     id="add-to-outfit-btn"
     className="card"
     onClick={() => {
-      console.log('in button productInfo:', productInfo);
       if (productInfo.id !== 0 && !store.has(productInfo.id)) {
         store.save(productInfo.id, productInfo);
       }
