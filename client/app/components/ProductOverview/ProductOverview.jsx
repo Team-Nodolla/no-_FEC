@@ -5,17 +5,45 @@ import ProductImageGallery from './ProductImageGallery/ProductImageGallery.jsx';
 import ProductInfo from './ProductInfo/ProductInfo.jsx';
 import ProductStyleSelector from './ProductStyleSelector/ProductStyleSelector.jsx';
 import ProductCart from './ProductCart/ProductCart.jsx';
+import ProductThumbnailScroll from './ProductThumbnailScroll/ProductThumbnailScroll.jsx';
 import './ProductOverview.css';
 
 const ProductOverview = ({ product, styles }) => {
   if (styles !== undefined) {
+    const toggle = false;
     const [priceOfProduct, setPriceOfProduct] = useState(product.originalPrice);
     const [selectedStyle, setSelectedStyle] = useState(styles[0]);
+    const [currentPhoto, setCurrentPhoto] = useState(0);
+    const [expandView, setExpandView] = useState(toggle);
+
+    useEffect(() => {
+      setCurrentPhoto(0);
+    }, [styles]);
 
     useEffect(() => {
       setPriceOfProduct(() => product.originalPrice);
       setSelectedStyle(() => styles[0]);
     }, [product, styles]);
+
+    const onClickRightChange = () => {
+      if (currentPhoto !== styles[currentPhoto].photos.length - 1) {
+        setCurrentPhoto(currentPhoto + 1);
+      }
+    };
+
+    const onClickLeftChange = () => {
+      if (currentPhoto > 0) {
+        setCurrentPhoto(currentPhoto - 1);
+      }
+    };
+
+    const onClickZoom = () => {
+      setExpandView((view) => !view);
+    };
+
+    const onClickChangeThumbnail = (photo) => {
+      setCurrentPhoto(photo);
+    };
 
     const handleSelectedStyle = (style, price) => {
       setSelectedStyle(style);
@@ -24,8 +52,24 @@ const ProductOverview = ({ product, styles }) => {
 
     return (
       <div className="product-overview-container">
+        <div className="product-thumbnail">
+          <ProductThumbnailScroll
+            onClickChangeThumbnail={onClickChangeThumbnail}
+            key={styles[currentPhoto].style_id}
+            currentPhoto={selectedStyle.photos[currentPhoto].thumbnail_url}
+            arrayOfPhoto={selectedStyle}
+          />
+        </div>
         <div className="product-image-container">
-          <ProductImageGallery style={selectedStyle} />
+          <ProductImageGallery
+            expandView={expandView}
+            currentPhoto={currentPhoto}
+            onClickZoom={onClickZoom}
+            onClickChangeThumbnail={onClickChangeThumbnail}
+            onClickLeftChange={onClickLeftChange}
+            onClickRightChange={onClickRightChange}
+            style={selectedStyle}
+          />
         </div>
         <div className="product-info-container">
           <div className="product-description-container">

@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactImageMagnify from 'react-image-magnify';
-import ProductThumbnailScroll from '../ProductThumbnailScroll/ProductThumbnailScroll.jsx';
+import ProductThumbnailScroll from '../../ProductThumbnailScroll/ProductThumbnailScroll.jsx';
 import './ExpandedView.css';
 
 const ExpandedView = ({ onClickRightChange, onClickChangeThumbnail, style, currentPhoto, onClickImage, defaultPhoto }) => {

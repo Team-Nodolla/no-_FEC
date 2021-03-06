@@ -6,7 +6,7 @@
 .product-thumbnail {
   display:inline-block;
   margin-left: -20px;
-  margin-top: 50px;
+  margin-top: 100px;
   position: absolute;
   /* z-index: 1; */
 }
@@ -15,7 +15,7 @@
   display: flex;
   position: absolute;
   margin-left: 650px;
-  margin-top: 337px;
+   margin-top: 337px;
 }
 
 .image-right-btn-disabled {

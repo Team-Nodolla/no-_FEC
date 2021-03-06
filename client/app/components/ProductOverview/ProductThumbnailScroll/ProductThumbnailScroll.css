@@ -3,7 +3,7 @@
 }
 
 .thumbnail-size {
-  width: 18%;
+  width: 14%;
   border-style: white;
   transition: transform 250ms;
 }
@@ -19,5 +19,5 @@
 
 .selected-image {
   border-style: solid;
-  width: 20%;
+  width: 14%;
 }
