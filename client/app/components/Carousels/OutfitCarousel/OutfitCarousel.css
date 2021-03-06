@@ -13,10 +13,10 @@
 }
 
 #add-to-outfit-btn {
-  width: 200px;
-  min-width: 200px;
-  height: 300px;
-  margin: auto 15px auto 0;
+  background-color: rgb(220, 220, 220);
+  border: 3px solid #000;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
   font-size: 24px;
   font-weight: 700;
   line-height: 36px;
@@ -28,9 +28,10 @@
 }
 
 #outfit-card-container {
-  width: 1300px;
+  min-width: 1500px;
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
   padding-top: 5px;
   flex-wrap: nowrap;
   overflow: hidden;
@@ -45,7 +46,7 @@
 }
 
 .outfit-carousel-divider:first-of-type {
-  margin-inline-start: 40px;
+  margin-inline-start: 50px;
 }
 
 #outfit-next, #outfit-back {
@@ -61,5 +62,9 @@
 }
 
 #outfit-back {
-  left: 215px;
+  left: 10px;
+}
+
+.outfit-invisible {
+  display: none;
 }
