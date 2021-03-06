@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import propTypes from 'proptypes';
 import SizeSelector from './SizeSelector/SizeSelector.jsx';
 import QuantitySelector from './QuantitySelector/QuantitySelector.jsx';
 import './ProductCart.css';
@@ -17,21 +18,43 @@ const ProductCart = ({ selectedStyle }) => {
       setSelectedSize(e.target.value);
       arrayOfSkus.forEach((item) => {
         if (item.size === e.target.value) {
-          setSelectedQuantity(item.quantity);
+          if (item.quantity >= 15) {
+            setSelectedQuantity(15);
+          }
         }
       });
     };
 
+    if (
+      arrayOfSkus.length === 1
+      && arrayOfSkus[0].quantity === null
+      && arrayOfSkus[0].size === null) {
+      return (
+        <div>
+          <h1>Out of Stock!</h1>
+        </div>
+      );
+    }
+
     return (
       <div className="product-option-selectors">
         <SizeSelector onSelectSize={onSelectSize} arraySkus={arrayOfSkus} />
-        <QuantitySelector selectedSize={selectedSize} sizeQuantity={selectedQuantity} arraySkus={arrayOfSkus} />
+        <QuantitySelector
+          selectedSize={selectedSize}
+          sizeQuantity={selectedQuantity}
+          arraySkus={arrayOfSkus}
+        />
       </div>
     );
   }
+
   return (
     <div />
   );
+};
+
+ProductCart.propTypes = {
+  selectedStyle: propTypes.object,
 };
 
 export default ProductCart;

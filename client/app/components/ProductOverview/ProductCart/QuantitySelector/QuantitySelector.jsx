@@ -1,4 +1,5 @@
 import React from 'react';
+import propTypes from 'proptypes';
 
 const QuantitySelector = ({ selectedSize, sizeQuantity, arraySkus }) => {
   if (arraySkus !== undefined) {
@@ -30,6 +31,16 @@ const QuantitySelector = ({ selectedSize, sizeQuantity, arraySkus }) => {
         );
     }
   }
+
+  return (
+    <div />
+  );
+};
+
+QuantitySelector.propTypes = {
+  selectedSize: propTypes.string,
+  sizeQuantity: propTypes.number,
+  arraySkus: propTypes.array,
 };
 
 export default QuantitySelector;
