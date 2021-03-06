@@ -2,41 +2,21 @@ import React, { useState, useEffect } from 'react';
 import propTypes from 'proptypes';
 import DefaultView from './DefaultView/DefaultView.jsx';
 import ExpandedView from './ExpandedView/ExpandedView.jsx';
-import ProductThumbnailScroll from './ProductThumbnailScroll/ProductThumbnailScroll.jsx';
+// import ProductThumbnailScroll from './ProductThumbnailScroll/ProductThumbnailScroll.jsx';
 import './ProductImageGallery.css';
 
-const ProductImageGallery = ({ style }) => {
+const ProductImageGallery = ({
+  expandView,
+  currentPhoto,
+  onClickZoom,
+  onClickChangeThumbnail,
+  onClickLeftChange,
+  onClickRightChange,
+  style,
+}) => {
   if (style.length !== 0) {
-    const toggle = false;
-    const [currentPhoto, setCurrentPhoto] = useState(0);
-    const [expandView, setExpandView] = useState(toggle);
-
-    useEffect(() => {
-      setCurrentPhoto(0);
-    }, [style]);
-    const onClickRightChange = () => {
-      if (currentPhoto !== style.photos.length - 1) {
-        setCurrentPhoto(currentPhoto + 1);
-      }
-    };
-
-    const onClickLeftChange = () => {
-      if (currentPhoto > 0) {
-        setCurrentPhoto(currentPhoto - 1);
-      }
-    };
-
-    const onClickZoom = () => {
-      setExpandView((view) => !view);
-    };
-
-    const onClickChangeThumbnail = (photo) => {
-      setCurrentPhoto(photo);
-    };
-
     return (
       <div>
-        <div className="product-thumbnail"><ProductThumbnailScroll onClickRightChange={onClickRightChange} onClickChangeThumbnail={onClickChangeThumbnail} key={style.style_id} currentPhoto={style.photos[currentPhoto].thumbnail_url} arrayOfPhoto={style} /></div>
         {
         expandView === false
           ? (
@@ -71,6 +51,12 @@ const ProductImageGallery = ({ style }) => {
 };
 
 ProductImageGallery.propTypes = {
+  expandView: propTypes.bool,
+  currentPhoto: propTypes.number,
+  onClickZoom: propTypes.func,
+  onClickChangeThumbnail: propTypes.func,
+  onClickLeftChange: propTypes.func,
+  onClickRightChange: propTypes.func,
   style: propTypes.object
 };
 
