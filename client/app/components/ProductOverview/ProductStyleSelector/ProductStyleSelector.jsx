@@ -1,17 +1,21 @@
 import React from 'react';
 import './ProductStyleSelector.css';
-const ProductStyleSelector = ({ handleSelectedStyleClick, styles ,styleName}) => {
+const ProductStyleSelector = ({ currentPhoto, handleSelectedStyleClick, styles ,styleName}) => {
   if (styles !== undefined) {
     return (
       <div className="styles-thumbnail">
-        <h2>Styles > {styleName.name}</h2>
+        <div className="style-name">
+        <h2>Styles > </h2>
+        <p style={{marginTop: '27px', marginLeft: '10px'}}>{styleName.name}</p>
+        </div>
         <div className="styles-thumbnail-list">
         {styles.map((productStyle) => {
+          console.log(productStyle);
           return(
-            <span className="style-image" key={productStyle.style_id}>
-            {/* <i className="far fa-check-circle"></i> */}
-            <img  className="style-image-icon" onClick={() => handleSelectedStyleClick(productStyle, productStyle.original_price)} src={productStyle.photos[0].thumbnail_url} />
-            </span>
+            <div className="style-image" key={productStyle.style_id}>
+            <i className={`style-image-icon-${currentPhoto.style_id === productStyle.style_id ? 'selected' : 'disabled'} far fa-check-circle`}></i>
+            <img  className="style-image-icon " onClick={() => handleSelectedStyleClick(productStyle, productStyle.original_price)} src={productStyle.photos[0].thumbnail_url} />
+            </div>
           )
         })}
         </div>

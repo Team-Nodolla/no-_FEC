@@ -80,6 +80,7 @@ const ProductOverview = ({ product, styles }) => {
           </div>
           <div className="product-style-container">
             <ProductStyleSelector
+              currentPhoto={selectedStyle}
               handleSelectedStyleClick={handleSelectedStyle}
               styles={styles}
               styleName={selectedStyle}

@@ -8,14 +8,39 @@
   /* border-radius: 50%;
   overflow: hidden;
   background-color: black; */
+.style-name {
+  display: flex;
+}
+
+.styles-thumbnail-list {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
 
   .style-image {
-
+    flex: 0 0 25%;
+    position: relative;
+    width:60px;
+    height:60px;
   }
 
   .style-image-icon {
+    cursor: pointer;
     border-radius: 50%;
     width: 60px;
     height: 60px;
     margin-left: 10px;
+  }
+
+  .style-image-icon-selected {
+    background-color: white;
+    position: absolute;
+    font-size: 60px;
+    margin-left: 60px;
+    opacity: 0.6;
+    margin-left: 10px;
+  }
+  .style-image-icon-disabled {
+    display: none;
   }
