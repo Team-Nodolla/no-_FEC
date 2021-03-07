@@ -7,6 +7,7 @@
 import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import axios from 'axios';
+import config from '../../../../../../../config.js';
 import './ModalWindow.css';
 import ReviewModalStarRating from './ReviewModalStarRating/ReviewModalStarRating.jsx';
 import ReviewCharacteristics from '../AddReviewButton/ReviewCharacteristics/ReviewCharacteristics.jsx';
@@ -31,12 +32,11 @@ const ModalWindow = ({ handleClose, handleReviewSubmit, modalView, productName, 
       reviewRating,
       recommendRadio: 'true' ? true : false,
     };
-    console.log(reviewFile)
     let formData = new FormData();
     formData.append('image', reviewFile);
     // make axios post to some image upload API
     axios({
-      url: 'https://api.imgbb.com/1/upload?key=ce659253b0dc4dda6fda2b45c3d535ac',
+      url: `https://api.imgbb.com/1/upload?key=${config.imgbb}`,
       method: 'POST',
       data: formData,
     })
