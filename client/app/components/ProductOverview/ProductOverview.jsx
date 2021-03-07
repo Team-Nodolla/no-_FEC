@@ -25,7 +25,6 @@ const ProductOverview = ({ product, styles }) => {
       setSelectedStyle(() => styles[0]);
     }, [product, styles]);
 
-
     const onClickRightChange = () => {
       if (currentPhoto !== styles[currentPhoto].photos.length - 1) {
         setCurrentPhoto(currentPhoto + 1);
@@ -49,6 +48,7 @@ const ProductOverview = ({ product, styles }) => {
     };
 
     const handleSelectedStyle = (style, price) => {
+      setCurrentPhoto(0);
       setSelectedStyle(style);
       setPriceOfProduct(price);
     };
