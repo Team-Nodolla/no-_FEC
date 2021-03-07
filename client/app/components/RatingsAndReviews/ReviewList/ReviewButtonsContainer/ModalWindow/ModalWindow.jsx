@@ -5,18 +5,31 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable quotes */
 import React, { useEffect, useState } from 'react';
+import { useForm } from 'react-hook-form';
 import './ModalWindow.css';
 import ReviewModalStarRating from './ReviewModalStarRating/ReviewModalStarRating.jsx';
 import ReviewCharacteristics from '../AddReviewButton/ReviewCharacteristics/ReviewCharacteristics.jsx';
 
 const ModalWindow = ({ handleClose, handleReviewSubmit, modalView, productName, productID, metaData }) => {
   const [reviewRating, setReviewRating] = useState(0);
-  const [selectedRecommend, setSelectedRecommend] = useState('');
+  const [selectedRecommend, setSelectedRecommend] = useState();
   const [reviewCharsObj, setReviewCharsObj] = useState({});
   const [reviewSummary, setReviewSummary] = useState('');
   const [reviewBody, setReviewBody] = useState('');
   const [reviewUsername, setReviewUsername] = useState('');
   const [reviewEmail, setReviewEmail] = useState('');
+
+  const { register, handleSubmit } = useForm();
+
+  const onSubmit = (data) => {
+    let gatheredInfo = {
+      ...data,
+      productID,
+      reviewCharsObj,
+      reviewRating,
+      recommendRadio: 'true' ? true : false,
+    };
+  };
 
   const modalClassName = modalView ? "review-modal review-modal-display" : "review-modal review-modal-hide";
 
@@ -44,10 +57,11 @@ const ModalWindow = ({ handleClose, handleReviewSubmit, modalView, productName, 
   };
 
   const handleRecommendChange = (e) => {
-    if (e.target.value === "recommendYes") {
+    console.log('e tar val: ', typeof e.target.value);
+    if (e.target.value === "true") {
       setSelectedRecommend(true);
     }
-    if (e.target.value === "recommendNo") {
+    if (e.target.value === "false") {
       setSelectedRecommend(false);
     }
   };
@@ -99,7 +113,7 @@ const ModalWindow = ({ handleClose, handleReviewSubmit, modalView, productName, 
             <h2>Write your review</h2>
             <h3>About the {productName}</h3>
           </div>
-          <form>
+          <form onSubmit={handleSubmit(onSubmit)}>
             <div>
               Overall Rating*:{' '}
               <OverallRatingStarRating />
@@ -109,11 +123,11 @@ const ModalWindow = ({ handleClose, handleReviewSubmit, modalView, productName, 
                 Do you recommend this product?*:{' '}
                 <label>
                   Yes
-                  <input type="radio" name="recommendRadio" value="recommendYes" checked={selectedRecommend === true} onChange={handleRecommendChange} required />
+                  <input ref={register} type="radio" name="recommendRadio" value={true} checked={selectedRecommend === true} onChange={handleRecommendChange} required />
                 </label>
                 <label>
                   No
-                  <input type="radio" name="recommendRadio" value="recommendNo" checked={selectedRecommend === false} onChange={handleRecommendChange} />
+                  <input ref={register} type="radio" name="recommendRadio" value={false} checked={selectedRecommend === false} onChange={handleRecommendChange} />
                 </label>
               </label>
             </div><br></br>
@@ -122,25 +136,26 @@ const ModalWindow = ({ handleClose, handleReviewSubmit, modalView, productName, 
                 metaData={metaData}
                 setReviewCharsObj={setReviewCharsObj}
                 reviewCharsObj={reviewCharsObj}
+                register={register}
               />
             </div>
             <div>
               <label>
                 Review Summary:{' '}<br></br>
-                <textarea name="reviewSummary" maxLength="60" rows="3" cols="20" placeholder="Example: Best purchase ever" value={reviewSummary} onChange={handleSummaryChange} />
+                <textarea ref={register} name="reviewSummary" maxLength="60" rows="3" cols="20" placeholder="Example: Best purchase ever" value={reviewSummary} onChange={handleSummaryChange} />
               </label>
             </div><br></br>
             <div>
               <label>
                 Review Body*:{' '}<br></br>
-                <textarea name="reviewBody" maxLength="1000" minLength="50" rows="4" cols="40" placeholder="Why did you like the product or not?" value={reviewBody} onChange={handleBodyChange} required />
+                <textarea ref={register} name="reviewBody" maxLength="1000" minLength="50" rows="4" cols="40" placeholder="Why did you like the product or not?" value={reviewBody} onChange={handleBodyChange} required />
               </label><br></br>
               <MinimumRequiredBodyCharacters />
             </div><br></br>
             <div className="review-modal-username">
               <label>
                 Username*:{' '}<br></br>
-                <input type="text" name="reviewUsername" maxLength="60" rows="2" cols="20" placeholder="Example: jackson11!" value={reviewUsername} onChange={handleUsernameChange} required /><br></br>
+                <input ref={register} type="text" name="reviewUsername" maxLength="60" rows="2" cols="20" placeholder="Example: jackson11!" value={reviewUsername} onChange={handleUsernameChange} required /><br></br>
                 <div className="review-username-warning">
                   For privacy reasons, please do not use your full name or email address
                 </div>
@@ -148,13 +163,15 @@ const ModalWindow = ({ handleClose, handleReviewSubmit, modalView, productName, 
             </div><br></br>
             <div className="review-modal-email">
               <label>
-                Username*:{' '}<br></br>
-                <input type="email" name="reviewEmail" maxLength="60" rows="2" cols="20" placeholder="Example: jackson11@email.com" value={reviewEmail} onChange={handleEmailChange} required /><br></br>
+                Email*:{' '}<br></br>
+                <input ref={register} type="email" name="reviewEmail" maxLength="60" rows="2" cols="20" placeholder="Example: jackson11@email.com" value={reviewEmail} onChange={handleEmailChange} required /><br></br>
                 <div className="review-email-warning">
                   For authentication reasons, you will not be emailed
                 </div>
               </label>
             </div><br></br>
+            <input ref={register} type="file" name="images" />
+            <input type="submit" />
           </form>
 
           <div className="reviewModalButtonContainer">
