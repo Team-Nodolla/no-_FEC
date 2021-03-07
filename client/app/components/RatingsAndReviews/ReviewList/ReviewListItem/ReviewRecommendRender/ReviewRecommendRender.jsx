@@ -5,6 +5,7 @@ const ReviewRecommendRender = ({ review }) => {
     return (
       <div className="review-item-recommend-container">
         <span>&#10003;</span>
+        {' '}
         <span>I recommend this product</span>
       </div>
     );

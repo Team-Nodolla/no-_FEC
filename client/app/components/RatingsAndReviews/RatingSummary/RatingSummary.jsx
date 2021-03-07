@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import propTypes from 'proptypes';
 import StarRating from '../../StarRating/StarRating.jsx';
-import getAverageRating from '../../helperFunctions/getAverageRating.jsx';
+import { getAverageRating } from '../../helperFunctions/helperFunctions.js';
 import './RatingSummary.css';
 
 const RatingSummary = ({ metaData }) => {

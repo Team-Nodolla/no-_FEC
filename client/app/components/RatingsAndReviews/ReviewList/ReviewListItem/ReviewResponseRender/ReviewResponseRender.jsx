@@ -5,7 +5,7 @@ const ReviewResponseRender = ({ review }) => {
     return (
       <div className="review-response-container">
         <div className="review-response-header">
-          Response:
+          Response from seller:
         </div>
         <div className="review-response-body">
           {review.response}
