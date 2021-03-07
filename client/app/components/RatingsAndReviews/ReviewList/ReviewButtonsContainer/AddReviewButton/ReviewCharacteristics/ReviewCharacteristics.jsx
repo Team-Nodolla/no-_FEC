@@ -9,12 +9,14 @@ const ReviewCharacteristics = ({ metaData, reviewCharsObj, setReviewCharsObj }) 
   for (const [key, value] of Object.entries(metaData.characteristics)) {
     // console.log(key, value); // string, object
     characteristicArray.push(
-      <ReviewCharacteristic
-        name={key}
-        id={value.id}
-        reviewCharsObj={reviewCharsObj}
-        setReviewCharsObj={setReviewCharsObj}
-      />,
+      <div key={value.id}>
+        <ReviewCharacteristic
+          name={key}
+          id={value.id}
+          reviewCharsObj={reviewCharsObj}
+          setReviewCharsObj={setReviewCharsObj}
+        />
+      </div>,
     );
   }
 

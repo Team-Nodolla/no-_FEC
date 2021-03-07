@@ -6,8 +6,7 @@ import ProductOverview from './ProductOverview/ProductOverview.jsx';
 import RelatedProductsCarousel from './Carousels/RelatedProductsCarousel/RelatedProductsCarousel.jsx';
 import OutfitCarousel from './Carousels/OutfitCarousel/OutfitCarousel.jsx';
 import RatingsAndReviews from './RatingsAndReviews/RatingsAndReviews.jsx';
-import getAverageRating from './helperFunctions/getAverageRating.jsx';
-import getDefaultStyle from './helperFunctions/getDefaultStyle.jsx';
+import { getAverageRating, getDefaultStyle } from './helperFunctions/helperFunctions.js';
 import './App.css';
 
 const App = () => {

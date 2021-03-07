@@ -32,3 +32,17 @@
 .review-show-more-button-hidden {
   display: none;
 }
+
+.review-response-container {
+  border: 1px solid #333;
+  background-color: #dfdfdf;
+  margin: 10px;
+}
+
+.review-response-header {
+  margin: 10px 0 0 10px
+}
+
+.review-response-body {
+  margin: 10px 0 10px 10px
+}

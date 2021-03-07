@@ -4,8 +4,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import propTypes from 'proptypes';
-import averageRating from '../../helperFunctions/getAverageRating.jsx';
-import getDefaultStyle from '../../helperFunctions/getDefaultStyle.jsx';
+import { getAverageRating, getDefaultStyle } from '../../helperFunctions/helperFunctions.js';
 import CarouselCard from '../CarouselCard/CarouselCard.jsx';
 import NextButton from '../CarouselButtons/CarouselNextButton.jsx';
 import BackButton from '../CarouselButtons/CarouselBackButton.jsx';
@@ -75,7 +74,7 @@ const RelatedProductsCarousel = ({ currentProductID, relatedProductsIDs = [], ha
       .then((reviewsResponses) => {
         reviewsResponses.forEach((response, index) => {
           const { ratings } = response.data;
-          putInState[index].stars = averageRating(ratings);
+          putInState[index].stars = getAverageRating(ratings);
         });
         setAllRelatedProducts(putInState);
       })

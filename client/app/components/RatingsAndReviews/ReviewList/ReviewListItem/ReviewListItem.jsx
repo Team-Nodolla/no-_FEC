@@ -1,7 +1,9 @@
+/* eslint-disable import/extensions */
 /* eslint-disable react/prop-types */
 import React, { useEffect, useState } from 'react';
 import StarRating from '../../../StarRating/StarRating.jsx';
 import ReviewListItemThumbnails from './ReviewListItemThumbnails/ReviewListItemThumbnails.jsx';
+import ReviewBodyRender from './ReviewBodyRender/ReviewBodyRender.jsx';
 import './ReviewListItem.css';
 
 const ReviewListItem = ({ review }) => {
@@ -19,37 +21,6 @@ const ReviewListItem = ({ review }) => {
     setReviewBodyButtonClass('review-show-more-button-hidden');
   };
 
-  const ReviewBodyRender = () => {
-    if (review.body.length > 250) {
-      return (
-        <>
-          <div className="reviewListItemBody">
-            {reviewTileBody}
-            <div className="review-show-body-link">
-              <button type="button" className={reviewBodyButtonClass} onClick={handleShowMoreBody}>show more</button>
-            </div>
-            <ReviewItemThumbnailRender />
-          </div>
-        </>
-      );
-    }
-    return (
-      <div className="reviewListItemBody">
-        {reviewTileBody}<br></br>
-        <ReviewItemThumbnailRender />
-      </div>
-    );
-  };
-
-  const ReviewItemThumbnailRender = () => {
-    if (review.photos.length > 0) {
-      return (
-        <ReviewListItemThumbnails photos={review.photos} />
-      );
-    }
-    return (<></>);
-  };
-
   return (
     <div className="reviewListItem">
       <div className="reviewListItemStarRating">
@@ -63,7 +34,12 @@ const ReviewListItem = ({ review }) => {
       <div className="reviewListItemSummary">
         {review.summary}
       </div>
-      <ReviewBodyRender />
+      <ReviewBodyRender
+        review={review}
+        reviewTileBody={reviewTileBody}
+        reviewBodyButtonClass={reviewBodyButtonClass}
+        handleShowMoreBody={handleShowMoreBody}
+      />
     </div>
   );
 };
