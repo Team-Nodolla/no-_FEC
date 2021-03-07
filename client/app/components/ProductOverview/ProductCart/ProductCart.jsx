@@ -11,7 +11,7 @@ const ProductCart = ({ selectedStyle }) => {
     const arrayOfSkus = Object.values(selectedStyle.skus);
 
     arrayOfSkus.unshift({
-      quantity: null, size:"Select Size",
+      quantity: null, size:'Select Size',
     });
 
     useEffect(() => {

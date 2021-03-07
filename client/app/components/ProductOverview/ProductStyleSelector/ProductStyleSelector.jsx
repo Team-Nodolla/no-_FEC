@@ -2,6 +2,7 @@ import React from 'react';
 import './ProductStyleSelector.css';
 const ProductStyleSelector = ({ currentPhoto, handleSelectedStyleClick, styles ,styleName}) => {
   if (styles !== undefined) {
+    const noImg = 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/1024px-No_image_available.svg.png';
     return (
       <div className="styles-thumbnail">
         <div className="style-name">
@@ -13,7 +14,10 @@ const ProductStyleSelector = ({ currentPhoto, handleSelectedStyleClick, styles ,
           return(
             <div className="style-image" key={productStyle.style_id}>
             <i className={`style-image-icon-${currentPhoto.style_id === productStyle.style_id ? 'selected' : 'disabled'} far fa-check-circle`}></i>
-            <img  className="style-image-icon " onClick={() => handleSelectedStyleClick(productStyle, productStyle.original_price)} src={productStyle.photos[0].thumbnail_url} />
+            <img
+              className="style-image-icon "
+              onClick={() => handleSelectedStyleClick(productStyle, productStyle.original_price)}
+              src={productStyle.photos[0].thumbnail_url === null ? noImg : productStyle.photos[0].thumbnail_url} />
             </div>
           )
         })}

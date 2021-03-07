@@ -9,7 +9,6 @@ const ProductThumbnailScroll = ({ onClickChangeThumbnail, currentPhoto, arrayOfP
         <div />
       );
     }
-
     return (
       <div className="test">
         {arrayOfPhoto.photos.map((photo) => {
