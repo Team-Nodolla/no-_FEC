@@ -11,7 +11,7 @@ const ProductCart = ({ selectedStyle }) => {
     const arrayOfSkus = Object.values(selectedStyle.skus);
 
     arrayOfSkus.unshift({
-      quantity: null, size:"Select Size",
+      quantity: null, size:'Select Size',
     });
 
     useEffect(() => {
@@ -37,14 +37,13 @@ const ProductCart = ({ selectedStyle }) => {
       && arrayOfSkus[1].quantity === null) {
       return (
         <div>
-          <h1>Out of Stock!</h1>
+          <h2>Out of Stock!</h2>
         </div>
       );
     }
-
     return (
       <div className="product-option-selectors">
-        <div className="product-size-dropdown"><SizeSelector onSelectSize={onSelectSize} arraySkus={arrayOfSkus} /></div>
+        <div className="product-size-dropdown"><SizeSelector selectedSize={selectedSize} onSelectSize={onSelectSize} arraySkus={arrayOfSkus} /></div>
         <div className="product-quantity-dropdown">
           <QuantitySelector
             selectedSize={selectedSize}
