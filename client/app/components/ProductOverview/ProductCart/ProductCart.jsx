@@ -6,9 +6,11 @@ import './ProductCart.css';
 
 const ProductCart = ({ selectedStyle }) => {
   if (selectedStyle !== undefined) {
+    const toggle = false;
     const [selectedSize, setSelectedSize] = useState(null);
     const [selectedQuantity, setSelectedQuantity] = useState(null);
     const arrayOfSkus = Object.values(selectedStyle.skus);
+    const [requiredSelection, setRequiredSelection] = useState(toggle);
 
     arrayOfSkus.unshift({
       quantity: null, size:'Select Size',
@@ -31,6 +33,16 @@ const ProductCart = ({ selectedStyle }) => {
       });
     };
 
+    const onClickAddCart = () => {
+      if (selectedSize === arrayOfSkus[0].size || selectedQuantity === null) {
+        setRequiredSelection((view) => !view);
+        console.log('ehhhhh');
+      } else {
+        setRequiredSelection((view) => !view);
+        console.log('gottem');
+      }
+    };
+
     if (
       arrayOfSkus.length === 2
       && arrayOfSkus[0].quantity === null
@@ -41,6 +53,7 @@ const ProductCart = ({ selectedStyle }) => {
         </div>
       );
     }
+    console.log(requiredSelection);
     return (
       <div className="product-option-selectors">
         <div className="product-size-dropdown"><SizeSelector selectedSize={selectedSize} onSelectSize={onSelectSize} arraySkus={arrayOfSkus} /></div>
@@ -50,6 +63,10 @@ const ProductCart = ({ selectedStyle }) => {
             sizeQuantity={selectedQuantity}
             arraySkus={arrayOfSkus}
           />
+        </div>
+        <div>
+          <button onClick={onClickAddCart}>Add to Cart</button>
+          <p className={`product-required-selection-${requiredSelection ? 'active' : 'disabled'}`}>please select a size</p>
         </div>
       </div>
     );

@@ -5,3 +5,12 @@
 .product-quantity-dropdown {
   margin-left: 40px;
 }
+
+.product-required-selection-active {
+  display: flex;
+  color: red;
+}
+
+.product-required-selection-disabled {
+  display: none;
+}
