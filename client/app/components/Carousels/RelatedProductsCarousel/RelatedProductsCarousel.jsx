@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/control-has-associated-label */
 /* eslint-disable import/extensions */
 /* eslint-disable react/forbid-prop-types */
@@ -6,7 +8,7 @@ import axios from 'axios';
 import propTypes from 'proptypes';
 import { getAverageRating, getDefaultStyle } from '../../helperFunctions/helperFunctions.js';
 import CarouselCard from '../CarouselCard/CarouselCard.jsx';
-// import ComparisonWindow from './ComparisonWindow/ComparisonWindow.jsx';
+import ComparisonWindow from './ComparisonWindow/ComparisonWindow.jsx';
 import NextButton from '../CarouselButtons/CarouselNextButton.jsx';
 import BackButton from '../CarouselButtons/CarouselBackButton.jsx';
 import './RelatedProductsCarousel.css';
@@ -19,7 +21,7 @@ const RelatedProductsCarousel = (
   },
 ) => {
   const [allRelatedProducts, setAllRelatedProducts] = useState([]);
-  // const [comparisonModalShowing, setComparisonModalShowing] = useState(false);
+  const [displayModal, setDisplayModal] = useState(false);
   const [currentlyDisplayed, setCurrentlyDisplayed] = useState(
     {
       start: 0,
@@ -92,15 +94,9 @@ const RelatedProductsCarousel = (
       });
   };
 
-  const cardTemplate = (cardDetails) => (
-    <CarouselCard
-      key={cardDetails.id}
-      { ...cardDetails }
-      handleActionButton={() => { console.log('click!'); }}
-      handleRedirect={handleRedirect}
-      carouselType="related"
-    />
-  );
+  const handleActionButton = () => {
+    setDisplayModal(!displayModal);
+  };
 
   const handleNext = () => {
     if (currentlyDisplayed.end < allRelatedProducts.length - 1) {
@@ -126,11 +122,25 @@ const RelatedProductsCarousel = (
     }
   };
 
+  const cardTemplate = (cardDetails) => (
+    <CarouselCard
+      key={cardDetails.id}
+      {...cardDetails}
+      handleActionButton={handleActionButton}
+      handleRedirect={handleRedirect}
+      carouselType="related"
+    />
+  );
+
   return (
     <>
       <h2 id="related-carousel-title">Related Items</h2>
-      <div id="related-carousel">
+      <div
+        id="related-carousel"
+        onClick={() => { setDisplayModal(false); }}
+      >
         <BackButton atStart={currentlyDisplayed.atStart} handleBack={handleBack} />
+        <ComparisonWindow displayModal={displayModal} />
         <hr className="outfit-carousel-divider" />
         <div id="related-card-container">
           {currentlyDisplayed.cards.map((displayedProduct) => (

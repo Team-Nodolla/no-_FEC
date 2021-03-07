@@ -4,7 +4,7 @@ import './ComparisonWindow.css';
 
 // features = [ {feature, value}, {feature, value} ]
 
-const ComparisonWindow = ({ displayComparisonModal }) => {
+const ComparisonWindow = ({ displayModal }) => {
   // Hard Coded values for testing
   const currentProductName = 'Camo Onesie';
   const currentProductFeatures = [
@@ -28,25 +28,27 @@ const ComparisonWindow = ({ displayComparisonModal }) => {
       value: 'Skinny',
     },
   ];
-  console.log(currentProductName, relatedProductName);
+  console.log(currentProductName, '||', relatedProductName);
   return (
     <div
       id="comparison-modal-containter"
       className={
-        displayComparisonModal
+        displayModal
           ? 'comparison-modal-visible'
           : 'comparison-modal-invisible'
       }
     >
       <h3 id="comparison-modal-title">Comparison</h3>
-      {/* <span>{currentProductName}</span> */}
-      {/* <span>{relatedProductName}</span> */}
+      <div id="comparison-modal-names">
+        <div id="comparison-modal-current-name">{currentProductName}</div>
+        <div id="comparison-modal-related-name">{relatedProductName}</div>
+      </div>
     </div>
   );
 };
 
 ComparisonWindow.propTypes = {
-  displayComparisonModal: propTypes.bool.isRequired,
+  displayModal: propTypes.bool.isRequired,
 };
 
 export default ComparisonWindow;
