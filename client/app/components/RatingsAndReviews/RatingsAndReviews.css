@@ -1,13 +1,13 @@
-.header {
-  margin: 10px 10px 10px 60px;
+.reviews-header {
+  margin-left: 20%;
 }
 
-.ratingsAndReviewsContainer {
+.ratings-and-reviews-container {
   display: flex;
   justify-content: center;
 }
 
-.breakdownContainer {
+.review-breakdown-container {
   display: flex;
   flex-direction: column;
   justify-content: start;
@@ -18,7 +18,18 @@
   min-height: 500px;
 }
 
-.reviewListContainer {
+.reviewList {
+  border: 3px solid #333;
+  background-color: #dfdfdf;
+  min-height: 100px;
+  max-height: 100%;
+  margin: 10px;
+  overflow-y: auto;
+  flex: 1;
+}
+
+
+.review-list-container {
   display: flex;
   flex-direction: column;
   justify-content: start;
@@ -27,6 +38,7 @@
   border: 3px solid #333;
   background-color: #dfdfdf;
   min-height: 500px;
+  max-height: 100vh;
 }
 
 .ratingBreakdown {
@@ -43,25 +55,20 @@
   margin: 10px;
 }
 
-.sortForm {
+.sort-form {
   border: 3px solid #333;
   background-color: #dfdfdf;
   min-height: 30px;
   margin: 10px;
 }
 
-.sortFormLabel {
+.sort-form-label {
   margin: 10px 0 0 10px;
 }
 
-.reviewList {
-  border: 3px solid #333;
-  background-color: #dfdfdf;
-  min-height: 100px;
-  max-height: 100%;
-  margin: 10px;
+.sort-form-select {
+  margin: 5px 0 0 10px;
 }
-
 
 .reviewButtonsContainer {
   display: flex;

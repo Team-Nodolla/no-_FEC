@@ -55,15 +55,15 @@ const RatingsAndReviews = ({ productID, metaData, productName }) => {
 
   return (
     <>
-      <h3 className="header">RATINGS & REVIEWS</h3>
-      <div className="ratingsAndReviewsContainer">
-        <div className="breakdownContainer">
-          <RatingSummary metaData={metaData} className="ratingSummary" />
+      <h3 className="reviews-header">RATINGS & REVIEWS</h3>
+      <div className="ratings-and-reviews-container">
+        <div className="review-breakdown-container">
+          <RatingSummary metaData={metaData} className="review-rating-summary" />
         </div>
-        <div className="reviewListContainer">
-          <form onChange={(event) => { setSortOrder(event.target.value); }} className="sortForm">
-            <label htmlFor="sortForm" className="sortFormLabel">Sort on </label>
-            <select id="sortForm" name="sortForm" className="sortFormSelect">
+        <div className="review-list-container">
+          <form onChange={(event) => { setSortOrder(event.target.value); }} className="sort-form">
+            <label htmlFor="sort-form" className="sort-form-label">Sort on </label>
+            <select id="sort-form" name="sort-form" className="sort-form-select">
               <option value="relevant">relevant</option>
               <option value="helpful">helpful</option>
               <option value="newest">newest</option>

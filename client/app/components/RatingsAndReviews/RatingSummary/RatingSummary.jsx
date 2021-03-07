@@ -57,7 +57,7 @@ const RatingSummary = ({ metaData }) => {
   // pass characteristcs to product breakdown component
   return (
     <>
-      <div className="ratingSummary">
+      <div className="review-rating-summary">
         <div className="averageScore">
           {averageScore}
         </div>
