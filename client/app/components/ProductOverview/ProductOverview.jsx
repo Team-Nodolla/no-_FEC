@@ -17,10 +17,6 @@ const ProductOverview = ({ product, styles }) => {
     const [expandView, setExpandView] = useState(toggle);
 
     useEffect(() => {
-      setCurrentPhoto(0);
-    }, [styles, selectedStyle]);
-
-    useEffect(() => {
       setPriceOfProduct(() => product.originalPrice);
       setSelectedStyle(() => styles[0]);
     }, [product, styles]);
@@ -48,7 +44,9 @@ const ProductOverview = ({ product, styles }) => {
     };
 
     const handleSelectedStyle = (style, price) => {
-      setCurrentPhoto(0);
+      if (currentPhoto > style.photos.length - 1) {
+        setCurrentPhoto(style.photos.length - 1);
+      }
       setSelectedStyle(style);
       setPriceOfProduct(price);
     };
