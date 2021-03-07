@@ -38,7 +38,10 @@ const ProductOverview = ({ product, styles }) => {
     };
 
     const onClickZoom = () => {
-      setExpandView((view) => !view);
+      console.log(styles);
+      if (styles[currentPhoto].photos[currentPhoto].url !== null) {
+        setExpandView((view) => !view);
+      }
     };
 
     const onClickChangeThumbnail = (photo) => {
