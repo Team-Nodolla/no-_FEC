@@ -42,6 +42,7 @@
     "proptypes": "^1.1.0",
     "react": "^16.14.0",
     "react-dom": "^16.14.0",
+    "react-hook-form": "^6.15.4",
     "react-image-magnify": "^2.7.4",
     "webpack": "^5.24.1",
     "webpack-cli": "^4.5.0"
