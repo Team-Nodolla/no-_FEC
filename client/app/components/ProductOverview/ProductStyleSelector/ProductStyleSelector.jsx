@@ -10,7 +10,6 @@ const ProductStyleSelector = ({ currentPhoto, handleSelectedStyleClick, styles ,
         </div>
         <div className="styles-thumbnail-list">
         {styles.map((productStyle) => {
-          console.log(productStyle);
           return(
             <div className="style-image" key={productStyle.style_id}>
             <i className={`style-image-icon-${currentPhoto.style_id === productStyle.style_id ? 'selected' : 'disabled'} far fa-check-circle`}></i>
