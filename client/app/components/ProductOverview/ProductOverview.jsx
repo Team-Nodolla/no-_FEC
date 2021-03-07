@@ -18,12 +18,13 @@ const ProductOverview = ({ product, styles }) => {
 
     useEffect(() => {
       setCurrentPhoto(0);
-    }, [styles]);
+    }, [styles, selectedStyle]);
 
     useEffect(() => {
       setPriceOfProduct(() => product.originalPrice);
       setSelectedStyle(() => styles[0]);
     }, [product, styles]);
+
 
     const onClickRightChange = () => {
       if (currentPhoto !== styles[currentPhoto].photos.length - 1) {
@@ -57,7 +58,6 @@ const ProductOverview = ({ product, styles }) => {
         <div className="product-thumbnail">
           <ProductThumbnailScroll
             onClickChangeThumbnail={onClickChangeThumbnail}
-            key={styles[currentPhoto].style_id}
             currentPhoto={selectedStyle.photos[currentPhoto].thumbnail_url}
             arrayOfPhoto={selectedStyle}
           />
