@@ -6,6 +6,7 @@ import axios from 'axios';
 import propTypes from 'proptypes';
 import { getAverageRating, getDefaultStyle } from '../../helperFunctions/helperFunctions.js';
 import CarouselCard from '../CarouselCard/CarouselCard.jsx';
+// import ComparisonWindow from './ComparisonWindow/ComparisonWindow.jsx';
 import NextButton from '../CarouselButtons/CarouselNextButton.jsx';
 import BackButton from '../CarouselButtons/CarouselBackButton.jsx';
 import './RelatedProductsCarousel.css';
@@ -18,6 +19,7 @@ const RelatedProductsCarousel = (
   },
 ) => {
   const [allRelatedProducts, setAllRelatedProducts] = useState([]);
+  // const [comparisonModalShowing, setComparisonModalShowing] = useState(false);
   const [currentlyDisplayed, setCurrentlyDisplayed] = useState(
     {
       start: 0,
@@ -94,7 +96,7 @@ const RelatedProductsCarousel = (
     <CarouselCard
       key={cardDetails.id}
       { ...cardDetails }
-      buttonFunc={console.log.bind(null, 'click')}
+      handleActionButton={() => { console.log('click!'); }}
       handleRedirect={handleRedirect}
       carouselType="related"
     />

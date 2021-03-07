@@ -1,0 +1,13 @@
+#comparison-modal-containter {
+  width: 400px;
+  height: 450px;
+  border: 3px solid black;
+}
+
+.comparison-modal-invisible {
+  display: none;
+}
+
+#comparison-modal-title {
+  margin-left: 10px;
+}
