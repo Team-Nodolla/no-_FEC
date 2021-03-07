@@ -12,41 +12,37 @@ import './App.css';
 const App = () => {
   const [currentProduct, setCurrentProduct] = useState({});
 
-  const fetchProductInfo = (productsResponse, putInState) => {
-    putInState.id = productsResponse.data.id;
-    putInState.name = productsResponse.data.name;
-    putInState.category = productsResponse.data.category;
-    putInState.description = productsResponse.data.description;
-    putInState.slogan = productsResponse.data.slogan;
-    return axios.get(`/products/${putInState.id}/styles`);
+  const fetchProductInfoByID = (productIDResponse, putInState) => {
+    const { id, name, category, description, slogan, features } = productIDResponse.data;
+    const allOtherPromises = [
+      axios.get(`/products/${id}/styles`),
+      axios.get(`/products/${id}/related`),
+      axios.get(`/reviews/meta/${id}`)
+    ];
+    putInState.id = id;
+    putInState.name = name;
+    putInState.category = category;
+    putInState.description = description;
+    putInState.slogan = slogan;
+    putInState.features = features;
+
+    return Promise.all(allOtherPromises);
   };
 
   const fetchFirstProductInfo = (productsResponse, putInState = {}) => {
-    putInState.id = productsResponse.data[0].id;
-    putInState.name = productsResponse.data[0].name;
-    putInState.category = productsResponse.data[0].category;
-    putInState.description = productsResponse.data[0].description;
-    putInState.slogan = productsResponse.data[0].slogan;
-    return axios.get(`/products/${putInState.id}/styles`);
-  };
-
-  const fetchProductStyles = (stylesResponse, putInState) => {
-    putInState.styles = stylesResponse.data.results;
-    putInState.defaultStyle = getDefaultStyle(putInState.styles);
-    putInState.originalPrice = putInState.defaultStyle.original_price;
-    putInState.salePrice = putInState.defaultStyle.sale_price;
-    putInState.photos = putInState.defaultStyle.photos;
-    return axios.get(`/products/${putInState.id}/related`);
-  };
-
-  const fetchRelatedProductsIDs = (relatedProductsResponse, putInState) => {
-    putInState.relatedProductIDs = relatedProductsResponse.data;
-    return axios.get(`/reviews/meta/${putInState.id}`);
-  };
-
-  const fetchMetaDataAndAverageRatings = (metaDataResponse, putInState) => {
-    putInState.metaData = metaDataResponse.data;
-    putInState.averageRating = getAverageRating(metaDataResponse.data.ratings);
+    const { id, name, category, description, slogan } = productsResponse.data[0];
+    const allOtherPromises = [
+      axios.get(`/products/${id}/styles`),
+      axios.get(`/products/${id}/related`),
+      axios.get(`/reviews/meta/${id}`),
+      axios.get(`/products/${id}`)
+    ];
+    putInState.id = id;
+    putInState.name = name;
+    putInState.category = category;
+    putInState.description = description;
+    putInState.slogan = slogan;
+    return Promise.all(allOtherPromises);
   };
 
   const fetchNewProductDetails = (id) => {
@@ -55,17 +51,30 @@ const App = () => {
     axios.get(serverEndpoint)
       .then((productsResponse) => (
         id
-          ? fetchProductInfo(productsResponse, putInState)
+          ? fetchProductInfoByID(productsResponse, putInState)
           : fetchFirstProductInfo(productsResponse, putInState)
       ))
-      .then((stylesResponse) => (
-        fetchProductStyles(stylesResponse, putInState)
-      ))
-      .then((relatedProductsResponse) => (
-        fetchRelatedProductsIDs(relatedProductsResponse, putInState)
-      ))
-      .then((metaDataResponse) => {
-        fetchMetaDataAndAverageRatings(metaDataResponse, putInState);
+      .then((allResponses) => {
+        const [
+          stylesResponse,
+          relatedIDsResponse,
+          metaDataResponse,
+          currentIDResponse
+        ] = allResponses;
+
+        putInState.styles = stylesResponse.data.results;
+        putInState.defaultStyle = getDefaultStyle(putInState.styles);
+        putInState.originalPrice = putInState.defaultStyle.original_price;
+        putInState.salePrice = putInState.defaultStyle.sale_price;
+        putInState.photos = putInState.defaultStyle.photos;
+
+        putInState.relatedProductIDs = relatedIDsResponse.data;
+
+        putInState.metaData = metaDataResponse.data;
+        putInState.averageRating = getAverageRating(metaDataResponse.data.ratings);
+
+        !id ? putInState.features = currentIDResponse.data.features : 0;
+
         setCurrentProduct({ ...putInState });
       })
       .catch((err) => {
