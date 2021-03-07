@@ -36,10 +36,13 @@ const ProductCart = ({ selectedStyle }) => {
     const onClickAddCart = () => {
       if (selectedSize === arrayOfSkus[0].size || selectedQuantity === null) {
         setRequiredSelection((view) => !view);
-        console.log('ehhhhh');
       } else {
+        // if (confirm('Do you want to add to cart?')) {
+        //   alert('purchased!');
+        // } else {
+        //   alert('cancelled purchase!');
+        // }
         setRequiredSelection((view) => !view);
-        console.log('gottem');
       }
     };
 
