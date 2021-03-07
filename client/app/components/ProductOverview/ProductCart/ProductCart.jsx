@@ -56,7 +56,6 @@ const ProductCart = ({ selectedStyle }) => {
         </div>
       );
     }
-    console.log(requiredSelection);
     return (
       <div className="product-option-selectors">
         <div className="product-size-dropdown"><SizeSelector selectedSize={selectedSize} onSelectSize={onSelectSize} arraySkus={arrayOfSkus} /></div>
