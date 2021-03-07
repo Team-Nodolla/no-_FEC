@@ -10,7 +10,13 @@ import NextButton from '../CarouselButtons/CarouselNextButton.jsx';
 import BackButton from '../CarouselButtons/CarouselBackButton.jsx';
 import './RelatedProductsCarousel.css';
 
-const RelatedProductsCarousel = ({ currentProductID, relatedProductsIDs = [], handleRedirect }) => {
+const RelatedProductsCarousel = (
+  {
+    currentProductID = 0,
+    relatedProductsIDs = [],
+    handleRedirect,
+  },
+) => {
   const [allRelatedProducts, setAllRelatedProducts] = useState([]);
   const [currentlyDisplayed, setCurrentlyDisplayed] = useState(
     {
@@ -87,7 +93,7 @@ const RelatedProductsCarousel = ({ currentProductID, relatedProductsIDs = [], ha
   const cardTemplate = (cardDetails) => (
     <CarouselCard
       key={cardDetails.id}
-      {...cardDetails}
+      { ...cardDetails }
       buttonFunc={console.log.bind(null, 'click')}
       handleRedirect={handleRedirect}
       carouselType="related"
@@ -121,13 +127,15 @@ const RelatedProductsCarousel = ({ currentProductID, relatedProductsIDs = [], ha
   return (
     <>
       <h2 id="related-carousel-title">Related Items</h2>
-      <div id="carousel">
+      <div id="related-carousel">
         <BackButton atStart={currentlyDisplayed.atStart} handleBack={handleBack} />
-        <div id="products">
+        <hr className="outfit-carousel-divider" />
+        <div id="related-card-container">
           {currentlyDisplayed.cards.map((displayedProduct) => (
             cardTemplate(displayedProduct)
           ))}
         </div>
+        <hr className="outfit-carousel-divider" />
         <NextButton atEnd={currentlyDisplayed.atEnd} handleNext={handleNext} />
       </div>
     </>
@@ -137,7 +145,7 @@ const RelatedProductsCarousel = ({ currentProductID, relatedProductsIDs = [], ha
 RelatedProductsCarousel.propTypes = {
   currentProductID: propTypes.number.isRequired,
   handleRedirect: propTypes.func.isRequired,
-  relatedProductsIDs: propTypes.array,
+  relatedProductsIDs: propTypes.array.isRequired,
 };
 
 export default RelatedProductsCarousel;
