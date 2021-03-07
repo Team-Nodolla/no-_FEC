@@ -72,6 +72,8 @@ const ProductOverview = ({ product, styles }) => {
             onClickRightChange={onClickRightChange}
             style={selectedStyle}
           />
+          <i alt="Left Button" onClick={onClickLeftChange} className={`image-left-btn-${currentPhoto !== 0 ? `active` : `disabled`} fas fa-chevron-left`}></i>
+          <i alt="Right Button" onClick={onClickRightChange} className={`image-right-btn-${currentPhoto !== (selectedStyle.photos.length - 1) ? `active` : `disabled`} fas fa-chevron-right`}></i>
         </div>
         <div className="product-info-container">
           <div className="product-description-container">

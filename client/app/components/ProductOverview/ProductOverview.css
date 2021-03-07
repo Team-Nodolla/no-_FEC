@@ -23,7 +23,7 @@
   margin: 10px 10px;
   height: 700px;
   width: 500px;
-  margin-left: -60px;
+  margin-left: 60px;
 }
 
 .product-description-container {
@@ -52,4 +52,24 @@
   margin-left: -100px;
   /* background-color: grey;
   border-style: solid; */
+}
+
+.image-right-btn-active {
+  display: flex;
+  position: absolute;
+  margin-left: 800px;
+}
+
+.image-right-btn-disabled {
+  display: none;
+}
+
+.image-left-btn-active {
+  display: flex;
+  position: absolute;
+  z-index: 19;
+}
+
+.image-left-btn-disabled {
+  display: none;
 }

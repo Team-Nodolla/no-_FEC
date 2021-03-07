@@ -20,14 +20,14 @@ const ProductImageGallery = ({
         {
         expandView === false
           ? (
+
             <div className="image-container">
-              <i alt="Left Button" onClick={onClickLeftChange} className={`image-left-btn-${currentPhoto !== 0 ? `active` : `disabled`} fas fa-chevron-left`}></i>
               <DefaultView
                 onClickImage={onClickZoom}
                 defaultPhoto={style.photos[currentPhoto]}
               />
-              <i alt="Right Button" onClick={onClickRightChange} className={`image-right-btn-${currentPhoto !== (style.photos.length - 1) ? `active` : `disabled`} fas fa-chevron-right`}></i>
             </div>
+
           )
           : (
             <div onClickImage={onClickZoom} className="product-expanded-modal">
