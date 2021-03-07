@@ -6,6 +6,7 @@
 /* eslint-disable quotes */
 import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
+import axios from 'axios';
 import './ModalWindow.css';
 import ReviewModalStarRating from './ReviewModalStarRating/ReviewModalStarRating.jsx';
 import ReviewCharacteristics from '../AddReviewButton/ReviewCharacteristics/ReviewCharacteristics.jsx';
@@ -18,6 +19,7 @@ const ModalWindow = ({ handleClose, handleReviewSubmit, modalView, productName, 
   const [reviewBody, setReviewBody] = useState('');
   const [reviewUsername, setReviewUsername] = useState('');
   const [reviewEmail, setReviewEmail] = useState('');
+  const [reviewFile, setReviewFile] = useState([]);
 
   const { register, handleSubmit } = useForm();
 
@@ -29,8 +31,26 @@ const ModalWindow = ({ handleClose, handleReviewSubmit, modalView, productName, 
       reviewRating,
       recommendRadio: 'true' ? true : false,
     };
+    console.log(reviewFile)
+    let formData = new FormData();
+    formData.append('image', reviewFile);
+    // make axios post to some image upload API
+    axios({
+      url: 'https://api.imgbb.com/1/upload?key=ce659253b0dc4dda6fda2b45c3d535ac',
+      method: 'POST',
+      data: formData,
+    })
+      .then((response) => {
+        console.log(response.data.data.url); // it works!
+      })
+      .catch((err) => {
+        console.log(err);
+      })
   };
 
+  const handleFileChange = (e) => {
+    setReviewFile(e.target.files[0]);
+  };
   const modalClassName = modalView ? "review-modal review-modal-display" : "review-modal review-modal-hide";
 
   const ratingExplanationArray = [
@@ -170,7 +190,7 @@ const ModalWindow = ({ handleClose, handleReviewSubmit, modalView, productName, 
                 </div>
               </label>
             </div><br></br>
-            <input ref={register} type="file" name="images" />
+            <input ref={register} type="file" name="images" onChange={handleFileChange} />
             <input type="submit" />
           </form>
 
