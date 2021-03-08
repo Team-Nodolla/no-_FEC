@@ -80,7 +80,6 @@ app.post('/reviews', (req, res) => {
 });
 
 app.put('/reviews/:review_id/helpful', (req, res) => {
-  console.log('req params review id: ', req.params.review_id)
   axios.put(`${url}/reviews/${req.params.review_id}/helpful`, {}, {
     headers: token,
   })
