@@ -1,5 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`Outfit Carousel AddToOutfitButton component renders correctly 1`] = `ShallowWrapper {}`;
-
-exports[`Outfit Carousel OutfitCarousel component renders correctly 1`] = `ShallowWrapper {}`;
