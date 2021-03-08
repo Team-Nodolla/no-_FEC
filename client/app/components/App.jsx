@@ -112,7 +112,7 @@ const App = () => {
           productImage: currentProduct?.photos?.[0]?.thumbnail_url ?? null,
           originalPrice: currentProduct?.originalPrice ?? 0,
           salePrice: currentProduct?.salePrice ?? null,
-          stars: currentProduct?.averageRating ?? null,
+          reviewScore: currentProduct?.averageRating ?? null,
         }}
         handleRedirect={handleRedirect}
       />
