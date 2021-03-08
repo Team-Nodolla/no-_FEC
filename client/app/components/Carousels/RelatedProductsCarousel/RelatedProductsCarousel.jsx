@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/control-has-associated-label */
 /* eslint-disable import/extensions */
 /* eslint-disable react/forbid-prop-types */
@@ -6,12 +8,30 @@ import axios from 'axios';
 import propTypes from 'proptypes';
 import { getAverageRating, getDefaultStyle } from '../../helperFunctions/helperFunctions.js';
 import CarouselCard from '../CarouselCard/CarouselCard.jsx';
+import ComparisonWindow from './ComparisonWindow/ComparisonWindow.jsx';
 import NextButton from '../CarouselButtons/CarouselNextButton.jsx';
 import BackButton from '../CarouselButtons/CarouselBackButton.jsx';
 import './RelatedProductsCarousel.css';
 
-const RelatedProductsCarousel = ({ currentProductID, relatedProductsIDs = [], handleRedirect }) => {
+const RelatedProductsCarousel = (
+  {
+    currentProductID = 0,
+    currentProductName = '',
+    currentProductFeatures = [],
+    relatedProductsIDs = [],
+    handleRedirect,
+  },
+) => {
   const [allRelatedProducts, setAllRelatedProducts] = useState([]);
+  const [compareModalData, setCompareModalData] = useState(
+    {
+      displayModal: false,
+      currentProductName,
+      currentProductFeatures,
+      relatedProductName: '',
+      relatedProductFeatures: [],
+    },
+  );
   const [currentlyDisplayed, setCurrentlyDisplayed] = useState(
     {
       start: 0,
@@ -41,6 +61,14 @@ const RelatedProductsCarousel = ({ currentProductID, relatedProductsIDs = [], ha
     }
   }, [allRelatedProducts.length]);
 
+  useEffect(() => {
+    setCompareModalData({
+      ...compareModalData,
+      currentProductName,
+      currentProductFeatures,
+    });
+  }, [currentProductName]);
+
   const fetchRelatedProductsData = () => {
     const putInState = [];
     let uniqueIDs = [...new Set(relatedProductsIDs)]; // Turn it into an array wit no duplicate IDs
@@ -55,6 +83,7 @@ const RelatedProductsCarousel = ({ currentProductID, relatedProductsIDs = [], ha
         productsResponses.forEach((response, index) => {
           putInState[index].name = response.data.name;
           putInState[index].category = response.data.category;
+          putInState[index].features = response.data.features;
         });
         return Promise.all(uniqueIDs.map((id) => (
           axios.get(`/products/${id}/styles`)
@@ -84,15 +113,18 @@ const RelatedProductsCarousel = ({ currentProductID, relatedProductsIDs = [], ha
       });
   };
 
-  const cardTemplate = (cardDetails) => (
-    <CarouselCard
-      key={cardDetails.id}
-      {...cardDetails}
-      buttonFunc={console.log.bind(null, 'click')}
-      handleRedirect={handleRedirect}
-      carouselType="related"
-    />
-  );
+  const handleActionButton = (id, name, features) => {
+    let { displayModal, relatedProductName, relatedProductFeatures } = compareModalData;
+    displayModal = !displayModal;
+    relatedProductName = name;
+    relatedProductFeatures = features;
+    setCompareModalData({
+      ...compareModalData,
+      displayModal,
+      relatedProductName,
+      relatedProductFeatures,
+    });
+  };
 
   const handleNext = () => {
     if (currentlyDisplayed.end < allRelatedProducts.length - 1) {
@@ -118,16 +150,32 @@ const RelatedProductsCarousel = ({ currentProductID, relatedProductsIDs = [], ha
     }
   };
 
+  const cardTemplate = (cardDetails) => (
+    <CarouselCard
+      key={cardDetails.id}
+      {...cardDetails}
+      handleActionButton={handleActionButton}
+      handleRedirect={handleRedirect}
+      carouselType="related"
+    />
+  );
+
   return (
     <>
       <h2 id="related-carousel-title">Related Items</h2>
-      <div id="carousel">
+      <div
+        id="related-carousel"
+        onClick={() => { setCompareModalData({ ...compareModalData, displayModal: false }); }}
+      >
         <BackButton atStart={currentlyDisplayed.atStart} handleBack={handleBack} />
-        <div id="products">
+        <ComparisonWindow { ...compareModalData } />
+        <hr className="outfit-carousel-divider" />
+        <div id="related-card-container">
           {currentlyDisplayed.cards.map((displayedProduct) => (
             cardTemplate(displayedProduct)
           ))}
         </div>
+        <hr className="outfit-carousel-divider" />
         <NextButton atEnd={currentlyDisplayed.atEnd} handleNext={handleNext} />
       </div>
     </>
@@ -136,8 +184,10 @@ const RelatedProductsCarousel = ({ currentProductID, relatedProductsIDs = [], ha
 
 RelatedProductsCarousel.propTypes = {
   currentProductID: propTypes.number.isRequired,
+  currentProductName: propTypes.string.isRequired,
+  currentProductFeatures: propTypes.array.isRequired,
   handleRedirect: propTypes.func.isRequired,
-  relatedProductsIDs: propTypes.array,
+  relatedProductsIDs: propTypes.array.isRequired,
 };
 
 export default RelatedProductsCarousel;
