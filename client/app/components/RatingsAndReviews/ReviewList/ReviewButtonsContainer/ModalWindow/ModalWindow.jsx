@@ -21,6 +21,7 @@ const ModalWindow = ({ handleClose, modalView, setModalView, productName, produc
   const [reviewUsername, setReviewUsername] = useState('');
   const [reviewEmail, setReviewEmail] = useState('');
   const [reviewFile, setReviewFile] = useState([]);
+  const [reviewFileThumbnail, setReviewFileThumnail] = useState('');
 
   const { register, handleSubmit } = useForm();
 
@@ -93,6 +94,7 @@ const ModalWindow = ({ handleClose, modalView, setModalView, productName, produc
 
   const handleFileChange = (e) => {
     setReviewFile(e.target.files[0]);
+    setReviewFileThumnail(URL.createObjectURL(event.target.files[0]));
   };
   const modalClassName = modalView ? "review-modal review-modal-display" : "review-modal review-modal-hide";
 
@@ -233,6 +235,8 @@ const ModalWindow = ({ handleClose, modalView, setModalView, productName, produc
               </label>
             </div><br></br>
             <input ref={register} type="file" name="images" onChange={handleFileChange} />
+            <img src={reviewFileThumbnail} alt="" width="30px" />
+            {' '}
             <input type="submit" value="Submit Review" />
           </form>
 
