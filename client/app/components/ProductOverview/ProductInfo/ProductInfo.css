@@ -3,6 +3,7 @@
 }
 
 .product-item-summary {
+  width: 1000px;
   border-right: solid;
   padding-right: 30px;
 }
