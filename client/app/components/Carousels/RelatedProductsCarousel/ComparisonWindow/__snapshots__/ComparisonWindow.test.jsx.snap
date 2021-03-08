@@ -1,5 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`ComparisonWindow component ComparisonWindow component renders correctly 1`] = `ShallowWrapper {}`;
-
-exports[`ComparisonWindow component ComparisonWindowRow component renders correctly 1`] = `ShallowWrapper {}`;

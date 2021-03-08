@@ -1,5 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`Carousel Buttons back button renders correctly 1`] = `ShallowWrapper {}`;
-
-exports[`Carousel Buttons next button renders correctly 1`] = `ShallowWrapper {}`;
