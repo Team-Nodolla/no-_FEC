@@ -12,7 +12,7 @@ const CarouselCard = ({
   name,
   originalPrice,
   salePrice,
-  stars,
+  reviewScore,
   handleActionButton,
   handleRedirect,
   carouselType,
@@ -62,7 +62,7 @@ const CarouselCard = ({
         <span className="descriptive" id="category">{category}</span>
         <h3 className="descriptive" id="product-name">{name}</h3>
         {displayPrice}
-        <StarRating reviewScore={stars} setMargin="10px 0 0 10px" />
+        <StarRating reviewScore={reviewScore} setMargin="10px 0 0 10px" />
       </div>
     </div>
   );
@@ -75,7 +75,7 @@ CarouselCard.propTypes = {
   name: propTypes.string.isRequired,
   originalPrice: propTypes.string.isRequired,
   salePrice: propTypes.string,
-  stars: propTypes.number,
+  reviewScore: propTypes.number,
   handleActionButton: propTypes.func.isRequired,
   handleRedirect: propTypes.func.isRequired,
   carouselType: propTypes.string.isRequired,

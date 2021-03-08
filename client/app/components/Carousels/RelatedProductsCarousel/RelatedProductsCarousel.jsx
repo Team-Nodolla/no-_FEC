@@ -103,7 +103,7 @@ const RelatedProductsCarousel = (
       .then((reviewsResponses) => {
         reviewsResponses.forEach((response, index) => {
           const { ratings } = response.data;
-          putInState[index].stars = getAverageRating(ratings);
+          putInState[index].reviewScore = getAverageRating(ratings);
         });
         setAllRelatedProducts(putInState);
       })
