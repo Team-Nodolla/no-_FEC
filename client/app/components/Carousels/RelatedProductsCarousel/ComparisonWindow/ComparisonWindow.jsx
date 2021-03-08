@@ -1,51 +1,66 @@
 /* eslint-disable no-unused-expressions */
 /* eslint-disable max-len */
 /* eslint-disable import/extensions */
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import propTypes from 'proptypes';
 import ComparisonWindowRow from './ComparisonWindowRow.jsx';
 import './ComparisonWindow.css';
 
 // features = [ {feature, value}, {feature, value} ]
 
-const ComparisonWindow = ({ displayModal }) => {
+const ComparisonWindow = ({
+  displayModal,
+  currentProductName,
+  currentProductFeatures,
+  relatedProductName,
+  relatedProductFeatures,
+}) => {
+  const [featuresAndValues, setFeaturesAndValues] = useState([{ current: '', feature: '', related: '' }]);
+
+  useEffect(() => {
+    const features = getAllFeatures();
+    const values = getAllValues(features);
+    const combined = combineFeaturesAndValues(features, values);
+    setFeaturesAndValues(combined);
+  }, []);
+
   // Hard Coded values for testing
-  const currentProductName = 'Camo Onesie';
-  const currentProductFeatures = [
-    {
-      feature: 'Fabric',
-      value: 'Canvas',
-    },
-    {
-      feature: 'Buttons',
-      value: 'Brass',
-    },
-  ];
-  const relatedProductName = 'Morning Joggers';
-  const relatedProductFeatures = [
-    {
-      feature: 'Fabric',
-      value: '100% Cotton',
-    },
-    {
-      feature: 'Cut',
-      value: 'Skinny',
-    },
-  ];
+  // const currentProductName = 'Camo Onesie';
+  // const currentProductFeatures = [
+  //   {
+  //     feature: 'Fabric',
+  //     value: 'Canvas',
+  //   },
+  //   {
+  //     feature: 'Buttons',
+  //     value: 'Brass',
+  //   },
+  // ];
+  // const relatedProductName = 'Morning Joggers';
+  // const relatedProductFeatures = [
+  //   {
+  //     feature: 'Fabric',
+  //     value: '100% Cotton',
+  //   },
+  //   {
+  //     feature: 'Cut',
+  //     value: 'Skinny',
+  //   },
+  // ];
   const getAllFeatures = () => {
-    const features = new Set();
+    const featuresSet = new Set();
     currentProductFeatures.forEach((product) => {
-      features.add(product.feature);
+      featuresSet.add(product.feature);
     });
     relatedProductFeatures.forEach((product) => {
-      features.add(product.feature);
+      featuresSet.add(product.feature);
     });
-    return features;
+    return [...featuresSet];
   };
 
-  const getAllValues = (features) => {
+  const getAllValues = (featuresArray) => {
     const values = []; // An array of tuples
-    features.forEach((feature) => {
+    featuresArray.forEach((feature) => {
       const putInValues = []; // tuple: [ currentProductVal, relatedProductVal ]
       const currIndex = currentProductFeatures.findIndex((product) => (product.feature === feature));
       const relatedIndex = relatedProductFeatures.findIndex((related) => (related.feature === feature));
@@ -68,7 +83,13 @@ const ComparisonWindow = ({ displayModal }) => {
     return values;
   };
 
-  // console.log([...getAllFeatures()], getAllValues([...getAllFeatures()]));
+  const combineFeaturesAndValues = (featuresArray, valuesArray) => {
+    const combined = featuresArray.map((feature, index) => {
+      const [current, related] = valuesArray[index];
+      return { current, feature, related };
+    });
+    return combined;
+  };
 
   return (
     <div
@@ -85,21 +106,14 @@ const ComparisonWindow = ({ displayModal }) => {
         <span id="comparison-modal-related-name">{relatedProductName}</span>
       </div>
       <div id="comparison-modal-feature-container">
-        <ComparisonWindowRow
-          comparedFeature={currentProductFeatures[0].feature}
-          currentProductValue={currentProductFeatures[0].value}
-          relatedProductValue={relatedProductFeatures[0].value}
-        />
-        <ComparisonWindowRow
-          comparedFeature={currentProductFeatures[1].feature}
-          currentProductValue={currentProductFeatures[1].value}
-          relatedProductValue=""
-        />
-        <ComparisonWindowRow
-          comparedFeature="3-year-warranty"
-          currentProductValue="✓"
-          relatedProductValue="✓"
-        />
+        {featuresAndValues?.map((combo) => (
+          <ComparisonWindowRow
+            key={combo.feature}
+            comparedFeature={combo.feature}
+            currentProductValue={combo.current}
+            relatedProductValue={combo.related}
+          />
+        ))}
       </div>
     </div>
   );
@@ -107,6 +121,10 @@ const ComparisonWindow = ({ displayModal }) => {
 
 ComparisonWindow.propTypes = {
   displayModal: propTypes.bool.isRequired,
+  currentProductName: propTypes.string.isRequired,
+  currentProductFeatures: propTypes.array.isRequired,
+  relatedProductName: propTypes.string.isRequired,
+  relatedProductFeatures: propTypes.array.isRequired,
 };
 
 export default ComparisonWindow;
