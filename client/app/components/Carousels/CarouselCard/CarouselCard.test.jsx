@@ -1,6 +1,5 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import StarRating from '../../StarRating/StarRating.jsx';
 import CarouselCard from './CarouselCard.jsx';
 
 const dummyCard = {

@@ -7,7 +7,8 @@
     "start": "nodemon server/index.js",
     "react-dev": "webpack --watch",
     "build": "webpack",
-    "test": "jest"
+    "test": "jest",
+    "test-u": "jest -u"
   },
   "repository": {
     "type": "git",
