@@ -17,7 +17,7 @@ const dummyCard = {
 };
 
 describe('CarouselCard', () => {
-  test('it renders correctly', () => {
+  test('CarouselCard component renders correctly', () => {
     const wrapper = shallow(<CarouselCard { ...dummyCard } />);
 
     expect(wrapper).toMatchSnapshot();
