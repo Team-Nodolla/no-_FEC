@@ -56,14 +56,6 @@ app.get('/reviews/meta/:product_id', (req, res) => {
     });
 });
 
-app.post('/images/upload', (req, res) => {
-  axios({
-    url: `https://api.imgbb.com/1/upload?key=${config.imgbb}`,
-    method: 'POST',
-    data: formData,
-  });
-});
-
 app.post('/reviews', (req, res) => {
   axios.post(`${url}/reviews`, {
     product_id: req.body.productID,
@@ -84,6 +76,31 @@ app.post('/reviews', (req, res) => {
     .catch((err) => {
       console.log('err between server and API during post: ', err);
       res.status(400).end('error posting review to API');
+    });
+});
+
+app.put('/reviews/:review_id/helpful', (req, res) => {
+  console.log('req params review id: ', req.params.review_id)
+  axios.put(`${url}/reviews/${req.params.review_id}/helpful`, {}, {
+    headers: token,
+  })
+    .then((response) => {
+      res.send(response);
+    })
+    .catch((err) => {
+      res.send(err);
+    });
+});
+
+app.put('/reviews/:review_id/report', (req, res) => {
+  axios.put(`${url}/reviews/${req.params.review_id}/report`, {}, {
+    headers: token,
+  })
+    .then((response) => {
+      res.send(response);
+    })
+    .catch((err) => {
+      res.send(err);
     });
 });
 // <------------------------->

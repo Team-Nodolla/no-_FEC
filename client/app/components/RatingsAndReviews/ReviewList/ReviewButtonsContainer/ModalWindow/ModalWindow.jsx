@@ -21,7 +21,6 @@ const ModalWindow = ({ handleClose, modalView, setModalView, productName, produc
   const [reviewUsername, setReviewUsername] = useState('');
   const [reviewEmail, setReviewEmail] = useState('');
   const [reviewFile, setReviewFile] = useState([]);
-  const [reviewFileURL, setReviewFileURL] = useState([]);
 
   const { register, handleSubmit } = useForm();
 
