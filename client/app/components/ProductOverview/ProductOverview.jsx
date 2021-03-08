@@ -86,7 +86,7 @@ const ProductOverview = ({ product, styles }) => {
             />
           </div>
           <div className="product-cart-container">
-            <ProductCart selectedStyle={selectedStyle} />
+            <ProductCart product={product} selectedStyle={selectedStyle} />
           </div>
         </div>
         <div className="product-summary-container">

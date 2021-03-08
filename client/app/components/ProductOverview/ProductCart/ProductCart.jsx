@@ -4,7 +4,7 @@ import SizeSelector from './SizeSelector/SizeSelector.jsx';
 import QuantitySelector from './QuantitySelector/QuantitySelector.jsx';
 import './ProductCart.css';
 
-const ProductCart = ({ selectedStyle }) => {
+const ProductCart = ({ product, selectedStyle }) => {
   if (selectedStyle !== undefined) {
     const toggle = false;
     const [selectedSize, setSelectedSize] = useState(null);
@@ -12,13 +12,13 @@ const ProductCart = ({ selectedStyle }) => {
     const arrayOfSkus = Object.values(selectedStyle.skus);
     const [requiredSelection, setRequiredSelection] = useState(toggle);
 
+    useEffect(() => {
+      setSelectedSize(null);
+    }, [product, selectedStyle]);
+
     arrayOfSkus.unshift({
       quantity: null, size:'Select Size',
     });
-
-    useEffect(() => {
-      setSelectedSize(null);
-    }, [selectedStyle]);
 
     const onSelectSize = (e) => {
       setSelectedSize(e.target.value);
@@ -35,14 +35,9 @@ const ProductCart = ({ selectedStyle }) => {
 
     const onClickAddCart = () => {
       if (selectedSize === arrayOfSkus[0].size || selectedQuantity === null) {
-        setRequiredSelection((view) => !view);
+        setRequiredSelection(!toggle);
       } else {
-        // if (confirm('Do you want to add to cart?')) {
-        //   alert('purchased!');
-        // } else {
-        //   alert('cancelled purchase!');
-        // }
-        setRequiredSelection((view) => !view);
+        setRequiredSelection(toggle);
       }
     };
 
@@ -82,6 +77,7 @@ const ProductCart = ({ selectedStyle }) => {
 };
 
 ProductCart.propTypes = {
+  product: propTypes.object,
   selectedStyle: propTypes.object,
 };
 
