@@ -19,7 +19,6 @@ const ProductThumbnailScroll = ({ onClickChangeThumbnail, currentPhoto, arrayOfP
           </div>
           )
         })}
-        <button>Down</button>
       </div>
     );
   }

@@ -1,0 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Default View should render my component 1`] = `ShallowWrapper {}`;
+
+exports[`Product Image Default View should render my component 1`] = `ShallowWrapper {}`;

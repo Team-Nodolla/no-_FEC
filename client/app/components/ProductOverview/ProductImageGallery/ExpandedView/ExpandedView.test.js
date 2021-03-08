@@ -1,10 +1,10 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import ProductOverview from './ProductOverview.jsx';
+import ExpandedView from './ExpandedView.jsx';
 
-describe('Product Overview', () => {
+describe('Product Image Expanded View', () => {
   test('should render my component', () => {
-    const wrapper = shallow(<ProductOverview />);
+    const wrapper = shallow(<ExpandedView />);
 
     expect(wrapper).toMatchSnapshot();
   });

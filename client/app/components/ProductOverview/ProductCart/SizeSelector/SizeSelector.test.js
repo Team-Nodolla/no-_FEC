@@ -1,10 +1,10 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import ProductOverview from './ProductOverview.jsx';
+import SizeSelector from './SizeSelector.jsx';
 
-describe('Product Overview', () => {
+describe('Size Selectore', () => {
   test('should render my component', () => {
-    const wrapper = shallow(<ProductOverview />);
+    const wrapper = shallow(<SizeSelector />);
 
     expect(wrapper).toMatchSnapshot();
   });

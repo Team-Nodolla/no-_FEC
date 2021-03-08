@@ -1,10 +1,10 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import ProductOverview from './ProductOverview.jsx';
+import QuantitySelector from './QuantitySelector.jsx';
 
-describe('Product Overview', () => {
+describe('Quantity Selector', () => {
   test('should render my component', () => {
-    const wrapper = shallow(<ProductOverview />);
+    const wrapper = shallow(<QuantitySelector />);
 
     expect(wrapper).toMatchSnapshot();
   });
