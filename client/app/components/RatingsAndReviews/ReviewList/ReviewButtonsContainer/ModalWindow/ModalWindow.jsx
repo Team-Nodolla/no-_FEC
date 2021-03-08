@@ -25,6 +25,8 @@ const ModalWindow = ({ handleClose, modalView, setModalView, productName, produc
 
   const { register, handleSubmit } = useForm();
 
+  const reviewFileArray = [];
+
   const onSubmit = (data) => {
     const gatheredInfo = {
       ...data,
@@ -36,35 +38,58 @@ const ModalWindow = ({ handleClose, modalView, setModalView, productName, produc
     const formData = new FormData();
     formData.append('image', reviewFile);
     // make axios post to some image upload API
-    axios({
-      url: `https://api.imgbb.com/1/upload?key=${config.imgbb}`,
-      method: 'POST',
-      data: formData,
-    })
-      .then((response) => {
-        setReviewFileURL([...reviewFileURL, response.data.data.url]);
-        axios.post('/reviews', {
-          productID: gatheredInfo.productID,
-          userRating: gatheredInfo.reviewRating,
-          userSummary: gatheredInfo.reviewSummary,
-          userBody: gatheredInfo.reviewBody,
-          userRec: gatheredInfo.recommendRadio,
-          userNickname: gatheredInfo.reviewUsername,
-          userEmail: gatheredInfo.reviewEmail,
-          photos: reviewFileURL,
-          userChars: gatheredInfo.reviewCharsObj,
-        })
-          .then((serverResponse) => {
-            // console.log(serverResponse);
-          })
-          .catch((err) => {
-            console.log(err);
-          });
+    if (reviewFile.arrayBuffer) {
+      axios({
+        url: `https://api.imgbb.com/1/upload?key=${config.imgbb}`,
+        method: 'POST',
+        data: formData,
       })
-      .catch((err) => {
-        console.log(err);
-      });
-    setModalView(!modalView);
+        .then((response) => {
+          console.log('response from imgbb call: ', response);
+          reviewFileArray.push(response.data.data.display_url);
+          console.log('review file array: ', reviewFileArray);
+          axios.post('/reviews', {
+            productID: gatheredInfo.productID,
+            userRating: gatheredInfo.reviewRating,
+            userSummary: gatheredInfo.reviewSummary,
+            userBody: gatheredInfo.reviewBody,
+            userRec: gatheredInfo.recommendRadio,
+            userNickname: gatheredInfo.reviewUsername,
+            userEmail: gatheredInfo.reviewEmail,
+            photos: reviewFileArray,
+            userChars: gatheredInfo.reviewCharsObj,
+          })
+            .then((serverResponse) => {
+              console.log(serverResponse);
+            })
+            .catch((err) => {
+              console.log(err);
+            });
+          setModalView(!modalView);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else {
+      axios.post('/reviews', {
+        productID: gatheredInfo.productID,
+        userRating: gatheredInfo.reviewRating,
+        userSummary: gatheredInfo.reviewSummary,
+        userBody: gatheredInfo.reviewBody,
+        userRec: gatheredInfo.recommendRadio,
+        userNickname: gatheredInfo.reviewUsername,
+        userEmail: gatheredInfo.reviewEmail,
+        photos: [],
+        userChars: gatheredInfo.reviewCharsObj,
+      })
+        .then((serverResponse) => {
+          console.log(serverResponse);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+      setModalView(!modalView);
+    }
   };
 
   const handleFileChange = (e) => {
@@ -209,7 +234,7 @@ const ModalWindow = ({ handleClose, modalView, setModalView, productName, produc
               </label>
             </div><br></br>
             <input ref={register} type="file" name="images" onChange={handleFileChange} />
-            <button type="submit">Submit Review</button>
+            <input type="submit" value="Submit Review" />
           </form>
 
           <div className="reviewModalButtonContainer">
