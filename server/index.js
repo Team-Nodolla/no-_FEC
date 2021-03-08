@@ -56,6 +56,14 @@ app.get('/reviews/meta/:product_id', (req, res) => {
     });
 });
 
+app.post('/images/upload', (req, res) => {
+  axios({
+    url: `https://api.imgbb.com/1/upload?key=${config.imgbb}`,
+    method: 'POST',
+    data: formData,
+  });
+});
+
 app.post('/reviews', (req, res) => {
   axios.post(`${url}/reviews`, {
     product_id: req.body.productID,
