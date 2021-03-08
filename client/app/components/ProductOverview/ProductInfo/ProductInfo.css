@@ -1,0 +1,24 @@
+.product-info-innerContainer {
+  display: flex;
+}
+
+.product-item-summary {
+  width: 1000px;
+  border-right: solid;
+  padding-right: 30px;
+}
+
+.product-features {
+  display: flex;
+  flex-direction: column;
+  margin-left: 30px;
+}
+
+.product-feature-single {
+  display: flex;
+}
+
+.feature-check {
+  margin-top: 15px;
+  margin-right: 20px;
+}

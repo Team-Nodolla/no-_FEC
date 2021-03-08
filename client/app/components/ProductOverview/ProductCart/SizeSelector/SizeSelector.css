@@ -1,0 +1,6 @@
+.product-dropdown-box {
+  text-decoration: none;
+  border-radius: 200px;
+  padding: 5px;
+  transition: background-color 0.2s, border 0.2s, color 0.2s;
+}

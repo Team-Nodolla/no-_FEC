@@ -10,15 +10,12 @@ import './ProductOverview.css';
 
 const ProductOverview = ({ product, styles }) => {
   if (styles !== undefined) {
+    console.log(product);
     const toggle = false;
     const [priceOfProduct, setPriceOfProduct] = useState(product.originalPrice);
     const [selectedStyle, setSelectedStyle] = useState(styles[0]);
     const [currentPhoto, setCurrentPhoto] = useState(0);
     const [expandView, setExpandView] = useState(toggle);
-
-    useEffect(() => {
-      setCurrentPhoto(0);
-    }, [styles, selectedStyle]);
 
     useEffect(() => {
       setPriceOfProduct(() => product.originalPrice);
@@ -48,7 +45,9 @@ const ProductOverview = ({ product, styles }) => {
     };
 
     const handleSelectedStyle = (style, price) => {
-      setCurrentPhoto(0);
+      if (currentPhoto > style.photos.length - 1) {
+        setCurrentPhoto(style.photos.length - 1);
+      }
       setSelectedStyle(style);
       setPriceOfProduct(price);
     };

@@ -20,14 +20,12 @@ const ProductImageGallery = ({
         {
         expandView === false
           ? (
-
             <div className="image-container">
               <DefaultView
                 onClickImage={onClickZoom}
                 defaultPhoto={style.photos[currentPhoto]}
               />
             </div>
-
           )
           : (
             <div onClickImage={onClickZoom} className="product-expanded-modal">
