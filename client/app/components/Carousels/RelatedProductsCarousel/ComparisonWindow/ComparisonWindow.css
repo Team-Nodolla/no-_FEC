@@ -19,6 +19,7 @@
 
 #comparison-modal-names {
   width: 100%;
+  font-size: 18px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -30,4 +31,10 @@
 
 #comparison-modal-related-name {
   margin-right: 15px;
+}
+
+#comparison-modal-feature-container {
+  padding: 10px 25px;
+  display: flex;
+  flex-direction: column;
 }

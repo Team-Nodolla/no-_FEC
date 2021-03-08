@@ -21,7 +21,7 @@ const RelatedProductsCarousel = (
   },
 ) => {
   const [allRelatedProducts, setAllRelatedProducts] = useState([]);
-  const [displayModal, setDisplayModal] = useState(false);
+  const [displayModal, setDisplayModal] = useState(true);
   const [currentlyDisplayed, setCurrentlyDisplayed] = useState(
     {
       start: 0,

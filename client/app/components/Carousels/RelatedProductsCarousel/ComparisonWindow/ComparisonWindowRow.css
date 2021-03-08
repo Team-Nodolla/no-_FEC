@@ -1,0 +1,20 @@
+#comparison-modal-row {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  margin: 10px 0;
+}
+
+#comparison-row-current-value{
+  text-align: left;
+}
+
+#comparison-row-feature{
+  text-align: center;
+  font-style: italic;
+}
+
+#comparison-row-related-value{
+  text-align: right;
+
+}
