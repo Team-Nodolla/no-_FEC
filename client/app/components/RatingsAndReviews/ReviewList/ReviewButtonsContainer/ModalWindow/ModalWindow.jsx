@@ -12,7 +12,7 @@ import './ModalWindow.css';
 import ReviewModalStarRating from './ReviewModalStarRating/ReviewModalStarRating.jsx';
 import ReviewCharacteristics from '../AddReviewButton/ReviewCharacteristics/ReviewCharacteristics.jsx';
 
-const ModalWindow = ({ handleClose, handleReviewSubmit, modalView, setModalView, productName, productID, metaData }) => {
+const ModalWindow = ({ handleClose, modalView, setModalView, productName, productID, metaData }) => {
   const [reviewRating, setReviewRating] = useState(0);
   const [selectedRecommend, setSelectedRecommend] = useState();
   const [reviewCharsObj, setReviewCharsObj] = useState({});
@@ -26,14 +26,14 @@ const ModalWindow = ({ handleClose, handleReviewSubmit, modalView, setModalView,
   const { register, handleSubmit } = useForm();
 
   const onSubmit = (data) => {
-    let gatheredInfo = {
+    const gatheredInfo = {
       ...data,
       productID,
       reviewCharsObj,
       reviewRating,
       recommendRadio: 'true' ? true : false,
     };
-    let formData = new FormData();
+    const formData = new FormData();
     formData.append('image', reviewFile);
     // make axios post to some image upload API
     axios({
@@ -55,7 +55,7 @@ const ModalWindow = ({ handleClose, handleReviewSubmit, modalView, setModalView,
           userChars: gatheredInfo.reviewCharsObj,
         })
           .then((serverResponse) => {
-            console.log(serverResponse);
+            // console.log(serverResponse);
           })
           .catch((err) => {
             console.log(err);
@@ -64,7 +64,7 @@ const ModalWindow = ({ handleClose, handleReviewSubmit, modalView, setModalView,
       })
       .catch((err) => {
         console.log(err);
-      })
+      });
   };
 
   const handleFileChange = (e) => {
@@ -209,15 +209,12 @@ const ModalWindow = ({ handleClose, handleReviewSubmit, modalView, setModalView,
               </label>
             </div><br></br>
             <input ref={register} type="file" name="images" onChange={handleFileChange} />
-            <input type="submit" />
+            <button type="submit">Submit Review</button>
           </form>
 
           <div className="reviewModalButtonContainer">
             <button type="button" className="modalButton" onClick={handleClose}>
               Close
-            </button>
-            <button type="button" className="review-modal-submit-button" onClick={(event) => { handleReviewSubmit(event, productID, reviewRating, selectedRecommend, reviewCharsObj, reviewSummary, reviewBody, reviewUsername, reviewEmail); }}>
-              Submit Review
             </button>
           </div>
 

@@ -65,7 +65,7 @@ app.post('/reviews', (req, res) => {
     recommend: req.body.userRec,
     name: req.body.userNickname,
     email: req.body.userEmail,
-    photos: [],
+    photos: req.body.photos,
     characteristics: req.body.userChars,
   }, {
     headers: token,
