@@ -57,6 +57,7 @@ const ProductCart = ({ selectedStyle }) => {
       );
     }
     return (
+      <>
       <div className="product-option-selectors">
         <div className="product-size-dropdown"><SizeSelector selectedSize={selectedSize} onSelectSize={onSelectSize} arraySkus={arrayOfSkus} /></div>
         <div className="product-quantity-dropdown">
@@ -66,11 +67,12 @@ const ProductCart = ({ selectedStyle }) => {
             arraySkus={arrayOfSkus}
           />
         </div>
-        <div>
-          <button onClick={onClickAddCart}>Add to Cart</button>
+      </div>
+      <div className="button-area">
+          <button className="add-to-cart" onClick={onClickAddCart}>Add to Cart</button>
           <p className={`product-required-selection-${requiredSelection ? 'active' : 'disabled'}`}>please select a size</p>
         </div>
-      </div>
+      </>
     );
   }
 

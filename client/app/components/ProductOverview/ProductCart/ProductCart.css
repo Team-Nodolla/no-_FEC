@@ -14,3 +14,27 @@
 .product-required-selection-disabled {
   display: none;
 }
+
+.add-to-cart {
+  cursor: pointer;
+  display: inline-block;
+  padding: 10px 30px;
+  font-weight: 300;
+  text-decoration: none;
+  border-radius: 200px;
+  transition: background-color 0.2s, border 0.2s, color 0.2s;
+  background-color: #0EBFE9;
+  border: 1px solid #0EBFE9;
+  color: #fff;
+  margin-right: 15px;
+}
+
+.add-to-cart:hover {
+  background-color: #05B8CC;
+}
+
+.button-area {
+  display: block;
+  margin-top: 50px;
+  margin-left: -110px;
+}
