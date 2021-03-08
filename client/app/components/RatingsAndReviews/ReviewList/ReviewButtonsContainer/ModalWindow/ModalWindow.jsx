@@ -12,7 +12,7 @@ import './ModalWindow.css';
 import ReviewModalStarRating from './ReviewModalStarRating/ReviewModalStarRating.jsx';
 import ReviewCharacteristics from '../AddReviewButton/ReviewCharacteristics/ReviewCharacteristics.jsx';
 
-const ModalWindow = ({ handleClose, handleReviewSubmit, modalView, productName, productID, metaData }) => {
+const ModalWindow = ({ handleClose, handleReviewSubmit, modalView, setModalView, productName, productID, metaData }) => {
   const [reviewRating, setReviewRating] = useState(0);
   const [selectedRecommend, setSelectedRecommend] = useState();
   const [reviewCharsObj, setReviewCharsObj] = useState({});
@@ -21,6 +21,7 @@ const ModalWindow = ({ handleClose, handleReviewSubmit, modalView, productName, 
   const [reviewUsername, setReviewUsername] = useState('');
   const [reviewEmail, setReviewEmail] = useState('');
   const [reviewFile, setReviewFile] = useState([]);
+  const [reviewFileURL, setReviewFileURL] = useState([]);
 
   const { register, handleSubmit } = useForm();
 
@@ -41,7 +42,25 @@ const ModalWindow = ({ handleClose, handleReviewSubmit, modalView, productName, 
       data: formData,
     })
       .then((response) => {
-        console.log(response.data.data.url); // it works!
+        setReviewFileURL([...reviewFileURL, response.data.data.url]);
+        axios.post('/reviews', {
+          productID: gatheredInfo.productID,
+          userRating: gatheredInfo.reviewRating,
+          userSummary: gatheredInfo.reviewSummary,
+          userBody: gatheredInfo.reviewBody,
+          userRec: gatheredInfo.recommendRadio,
+          userNickname: gatheredInfo.reviewUsername,
+          userEmail: gatheredInfo.reviewEmail,
+          photos: reviewFileURL,
+          userChars: gatheredInfo.reviewCharsObj,
+        })
+          .then((serverResponse) => {
+            console.log(serverResponse);
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+        setModalView(!modalView);
       })
       .catch((err) => {
         console.log(err);
@@ -77,7 +96,6 @@ const ModalWindow = ({ handleClose, handleReviewSubmit, modalView, productName, 
   };
 
   const handleRecommendChange = (e) => {
-    console.log('e tar val: ', typeof e.target.value);
     if (e.target.value === "true") {
       setSelectedRecommend(true);
     }

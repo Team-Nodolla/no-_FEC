@@ -52,6 +52,7 @@ const AddReviewButton = ({ productName, productID, metaData }) => {
         handleClose={handleButtonClick}
         handleReviewSubmit={handleReviewSubmit}
         modalView={modalView}
+        setModalView={setModalView}
         productName={productName}
         productID={productID}
         metaData={metaData}
