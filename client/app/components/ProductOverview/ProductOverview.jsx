@@ -10,15 +10,12 @@ import './ProductOverview.css';
 
 const ProductOverview = ({ product, styles }) => {
   if (styles !== undefined) {
+    console.log(product);
     const toggle = false;
     const [priceOfProduct, setPriceOfProduct] = useState(product.originalPrice);
     const [selectedStyle, setSelectedStyle] = useState(styles[0]);
     const [currentPhoto, setCurrentPhoto] = useState(0);
     const [expandView, setExpandView] = useState(toggle);
-
-    useEffect(() => {
-      setCurrentPhoto(0);
-    }, [styles]);
 
     useEffect(() => {
       setPriceOfProduct(() => product.originalPrice);
@@ -38,7 +35,9 @@ const ProductOverview = ({ product, styles }) => {
     };
 
     const onClickZoom = () => {
-      setExpandView((view) => !view);
+      if (styles[currentPhoto].photos[currentPhoto].url !== null) {
+        setExpandView((view) => !view);
+      }
     };
 
     const onClickChangeThumbnail = (photo) => {
@@ -46,6 +45,9 @@ const ProductOverview = ({ product, styles }) => {
     };
 
     const handleSelectedStyle = (style, price) => {
+      if (currentPhoto > style.photos.length - 1) {
+        setCurrentPhoto(style.photos.length - 1);
+      }
       setSelectedStyle(style);
       setPriceOfProduct(price);
     };
@@ -55,7 +57,6 @@ const ProductOverview = ({ product, styles }) => {
         <div className="product-thumbnail">
           <ProductThumbnailScroll
             onClickChangeThumbnail={onClickChangeThumbnail}
-            key={styles[currentPhoto].style_id}
             currentPhoto={selectedStyle.photos[currentPhoto].thumbnail_url}
             arrayOfPhoto={selectedStyle}
           />
@@ -70,6 +71,8 @@ const ProductOverview = ({ product, styles }) => {
             onClickRightChange={onClickRightChange}
             style={selectedStyle}
           />
+          <i alt="Left Button" onClick={onClickLeftChange} className={`image-left-btn-${currentPhoto !== 0 ? `active` : `disabled`} fas fa-chevron-left`}></i>
+          <i alt="Right Button" onClick={onClickRightChange} className={`image-right-btn-${currentPhoto !== (selectedStyle.photos.length - 1) ? `active` : `disabled`} fas fa-chevron-right`}></i>
         </div>
         <div className="product-info-container">
           <div className="product-description-container">
@@ -77,6 +80,7 @@ const ProductOverview = ({ product, styles }) => {
           </div>
           <div className="product-style-container">
             <ProductStyleSelector
+              currentPhoto={selectedStyle}
               handleSelectedStyleClick={handleSelectedStyle}
               styles={styles}
               styleName={selectedStyle}
