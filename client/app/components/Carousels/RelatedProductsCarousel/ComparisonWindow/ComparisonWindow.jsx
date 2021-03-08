@@ -86,9 +86,9 @@ const ComparisonWindow = ({
         {featuresAndValues?.map((combo) => (
           <ComparisonWindowRow
             key={combo.feature}
-            comparedFeature={combo.feature}
-            currentProductValue={combo.current}
-            relatedProductValue={combo.related}
+            comparedFeature={combo?.feature ?? ''}
+            currentProductValue={combo?.current ?? ''}
+            relatedProductValue={combo?.related ?? ''}
           />
         ))}
       </div>
