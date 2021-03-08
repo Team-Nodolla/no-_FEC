@@ -16,6 +16,7 @@ const CarouselCard = ({
   handleActionButton,
   handleRedirect,
   carouselType,
+  features,
 }) => {
   const [onSale] = useState(Boolean(salePrice));
   let displayPrice;
@@ -33,7 +34,11 @@ const CarouselCard = ({
 
   return (
     <div className={`card ${carouselType}-card`} onClick={() => { handleRedirect(id) }} >
-      <button id="card-action-btn" type="button" onClick={(e) => { e.stopPropagation(); handleActionButton(id); }}>
+      <button
+        id="card-action-btn"
+        type="button"
+        onClick={(e) => { e.stopPropagation(); handleActionButton(id, name, features); }}
+      >
         <i className={
           carouselType === 'related'
             ? 'related-action-btn fas fa-star'

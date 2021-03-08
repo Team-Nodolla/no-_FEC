@@ -16,12 +16,22 @@ import './RelatedProductsCarousel.css';
 const RelatedProductsCarousel = (
   {
     currentProductID = 0,
+    currentProductName = '',
+    currentProductFeatures = [],
     relatedProductsIDs = [],
     handleRedirect,
   },
 ) => {
   const [allRelatedProducts, setAllRelatedProducts] = useState([]);
-  const [displayModal, setDisplayModal] = useState(false);
+  const [compareModalData, setCompareModalData] = useState(
+    {
+      displayModal: false,
+      currentProductName,
+      currentProductFeatures,
+      relatedProductName: '',
+      relatedProductFeatures: [],
+    },
+  );
   const [currentlyDisplayed, setCurrentlyDisplayed] = useState(
     {
       start: 0,
@@ -51,6 +61,14 @@ const RelatedProductsCarousel = (
     }
   }, [allRelatedProducts.length]);
 
+  useEffect(() => {
+    setCompareModalData({
+      ...compareModalData,
+      currentProductName,
+      currentProductFeatures,
+    });
+  }, [currentProductName]);
+
   const fetchRelatedProductsData = () => {
     const putInState = [];
     let uniqueIDs = [...new Set(relatedProductsIDs)]; // Turn it into an array wit no duplicate IDs
@@ -65,6 +83,7 @@ const RelatedProductsCarousel = (
         productsResponses.forEach((response, index) => {
           putInState[index].name = response.data.name;
           putInState[index].category = response.data.category;
+          putInState[index].features = response.data.features;
         });
         return Promise.all(uniqueIDs.map((id) => (
           axios.get(`/products/${id}/styles`)
@@ -94,8 +113,17 @@ const RelatedProductsCarousel = (
       });
   };
 
-  const handleActionButton = () => {
-    setDisplayModal(!displayModal);
+  const handleActionButton = (id, name, features) => {
+    let { displayModal, relatedProductName, relatedProductFeatures } = compareModalData;
+    displayModal = !displayModal;
+    relatedProductName = name;
+    relatedProductFeatures = features;
+    setCompareModalData({
+      ...compareModalData,
+      displayModal,
+      relatedProductName,
+      relatedProductFeatures,
+    });
   };
 
   const handleNext = () => {
@@ -137,10 +165,10 @@ const RelatedProductsCarousel = (
       <h2 id="related-carousel-title">Related Items</h2>
       <div
         id="related-carousel"
-        onClick={() => { setDisplayModal(false); }}
+        onClick={() => { setCompareModalData({ ...compareModalData, displayModal: false }); }}
       >
         <BackButton atStart={currentlyDisplayed.atStart} handleBack={handleBack} />
-        <ComparisonWindow displayModal={displayModal} />
+        <ComparisonWindow { ...compareModalData } />
         <hr className="outfit-carousel-divider" />
         <div id="related-card-container">
           {currentlyDisplayed.cards.map((displayedProduct) => (
@@ -156,6 +184,8 @@ const RelatedProductsCarousel = (
 
 RelatedProductsCarousel.propTypes = {
   currentProductID: propTypes.number.isRequired,
+  currentProductName: propTypes.string.isRequired,
+  currentProductFeatures: propTypes.array.isRequired,
   handleRedirect: propTypes.func.isRequired,
   relatedProductsIDs: propTypes.array.isRequired,
 };

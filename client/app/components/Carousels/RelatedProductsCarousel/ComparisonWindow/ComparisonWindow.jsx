@@ -22,31 +22,8 @@ const ComparisonWindow = ({
     const values = getAllValues(features);
     const combined = combineFeaturesAndValues(features, values);
     setFeaturesAndValues(combined);
-  }, []);
+  }, [currentProductName, relatedProductName]);
 
-  // Hard Coded values for testing
-  // const currentProductName = 'Camo Onesie';
-  // const currentProductFeatures = [
-  //   {
-  //     feature: 'Fabric',
-  //     value: 'Canvas',
-  //   },
-  //   {
-  //     feature: 'Buttons',
-  //     value: 'Brass',
-  //   },
-  // ];
-  // const relatedProductName = 'Morning Joggers';
-  // const relatedProductFeatures = [
-  //   {
-  //     feature: 'Fabric',
-  //     value: '100% Cotton',
-  //   },
-  //   {
-  //     feature: 'Cut',
-  //     value: 'Skinny',
-  //   },
-  // ];
   const getAllFeatures = () => {
     const featuresSet = new Set();
     currentProductFeatures.forEach((product) => {
