@@ -60,11 +60,11 @@ const ModalWindow = ({ handleClose, modalView, setModalView, productName, produc
           .catch((err) => {
             console.log(err);
           });
-        setModalView(!modalView);
       })
       .catch((err) => {
         console.log(err);
       });
+    setModalView(!modalView);
   };
 
   const handleFileChange = (e) => {
