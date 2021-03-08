@@ -99,7 +99,9 @@ const App = () => {
       />
       <RelatedProductsCarousel
         currentProductID={currentProduct.id ?? 0}
-        relatedProductsIDs={currentProduct.relatedProductIDs}
+        currentProductName={currentProduct.name ?? ''}
+        currentProductFeatures={currentProduct.features ?? []}
+        relatedProductsIDs={currentProduct?.relatedProductIDs ?? []}
         handleRedirect={handleRedirect}
       />
       <OutfitCarousel

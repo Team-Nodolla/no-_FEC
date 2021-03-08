@@ -46,7 +46,7 @@ const OutfitCarousel = ({ productInfo, handleRedirect }) => {
       key={cardDetails.id}
       {...cardDetails}
       handleRedirect={handleRedirect}
-      buttonFunc={() => { store.remove(cardDetails.id); }}
+      handleActionButton={() => { store.remove(cardDetails.id); }}
       carouselType="outfit"
     />
   );
