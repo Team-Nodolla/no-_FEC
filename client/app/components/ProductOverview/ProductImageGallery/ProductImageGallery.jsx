@@ -10,7 +10,6 @@ const ProductImageGallery = ({
   currentPhoto,
   onClickZoom,
   onClickChangeThumbnail,
-  onClickLeftChange,
   onClickRightChange,
   style,
 }) => {

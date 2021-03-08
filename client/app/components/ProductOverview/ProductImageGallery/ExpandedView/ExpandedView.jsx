@@ -9,7 +9,7 @@ const ExpandedView = ({ onClickRightChange, onClickChangeThumbnail, style, curre
       <div className="expanded-image">
         <div className="expanded-product-thumbnail"><ProductThumbnailScroll onClickRightChange={onClickRightChange} onClickChangeThumbnail={onClickChangeThumbnail} key={style.style_id} currentPhoto={style.photos[currentPhoto].thumbnail_url} arrayOfPhoto={style} />
         </div>
-        <div onClick={onClickImage}>
+        <div className="expanded-image-view" onClick={onClickImage}>
           <ReactImageMagnify {...{
             smallImage: {
               isFluidWidth: true,

@@ -1,4 +1,5 @@
 .product-dropdown-box {
+  outline: none;
   text-decoration: none;
   border-radius: 200px;
   padding: 5px;
