@@ -17,7 +17,7 @@ const ProductInfo = ({ product }) => {
       <div className="product-features">
         {product.features.map((itemFeature) => {
           return (
-            <div className="product-feature-single">
+            <div key={product.features.indexOf(itemFeature)} className="product-feature-single">
               <i className="feature-check fas fa-check"></i>
               <p>{itemFeature.feature}, {itemFeature.value}</p>
             </div>
