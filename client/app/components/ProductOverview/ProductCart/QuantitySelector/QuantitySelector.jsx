@@ -1,4 +1,5 @@
 import React from 'react';
+import '../SizeSelector/SizeSelector.css';
 
 const QuantitySelector = ({ selectedSize, sizeQuantity, arraySkus }) => {
   if (arraySkus !== undefined) {
@@ -10,7 +11,7 @@ const QuantitySelector = ({ selectedSize, sizeQuantity, arraySkus }) => {
       case "Select Size":
         return (
           <div>
-            <select>
+            <select className="product-dropdown-box">
               <option>-</option>
             </select>
           </div>
@@ -18,7 +19,7 @@ const QuantitySelector = ({ selectedSize, sizeQuantity, arraySkus }) => {
       case null:
         return (
           <div>
-            <select>
+            <select className="product-dropdown-box">
               <option>-</option>
             </select>
           </div>
@@ -26,7 +27,7 @@ const QuantitySelector = ({ selectedSize, sizeQuantity, arraySkus }) => {
       case selectedSize:
         return (
           <div>
-            <select>
+            <select className="product-dropdown-box">
               <option value={1}>1</option>
               {arrayOfSize.map((quantity) => {
                 return (
