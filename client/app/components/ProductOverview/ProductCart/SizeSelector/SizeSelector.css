@@ -1,7 +1,11 @@
 .product-dropdown-box {
+  min-width: 50px;
   outline: none;
   text-decoration: none;
-  border-radius: 200px;
+  border-radius: 10px;
+  border: 2px solid rgb(88, 71, 100);
+  color: rgb(88, 71, 100);
+  font-family: Lato;
   padding: 5px;
   transition: background-color 0.2s, border 0.2s, color 0.2s;
 }

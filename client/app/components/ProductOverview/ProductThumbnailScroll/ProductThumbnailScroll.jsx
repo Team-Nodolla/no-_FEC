@@ -7,7 +7,7 @@ const ProductThumbnailScroll = ({ onClickChangeThumbnail, currentPhoto, arrayOfP
     let counter = 0;
     if (arrayOfPhoto.photos.length === 1 && currentPhoto === null) {
       return (
-        <div />
+        <div className="empty-thumbnail" />
       );
     }
     return (
