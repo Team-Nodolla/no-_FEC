@@ -11,11 +11,14 @@
 .review-modal-main {
   position: fixed;
   background: white;
-  width: 80%;
+  width: 50%;
   height: auto;
+  max-height: 90vh;
   top:50%;
   left:50%;
   transform: translate(-50%,-50%);
+  padding: 0 20px 20px 20px;
+  overflow-y: auto;
 }
 
 .review-modal-display {

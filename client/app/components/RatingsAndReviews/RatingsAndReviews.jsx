@@ -60,6 +60,7 @@ const RatingsAndReviews = ({ productID, metaData, productName }) => {
         <div className="review-breakdown-container">
           <RatingSummary metaData={metaData} className="review-rating-summary" />
         </div>
+
         <div className="review-list-container">
           <form onChange={(event) => { setSortOrder(event.target.value); }} className="sort-form">
             <label htmlFor="sort-form" className="sort-form-label">Sort on </label>
