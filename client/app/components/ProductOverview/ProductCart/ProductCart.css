@@ -20,18 +20,19 @@
   cursor: pointer;
   display: inline-block;
   padding: 10px 30px;
-  font-weight: 300;
+  font-weight: 200;
+  font-family: Lato;
   text-decoration: none;
-  border-radius: 200px;
+  border-radius: 10px;
   transition: background-color 0.2s, border 0.2s, color 0.2s;
-  background-color: #0EBFE9;
-  border: 1px solid #0EBFE9;
-  color: #fff;
+  background-color: rgba(216, 191, 216, 0.6);
+  border: 2px solid rgb(88, 71, 100);
+  color: rgb(88, 71, 100);
   margin-right: 15px;
 }
 
 .add-to-cart:hover {
-  background-color: #05B8CC;
+  background-color: thistle;
 }
 
 .button-area {
