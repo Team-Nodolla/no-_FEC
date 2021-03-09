@@ -1,4 +1,5 @@
 import React from 'react';
+import './RatingBreakdown.css';
 
 const RatingBreakdown = ({ metaData }) => {
   let numberOfReviews = 0;

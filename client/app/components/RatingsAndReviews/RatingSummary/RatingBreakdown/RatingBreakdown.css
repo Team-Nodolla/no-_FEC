@@ -1,0 +1,7 @@
+.breakdown-bar-container {
+  margin: 10px;
+  height: 140px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
