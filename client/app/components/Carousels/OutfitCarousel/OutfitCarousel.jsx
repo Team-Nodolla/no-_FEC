@@ -82,7 +82,6 @@ const OutfitCarousel = ({ productInfo, handleRedirect }) => {
       <h2 id="outfit-carousel-title">Your Outfit</h2>
       <div id="outfit-carousel">
         <BackButton atStart={currentlyDisplayed.atStart} handleBack={handleBack} />
-        <hr className="outfit-carousel-divider" />
         <div id="outfit-card-container">
           <AddToOutfit
             productInfo={productInfo}
@@ -91,7 +90,6 @@ const OutfitCarousel = ({ productInfo, handleRedirect }) => {
             cardTemplate(cardDetails)
           ))}
         </div>
-        <hr className="outfit-carousel-divider" />
         <NextButton atEnd={currentlyDisplayed.atEnd} handleNext={handleNext} />
       </div>
     </>
