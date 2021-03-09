@@ -110,6 +110,8 @@ const App = () => {
   console.log(userClick);
   return (
     <div className="app-container">
+      <header className="banner">
+      </header>
       <ProductOverview
         onUserClick={collectUserClickData}
         product={currentProduct}

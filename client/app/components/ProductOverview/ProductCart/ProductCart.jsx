@@ -7,9 +7,9 @@ import './ProductCart.css';
 const ProductCart = ({ product, selectedStyle }) => {
   if (selectedStyle !== undefined) {
     const toggle = false;
+    const arrayOfSkus = Object.values(selectedStyle.skus);
     const [selectedSize, setSelectedSize] = useState(null);
     const [selectedQuantity, setSelectedQuantity] = useState(null);
-    const arrayOfSkus = Object.values(selectedStyle.skus);
     const [requiredSelection, setRequiredSelection] = useState(toggle);
 
     useEffect(() => {

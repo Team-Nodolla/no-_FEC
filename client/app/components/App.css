@@ -1,0 +1,10 @@
+body {
+  margin: 0;
+}
+.banner {
+  object-fit: contain;
+  height: 100px;
+  background-size: cover;
+  background-color: thistle;
+  margin-bottom: 50px;
+}
