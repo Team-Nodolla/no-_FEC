@@ -1,6 +1,8 @@
 module.exports = {
   clearMocks: true,
 
+  collectCoverage: true,
+
   collectCoverageFrom: ['client/**/*.{js,jsx,mjs}'],
 
   coverageDirectory: 'coverage',
