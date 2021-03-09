@@ -1,6 +1,6 @@
 /* eslint-disable import/extensions */
 /* eslint-disable jsx-a11y/control-has-associated-label */
-import React, { useState } from 'react';
+import React from 'react';
 import propTypes from 'proptypes';
 import StarRating from '../../StarRating/StarRating.jsx';
 import './CarouselCard.css';
@@ -18,10 +18,9 @@ const CarouselCard = ({
   carouselType,
   features,
 }) => {
-  const [onSale] = useState(Boolean(salePrice));
   let displayPrice;
 
-  if (onSale) {
+  if (salePrice !== null) {
     displayPrice = (
       <>
         <span className="descriptive" id="old-price">{`$${originalPrice}`}</span>
@@ -48,19 +47,19 @@ const CarouselCard = ({
       </button>
       <div id="card-image-container">
         {productImage
-          ? <img id="card-image" src={productImage} alt={`${name}`} />
+          ? <img id="card-image" src={productImage} alt={name ? name : 'Product Name'} />
           : (
             <img
               id="card-no-image"
               src="https://watertownbusinesscoalition.com/assets/images/no_image_available.jpeg"
-              alt={`${name}`}
+              alt={name ? name : 'Product Name'}
             />
           )
         }
       </div>
       <div id="descriptive-container">
-        <span className="descriptive" id="category">{category}</span>
-        <h3 className="descriptive" id="product-name">{name}</h3>
+        <span className="descriptive" id="category">{category ? category : 'Category'}</span>
+        <h3 className="descriptive" id="product-name">{name ? name : 'Product Name'}</h3>
         {displayPrice}
         <StarRating reviewScore={reviewScore} setMargin="10px 0 0 10px" />
       </div>
