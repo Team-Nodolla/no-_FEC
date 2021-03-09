@@ -92,6 +92,7 @@ const App = () => {
 
   return (
     <div className="app-container">
+      <header><h1 id="app-title">Nodolla</h1></header>
       <ProductOverview
         product={currentProduct}
         defaultStyle={currentProduct.defaultStyle}
