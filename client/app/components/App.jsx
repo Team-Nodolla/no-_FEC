@@ -14,12 +14,12 @@ const App = () => {
   const [userClick, setUserClick] = useState({});
   let userClicked = false;
 
-  const collectUserClickData = (description) => {
-    //event.preventDefault();
+  const collectUserClickData = (event) => {
+    const timeOfClick = new Date();
     setUserClick({
-      clicked: true,
-      time: '1:30PM',
-      element: description,
+      element: event.target.tagName,
+      time: timeOfClick,
+      widget: 'dummy data',
     });
     userClicked = true;
   };

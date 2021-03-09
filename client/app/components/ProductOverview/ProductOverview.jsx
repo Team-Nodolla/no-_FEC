@@ -52,7 +52,9 @@ const ProductOverview = ({ onUserClick, product, styles }) => {
     };
 
     return (
-      <div onClick={() => onUserClick('Product Overview')} className="product-overview-container">
+      <div
+      onClick={onUserClick}
+      className="product-overview-container">
         <div className="product-thumbnail">
           <ProductThumbnailScroll
             onClickChangeThumbnail={onClickChangeThumbnail}
