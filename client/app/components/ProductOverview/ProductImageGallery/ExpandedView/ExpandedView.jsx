@@ -1,15 +1,29 @@
 import React from 'react';
+import propTypes from 'proptypes';
 import ReactImageMagnify from 'react-image-magnify';
 import ProductThumbnailScroll from '../../ProductThumbnailScroll/ProductThumbnailScroll.jsx';
 import './ExpandedView.css';
 
-const ExpandedView = ({ onClickRightChange, onClickChangeThumbnail, style, currentPhoto, onClickImage, defaultPhoto }) => {
+const ExpandedView = ({
+  onClickRightChange,
+  onClickChangeThumbnail,
+  style,
+  currentPhoto,
+  defaultPhoto,
+}) => {
   if (defaultPhoto !== undefined) {
     return (
       <div className="expanded-image">
-        <div className="expanded-product-thumbnail"><ProductThumbnailScroll onClickRightChange={onClickRightChange} onClickChangeThumbnail={onClickChangeThumbnail} key={style.style_id} currentPhoto={style.photos[currentPhoto].thumbnail_url} arrayOfPhoto={style} />
+        <div className="expanded-product-thumbnail">
+          <ProductThumbnailScroll
+            onClickRightChange={onClickRightChange}
+            onClickChangeThumbnail={onClickChangeThumbnail}
+            key={style.style_id}
+            currentPhoto={style.photos[currentPhoto].thumbnail_url}
+            arrayOfPhoto={style}
+          />
         </div>
-        <div className="expanded-image-view" onClick={onClickImage}>
+        <div className="expanded-image-view">
           <ReactImageMagnify {...{
             smallImage: {
               isFluidWidth: true,
@@ -29,6 +43,14 @@ const ExpandedView = ({ onClickRightChange, onClickChangeThumbnail, style, curre
   return (
     <div />
   );
+};
+
+ExpandedView.propTypes = {
+  onClickRightChange: propTypes.func,
+  onClickChangeThumbnail: propTypes.func,
+  style: propTypes.object,
+  currentPhoto: propTypes.number,
+  defaultPhoto: propTypes.object,
 };
 
 export default ExpandedView;
