@@ -1,7 +1,7 @@
 import React from 'react';
 import ReviewCharacteristic from './ReviewCharacteristic.jsx';
 
-const ReviewCharacteristics = ({ metaData, reviewCharsObj, setReviewCharsObj }) => {
+const ReviewCharacteristics = ({ metaData, reviewCharsObj, setReviewCharsObj, register }) => {
   // for each characteristic,
   const characteristicArray = [];
 
@@ -15,6 +15,7 @@ const ReviewCharacteristics = ({ metaData, reviewCharsObj, setReviewCharsObj }) 
           id={value.id}
           reviewCharsObj={reviewCharsObj}
           setReviewCharsObj={setReviewCharsObj}
+          register={register}
         />
       </div>,
     );

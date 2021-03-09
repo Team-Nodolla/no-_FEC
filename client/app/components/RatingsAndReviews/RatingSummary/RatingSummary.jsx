@@ -2,9 +2,10 @@ import React, { useEffect, useState } from 'react';
 import propTypes from 'proptypes';
 import StarRating from '../../StarRating/StarRating.jsx';
 import { getAverageRating } from '../../helperFunctions/helperFunctions.js';
+import RatingBreakdown from './RatingBreakdown/RatingBreakdown.jsx';
 import './RatingSummary.css';
 
-const RatingSummary = ({ metaData }) => {
+const RatingSummary = ({ metaData, handleSortClick }) => {
   const [averageScore, setAverageScore] = useState(0);
   const [percentRecommend, setPercentRecommend] = useState(0);
 
@@ -55,9 +56,26 @@ const RatingSummary = ({ metaData }) => {
 
   // pass ratings to rating breakdown component
   // pass characteristcs to product breakdown component
+  if (!metaData) {
+    return (
+      <>
+        <div className="review-rating-summary">
+          <div className="averageScore">
+            {averageScore}
+          </div>
+          <div className="summaryStarRating">
+            <StarRating reviewScore={averageScore || null} setMargin="0 0 0 0" />
+          </div>
+        </div>
+        <NaNCondition />
+        <div className="ratingBreakdown" />
+        <div className="productBreakdown">product breakdown component here</div>
+      </>
+    )
+  }
   return (
     <>
-      <div className="ratingSummary">
+      <div className="review-rating-summary">
         <div className="averageScore">
           {averageScore}
         </div>
@@ -66,7 +84,12 @@ const RatingSummary = ({ metaData }) => {
         </div>
       </div>
       <NaNCondition />
-      <div className="ratingBreakdown">rating breakdown component here</div>
+      <div className="ratingBreakdown">
+        <RatingBreakdown
+          metaData={metaData}
+          handleSortClick={handleSortClick}
+        />
+      </div>
       <div className="productBreakdown">product breakdown component here</div>
     </>
   );

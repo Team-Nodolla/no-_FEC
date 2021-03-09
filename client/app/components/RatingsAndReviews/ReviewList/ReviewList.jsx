@@ -17,7 +17,7 @@ const ReviewList = ({ reviewList, visibleReviews }) => {
     if (reviewsArray.length <= visibleReviews && reviewList.length > 0) {
       return (
         <div className="reviewList">
-          <div className="reviewListItemContainer">
+          <div className="review-list-item-container">
             {reviewsArray}
           </div>
         </div>
@@ -30,7 +30,7 @@ const ReviewList = ({ reviewList, visibleReviews }) => {
       }
       return (
         <div className="reviewList">
-          <div className="reviewListItemContainer">
+          <div className="review-list-item-container">
             {reviewsArraySubset}
           </div>
         </div>

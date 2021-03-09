@@ -1,0 +1,21 @@
+.breakdown-bar-container {
+  margin: 10px;
+  height: 140px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.breakdown-progress-bar {
+  height: 12px;
+  background: greenyellow;
+  width: 70%;
+}
+
+progress::-webkit-progress-value {
+  background: rgb(6, 172, 42);
+}
+
+progress::-webkit-progress-bar {
+  background: rgb(182, 181, 181);
+}

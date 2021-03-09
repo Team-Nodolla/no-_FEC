@@ -65,7 +65,7 @@ app.post('/reviews', (req, res) => {
     recommend: req.body.userRec,
     name: req.body.userNickname,
     email: req.body.userEmail,
-    photos: [],
+    photos: req.body.photos,
     characteristics: req.body.userChars,
   }, {
     headers: token,
@@ -76,6 +76,30 @@ app.post('/reviews', (req, res) => {
     .catch((err) => {
       console.log('err between server and API during post: ', err);
       res.status(400).end('error posting review to API');
+    });
+});
+
+app.put('/reviews/:review_id/helpful', (req, res) => {
+  axios.put(`${url}/reviews/${req.params.review_id}/helpful`, {}, {
+    headers: token,
+  })
+    .then((response) => {
+      res.send(response);
+    })
+    .catch((err) => {
+      res.send(err);
+    });
+});
+
+app.put('/reviews/:review_id/report', (req, res) => {
+  axios.put(`${url}/reviews/${req.params.review_id}/report`, {}, {
+    headers: token,
+  })
+    .then((response) => {
+      res.send(response);
+    })
+    .catch((err) => {
+      res.send(err);
     });
 });
 // <------------------------->
