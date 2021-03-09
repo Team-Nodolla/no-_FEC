@@ -7,7 +7,7 @@ import ReviewList from './ReviewList/ReviewList.jsx';
 import MoreReviewsButton from './ReviewList/ReviewButtonsContainer/MoreReviewsButton/MoreReviewsButton.jsx';
 import AddReviewButton from './ReviewList/ReviewButtonsContainer/AddReviewButton/AddReviewButton.jsx';
 
-const RatingsAndReviews = ({ productID, metaData, productName }) => {
+const RatingsAndReviews = ({ onUserClick, productID, metaData, productName }) => {
   // set up state
   // track current productID as well as the reviews for that product
   const [reviewList, setReviewList] = useState([]);
@@ -61,7 +61,7 @@ const RatingsAndReviews = ({ productID, metaData, productName }) => {
   };
 
   return (
-    <>
+    <div onClick={() => onUserClick('Ratings And Reviews')}>
       <h3 className="reviews-header">RATINGS & REVIEWS</h3>
       <div className="ratings-and-reviews-container">
         <div className="review-breakdown-container">
@@ -97,7 +97,7 @@ const RatingsAndReviews = ({ productID, metaData, productName }) => {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

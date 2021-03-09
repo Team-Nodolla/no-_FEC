@@ -8,7 +8,7 @@ import ProductCart from './ProductCart/ProductCart.jsx';
 import ProductThumbnailScroll from './ProductThumbnailScroll/ProductThumbnailScroll.jsx';
 import './ProductOverview.css';
 
-const ProductOverview = ({ product, styles }) => {
+const ProductOverview = ({ onUserClick, product, styles }) => {
   if (styles !== undefined) {
     const toggle = false;
     const [priceOfProduct, setPriceOfProduct] = useState(product.originalPrice);
@@ -52,7 +52,7 @@ const ProductOverview = ({ product, styles }) => {
     };
 
     return (
-      <div className="product-overview-container">
+      <div onClick={() => onUserClick('Product Overview')} className="product-overview-container">
         <div className="product-thumbnail">
           <ProductThumbnailScroll
             onClickChangeThumbnail={onClickChangeThumbnail}

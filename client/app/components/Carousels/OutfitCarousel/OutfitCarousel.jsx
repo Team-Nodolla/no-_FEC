@@ -10,7 +10,7 @@ import NextButton from '../CarouselButtons/CarouselNextButton.jsx';
 import BackButton from '../CarouselButtons/CarouselBackButton.jsx';
 import './OutfitCarousel.css';
 
-const OutfitCarousel = ({ productInfo, handleRedirect }) => {
+const OutfitCarousel = ({ onUserClick, productInfo, handleRedirect }) => {
   const [outfitList, setOutfitList] = useState([...store.getAll()]);
   const [currentlyDisplayed, setCurrentlyDisplayed] = useState(
     {
@@ -78,7 +78,7 @@ const OutfitCarousel = ({ productInfo, handleRedirect }) => {
   };
 
   return (
-    <>
+    <div onClick={() => onUserClick('Outfit Carousel')}>
       <h2 id="outfit-carousel-title">Your Outfit</h2>
       <button type="button" onClick={() => { store.removeAll(); }}>clear storage</button>
       <div id="outfit-carousel">
@@ -95,7 +95,7 @@ const OutfitCarousel = ({ productInfo, handleRedirect }) => {
         <hr className="outfit-carousel-divider" />
         <NextButton atEnd={currentlyDisplayed.atEnd} handleNext={handleNext} />
       </div>
-    </>
+    </div>
   );
 };
 

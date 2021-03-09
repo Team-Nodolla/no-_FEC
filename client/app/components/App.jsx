@@ -11,13 +11,30 @@ import './App.css';
 
 const App = () => {
   const [currentProduct, setCurrentProduct] = useState({});
+  const [userClick, setUserClick] = useState({});
+  let userClicked = false;
+
+  const collectUserClickData = (description) => {
+    //event.preventDefault();
+    setUserClick({
+      clicked: true,
+      time: '1:30PM',
+      element: description,
+    });
+    userClicked = true;
+  };
+
+  useEffect(() => {
+    setUserClick({});
+    userClicked = false;
+  }, [userClicked === true]);
 
   const fetchProductInfoByID = (productIDResponse, putInState) => {
     const { id, name, category, description, slogan, features } = productIDResponse.data;
     const allOtherPromises = [
       axios.get(`/products/${id}/styles`),
       axios.get(`/products/${id}/related`),
-      axios.get(`/reviews/meta/${id}`)
+      axios.get(`/reviews/meta/${id}`),
     ];
     putInState.id = id;
     putInState.name = name;
@@ -90,14 +107,17 @@ const App = () => {
     fetchNewProductDetails(id);
   };
 
+  console.log(userClick);
   return (
     <div className="app-container">
       <ProductOverview
+        onUserClick={collectUserClickData}
         product={currentProduct}
         defaultStyle={currentProduct.defaultStyle}
         styles={currentProduct.styles}
       />
       <RelatedProductsCarousel
+        onUserClick={collectUserClickData}
         currentProductID={currentProduct.id ?? 0}
         currentProductName={currentProduct.name ?? ''}
         currentProductFeatures={currentProduct.features ?? []}
@@ -105,6 +125,7 @@ const App = () => {
         handleRedirect={handleRedirect}
       />
       <OutfitCarousel
+        onUserClick={collectUserClickData}
         productInfo={{
           id: currentProduct?.id ?? 0,
           name: currentProduct?.name ?? 'Product Name',
@@ -117,6 +138,7 @@ const App = () => {
         handleRedirect={handleRedirect}
       />
       <RatingsAndReviews
+        onUserClick={collectUserClickData}
         productID={currentProduct.id}
         metaData={currentProduct.metaData}
         productName={currentProduct.name}

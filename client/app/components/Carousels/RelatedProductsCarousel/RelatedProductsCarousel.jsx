@@ -15,6 +15,7 @@ import './RelatedProductsCarousel.css';
 
 const RelatedProductsCarousel = (
   {
+    onUserClick,
     currentProductID = 0,
     currentProductName = '',
     currentProductFeatures = [],
@@ -161,7 +162,7 @@ const RelatedProductsCarousel = (
   );
 
   return (
-    <>
+    <div onClick={() => onUserClick('Related Carousel')}>
       <h2 id="related-carousel-title">Related Items</h2>
       <div
         id="related-carousel"
@@ -178,7 +179,7 @@ const RelatedProductsCarousel = (
         <hr className="outfit-carousel-divider" />
         <NextButton atEnd={currentlyDisplayed.atEnd} handleNext={handleNext} />
       </div>
-    </>
+    </div>
   );
 };
 
