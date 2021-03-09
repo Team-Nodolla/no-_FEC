@@ -169,13 +169,11 @@ const RelatedProductsCarousel = (
       >
         <BackButton atStart={currentlyDisplayed.atStart} handleBack={handleBack} />
         <ComparisonWindow { ...compareModalData } />
-        <hr className="outfit-carousel-divider" />
         <div id="related-card-container">
           {currentlyDisplayed.cards.map((displayedProduct) => (
             cardTemplate(displayedProduct)
           ))}
         </div>
-        <hr className="outfit-carousel-divider" />
         <NextButton atEnd={currentlyDisplayed.atEnd} handleNext={handleNext} />
       </div>
     </>
