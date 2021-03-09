@@ -22,7 +22,7 @@ const ReviewListItem = ({ review }) => {
   };
 
   return (
-    <div className="reviewListItem">
+    <div className="review-list-item">
       <div className="reviewListItemStarRating">
         <StarRating reviewScore={review.rating} setMargin="0 0 0 0" />
         <div className="review-username-date">

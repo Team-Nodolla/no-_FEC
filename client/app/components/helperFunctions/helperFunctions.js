@@ -82,8 +82,14 @@ const getDefaultStyle = (styles) => {
   return styles[0];
 };
 
+// takes object from API call to reviews/:productID and returns number of reviews for that product.
+const getNumberOfReviews = (reviews) => (
+  reviews.results.length
+);
+
 export {
   getCharacteristicDescriptions,
   getAverageRating,
   getDefaultStyle,
+  getNumberOfReviews,
 };

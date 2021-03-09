@@ -14,44 +14,13 @@ const AddReviewButton = ({ productName, productID, metaData }) => {
     setModalView(!modalView);
   };
 
-  const handleReviewSubmit = (
-    e,
-    productID,
-    userRating,
-    userRec,
-    userChars,
-    userSummary,
-    userBody,
-    userNickname,
-    userEmail,
-  ) => {
-    e.preventDefault();
-    axios.post('/reviews', {
-      productID,
-      userRating,
-      userRec,
-      userChars,
-      userSummary,
-      userBody,
-      userNickname,
-      userEmail,
-    })
-      .then((response) => {
-        // console.log('Wow, great success posting a review! Very nice!');
-      })
-      .catch((err) => {
-        console.error('error in review submission: ', err);
-      });
-    setModalView(!modalView);
-  };
-
   return (
     <>
       <button onClick={handleButtonClick} type="button" className="addReviewButton">Add Review +</button>
       <ModalWindow
         handleClose={handleButtonClick}
-        handleReviewSubmit={handleReviewSubmit}
         modalView={modalView}
+        setModalView={setModalView}
         productName={productName}
         productID={productID}
         metaData={metaData}

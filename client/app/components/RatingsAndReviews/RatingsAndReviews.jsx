@@ -11,6 +11,7 @@ const RatingsAndReviews = ({ productID, metaData, productName }) => {
   // set up state
   // track current productID as well as the reviews for that product
   const [reviewList, setReviewList] = useState([]);
+  const [reviewListStorage, setReviewListStorage] = useState([]);
   const [sortOrder, setSortOrder] = useState('relevant');
   const [visibleReviews, setVisibleReviews] = useState(2);
 
@@ -20,6 +21,7 @@ const RatingsAndReviews = ({ productID, metaData, productName }) => {
       axios.get(`/reviews/sort/${sortOrder}/product/${productID}`) // TODO productID
         .then((response) => {
           setReviewList(response.data.results);
+          setReviewListStorage(response.data.results);
         })
         .catch((err) => {
           console.log('error fetching data on mount: ', err);
@@ -32,12 +34,17 @@ const RatingsAndReviews = ({ productID, metaData, productName }) => {
       axios.get(`/reviews/sort/${sortOrder}/product/${productID}`) // TODO productID
         .then((response) => {
           setReviewList(response.data.results);
+          setReviewListStorage(response.data.results);
         })
         .catch((err) => {
           console.log('error fetching data on mount: ', err);
         });
     }
   }, [sortOrder]);
+
+  const handleSortClick = (func) => {
+    setReviewList(reviewListStorage.filter(func));
+  };
 
   const MoreReviewsButtonRender = () => {
     if (reviewList.length > visibleReviews) {
@@ -55,15 +62,20 @@ const RatingsAndReviews = ({ productID, metaData, productName }) => {
 
   return (
     <>
-      <h3 className="header">RATINGS & REVIEWS</h3>
-      <div className="ratingsAndReviewsContainer">
-        <div className="breakdownContainer">
-          <RatingSummary metaData={metaData} className="ratingSummary" />
+      <h3 className="reviews-header">RATINGS & REVIEWS</h3>
+      <div className="ratings-and-reviews-container">
+        <div className="review-breakdown-container">
+          <RatingSummary
+            className="review-rating-summary"
+            metaData={metaData}
+            handleSortClick={handleSortClick}
+          />
         </div>
-        <div className="reviewListContainer">
-          <form onChange={(event) => { setSortOrder(event.target.value); }} className="sortForm">
-            <label htmlFor="sortForm" className="sortFormLabel">Sort on </label>
-            <select id="sortForm" name="sortForm" className="sortFormSelect">
+
+        <div className="review-list-container">
+          <form onChange={(event) => { setSortOrder(event.target.value); }} className="sort-form">
+            <label htmlFor="sort-form" className="sort-form-label">Sort on </label>
+            <select id="sort-form" name="sort-form" className="sort-form-select">
               <option value="relevant">relevant</option>
               <option value="helpful">helpful</option>
               <option value="newest">newest</option>

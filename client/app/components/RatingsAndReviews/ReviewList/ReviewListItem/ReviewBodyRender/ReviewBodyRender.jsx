@@ -4,6 +4,7 @@ import React from 'react';
 import ReviewResponseRender from '../ReviewResponseRender/ReviewResponseRender.jsx';
 import ReviewRecommendRender from '../ReviewRecommendRender/ReviewRecommendRender.jsx';
 import ReviewItemThumbnailRender from '../ReviewItemThumbnailRender/ReviewItemThumbnailRender.jsx';
+import ReviewItemHelpful from '../ReviewItemHelpful/ReviewItemHelpful.jsx';
 
 const ReviewBodyRender = ({
   review,
@@ -22,6 +23,7 @@ const ReviewBodyRender = ({
           <ReviewItemThumbnailRender review={review} />
           <ReviewRecommendRender review={review} />
           <ReviewResponseRender review={review} />
+          <ReviewItemHelpful review={review} />
         </div>
       </>
     );
@@ -32,6 +34,7 @@ const ReviewBodyRender = ({
       <ReviewItemThumbnailRender review={review} />
       <ReviewRecommendRender review={review} />
       <ReviewResponseRender review={review} />
+      <ReviewItemHelpful review={review} />
     </div>
   );
 };
