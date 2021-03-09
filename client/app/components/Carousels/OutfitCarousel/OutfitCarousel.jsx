@@ -80,7 +80,6 @@ const OutfitCarousel = ({ productInfo, handleRedirect }) => {
   return (
     <>
       <h2 id="outfit-carousel-title">Your Outfit</h2>
-      <button type="button" onClick={() => { store.removeAll(); }}>clear storage</button>
       <div id="outfit-carousel">
         <BackButton atStart={currentlyDisplayed.atStart} handleBack={handleBack} />
         <hr className="outfit-carousel-divider" />

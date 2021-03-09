@@ -4,6 +4,22 @@
   top: 40%;
   height: 20%;
   margin: auto 5px;
+  outline: none;
+  border-radius: 5px;
+  background-color: #f4f4f4;
+  border: 2px solid rgb(88, 71, 100);
+  color: rgb(88, 71, 100);
+}
+
+#carousel-btn-next:hover, #carousel-btn-back:hover {
+  animation-name: carousel-btn-hover;
+  animation-duration: .5s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes carousel-btn-hover{
+  from { background-color: #f4f4f4; }
+  to { background-color: rgba(244, 244, 244, .6); }
 }
 
 #carousel-btn-next {
