@@ -3,13 +3,17 @@
   min-width: 300px;
   max-width: 300px;
   height: 575px;
-  background-color: white;
-  box-shadow: 0 3px 5px #C0C0C0;
+  box-shadow: 5px 7px 0 #aaaaaa;
+  transition: box-shadow .5s;
+  -webkit-transition: box-shadow .5s;
+  background-color: #fff;
 }
 
 .card:hover {
-  box-shadow: 0 1px 7px rgb(90, 90, 90);
   cursor: pointer;
+  box-shadow: 1px 1px 7px rgb(90, 90, 90);
+  transition: box-shadow 1s;
+  -webkit-transition: box-shadow 1s;
 }
 
 .outfit-card {
@@ -21,7 +25,7 @@
 }
 
 .outfit-card:last-of-type {
-  margin-right: 0;
+  margin-right: 5px;
 }
 
 .related-card {
@@ -29,11 +33,11 @@
 }
 
 .related-card:first-of-type {
-  margin-left: 0;
+  margin-left: 5px;
 }
 
 .related-card:last-of-type {
-  margin-right: 0;
+  margin-right: 5px;
 }
 
 #card-image-container {
@@ -66,6 +70,7 @@
   bottom: 10px;
   width: 100%;
   border-top: 1px solid #C0C0C0;
+  background-color: #fff;
   padding-top: 10px;
 }
 
@@ -95,7 +100,8 @@
   text-shadow: 1px 1px 0 #000,
                1px 2px 0 #000,
                3px 6px 1px rgba(0,0,0,.1);
-
+  transition: text-shadow .5s;
+  -webkit-transition: text-shadow .5s;
 }
 
 #card-action-btn:hover {
@@ -108,6 +114,8 @@
                0 5px 10px rgba(0,0,0,.25),
                0 10px 10px rgba(0,0,0,.2),
                0 20px 20px rgba(0,0,0,.15);
+  transition: text-shadow 1s;
+  -webkit-transition: text-shadow 1s;
 }
 
 #card-action-btn, #card-action-btn:hover {

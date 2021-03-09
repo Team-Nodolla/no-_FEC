@@ -1,17 +1,30 @@
 #carousel-btn-next, #carousel-btn-back {
-  position: absolute;
   z-index: 5;
-  top: 40%;
-  height: 20%;
   margin: auto 5px;
+  padding: 50px 6px;
+  outline: none;
+  border-radius: 5px;
+  background-color: #f4f4f4;
+  transition: background-color .5s;
+  -webkit-transition: background-color .5s;
+  border: 2px solid rgb(88, 71, 100);
+  color: rgb(88, 71, 100);
+}
+
+#carousel-btn-next:hover, #carousel-btn-back:hover {
+  background-color: rgba(244, 244, 244, .6);
+  transition: background-color 1s;
+  -webkit-transition: background-color 1s;
 }
 
 #carousel-btn-next {
   right: 10px;
+  grid-column: 3;
 }
 
 #carousel-btn-back {
   left: 10px;
+  grid-column: 1;
 }
 
 .carousel-btn-invisible {

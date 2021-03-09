@@ -4,7 +4,7 @@
 
 .product-item-summary {
   width: 1000px;
-  border-right: solid;
+  border-right: solid thistle;
   padding-right: 30px;
 }
 
@@ -21,4 +21,5 @@
 .feature-check {
   margin-top: 15px;
   margin-right: 20px;
+  /* color: thistle; */
 }
