@@ -5,9 +5,10 @@ import { getAverageRating } from '../../helperFunctions/helperFunctions.js';
 import RatingBreakdown from './RatingBreakdown/RatingBreakdown.jsx';
 import './RatingSummary.css';
 
-const RatingSummary = ({ metaData, handleSortClick }) => {
+const RatingSummary = ({ metaData, handleSortClick, RemoveAllFiltersRender }) => {
   const [averageScore, setAverageScore] = useState(0);
   const [percentRecommend, setPercentRecommend] = useState(0);
+
 
   useEffect(() => {
     if (metaData?.ratings) {
@@ -89,6 +90,9 @@ const RatingSummary = ({ metaData, handleSortClick }) => {
           metaData={metaData}
           handleSortClick={handleSortClick}
         />
+      </div>
+      <div className="breakdown-filter-button-container">
+        <RemoveAllFiltersRender />
       </div>
       <div className="productBreakdown">product breakdown component here</div>
     </>

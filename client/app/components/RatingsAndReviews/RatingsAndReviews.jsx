@@ -14,6 +14,7 @@ const RatingsAndReviews = ({ productID, metaData, productName }) => {
   const [reviewListStorage, setReviewListStorage] = useState([]);
   const [sortOrder, setSortOrder] = useState('relevant');
   const [visibleReviews, setVisibleReviews] = useState(2);
+  const [listIsFiltered, setListIsFiltered] = useState(false);
 
   // on component mount, use the productID to fetch reviews from the server
   useEffect(() => {
@@ -44,6 +45,13 @@ const RatingsAndReviews = ({ productID, metaData, productName }) => {
 
   const handleSortClick = (func) => {
     setReviewList(reviewListStorage.filter(func));
+    setListIsFiltered(true);
+  };
+
+  const handleRemoveFilterClick = (e) => {
+    e.preventDefault();
+    setReviewList(reviewListStorage);
+    setListIsFiltered(false);
   };
 
   const MoreReviewsButtonRender = () => {
@@ -60,6 +68,15 @@ const RatingsAndReviews = ({ productID, metaData, productName }) => {
     );
   };
 
+  const RemoveAllFiltersRender = () => {
+    if (listIsFiltered) {
+      return (
+        <button type="button" className="remove-review-filters-button" onClick={handleRemoveFilterClick}>Remove all filters</button>
+      );
+    }
+    return (<></>);
+  };
+
   return (
     <>
       <h3 className="reviews-header">RATINGS & REVIEWS</h3>
@@ -69,6 +86,7 @@ const RatingsAndReviews = ({ productID, metaData, productName }) => {
             className="review-rating-summary"
             metaData={metaData}
             handleSortClick={handleSortClick}
+            RemoveAllFiltersRender={RemoveAllFiltersRender}
           />
         </div>
 
