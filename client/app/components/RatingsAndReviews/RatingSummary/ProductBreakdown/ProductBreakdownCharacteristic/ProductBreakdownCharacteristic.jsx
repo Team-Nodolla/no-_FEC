@@ -11,9 +11,8 @@ const ProductBreakdownCharacteristic = ({ name, value }) => {
         {name}
       </div>
       <div className="product-breakdown-slider-container">
-        <label htmlFor="product-breakdown-slider">
-          <input type="range" min="1" max="5" value={value} name="product-breakdown-slider" className="product-breakdown-slider" readOnly />
-        </label>
+        <label htmlFor="product-breakdown-slider-name"></label>
+          <input type="range" min="1" max="5" value={value} name="product-breakdown-slider-name" className="product-breakdown-slider" readOnly />
       </div>
       <div className="product-breakdown-details">
         <span className="product-characteristic-one">{productCharsObj.one}</span>

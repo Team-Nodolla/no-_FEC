@@ -17,12 +17,12 @@
 }
 
 .product-breakdown-slider {
-  -webkit-appearance: none;  /* Override default CSS styles */
+  -webkit-appearance: none;
   appearance: none;
-  width: 80%; /* Full-width */
-  height: 10px; /* Specified height */
-  background: #d3d3d3; /* Grey background */
-  outline: none; /* Remove outline */
+  width: 80%;
+  height: 10px;
+  background: #d3d3d3;
+  outline: none;
   opacity: 1;
 }
 
