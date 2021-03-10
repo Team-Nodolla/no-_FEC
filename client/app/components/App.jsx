@@ -15,15 +15,21 @@ const App = () => {
   const [userClick, setUserClick] = useState({});
   let userClicked = false;
 
-  const collectUserClickData = (event) => {
+  const collectUserClickData = (event, name) => {
     const timeOfClick = new Date();
     setUserClick({
       element: event.target.tagName,
-      time: timeOfClick,
-      widget: 'dummy data',
+      time: timeOfClick.toString(),
+      widget: name,
     });
     userClicked = true;
   };
+
+  if (Object.entries(userClick).length !== 0) {
+    axios.post('/interactions', {
+      userClick,
+    });
+  }
 
   useEffect(() => {
     setUserClick({});
@@ -112,12 +118,14 @@ const App = () => {
     <div className="app-container">
       <header><h1 id="app-title">Nodolla</h1></header>
       <ProductOverview
+        onUserClick={collectUserClickData}
         reviewNumber={currentProductReviews}
         product={currentProduct}
         defaultStyle={currentProduct.defaultStyle}
         styles={currentProduct.styles}
       />
       <RelatedProductsCarousel
+        onUserClick={collectUserClickData}
         currentProductID={currentProduct.id ?? 0}
         currentProductName={currentProduct.name ?? ''}
         currentProductFeatures={currentProduct.features ?? []}
@@ -125,6 +133,7 @@ const App = () => {
         handleRedirect={handleRedirect}
       />
       <OutfitCarousel
+        onUserClick={collectUserClickData}
         productInfo={{
           id: currentProduct?.id ?? 0,
           name: currentProduct?.name ?? 'Product Name',
@@ -137,6 +146,7 @@ const App = () => {
         handleRedirect={handleRedirect}
       />
       <RatingsAndReviews
+        onUserClick={collectUserClickData}
         productID={currentProduct.id}
         metaData={currentProduct.metaData}
         productName={currentProduct.name}
