@@ -24,6 +24,7 @@ const ExpandedView = ({
             arrayOfPhoto={style}
           />
         </div>
+
         <div onClick={onClickImage} className="expanded-image-view">
           <ReactImageMagnify {...{
             smallImage: {
