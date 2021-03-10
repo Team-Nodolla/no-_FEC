@@ -7,8 +7,6 @@ module.exports = {
 
   coverageDirectory: 'coverage',
 
-  collectCoverage: true,
-
   moduleFileExtensions: ['js', 'json', 'jsx'],
 
   moduleNameMapper: {

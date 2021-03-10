@@ -23,8 +23,8 @@ const CarouselCard = ({
   if (salePrice !== null) {
     displayPrice = (
       <>
-        <span className="descriptive" id="old-price">{`$${originalPrice}`}</span>
-        <span className="descriptive" id="display-price">{`$${salePrice}`}</span>
+        <span className="descriptive old-price">{`$${originalPrice}`}</span>
+        <span className="descriptive display-price">{`$${salePrice}`}</span>
       </>
     );
   } else {
@@ -34,7 +34,8 @@ const CarouselCard = ({
   return (
     <div className={`card ${carouselType}-card`} onClick={() => { handleRedirect(id) }} >
       <button
-        id="card-action-btn"
+        aria-label="Action Button"
+        className="card-action-btn"
         type="button"
         onClick={(e) => { e.stopPropagation(); handleActionButton(id, name, features); }}
       >
@@ -45,21 +46,20 @@ const CarouselCard = ({
         }
         />
       </button>
-      <div id="card-image-container">
+      <div className="card-image-container">
         {productImage
-          ? <img id="card-image" src={productImage} alt={name ? name : 'Product Name'} />
+          ? <img className="card-image" src={productImage} alt={name ? name : 'Product Name'} />
           : (
             <img
-              id="card-no-image"
+              className="card-no-image"
               src="https://watertownbusinesscoalition.com/assets/images/no_image_available.jpeg"
               alt={name ? name : 'Product Name'}
             />
-          )
-        }
+          )}
       </div>
-      <div id="descriptive-container">
-        <span className="descriptive" id="category">{category ? category : 'Category'}</span>
-        <h3 className="descriptive" id="product-name">{name ? name : 'Product Name'}</h3>
+      <div className="descriptive-container">
+        <span className="descriptive category">{category ? category : 'Category'}</span>
+        <h3 className="descriptive product-name">{name ? name : 'Product Name'}</h3>
         {displayPrice}
         <StarRating reviewScore={reviewScore} setMargin="10px 0 0 10px" />
       </div>
