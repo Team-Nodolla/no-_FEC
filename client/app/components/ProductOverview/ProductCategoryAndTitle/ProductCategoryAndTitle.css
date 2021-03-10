@@ -1,5 +1,9 @@
-.product-star {
+.product-star-active {
   display: flex;
+}
+
+.product-star-disabled {
+  display: none;
 }
 
 .read-all-review {

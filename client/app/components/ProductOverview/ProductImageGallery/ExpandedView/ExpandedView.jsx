@@ -6,6 +6,7 @@ import './ExpandedView.css';
 
 const ExpandedView = ({
   onClickRightChange,
+  onClickImage,
   onClickChangeThumbnail,
   style,
   currentPhoto,
@@ -23,7 +24,7 @@ const ExpandedView = ({
             arrayOfPhoto={style}
           />
         </div>
-        <div className="expanded-image-view">
+        <div onClick={onClickImage} className="expanded-image-view">
           <ReactImageMagnify {...{
             smallImage: {
               isFluidWidth: true,
