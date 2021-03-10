@@ -238,7 +238,7 @@ const ModalWindow = ({ handleClose, modalView, setModalView, productName, produc
             <img src={reviewFileThumbnail} alt="" width="30px" />
             {' '}
             <input type="submit" value="Submit Review" />
-          </form>
+          </form><br></br>
 
           <div className="reviewModalButtonContainer">
             <button type="button" className="modalButton" onClick={handleClose}>

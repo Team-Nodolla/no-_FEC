@@ -11,6 +11,7 @@ import './App.css';
 
 const App = () => {
   const [currentProduct, setCurrentProduct] = useState({});
+  const [currentProductReviews, setCurrentProductReviews] = useState({});
 
   const fetchProductInfoByID = (productIDResponse, putInState) => {
     const { id, name, category, description, slogan, features } = productIDResponse.data;
@@ -121,6 +122,7 @@ const App = () => {
         productID={currentProduct.id}
         metaData={currentProduct.metaData}
         productName={currentProduct.name}
+        setCurrentProductReviews={setCurrentProductReviews}
       />
     </div>
   );

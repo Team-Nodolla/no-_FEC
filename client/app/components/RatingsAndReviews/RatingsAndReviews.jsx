@@ -7,13 +7,14 @@ import ReviewList from './ReviewList/ReviewList.jsx';
 import MoreReviewsButton from './ReviewList/ReviewButtonsContainer/MoreReviewsButton/MoreReviewsButton.jsx';
 import AddReviewButton from './ReviewList/ReviewButtonsContainer/AddReviewButton/AddReviewButton.jsx';
 
-const RatingsAndReviews = ({ productID, metaData, productName }) => {
+const RatingsAndReviews = ({ productID, metaData, productName, setCurrentProductReviews }) => {
   // set up state
   // track current productID as well as the reviews for that product
   const [reviewList, setReviewList] = useState([]);
   const [reviewListStorage, setReviewListStorage] = useState([]);
   const [sortOrder, setSortOrder] = useState('relevant');
   const [visibleReviews, setVisibleReviews] = useState(2);
+  const [listIsFiltered, setListIsFiltered] = useState(false);
 
   // on component mount, use the productID to fetch reviews from the server
   useEffect(() => {
@@ -22,6 +23,7 @@ const RatingsAndReviews = ({ productID, metaData, productName }) => {
         .then((response) => {
           setReviewList(response.data.results);
           setReviewListStorage(response.data.results);
+          setCurrentProductReviews(response.data);
         })
         .catch((err) => {
           console.log('error fetching data on mount: ', err);
@@ -44,6 +46,13 @@ const RatingsAndReviews = ({ productID, metaData, productName }) => {
 
   const handleSortClick = (func) => {
     setReviewList(reviewListStorage.filter(func));
+    setListIsFiltered(true);
+  };
+
+  const handleRemoveFilterClick = (e) => {
+    e.preventDefault();
+    setReviewList(reviewListStorage);
+    setListIsFiltered(false);
   };
 
   const MoreReviewsButtonRender = () => {
@@ -60,6 +69,15 @@ const RatingsAndReviews = ({ productID, metaData, productName }) => {
     );
   };
 
+  const RemoveAllFiltersRender = () => {
+    if (listIsFiltered) {
+      return (
+        <button type="button" className="remove-review-filters-button" onClick={handleRemoveFilterClick}>Remove all filters</button>
+      );
+    }
+    return (<></>);
+  };
+
   return (
     <>
       <h3 className="reviews-header">RATINGS & REVIEWS</h3>
@@ -69,6 +87,7 @@ const RatingsAndReviews = ({ productID, metaData, productName }) => {
             className="review-rating-summary"
             metaData={metaData}
             handleSortClick={handleSortClick}
+            RemoveAllFiltersRender={RemoveAllFiltersRender}
           />
         </div>
 
