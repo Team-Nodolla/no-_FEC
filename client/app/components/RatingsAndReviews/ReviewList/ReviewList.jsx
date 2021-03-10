@@ -2,9 +2,9 @@ import React, { useEffect, useState } from 'react';
 import propTypes from 'proptypes';
 import './ReviewList.css';
 import ReviewListItem from './ReviewListItem/ReviewListItem.jsx';
-import MoreReviewsButton from './ReviewButtonsContainer/MoreReviewsButton/MoreReviewsButton.jsx';
+import AddReviewButton from './ReviewButtonsContainer/AddReviewButton/AddReviewButton.jsx';
 
-const ReviewList = ({ reviewList, visibleReviews }) => {
+const ReviewList = ({ reviewList, visibleReviews, MoreReviewsButtonRender, productName, productID, metaData }) => {
   // const [reviewElements, setReviewElements] = useState([]);
   let reviewsArray = [];
 
@@ -37,7 +37,8 @@ const ReviewList = ({ reviewList, visibleReviews }) => {
       );
     }
     return (
-      <></>
+      <>
+      </>
     );
   };
 

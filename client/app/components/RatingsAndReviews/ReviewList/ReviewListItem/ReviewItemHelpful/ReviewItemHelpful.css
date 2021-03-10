@@ -6,4 +6,5 @@
   color: #764ABC;
   text-decoration: underline;
   cursor: pointer;
+  outline: none;
 }

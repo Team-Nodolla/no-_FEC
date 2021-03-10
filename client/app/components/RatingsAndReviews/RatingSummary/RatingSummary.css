@@ -1,7 +1,7 @@
 .review-rating-summary {
   display: flex;
   flex-direction: row;
-  background-color: #dfdfdf;
+  background-color: #fdfdfd;
   min-height: 100px;
   margin: 10px;
 }
@@ -16,13 +16,13 @@
 }
 
 .percentRecommend {
-  background-color: #dfdfdf;
+  background-color: #fdfdfd;
   min-height: 20px;
   margin: 0 0 0 45px;
 }
 
 .breakdown-filter-button-container {
-  height: 25px;
+  height: 15px;
 }
 
 .remove-review-filters-button {
