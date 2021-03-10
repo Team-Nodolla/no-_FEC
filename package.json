@@ -8,7 +8,9 @@
     "react-dev": "webpack --watch",
     "build": "webpack",
     "test": "jest",
-    "test-u": "jest -u"
+    "test-u": "jest -u",
+    "start-forever": "forever start server/index.js",
+    "stop-forever": "forever stop server/index.js"
   },
   "repository": {
     "type": "git",
@@ -34,6 +36,7 @@
     "enzyme-adapter-react-16": "^1.15.6",
     "enzyme-to-json": "^3.6.1",
     "express": "^4.17.1",
+    "forever": "^3.0.4",
     "identity-obj-proxy": "^3.0.0",
     "jest": "^26.6.3",
     "live-server": "^1.2.1",
