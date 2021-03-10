@@ -16,6 +16,7 @@ const App = () => {
   let userClicked = false;
 
   const collectUserClickData = (event, name) => {
+    event.preventDefault();
     const timeOfClick = new Date();
     setUserClick({
       element: event.target.tagName,
