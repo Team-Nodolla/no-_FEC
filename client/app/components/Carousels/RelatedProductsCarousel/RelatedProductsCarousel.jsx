@@ -162,7 +162,7 @@ const RelatedProductsCarousel = (
   );
 
   return (
-    <div onClick={onUserClick}>
+    <div onClick={(e) => onUserClick(e, 'Related Product Carousel')}>
       <h2 id="related-carousel-title">Related Items</h2>
       <div
         id="related-carousel"
@@ -182,6 +182,7 @@ const RelatedProductsCarousel = (
 };
 
 RelatedProductsCarousel.propTypes = {
+  onUserClick: propTypes.func.isRequired,
   currentProductID: propTypes.number.isRequired,
   currentProductName: propTypes.string.isRequired,
   currentProductFeatures: propTypes.array.isRequired,

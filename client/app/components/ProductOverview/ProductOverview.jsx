@@ -34,7 +34,6 @@ const ProductOverview = ({ onUserClick, product, styles }) => {
     };
 
     const onClickZoom = () => {
-      console.log('clicked');
       if (styles[currentPhoto].photos[currentPhoto].url !== null) {
         setExpandView((view) => !view);
       }
@@ -54,7 +53,7 @@ const ProductOverview = ({ onUserClick, product, styles }) => {
 
     return (
       <div
-      onClick={onUserClick}
+      onClick={(e) => onUserClick(e, 'Product Overview')}
       className="product-overview-container">
         <div className="product-thumbnail">
           <ProductThumbnailScroll
@@ -113,6 +112,7 @@ const ProductOverview = ({ onUserClick, product, styles }) => {
 };
 
 ProductOverview.propTypes = {
+  onUserClick: propTypes.func,
   product: propTypes.object,
   styles: propTypes.array,
 };

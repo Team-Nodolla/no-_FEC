@@ -14,12 +14,12 @@ const App = () => {
   const [userClick, setUserClick] = useState({});
   let userClicked = false;
 
-  const collectUserClickData = (event) => {
+  const collectUserClickData = (event, name) => {
     const timeOfClick = new Date();
     setUserClick({
       element: event.target.tagName,
       time: timeOfClick,
-      widget: 'dummy data',
+      widget: name,
     });
     userClicked = true;
   };
@@ -110,12 +110,7 @@ const App = () => {
   console.log(userClick);
   return (
     <div className="app-container">
-<<<<<<< HEAD
-      <header className="banner">
-      </header>
-=======
       <header><h1 id="app-title">Nodolla</h1></header>
->>>>>>> origin
       <ProductOverview
         onUserClick={collectUserClickData}
         product={currentProduct}

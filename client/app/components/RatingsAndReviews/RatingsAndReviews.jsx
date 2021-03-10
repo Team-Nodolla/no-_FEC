@@ -61,7 +61,7 @@ const RatingsAndReviews = ({ onUserClick, productID, metaData, productName }) =>
   };
 
   return (
-    <div onClick={onUserClick}>
+    <div onClick={(e) => onUserClick(e, 'Rating and Reviews')}>
       <h3 className="reviews-header">RATINGS & REVIEWS</h3>
       <div className="ratings-and-reviews-container">
         <div className="review-breakdown-container">
@@ -102,6 +102,7 @@ const RatingsAndReviews = ({ onUserClick, productID, metaData, productName }) =>
 };
 
 RatingsAndReviews.propTypes = {
+  onUserClick: propTypes.func,
   productID: propTypes.number,
   product: propTypes.object,
   metaData: propTypes.object

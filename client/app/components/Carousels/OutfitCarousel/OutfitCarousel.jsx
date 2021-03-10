@@ -78,7 +78,7 @@ const OutfitCarousel = ({ onUserClick, productInfo, handleRedirect }) => {
   };
 
   return (
-    <div onClick={onUserClick}>
+    <div onClick={(e) => onUserClick(e, 'Outfit Carousel')}>
       <h2 id="outfit-carousel-title">Your Outfit</h2>
       <div id="outfit-carousel">
         <BackButton atStart={currentlyDisplayed.atStart} handleBack={handleBack} />
@@ -97,6 +97,7 @@ const OutfitCarousel = ({ onUserClick, productInfo, handleRedirect }) => {
 };
 
 OutfitCarousel.propTypes = {
+  onUserClick: propTypes.func.isRequired,
   productInfo: propTypes.object.isRequired,
   handleRedirect: propTypes.func.isRequired,
 };
