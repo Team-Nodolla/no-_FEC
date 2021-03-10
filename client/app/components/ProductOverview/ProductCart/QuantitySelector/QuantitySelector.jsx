@@ -11,30 +11,42 @@ const QuantitySelector = ({ selectedSize, sizeQuantity, arraySkus }) => {
       case "Select Size":
         return (
           <div>
-            <select className="product-dropdown-box">
-              <option>-</option>
-            </select>
+            <form>
+              <label for="promo">
+                <select className="product-dropdown-box">
+                  <option>-</option>
+                </select>
+              </label>
+            </form>
           </div>
         );
       case null:
         return (
           <div>
-            <select className="product-dropdown-box">
-              <option>-</option>
-            </select>
+            <form>
+              <label for="promo">
+                <select className="product-dropdown-box">
+                  <option>-</option>
+                </select>
+              </label>
+            </form>
           </div>
         );
       case selectedSize:
         return (
           <div>
-            <select className="product-dropdown-box">
-              <option value={1}>1</option>
-              {arrayOfSize.map((quantity) => {
-                return (
-                  <option key={quantity} value={quantity}>{quantity}</option>
-                )
-              })}
-            </select>
+            <form>
+              <label for="promo">
+                <select className="product-dropdown-box">
+                  <option value={1}>1</option>
+                  {arrayOfSize.map((quantity) => {
+                    return (
+                      <option key={quantity} value={quantity}>{quantity}</option>
+                    )
+                  })}
+                </select>
+              </label>
+            </form>
           </div>
         );
       default:

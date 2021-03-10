@@ -15,6 +15,7 @@ const ProductStyleSelector = ({ currentPhoto, handleSelectedStyleClick, styles ,
             <div className="style-image" key={productStyle.style_id}>
             <i className={`style-image-icon-${currentPhoto.style_id === productStyle.style_id ? 'selected' : 'disabled'} far fa-check-circle`}></i>
             <img
+              alt="Individual Thumbnail of Style"
               className="style-image-icon"
               onClick={() => handleSelectedStyleClick(productStyle, productStyle.original_price)}
               src={productStyle.photos[0].thumbnail_url === null ? noImg : productStyle.photos[0].thumbnail_url} />
