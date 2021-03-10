@@ -18,11 +18,17 @@ const App = () => {
     const timeOfClick = new Date();
     setUserClick({
       element: event.target.tagName,
-      time: timeOfClick,
+      time: timeOfClick.toString(),
       widget: name,
     });
     userClicked = true;
   };
+
+  if (Object.entries(userClick).length !== 0) {
+    axios.post('/interactions', {
+      userClick,
+    });
+  }
 
   useEffect(() => {
     setUserClick({});
@@ -107,7 +113,6 @@ const App = () => {
     fetchNewProductDetails(id);
   };
 
-  console.log(userClick);
   return (
     <div className="app-container">
       <header><h1 id="app-title">Nodolla</h1></header>
