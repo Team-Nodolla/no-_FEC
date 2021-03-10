@@ -3,4 +3,4 @@ coverage
 client/dist/bundle.js
 config.js
 package-lock.json
-Nodolla_FEC.pem
+nodolla_FEC_CA.pem
