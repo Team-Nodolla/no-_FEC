@@ -78,7 +78,7 @@ const OutfitCarousel = ({ onUserClick, productInfo, handleRedirect }) => {
   };
 
   return (
-    <div onClick={() => onUserClick('Outfit Carousel')}>
+    <div onClick={onUserClick}>
       <h2 id="outfit-carousel-title">Your Outfit</h2>
       <button type="button" onClick={() => { store.removeAll(); }}>clear storage</button>
       <div id="outfit-carousel">

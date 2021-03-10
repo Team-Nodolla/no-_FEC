@@ -162,7 +162,7 @@ const RelatedProductsCarousel = (
   );
 
   return (
-    <div onClick={() => onUserClick('Related Carousel')}>
+    <div onClick={onUserClick}>
       <h2 id="related-carousel-title">Related Items</h2>
       <div
         id="related-carousel"
