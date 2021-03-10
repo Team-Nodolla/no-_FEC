@@ -15,7 +15,10 @@ const ProductThumbnailScroll = ({ onClickChangeThumbnail, currentPhoto, arrayOfP
         {arrayOfPhoto.photos.map((photo) => {
           return (
           <div key={counter++} className="thumbnail-photos">
-            <img onClick={() => onClickChangeThumbnail(arrayOfPhoto.photos.indexOf(photo))} className={`${currentPhoto === photo.thumbnail_url ? 'selected-image  thumbnail-size' :`thumbnail-size`}`} src={photo.thumbnail_url} />
+            <img
+            alt="Individual Image of the Thumbnail Bar"
+            onClick={() => onClickChangeThumbnail(arrayOfPhoto.photos.indexOf(photo))}
+            className={`${currentPhoto === photo.thumbnail_url ? 'selected-image  thumbnail-size' :`thumbnail-size`}`} src={photo.thumbnail_url} />
           </div>
           )
         })}
