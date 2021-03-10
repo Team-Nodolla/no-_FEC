@@ -1,0 +1,26 @@
+.product-breakdown-slider-container {
+  width: 100%;
+}
+
+.product-breakdown-slider {
+  -webkit-appearance: none;  /* Override default CSS styles */
+  appearance: none;
+  width: 80%; /* Full-width */
+  height: 10px; /* Specified height */
+  background: #d3d3d3; /* Grey background */
+  outline: none; /* Remove outline */
+  opacity: 1;
+}
+
+.product-breakdown-slider:hover {
+  opacity: 1;
+}
+
+.product-breakdown-slider::-webkit-slider-thumb {
+  -webkit-appearance: none; /* Override default look */
+  appearance: none;
+  width: 8px; /* Set a specific slider handle width */
+  height: 15px; /* Slider handle height */
+  background: rgb(88, 71, 100);
+  border-radius: 2px;
+}
