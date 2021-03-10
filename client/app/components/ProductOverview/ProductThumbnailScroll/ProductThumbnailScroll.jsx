@@ -4,6 +4,7 @@ import './ProductThumbnailScroll.css';
 
 const ProductThumbnailScroll = ({ onClickChangeThumbnail, currentPhoto, arrayOfPhoto }) => {
   if (arrayOfPhoto !== undefined && currentPhoto !== undefined) {
+    console.log(currentPhoto);
     let counter = 0;
     if (arrayOfPhoto.photos.length === 1 && currentPhoto === null) {
       return (
@@ -15,7 +16,7 @@ const ProductThumbnailScroll = ({ onClickChangeThumbnail, currentPhoto, arrayOfP
         {arrayOfPhoto.photos.map((photo) => {
           return (
           <div key={counter++} className="thumbnail-photos">
-            <img onClick={() => onClickChangeThumbnail(arrayOfPhoto.photos.indexOf(photo))} className={`${currentPhoto === photo.thumbnail_url ? 'selected-image  thumbnail-size' :`thumbnail-size`}`} src={photo.thumbnail_url} />
+            <img onClick={() => onClickChangeThumbnail(arrayOfPhoto.photos.indexOf(photo))} className={`${arrayOfPhoto.photos.indexOf(photo) === currentPhoto ? 'selected-image  thumbnail-size' :`thumbnail-size`}`} src={photo.thumbnail_url} />
           </div>
           )
         })}

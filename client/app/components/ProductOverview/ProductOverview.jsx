@@ -58,7 +58,7 @@ const ProductOverview = ({ onUserClick, product, styles }) => {
         <div className="product-thumbnail">
           <ProductThumbnailScroll
             onClickChangeThumbnail={onClickChangeThumbnail}
-            currentPhoto={selectedStyle.photos[currentPhoto].thumbnail_url}
+            currentPhoto={currentPhoto}
             arrayOfPhoto={selectedStyle}
           />
         </div>
