@@ -104,6 +104,10 @@ const RatingsAndReviews = ({ productID, metaData, productName, setCurrentProduct
             <ReviewList
               reviewList={reviewList}
               visibleReviews={visibleReviews}
+              MoreReviewsButtonRender={MoreReviewsButtonRender}
+              productName={productName}
+              productID={productID}
+              metaData={metaData}
             />
           </>
           <div className="reviewButtonsContainer">
