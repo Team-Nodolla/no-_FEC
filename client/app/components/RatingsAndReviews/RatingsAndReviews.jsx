@@ -7,7 +7,7 @@ import ReviewList from './ReviewList/ReviewList.jsx';
 import MoreReviewsButton from './ReviewList/ReviewButtonsContainer/MoreReviewsButton/MoreReviewsButton.jsx';
 import AddReviewButton from './ReviewList/ReviewButtonsContainer/AddReviewButton/AddReviewButton.jsx';
 
-const RatingsAndReviews = ({ productID, metaData, productName }) => {
+const RatingsAndReviews = ({ productID, metaData, productName, setCurrentProductReviews }) => {
   // set up state
   // track current productID as well as the reviews for that product
   const [reviewList, setReviewList] = useState([]);
@@ -23,6 +23,7 @@ const RatingsAndReviews = ({ productID, metaData, productName }) => {
         .then((response) => {
           setReviewList(response.data.results);
           setReviewListStorage(response.data.results);
+          setCurrentProductReviews(response.data);
         })
         .catch((err) => {
           console.log('error fetching data on mount: ', err);

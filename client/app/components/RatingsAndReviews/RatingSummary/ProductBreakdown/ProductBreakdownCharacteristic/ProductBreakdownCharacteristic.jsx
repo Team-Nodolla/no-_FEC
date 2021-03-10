@@ -1,5 +1,6 @@
 import React from 'react';
 import { getCharacteristicDescriptions } from '../../../../helperFunctions/helperFunctions.js';
+import './ProductBreakdownCharacteristic.css';
 
 const ProductBreakdownCharacteristic = ({ name, value }) => {
   const productCharsObj = getCharacteristicDescriptions(name);
@@ -9,11 +10,12 @@ const ProductBreakdownCharacteristic = ({ name, value }) => {
       <div className="product-characteristic-description">
         {name}
       </div>
-      <div className="product-slider-container">
+      <div className="product-breakdown-slider-container">
         <input type="range" min="1" max="5" value={value} className="product-breakdown-slider" />
       </div>
       <div className="product-breakdown-details">
-        {`${productCharsObj.one} ${productCharsObj.five}`}
+        <span className="product-characteristic-one">{productCharsObj.one}</span>
+        <span className="product-characteristic-five">{productCharsObj.five}</span>
       </div>
     </div>
   );
