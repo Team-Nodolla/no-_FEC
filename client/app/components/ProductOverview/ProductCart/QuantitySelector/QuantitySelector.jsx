@@ -1,6 +1,9 @@
 import React from 'react';
 import '../SizeSelector/SizeSelector.css';
 
+const switchOptions = () => {
+}
+
 const QuantitySelector = ({ selectedSize, sizeQuantity, arraySkus }) => {
   if (arraySkus !== undefined) {
     const arrayOfSize = [];
@@ -12,11 +15,11 @@ const QuantitySelector = ({ selectedSize, sizeQuantity, arraySkus }) => {
         return (
           <div>
             <form>
-              <label htmlFor="promo">
-                <select className="product-dropdown-box">
+              <label htmlFor="no-quantity"></label>
+                <select name="no-quantity"
+                        className="product-dropdown-box">
                   <option>-</option>
                 </select>
-              </label>
             </form>
           </div>
         );
@@ -24,11 +27,11 @@ const QuantitySelector = ({ selectedSize, sizeQuantity, arraySkus }) => {
         return (
           <div>
             <form>
-              <label htmlFor="promo">
-                <select className="product-dropdown-box">
+              <label htmlFor="no-quantity"></label>
+                <select name="no-quantity"
+                        className="product-dropdown-box">
                   <option>-</option>
                 </select>
-              </label>
             </form>
           </div>
         );
@@ -36,8 +39,8 @@ const QuantitySelector = ({ selectedSize, sizeQuantity, arraySkus }) => {
         return (
           <div>
             <form>
-              <label htmlFor="promo">
-                <select className="product-dropdown-box">
+              <label htmlFor="quantity"></label>
+                <select name="quantity" className="product-dropdown-box">
                   <option value={1}>1</option>
                   {arrayOfSize.map((quantity) => {
                     return (
@@ -45,7 +48,6 @@ const QuantitySelector = ({ selectedSize, sizeQuantity, arraySkus }) => {
                     )
                   })}
                 </select>
-              </label>
             </form>
           </div>
         );
