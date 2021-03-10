@@ -6,15 +6,14 @@ const SizeSelector = ({ onSelectSize, arraySkus }) => {
     return (
       <div>
         <form>
-          <label>
-            <select className="product-dropdown-box" onChange={onSelectSize}>
+          <label htmlFor="size"></label>
+            <select name="size" className="product-dropdown-box" onChange={onSelectSize}>
               {arraySkus.map((skus) => {
                 return (
                   <option key={arraySkus.indexOf(skus)} value={skus.size}>{skus.size}</option>
                 )
               })}
-          </select>
-          </label>
+            </select>
         </form>
       </div>
     );
