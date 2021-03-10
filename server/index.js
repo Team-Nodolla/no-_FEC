@@ -31,7 +31,7 @@ app.get('/products', (req, res) => {
 /*     Ratings and Reviews     */
 /* *************************** */
 app.get('/reviews/sort/:text/product/:product_id', (req, res) => {
-  axios.get(`${url}/reviews?sort=${req.params.text}&product_id=${req.params.product_id}`, {
+  axios.get(`${url}/reviews?sort=${req.params.text}&count=200&product_id=${req.params.product_id}`, {
     headers: token,
   })
     .then((response) => {
