@@ -6,7 +6,7 @@
   box-shadow: 5px 7px 0 #aaaaaa;
   transition: box-shadow .5s;
   -webkit-transition: box-shadow .5s;
-  background-color: #fff;
+  background-color: #fdfdfd;
 }
 
 .card:hover {
@@ -70,7 +70,7 @@
   bottom: 10px;
   width: 100%;
   border-top: 1px solid #C0C0C0;
-  background-color: #fff;
+  background-color: #fdfdfd;
   padding-top: 10px;
 }
 

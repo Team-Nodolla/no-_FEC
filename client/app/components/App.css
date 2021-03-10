@@ -25,6 +25,6 @@ header h1 {
   color: rgb(88, 71, 100);
 }
 
-span, p {
+span, p, div {
   font-family: 'Nunito', sans-serif;
 }
