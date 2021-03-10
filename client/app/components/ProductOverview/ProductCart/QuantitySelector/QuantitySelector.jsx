@@ -34,7 +34,7 @@ const QuantitySelector = ({ selectedSize, sizeQuantity, arraySkus }) => {
                 </select>
             </form>
           </div>
-        );;
+        );
       case selectedSize:
         return (
           <div>
