@@ -24,3 +24,7 @@ header h1 {
   font-size: 3em;
   color: rgb(88, 71, 100);
 }
+
+span, p {
+  font-family: 'Nunito', sans-serif;
+}
