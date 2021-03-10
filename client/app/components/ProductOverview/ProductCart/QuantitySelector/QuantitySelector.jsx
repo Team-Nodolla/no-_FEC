@@ -12,7 +12,7 @@ const QuantitySelector = ({ selectedSize, sizeQuantity, arraySkus }) => {
         return (
           <div>
             <form>
-              <label for="promo">
+              <label htmlFor="promo">
                 <select className="product-dropdown-box">
                   <option>-</option>
                 </select>
@@ -24,7 +24,7 @@ const QuantitySelector = ({ selectedSize, sizeQuantity, arraySkus }) => {
         return (
           <div>
             <form>
-              <label for="promo">
+              <label htmlFor="promo">
                 <select className="product-dropdown-box">
                   <option>-</option>
                 </select>
@@ -36,7 +36,7 @@ const QuantitySelector = ({ selectedSize, sizeQuantity, arraySkus }) => {
         return (
           <div>
             <form>
-              <label for="promo">
+              <label htmlFor="promo">
                 <select className="product-dropdown-box">
                   <option value={1}>1</option>
                   {arrayOfSize.map((quantity) => {
