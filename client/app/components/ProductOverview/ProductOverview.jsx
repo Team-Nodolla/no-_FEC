@@ -34,6 +34,7 @@ const ProductOverview = ({ onUserClick, product, styles }) => {
     };
 
     const onClickZoom = () => {
+      console.log('clicked');
       if (styles[currentPhoto].photos[currentPhoto].url !== null) {
         setExpandView((view) => !view);
       }

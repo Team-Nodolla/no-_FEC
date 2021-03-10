@@ -1,26 +1,8 @@
 .default-image {
   max-width: 700px;
   max-height: 700px;
-  /* align-items: center; */
-  /* width: auto;
-  display: flex;
-  height: auto;
-  justify-content: center;
-  margin-left:10%;
-  margin-top: 10%; */
   z-index: 2;
 }
-
-
-/* .display-image {
-  display: flex;
-  cursor: crosshair;
-  max-width:100%;
-  max-height:100%;
-  height: auto;
-  width:auto;
-  z-index: 2;
-} */
 
 .display-image{
   display: block;
@@ -29,11 +11,6 @@
   cursor: crosshair;
   max-width: 100%;
   max-height: 100%;
-  /* margin: 0px; */
-  /* position: relative;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%); */
   z-index: 2;
 }
 

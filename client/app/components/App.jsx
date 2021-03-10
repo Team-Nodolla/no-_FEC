@@ -110,8 +110,12 @@ const App = () => {
   console.log(userClick);
   return (
     <div className="app-container">
+<<<<<<< HEAD
       <header className="banner">
       </header>
+=======
+      <header><h1 id="app-title">Nodolla</h1></header>
+>>>>>>> origin
       <ProductOverview
         onUserClick={collectUserClickData}
         product={currentProduct}

@@ -80,10 +80,8 @@ const OutfitCarousel = ({ onUserClick, productInfo, handleRedirect }) => {
   return (
     <div onClick={onUserClick}>
       <h2 id="outfit-carousel-title">Your Outfit</h2>
-      <button type="button" onClick={() => { store.removeAll(); }}>clear storage</button>
       <div id="outfit-carousel">
         <BackButton atStart={currentlyDisplayed.atStart} handleBack={handleBack} />
-        <hr className="outfit-carousel-divider" />
         <div id="outfit-card-container">
           <AddToOutfit
             productInfo={productInfo}
@@ -92,7 +90,6 @@ const OutfitCarousel = ({ onUserClick, productInfo, handleRedirect }) => {
             cardTemplate(cardDetails)
           ))}
         </div>
-        <hr className="outfit-carousel-divider" />
         <NextButton atEnd={currentlyDisplayed.atEnd} handleNext={handleNext} />
       </div>
     </div>
