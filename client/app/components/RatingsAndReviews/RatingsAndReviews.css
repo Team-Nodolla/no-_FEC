@@ -48,6 +48,8 @@
   margin: 10px;
   display: flex;
   flex-direction: column;
+  padding: 10px 5% 10px 5%;
+  justify-content: space-evenly;
 }
 
 .productBreakdown {
