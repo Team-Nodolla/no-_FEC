@@ -13,14 +13,14 @@
   justify-content: start;
   width: 400px;
   margin: 0px 10px 10px 10px;
-  border: 3px solid #333;
-  background-color: #dfdfdf;
+  /* border: 3px solid #333; */
+  background-color: #fdfdfd;
   min-height: 500px;
 }
 
 .reviewList {
-  border: 3px solid #333;
-  background-color: #dfdfdf;
+  /* border: 3px solid #333; */
+  background-color: #fdfdfd;
   min-height: 100px;
   max-height: 100%;
   margin: 10px;
@@ -35,15 +35,15 @@
   justify-content: start;
   width: 800px;
   margin: 0px 10px 10px 10px;
-  border: 3px solid #333;
-  background-color: #dfdfdf;
+  /* border: 3px solid #333; */
+  background-color: #fdfdfd;
   min-height: 500px;
   max-height: 100vh;
 }
 
 .ratingBreakdown {
-  border: 3px solid #333;
-  background-color: #dfdfdf;
+  /* border: 3px solid #333; */
+  background-color: #fdfdfd;
   min-height: 150px;
   margin: 10px;
   display: flex;
@@ -53,15 +53,15 @@
 }
 
 .productBreakdown {
-  border: 3px solid #333;
-  background-color: #dfdfdf;
+  /* border: 3px solid #333; */
+  background-color: #fdfdfd;
   min-height: 150px;
   margin: 10px;
 }
 
 .sort-form {
-  border: 3px solid #333;
-  background-color: #dfdfdf;
+  /* border: 3px solid #333; */
+  background-color: #fdfdfd;
   min-height: 30px;
   margin: 10px;
 }
@@ -76,22 +76,26 @@
 
 .reviewButtonsContainer {
   display: flex;
-  border: 3px solid #333;
-  background-color: #dfdfdf;
+  /* border: 3px solid #333; */
+  background-color: #fdfdfd;
   min-height: 100px;
   margin: 10px;
 }
 
 .moreReviewsButton {
-  border: 3px solid #333;
-  background-color: #dfdfdf;
+  border: 3px solid rgb(88, 71, 100);
+  border-radius: 5px;
+  background-color: thistle;
   min-height: 50px;
   margin: 10px;
+  color: rgb(88, 71, 100);
 }
 
 .addReviewButton {
-  border: 3px solid #333;
-  background-color: #dfdfdf;
+  border: 3px solid rgb(88, 71, 100);
+  border-radius: 5px;
+  background-color: thistle;
   min-height: 50px;
   margin: 10px;
+  color: rgb(88, 71, 100);
 }
