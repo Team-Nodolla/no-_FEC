@@ -12,6 +12,23 @@ import './App.css';
 const App = () => {
   const [currentProduct, setCurrentProduct] = useState({});
   const [currentProductReviews, setCurrentProductReviews] = useState({});
+  const [userClick, setUserClick] = useState({});
+  let userClicked = false;
+
+  const collectUserClickData = (event) => {
+    const timeOfClick = new Date();
+    setUserClick({
+      element: event.target.tagName,
+      time: timeOfClick,
+      widget: 'dummy data',
+    });
+    userClicked = true;
+  };
+
+  useEffect(() => {
+    setUserClick({});
+    userClicked = false;
+  }, [userClicked === true]);
 
   const fetchProductInfoByID = (productIDResponse, putInState) => {
     const { id, name, category, description, slogan, features } = productIDResponse.data;
@@ -95,6 +112,7 @@ const App = () => {
     <div className="app-container">
       <header><h1 id="app-title">Nodolla</h1></header>
       <ProductOverview
+        reviewNumber={currentProductReviews}
         product={currentProduct}
         defaultStyle={currentProduct.defaultStyle}
         styles={currentProduct.styles}
