@@ -24,6 +24,7 @@ const ExpandedView = ({
           />
         </div>
         <div className="expanded-image-view">
+        <i alt="Right Button" onClick={onClickRightChange} className={`expanded-image-right-btn-active fas fa-chevron-right`}></i>
           <ReactImageMagnify {...{
             smallImage: {
               isFluidWidth: true,

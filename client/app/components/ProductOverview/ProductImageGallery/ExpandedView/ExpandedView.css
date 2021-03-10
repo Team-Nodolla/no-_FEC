@@ -21,3 +21,10 @@
   left: 50%;
   transform: translate(-50%, -50%);
 }
+
+.expanded-image-right-btn-active {
+  color: white;
+  display: flex;
+  position: absolute;
+  margin-left: 800px;
+}
