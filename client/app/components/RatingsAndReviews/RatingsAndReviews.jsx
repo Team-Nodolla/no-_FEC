@@ -79,7 +79,8 @@ const RatingsAndReviews = ({ onUserClick, productID, metaData, productName, setC
   };
 
   return (
-    <div onClick={(e) => onUserClick(e, "Rating and Reviews")}>
+    // <div onClick={(e) => onUserClick(e, "Rating and Reviews")}>
+    <div>
       <h3 className="reviews-header">RATINGS & REVIEWS</h3>
       <div className="ratings-and-reviews-container">
         <div className="review-breakdown-container">
