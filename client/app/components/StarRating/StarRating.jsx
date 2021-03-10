@@ -5,7 +5,7 @@ import './StarRating.css';
 const StarRating = ({ reviewScore, setMargin = '20px 0 0 0' }) => {
   let display;
   if (reviewScore === null) {
-    display = <div id="no-reviews">No Reviews For This Product</div>;
+    display = <p id="no-reviews">No Reviews For This Product</p>;
   } else {
     // Rounds the score to the nearest quarter
     const roundedScore = Math.round(reviewScore * 4) / 4;

@@ -1,9 +1,7 @@
 #related-carousel {
   position: relative;
-  /* margin: 10px 0 100px 10px; */
   margin-bottom: 100px;
   min-height: 600px;
-  /* border-top: 1px solid rgb(119, 140, 255); */
   border-top: 2px solid rgb(88, 71, 100);
   border-bottom: 2px solid rgb(88, 71, 100);
   display: grid;
