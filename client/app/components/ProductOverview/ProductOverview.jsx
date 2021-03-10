@@ -8,7 +8,7 @@ import ProductCart from './ProductCart/ProductCart.jsx';
 import ProductThumbnailScroll from './ProductThumbnailScroll/ProductThumbnailScroll.jsx';
 import './ProductOverview.css';
 
-const ProductOverview = ({ product, styles }) => {
+const ProductOverview = ({ onUserClick, reviewNumber, product, styles }) => {
   if (styles !== undefined) {
     const toggle = false;
     const [priceOfProduct, setPriceOfProduct] = useState(product.originalPrice);
@@ -53,7 +53,7 @@ const ProductOverview = ({ product, styles }) => {
     };
 
     return (
-      <div className="product-overview-container">
+      <div onClick={(e) => onUserClick(e, "Product Overview")} className="product-overview-container">
         <div className="product-thumbnail">
           <ProductThumbnailScroll
             onClickChangeThumbnail={onClickChangeThumbnail}
@@ -76,7 +76,7 @@ const ProductOverview = ({ product, styles }) => {
         </div>
         <div className="product-info-container">
           <div className="product-description-container">
-            <ProductCategoryAndTitle price={priceOfProduct} product={product} />
+            <ProductCategoryAndTitle reviewNumber={reviewNumber} price={priceOfProduct} product={product} />
           </div>
           <div className="product-style-container">
             <ProductStyleSelector
@@ -111,6 +111,7 @@ const ProductOverview = ({ product, styles }) => {
 };
 
 ProductOverview.propTypes = {
+  onUserClick: propTypes.func,
   product: propTypes.object,
   styles: propTypes.array,
 };

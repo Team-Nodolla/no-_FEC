@@ -56,6 +56,17 @@ app.get('/reviews/meta/:product_id', (req, res) => {
     });
 });
 
+app.post('/interactions', (req, res) => {
+  axios.post(`${url}/interactions`, req.body.userClick, {
+    headers: token,
+  })
+    .then((response) => res.status(200).send(response.data))
+    .catch((err) => {
+      console.log('error to post from interactions');
+      res.status(418).send(err);
+    });
+});
+
 app.post('/reviews', (req, res) => {
   axios.post(`${url}/reviews`, {
     product_id: req.body.productID,
