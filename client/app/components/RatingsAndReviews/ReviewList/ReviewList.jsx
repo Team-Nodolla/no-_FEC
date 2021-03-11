@@ -29,7 +29,7 @@ const ReviewList = ({ reviewList, visibleReviews, MoreReviewsButtonRender, produ
         reviewsArraySubset.push(reviewsArray[i]);
       }
       return (
-        <div className="reviewList">
+        <div id="review-list" className="reviewList">
           <div className="review-list-item-container">
             {reviewsArraySubset}
           </div>

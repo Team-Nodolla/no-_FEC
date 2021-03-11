@@ -40,14 +40,14 @@ const ProductCart = ({ product, selectedStyle }) => {
         setRequiredSelection(!toggle);
       } else {
         setRequiredSelection(toggle);
-        arrayOfSkus.forEach(element => {
+        arrayOfSkus.forEach((element) => {
           if (selectedSize === element.size) {
             const index = arrayOfSkus.indexOf(element);
             const idToAddToCart = Number(arrayOfSkusID[index - 1]);
             axios.post('/cart', { sku_id: idToAddToCart });
           }
         });
-      };
+      }
     };
 
     if (
