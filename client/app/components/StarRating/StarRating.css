@@ -2,7 +2,6 @@
   position: relative;
   width: 90px;
   height: 16px;
-  background-color: #fdfdfd;
   display: flex;
   justify-content: flex-end;
 }
@@ -18,12 +17,12 @@
 }
 
 div.stars i.full-stars {
-  color: gold;
+  color: thistle;
 }
 
 .empty-stars {
   z-index: 3;
-  color: rgb(88, 71, 100);;
+  color: rgb(88, 71, 100);
 }
 
 #stars-cover {

@@ -123,7 +123,7 @@ const App = () => {
 
   return (
     <div className={darkMode ? 'dark-app-container' : 'app-container'}>
-      <header className={darkMode ? 'dark-banner' : ''}>
+      <header className={darkMode ? 'dark-banner' : 'banner'}>
         <h1 id="app-title" className={darkMode ? 'dark-banner-title' : ''}>Nodolla</h1>
         <DarkModeSlider setMode={handleDarkModeSlider} darkMode={darkMode} />
       </header>
