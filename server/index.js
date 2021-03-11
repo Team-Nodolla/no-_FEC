@@ -1,6 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
+const compression = require('compression');
 const axios = require('axios');
 const config = require('../config.js');
 
@@ -16,6 +17,7 @@ const token = {
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(morgan('tiny'));
+app.use(compression());
 
 app.use(express.static('./client/dist'));
 
@@ -53,6 +55,18 @@ app.get('/reviews/meta/:product_id', (req, res) => {
     .catch((err) => {
       console.log('server error fetching review meta data', err);
       res.status(500).end();
+    });
+});
+
+app.post('/cart', (req, res) => {
+  console.log(req.body);
+  axios.post(`${url}/cart`, req.body, {
+    headers: token,
+  })
+    .then((response) => res.send(response.data))
+    .catch((err) => {
+      console.log('unable to post to cart');
+      res.status(404).send(err);
     });
 });
 
