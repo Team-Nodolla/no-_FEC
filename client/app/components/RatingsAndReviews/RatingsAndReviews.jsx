@@ -45,13 +45,25 @@ const RatingsAndReviews = ({ onUserClick, productID, metaData, productName, setC
     }
   }, [sortOrder]);
 
-  const handleSortClick = (func) => {
-    setReviewList(reviewListStorage.filter(func));
+  useEffect(() => {
+    setReviewList(additiveSortFilter(reviewListStorage));
+  }, [breakdownSortObj]);
+
+  const handleSortClick = (number) => {
+    setBreakdownSortObj({ ...breakdownSortObj, [number]: true });
+    // setReviewList(additiveSortFilter(reviewListStorage));
     setListIsFiltered(true);
   };
 
   const handleRemoveFilterClick = (e) => {
     e.preventDefault();
+    setBreakdownSortObj({
+      1: false,
+      2: false,
+      3: false,
+      4: false,
+      5: false,
+    }); // potentially needs change?
     setReviewList(reviewListStorage);
     setListIsFiltered(false);
   };
