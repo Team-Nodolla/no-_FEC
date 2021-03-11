@@ -122,10 +122,10 @@ const App = () => {
   };
 
   return (
-    <div className="app-container">
-      <header>
-        <h1 id="app-title">Nodolla</h1>
-        <DarkModeSlider setMode={handleDarkModeSlider} />
+    <div className={darkMode ? 'dark-app-container' : 'app-container'}>
+      <header className={darkMode ? 'dark-banner' : ''}>
+        <h1 id="app-title" className={darkMode ? 'dark-banner-title' : ''}>Nodolla</h1>
+        <DarkModeSlider setMode={handleDarkModeSlider} darkMode={darkMode} />
       </header>
       <ProductOverview
         onUserClick={collectUserClickData}

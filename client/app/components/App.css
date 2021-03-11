@@ -1,6 +1,17 @@
 body {
   margin: 0;
+}
+
+.app-container {
   background-color: #fdfdfd;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.dark-app-container {
+  background-color: rgb(53, 54, 58);
+  -webkit-transition: .4s;
+  transition: .4s;
 }
 
 header {
@@ -11,10 +22,11 @@ header {
   object-fit: contain;
   min-height: 100px;
   background-size: cover;
-  background-color: thistle;
   font-family: 'Lato', sans-serif;
   margin-bottom: 50px;
+  background-color: thistle;
   border-bottom: 5px solid rgb(88, 71, 100);
+  transition: .4s;
 }
 
 h1, h2, h3, h4, h5 {
@@ -30,4 +42,15 @@ header h1 {
 
 span, p, div {
   font-family: 'Nunito', sans-serif;
+}
+
+.dark-banner {
+  background-color: rgb(88, 71, 100);
+  border-color: thistle;
+  transition: .4s;
+}
+
+.dark-banner-title {
+  color: thistle;
+  transition: .4s;
 }

@@ -45,7 +45,7 @@
   width: 26px;
   left: 4px;
   top: 4px;
-  background-color: #fdfdfd;
+  background-color: thistle;
   -webkit-transition: .4s;
   transition: .4s;
 }
@@ -54,12 +54,24 @@
   color: rgb(88, 71, 100);
 }
 
+.dark-slider-icon {
+  color: thistle;
+}
+
+/* input:checked .fa-adjust {
+  color: thistle;
+} */
+
 input:checked + .slider {
-  background-color: #2196F3;
+  background-color: thistle;
+}
+
+input:checked + .slider:before {
+  background-color: rgb(88, 71, 100);
 }
 
 input:focus + .slider {
-  box-shadow: 0 0 1px #2196F3;
+  box-shadow: 0 0 1px thistle;
 }
 
 input:checked + .slider:before {
