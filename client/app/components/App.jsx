@@ -6,6 +6,7 @@ import ProductOverview from './ProductOverview/ProductOverview.jsx';
 import RelatedProductsCarousel from './Carousels/RelatedProductsCarousel/RelatedProductsCarousel.jsx';
 import OutfitCarousel from './Carousels/OutfitCarousel/OutfitCarousel.jsx';
 import RatingsAndReviews from './RatingsAndReviews/RatingsAndReviews.jsx';
+import DarkModeSlider from './DarkModeSlider/DarkModeSlider.jsx';
 import { getAverageRating, getDefaultStyle } from './helperFunctions/helperFunctions.js';
 import './App.css';
 
@@ -117,7 +118,10 @@ const App = () => {
 
   return (
     <div className="app-container">
-      <header><h1 id="app-title">Nodolla</h1></header>
+      <header>
+        <h1 id="app-title">Nodolla</h1>
+        <DarkModeSlider />
+      </header>
       <ProductOverview
         onUserClick={collectUserClickData}
         reviewNumber={currentProductReviews}

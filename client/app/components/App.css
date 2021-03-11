@@ -5,6 +5,9 @@ body {
 
 header {
   position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
   object-fit: contain;
   min-height: 100px;
   background-size: cover;
