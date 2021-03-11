@@ -8,7 +8,7 @@ const ProductCategoryAndTitle = ({ reviewNumber, price, product }) => {
 
     const clickedReviewFunc = (e) => {
       e.preventDefault();
-      return document.getElementById('review-list').scrollIntoView();
+      return document.querySelector('#review-list').scrollIntoView();
     };
 
     return (
