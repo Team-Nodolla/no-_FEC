@@ -58,16 +58,17 @@
   padding-right: 30px;
   border-radius: 10px;
 }
+
 .check-cart:hover {
   background-color: thistle;
 }
 
 .product-cart-number {
+  cursor: pointer;
   color: rgb(88, 71, 100);
-  width: 20px;
-  height: 20px;
   border-radius: 50%;
   position: absolute;
   margin-left: 162px;
   margin-top: 60px;
 }
+

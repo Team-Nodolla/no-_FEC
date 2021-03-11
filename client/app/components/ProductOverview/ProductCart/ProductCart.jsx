@@ -9,6 +9,7 @@ const ProductCart = ({ product, selectedStyle }) => {
   if (selectedStyle !== undefined) {
     const toggle = false;
     const boughtToggle = false;
+    const checkCartToggle = false;
     const arrayOfSkus = Object.values(selectedStyle.skus);
     const arrayOfSkusID = Object.keys(selectedStyle.skus);
     const [selectedSize, setSelectedSize] = useState(null);
@@ -16,6 +17,7 @@ const ProductCart = ({ product, selectedStyle }) => {
     const [requiredSelection, setRequiredSelection] = useState(toggle);
     const [boughtItem, setBoughtItem] = useState(boughtToggle);
     const [itemInCart, setItemInCart] = useState(0);
+    const [checkCart, setCheckCart] = useState(checkCartToggle);
 
     useEffect(() => {
       setSelectedSize(null);
@@ -41,9 +43,14 @@ const ProductCart = ({ product, selectedStyle }) => {
       });
     };
 
+    const onClickCheckCart = () => {
+
+    };
+
     const onClickAddCart = () => {
       if (selectedSize === arrayOfSkus[0].size || selectedQuantity === null) {
         setRequiredSelection(!toggle);
+        setBoughtItem(toggle);
       } else {
         setRequiredSelection(toggle);
         setBoughtItem(!boughtToggle);
@@ -86,7 +93,8 @@ const ProductCart = ({ product, selectedStyle }) => {
           <p className={`product-required-selection-${requiredSelection ? 'active' : 'disabled'}`}>Please select a size!</p>
           <p className={`product-add-cart-${boughtItem ? 'active' : 'disabled'}`}>Added to Cart! {`(${itemInCart}) item`}</p>
         </div>
-        <div className="product-cart-number">{itemInCart}</div>
+        <div onClick={''} className="product-cart-number">{itemInCart}</div>
+        <div className="check-cart-modal-active"></div>
       </>
     );
   }
