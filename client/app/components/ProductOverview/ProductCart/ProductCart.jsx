@@ -82,9 +82,11 @@ const ProductCart = ({ product, selectedStyle }) => {
       </div>
       <div className="button-area">
           <button className="add-to-cart" onClick={onClickAddCart}>Add to Cart</button>
+          <i className="check-cart fas fa-shopping-cart"></i>
           <p className={`product-required-selection-${requiredSelection ? 'active' : 'disabled'}`}>Please select a size!</p>
           <p className={`product-add-cart-${boughtItem ? 'active' : 'disabled'}`}>Added to Cart! {`(${itemInCart}) item`}</p>
         </div>
+        <div className="product-cart-number">{itemInCart}</div>
       </>
     );
   }

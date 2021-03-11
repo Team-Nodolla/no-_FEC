@@ -57,7 +57,6 @@ app.get('/reviews/meta/:product_id', (req, res) => {
 });
 
 app.post('/cart', (req, res) => {
-  console.log(req.body);
   axios.post(`${url}/cart`, req.body, {
     headers: token,
   })
