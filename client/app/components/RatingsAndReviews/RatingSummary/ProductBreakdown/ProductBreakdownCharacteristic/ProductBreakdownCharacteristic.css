@@ -21,7 +21,8 @@
   appearance: none;
   width: 80%;
   height: 10px;
-  background: #d3d3d3;
+  /* background: #d3d3d3; */
+  background: thistle;
   outline: none;
   opacity: 1;
 }
