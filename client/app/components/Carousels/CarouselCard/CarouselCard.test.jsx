@@ -27,14 +27,14 @@ describe('CarouselCard', () => {
   describe('Category', () => {
     it('should display the category', () => {
       const wrapper = shallow(<CarouselCard {...dummyCard} />);
-      const category = wrapper.find('span#category');
+      const category = wrapper.find('span.category');
       expect(category.text()).toEqual(dummyCard.category);
     });
 
     it('should have a default value "Category" if no category is provided', () => {
       dummyCard.category = null;
       const wrapper = shallow(<CarouselCard {...dummyCard} />);
-      const category = wrapper.find('span#category');
+      const category = wrapper.find('span.category');
       expect(category.text()).toEqual('Category');
     });
   });
@@ -42,14 +42,14 @@ describe('CarouselCard', () => {
   describe('Name', () => {
     it('should display the name', () => {
       const wrapper = shallow(<CarouselCard {...dummyCard} />);
-      const name = wrapper.find('h3#product-name');
+      const name = wrapper.find('h3.product-name');
       expect(name.text()).toEqual(dummyCard.name);
     });
 
     it('should have a default value "Product Name" if no name is provided', () => {
       dummyCard.name = null;
       const wrapper = shallow(<CarouselCard {...dummyCard} />);
-      const name = wrapper.find('h3#product-name');
+      const name = wrapper.find('h3.product-name');
       expect(name.text()).toEqual('Product Name');
     });
   });
@@ -57,13 +57,13 @@ describe('CarouselCard', () => {
   describe('Price', () => {
     it('should display original price with "old-price" id if sale price is provided', () => {
       const wrapper = shallow(<CarouselCard {...dummyCard} />);
-      const oldPrice = wrapper.find('span#old-price');
+      const oldPrice = wrapper.find('span.old-price');
       expect(oldPrice.text()).toBe(`$${dummyCard.originalPrice}`);
     });
 
     it('should display sale price with "display-price" id if sale price is provided', () => {
       const wrapper = shallow(<CarouselCard {...dummyCard} />);
-      const displayPrice = wrapper.find('span#display-price');
+      const displayPrice = wrapper.find('span.display-price');
       expect(displayPrice.text()).toBe(`$${dummyCard.salePrice}`);
     });
 
@@ -77,7 +77,7 @@ describe('CarouselCard', () => {
     it('should display original price with "display-price" id if sale price is not provided', () => {
       dummyCard.salePrice = null;
       const wrapper = shallow(<CarouselCard {...dummyCard} />);
-      const displayPrice = wrapper.find('span#display-price');
+      const displayPrice = wrapper.find('span.display-price');
       expect(displayPrice.text()).toBe(`$${dummyCard.originalPrice}`);
     });
   });
