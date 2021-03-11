@@ -8,14 +8,20 @@ import './ProductCart.css';
 const ProductCart = ({ product, selectedStyle }) => {
   if (selectedStyle !== undefined) {
     const toggle = false;
-    const [selectedSize, setSelectedSize] = useState(null);
-    const [selectedQuantity, setSelectedQuantity] = useState(null);
+    const boughtToggle = false;
     const arrayOfSkus = Object.values(selectedStyle.skus);
     const arrayOfSkusID = Object.keys(selectedStyle.skus);
+    const [selectedSize, setSelectedSize] = useState(null);
+    const [selectedQuantity, setSelectedQuantity] = useState(null);
     const [requiredSelection, setRequiredSelection] = useState(toggle);
+    const [boughtItem, setBoughtItem] = useState(boughtToggle);
+    const [itemInCart, setItemInCart] = useState(0);
 
     useEffect(() => {
       setSelectedSize(null);
+      setItemInCart(0);
+      setRequiredSelection(toggle);
+      setBoughtItem(boughtToggle);
     }, [product, selectedStyle]);
 
     arrayOfSkus.unshift({
@@ -40,6 +46,8 @@ const ProductCart = ({ product, selectedStyle }) => {
         setRequiredSelection(!toggle);
       } else {
         setRequiredSelection(toggle);
+        setBoughtItem(!boughtToggle);
+        setItemInCart((prevCount) => prevCount + 1);
         arrayOfSkus.forEach((element) => {
           if (selectedSize === element.size) {
             const index = arrayOfSkus.indexOf(element);
@@ -74,7 +82,8 @@ const ProductCart = ({ product, selectedStyle }) => {
       </div>
       <div className="button-area">
           <button className="add-to-cart" onClick={onClickAddCart}>Add to Cart</button>
-          <p className={`product-required-selection-${requiredSelection ? 'active' : 'disabled'}`}>please select a size</p>
+          <p className={`product-required-selection-${requiredSelection ? 'active' : 'disabled'}`}>Please select a size!</p>
+          <p className={`product-add-cart-${boughtItem ? 'active' : 'disabled'}`}>Added to Cart! {`(${itemInCart}) item`}</p>
         </div>
       </>
     );

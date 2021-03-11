@@ -10,8 +10,15 @@
   display: flex;
   color: red;
 }
-
 .product-required-selection-disabled {
+  display: none;
+}
+
+.product-add-cart-active {
+  display: flex;
+  color: black;
+}
+.product-add-cart-disabled {
   display: none;
 }
 
