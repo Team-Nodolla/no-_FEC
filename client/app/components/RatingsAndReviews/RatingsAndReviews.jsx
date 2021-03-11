@@ -51,7 +51,6 @@ const RatingsAndReviews = ({ onUserClick, productID, metaData, productName, setC
 
   const handleSortClick = (number) => {
     setBreakdownSortObj({ ...breakdownSortObj, [number]: !breakdownSortObj[number] });
-    // setReviewList(additiveSortFilter(reviewListStorage));
     setListIsFiltered(true);
   };
 
