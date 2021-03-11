@@ -1,6 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
+const expressStaticGzip = require('express-static-gzip');
 const axios = require('axios');
 const config = require('../config.js');
 
