@@ -44,6 +44,10 @@ span, p, div {
   font-family: 'Nunito', sans-serif;
 }
 
+.dark-mode-text {
+  color: #fdfdfd;
+}
+
 .dark-banner {
   background-color: rgb(88, 71, 100);
   border-color: thistle;

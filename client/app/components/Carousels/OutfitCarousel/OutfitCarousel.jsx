@@ -10,7 +10,7 @@ import NextButton from '../CarouselButtons/CarouselNextButton.jsx';
 import BackButton from '../CarouselButtons/CarouselBackButton.jsx';
 import './OutfitCarousel.css';
 
-const OutfitCarousel = ({ onUserClick, productInfo, handleRedirect }) => {
+const OutfitCarousel = ({ onUserClick, productInfo, handleRedirect, darkMode }) => {
   const [outfitList, setOutfitList] = useState([...store.getAll()]);
   const [currentlyDisplayed, setCurrentlyDisplayed] = useState(
     {

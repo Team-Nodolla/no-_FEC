@@ -8,7 +8,7 @@ import ProductCart from './ProductCart/ProductCart.jsx';
 import ProductThumbnailScroll from './ProductThumbnailScroll/ProductThumbnailScroll.jsx';
 import './ProductOverview.css';
 
-const ProductOverview = ({ onUserClick, reviewNumber, product, styles }) => {
+const ProductOverview = ({ onUserClick, reviewNumber, product, styles, darkMode }) => {
   if (styles !== undefined) {
     const toggle = false;
     const [priceOfProduct, setPriceOfProduct] = useState(product.originalPrice);
@@ -76,7 +76,7 @@ const ProductOverview = ({ onUserClick, reviewNumber, product, styles }) => {
         </div>
         <div className="product-info-container">
           <div className="product-description-container">
-            <ProductCategoryAndTitle reviewNumber={reviewNumber} price={priceOfProduct} product={product} />
+            <ProductCategoryAndTitle reviewNumber={reviewNumber} price={priceOfProduct} product={product} darkMode={darkMode} />
           </div>
           <div className="product-style-container">
             <ProductStyleSelector

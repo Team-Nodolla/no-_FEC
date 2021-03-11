@@ -1,4 +1,4 @@
-#star-rating-container {
+.star-rating-container {
   position: relative;
   width: 90px;
   height: 16px;
@@ -16,23 +16,43 @@
   font-size: 16px;
 }
 
-div.stars i.full-stars {
+.full-stars {
   color: thistle;
 }
 
 .empty-stars {
   z-index: 3;
   color: rgb(88, 71, 100);
+  -webkit-transition: .4s;
+  transition: .4s;
 }
 
-#stars-cover {
+.stars-cover {
   position: relative;
   width: 100%;
   height: 16px;
-  background-color: #fdfdfd;
   z-index: 2;
+  background-color: #fdfdfd;
+  -webkit-transition: .4s;
+  transition: .4s;
 }
 
-#no-reviews {
+.dark-stars-cover {
+  position: relative;
+  width: 100%;
+  height: 16px;
+  z-index: 2;
+  background-color: rgb(53, 54, 58);
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.dark-empty-stars {
+  color: thistle;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.no-reviews {
   margin: 10px 0 0 10px
 }

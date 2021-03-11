@@ -133,6 +133,7 @@ const App = () => {
         product={currentProduct}
         defaultStyle={currentProduct.defaultStyle}
         styles={currentProduct.styles}
+        darkMode={darkMode}
       />
       <RelatedProductsCarousel
         onUserClick={collectUserClickData}
@@ -154,6 +155,7 @@ const App = () => {
           reviewScore: currentProduct?.averageRating ?? null,
         }}
         handleRedirect={handleRedirect}
+        darkMode={darkMode}
       />
       <RatingsAndReviews
         onUserClick={collectUserClickData}
