@@ -28,7 +28,7 @@ const CarouselCard = ({
       </>
     );
   } else {
-    displayPrice = <span className="descriptive" id="display-price">{`$${originalPrice}`}</span>;
+    displayPrice = <span className="descriptive display-price">{`$${originalPrice}`}</span>;
   }
 
   return (
