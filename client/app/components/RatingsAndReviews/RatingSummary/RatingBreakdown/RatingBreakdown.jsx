@@ -4,7 +4,7 @@
 import React from 'react';
 import './RatingBreakdown.css';
 
-const RatingBreakdown = ({ metaData, handleSortClick }) => {
+const RatingBreakdown = ({ metaData, handleSortClick, breakdownSortObj, setBreakdownSortObj }) => {
   let numberOfReviews = 0;
   let ratingValueArray = Object.values(metaData.ratings);
 
