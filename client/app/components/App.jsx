@@ -14,7 +14,12 @@ const App = () => {
   const [currentProduct, setCurrentProduct] = useState({});
   const [currentProductReviews, setCurrentProductReviews] = useState({});
   const [userClick, setUserClick] = useState({});
+  const [darkMode, setDarkMode] = useState(false);
   let userClicked = false;
+
+  useEffect(() => {
+    fetchNewProductDetails();
+  }, []);
 
   const collectUserClickData = (event, name) => {
     event.preventDefault();
@@ -108,19 +113,19 @@ const App = () => {
       });
   };
 
-  useEffect(() => {
-    fetchNewProductDetails();
-  }, []);
-
   const handleRedirect = (id) => {
     fetchNewProductDetails(id);
+  };
+
+  const handleDarkModeSlider = () => {
+    setDarkMode(!darkMode);
   };
 
   return (
     <div className="app-container">
       <header>
         <h1 id="app-title">Nodolla</h1>
-        <DarkModeSlider />
+        <DarkModeSlider setMode={handleDarkModeSlider} />
       </header>
       <ProductOverview
         onUserClick={collectUserClickData}
