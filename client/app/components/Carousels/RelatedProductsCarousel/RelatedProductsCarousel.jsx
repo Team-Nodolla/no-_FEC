@@ -62,7 +62,7 @@ const RelatedProductsCarousel = (
     }
   }, [relatedProductsIDs]);
 
-  console.log('state right now:', allRelatedProducts);
+  // console.log('state right now:', allRelatedProducts);
 
   useEffect(() => {
     if (allRelatedProducts.length > 0) {
