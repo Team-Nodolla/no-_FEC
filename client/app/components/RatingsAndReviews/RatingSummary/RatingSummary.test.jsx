@@ -1,5 +1,5 @@
 import React from 'react';
-import { shallow, mount } from 'enzyme';
+import { shallow } from 'enzyme';
 import RatingSummary from './RatingSummary';
 
 let metaData = {
@@ -20,6 +20,15 @@ let metaData = {
   },
 };
 
+const RemoveAllFiltersRender = () => {
+  if (listIsFiltered) {
+    return (
+      <button type="button" className="remove-review-filters-button" onClick={handleRemoveFilterClick}>Remove all filters</button>
+    );
+  }
+  return (<></>);
+};
+
 describe('rating summary: ', () => {
   test('it renders correctly', () => {
     const wrapper = shallow(<RatingSummary metaData={metaData} />);
@@ -28,14 +37,33 @@ describe('rating summary: ', () => {
   });
 
   test('it contains a StarRating component: ', () => {
-    const wrapper = mount(<RatingSummary metaData={metaData} />);
+    const wrapper = shallow(<RatingSummary metaData={metaData} />);
 
     expect(wrapper.find('StarRating').length).toBe(1);
   });
 
   test('it contains a recommendations component: ', () => {
-    const wrapper = mount(<RatingSummary metaData={metaData} />);
+    const wrapper = shallow(<RatingSummary metaData={metaData} />);
 
     expect(wrapper.find('NaNCondition').length).toBe(1);
   });
+
+  test('it contains a RatingBreakdown component: ', () => {
+    const wrapper = shallow(<RatingSummary metaData={metaData} />);
+
+    expect(wrapper.find('RatingBreakdown').length).toBe(1);
+  });
+
+  test('it contains a RemoveAllFilters component: ', () => {
+    const wrapper = shallow(<RatingSummary metaData={metaData} RemoveAllFiltersRender={RemoveAllFiltersRender} />);
+
+    expect(wrapper.find('RemoveAllFiltersRender').length).toBe(1);
+  });
+
+  test('it contains a ProductBreakdown component: ', () => {
+    const wrapper = shallow(<RatingSummary metaData={metaData} />);
+
+    expect(wrapper.find('ProductBreakdown').length).toBe(1);
+  });
+
 });
