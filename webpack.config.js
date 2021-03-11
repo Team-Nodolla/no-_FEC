@@ -28,12 +28,5 @@ module.exports = {
       },
     ],
   },
-  // plugins: [
-  //   new CompressionPlugin({
-  //     filename: './bundle.js.gz',
-  //     algorithm: 'gzip',
-  //     test: /\.(js|css)$/i,
-  //   }),
-  // ],
 
 };
