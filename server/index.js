@@ -56,6 +56,18 @@ app.get('/reviews/meta/:product_id', (req, res) => {
     });
 });
 
+app.post('/cart', (req, res) => {
+  console.log(req.body);
+  axios.post(`${url}/cart`, req.body, {
+    headers: token,
+  })
+    .then((response) => res.send(response.data))
+    .catch((err) => {
+      console.log('unable to post to cart');
+      res.status(404).send(err);
+    });
+});
+
 app.post('/interactions', (req, res) => {
   axios.post(`${url}/interactions`, req.body.userClick, {
     headers: token,

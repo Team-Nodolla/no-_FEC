@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import propTypes from 'proptypes';
 import SizeSelector from './SizeSelector/SizeSelector.jsx';
 import QuantitySelector from './QuantitySelector/QuantitySelector.jsx';
@@ -10,6 +11,7 @@ const ProductCart = ({ product, selectedStyle }) => {
     const [selectedSize, setSelectedSize] = useState(null);
     const [selectedQuantity, setSelectedQuantity] = useState(null);
     const arrayOfSkus = Object.values(selectedStyle.skus);
+    const arrayOfSkusID = Object.keys(selectedStyle.skus);
     const [requiredSelection, setRequiredSelection] = useState(toggle);
 
     useEffect(() => {
@@ -38,7 +40,14 @@ const ProductCart = ({ product, selectedStyle }) => {
         setRequiredSelection(!toggle);
       } else {
         setRequiredSelection(toggle);
-      }
+        arrayOfSkus.forEach(element => {
+          if (selectedSize === element.size) {
+            const index = arrayOfSkus.indexOf(element);
+            const idToAddToCart = Number(arrayOfSkusID[index - 1]);
+            axios.post('/cart', { sku_id: idToAddToCart });
+          }
+        });
+      };
     };
 
     if (
