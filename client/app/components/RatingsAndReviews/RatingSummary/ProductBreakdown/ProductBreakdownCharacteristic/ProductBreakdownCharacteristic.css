@@ -45,6 +45,15 @@
   border-radius: 2px;
 }
 
+.product-breakdown-slider::-moz-range-thumb {
+  -webkit-appearance: none; /* Override default look */
+  appearance: none;
+  width: 8px; /* Set a specific slider handle width */
+  height: 15px; /* Slider handle height */
+  background: rgb(88, 71, 100);
+  border-radius: 2px;
+}
+
 .product-breakdown-details {
   align-self: center;
   width: 80%;

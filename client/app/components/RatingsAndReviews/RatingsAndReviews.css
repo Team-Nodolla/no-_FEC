@@ -69,7 +69,26 @@
 }
 
 .sort-form-select {
-  margin: 5px 0 0 10px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border: none;
+  width: 70px;
+  height: 34px;
+  background: #fdfdfd;
+  font-family: Nunito;
+  font-size: 16px;
+  margin: 5px 0 0 0px;
+  outline: none;
+  text-decoration: underline;
+}
+
+.sort-form-select:hover {
+  cursor: pointer;
+  text-decoration: underline;
+  color: rgb(88, 71, 100);
+  transition: text-shadow 0.7s;
+  text-shadow: 1px 1px thistle
 }
 
 .reviewButtonsContainer {
@@ -90,6 +109,12 @@
   color: rgb(88, 71, 100);
 }
 
+.moreReviewsButton:hover {
+  background-color: rgba(216, 191, 216, 1);
+  transition: background-color .3s;
+  cursor: pointer
+}
+
 .addReviewButton {
   border: 3px solid rgb(88, 71, 100);
   border-radius: 5px;
@@ -106,8 +131,3 @@
   cursor: pointer
 }
 
-.moreReviewsButton:hover {
-  background-color: rgba(216, 191, 216, 1);
-  transition: background-color .3s;
-  cursor: pointer
-}
