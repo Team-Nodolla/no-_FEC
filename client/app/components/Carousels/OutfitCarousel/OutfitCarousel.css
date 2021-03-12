@@ -2,8 +2,8 @@
   position: relative;
   margin-bottom: 100px;
   min-height: 600px;
-  border-top: 2px solid rgb(88, 71, 100);
-  border-bottom: 2px solid rgb(88, 71, 100);
+  border-top: 2px solid var(--Nodolla-purple);
+  border-bottom: 2px solid var(--Nodolla-purple);
   display: grid;
   grid-template-columns: 4% 92% 4%;
   place-items: center;
@@ -19,8 +19,8 @@
   outline: none;
   margin-right: 100px;
   margin-left: 5px;
-  border: 3px solid rgb(88, 71, 100);
-  color: rgb(88, 71, 100);
+  border: 3px solid var(--Nodolla-purple);
+  color: var(--Nodolla-purple);
   font-size: 1.5rem;
   font-weight: 700;
   line-height: 36px;

@@ -86,7 +86,7 @@
 .sort-form-select:hover {
   cursor: pointer;
   text-decoration: underline;
-  color: rgb(88, 71, 100);
+  color: var(--Nodolla-purple);
   transition: text-shadow 0.7s;
   text-shadow: 1px 1px thistle
 }
@@ -100,13 +100,13 @@
 }
 
 .moreReviewsButton {
-  border: 3px solid rgb(88, 71, 100);
+  border: 3px solid var(--Nodolla-purple);
   border-radius: 5px;
   background-color: rgba(216, 191, 216, 0.6);
   transition: background-color .3s;
   min-height: 50px;
   margin: 10px;
-  color: rgb(88, 71, 100);
+  color: var(--Nodolla-purple);
 }
 
 .moreReviewsButton:hover {
@@ -116,13 +116,13 @@
 }
 
 .addReviewButton {
-  border: 3px solid rgb(88, 71, 100);
+  border: 3px solid var(--Nodolla-purple);
   border-radius: 5px;
   background-color: rgba(216, 191, 216, 0.6);
   transition: background-color .3s;
   min-height: 50px;
   margin: 10px;
-  color: rgb(88, 71, 100);
+  color: var(--Nodolla-purple);
 }
 
 .addReviewButton:hover {
