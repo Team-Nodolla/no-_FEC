@@ -5,7 +5,7 @@ import './StarRating.css';
 const StarRating = ({ reviewScore, setMargin = '20px 0 0 0' }) => {
   let display;
   if (reviewScore === null) {
-    display = <p id="no-reviews">No Reviews For This Product</p>;
+    display = <p className="no-reviews">No Reviews For This Product</p>;
   } else {
     // Rounds the score to the nearest quarter
     const roundedScore = Math.round(reviewScore * 4) / 4;
@@ -24,9 +24,9 @@ const StarRating = ({ reviewScore, setMargin = '20px 0 0 0' }) => {
     const missingPercent = `${100 - roundedScore * 20 - quarterOffset}%`;
 
     display = (
-      <div id="star-rating-container" style={{ margin: setMargin }}>
+      <div className="star-rating-container" style={{ margin: setMargin }}>
         <EmptyStars />
-        <div id="stars-cover" style={{ width: missingPercent }}> </div>
+        <div className="stars-cover" style={{ width: missingPercent }}> </div>
         <FilledStars />
       </div>
     );
