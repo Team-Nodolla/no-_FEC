@@ -4,29 +4,13 @@
 import React from 'react';
 import './RatingBreakdown.css';
 
-const RatingBreakdown = ({ metaData, handleSortClick }) => {
+const RatingBreakdown = ({ metaData, handleSortClick, breakdownSortObj, setBreakdownSortObj }) => {
   let numberOfReviews = 0;
   let ratingValueArray = Object.values(metaData.ratings);
 
   ratingValueArray.forEach((value) => {
     numberOfReviews += (value * 1);
   });
-
-  const filterFiveStarReviews = (review) => {
-    return review.rating == '5'
-  }
-  const filterFourStarReviews = (review) => {
-    return review.rating == '4'
-  }
-  const filterThreeStarReviews = (review) => {
-    return review.rating == '3'
-  }
-  const filterTwoStarReviews = (review) => {
-    return review.rating == '2'
-  }
-  const filterOneStarReviews = (review) => {
-    return review.rating == '1'
-  }
 
   const fiveStarValue = Math.round((metaData.ratings["5"] / numberOfReviews) * 100) || 0;
   const fourStarValue = Math.round((metaData.ratings["4"] / numberOfReviews) * 100) || 0;
@@ -37,41 +21,61 @@ const RatingBreakdown = ({ metaData, handleSortClick }) => {
   return (
     // <div className="breakdown-bar-container">
     <>
-      <div className="rating-breakdown-bar" onClick={() => { handleSortClick(filterFiveStarReviews); }}>
+      <div className="rating-breakdown-bar"
+        onClick={() => {
+          handleSortClick(5);
+        }}
+      >
         <label htmlFor="breakdown-progress-bar">5 stars</label>
         {' '}
         <progress name="breakdown-progress-bar" className="breakdown-progress-bar" value={fiveStarValue} max="100">pogChamp</progress>
         {` ${metaData.ratings["5"] || 0}`}
       </div>
 
-      <div className="rating-breakdown-bar" onClick={() => { handleSortClick(filterFourStarReviews); }}>
+      <div className="rating-breakdown-bar"
+        onClick={() => {
+          handleSortClick(4);
+        }}
+      >
         <label htmlFor="breakdown-progress-bar">4 stars</label>
         {' '}
         <progress name="breakdown-progress-bar" className="breakdown-progress-bar" value={fourStarValue} max="100">pogChamp</progress>
         {` ${metaData.ratings["4"] || 0}`}
       </div>
 
-      <div className="rating-breakdown-bar" onClick={() => { handleSortClick(filterThreeStarReviews); }}>
+      <div className="rating-breakdown-bar"
+        onClick={() => {
+          handleSortClick(3);
+        }}
+      >
         <label htmlFor="breakdown-progress-bar">3 stars</label>
         {' '}
         <progress name="breakdown-progress-bar" className="breakdown-progress-bar" value={threeStarValue} max="100">pogChamp</progress>
         {` ${metaData.ratings["3"] || 0}`}
       </div>
 
-      <div className="rating-breakdown-bar" onClick={() => { handleSortClick(filterTwoStarReviews); }}>
+      <div className="rating-breakdown-bar"
+        onClick={() => {
+          handleSortClick(2);
+        }}
+      >
         <label htmlFor="breakdown-progress-bar">2 stars</label>
         {' '}
         <progress name="breakdown-progress-bar" className="breakdown-progress-bar" value={twoStarValue} max="100">pogChamp</progress>
         {` ${metaData.ratings["2"] || 0}`}
       </div>
 
-      <div className="rating-breakdown-bar" onClick={() => { handleSortClick(filterOneStarReviews); }}>
+      <div className="rating-breakdown-bar"
+        onClick={() => {
+          handleSortClick(1);
+        }}
+      >
         <label htmlFor="breakdown-progress-bar">1 stars</label>
         {' '}
         <progress name="breakdown-progress-bar" className="breakdown-progress-bar" value={oneStarValue} max="100">pogChamp</progress>
         {` ${metaData.ratings["1"] || 0}`}
       </div>
-    {/* </div> */}
+      {/* </div> */}
     </>
   );
 };

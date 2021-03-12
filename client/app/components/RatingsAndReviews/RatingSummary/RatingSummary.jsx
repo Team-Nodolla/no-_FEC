@@ -6,7 +6,7 @@ import RatingBreakdown from './RatingBreakdown/RatingBreakdown.jsx';
 import ProductBreakdown from './ProductBreakdown/ProductBreakdown.jsx';
 import './RatingSummary.css';
 
-const RatingSummary = ({ metaData, handleSortClick, RemoveAllFiltersRender }) => {
+const RatingSummary = ({ metaData, handleSortClick, RemoveAllFiltersRender, breakdownSortObj, setBreakdownSortObj }) => {
   const [averageScore, setAverageScore] = useState(0);
   const [percentRecommend, setPercentRecommend] = useState(0);
 
@@ -90,6 +90,8 @@ const RatingSummary = ({ metaData, handleSortClick, RemoveAllFiltersRender }) =>
         <RatingBreakdown
           metaData={metaData}
           handleSortClick={handleSortClick}
+          breakdownSortObj={breakdownSortObj}
+          setBreakdownSortObj={setBreakdownSortObj}
         />
       </div>
       <div className="breakdown-filter-button-container">

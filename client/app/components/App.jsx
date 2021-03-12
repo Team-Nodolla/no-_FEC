@@ -6,7 +6,7 @@ import ProductOverview from './ProductOverview/ProductOverview.jsx';
 import RelatedProductsCarousel from './Carousels/RelatedProductsCarousel/RelatedProductsCarousel.jsx';
 import OutfitCarousel from './Carousels/OutfitCarousel/OutfitCarousel.jsx';
 import RatingsAndReviews from './RatingsAndReviews/RatingsAndReviews.jsx';
-import { getAverageRating, getDefaultStyle } from './helperFunctions/helperFunctions.js';
+import { fetchNewProductDetails } from './helperFunctions/helperFunctions.js';
 import './App.css';
 
 const App = () => {
@@ -14,6 +14,15 @@ const App = () => {
   const [currentProductReviews, setCurrentProductReviews] = useState({});
   const [userClick, setUserClick] = useState({});
   let userClicked = false;
+
+  useEffect(() => {
+    setUserClick({});
+    userClicked = false;
+  }, [userClicked === true]);
+
+  useEffect(() => {
+    fetchNewProductDetails(setCurrentProduct);
+  }, []);
 
   const collectUserClickData = (event, name) => {
     event.preventDefault();
@@ -32,87 +41,8 @@ const App = () => {
     });
   }
 
-  useEffect(() => {
-    setUserClick({});
-    userClicked = false;
-  }, [userClicked === true]);
-
-  const fetchProductInfoByID = (productIDResponse, putInState) => {
-    const { id, name, category, description, slogan, features } = productIDResponse.data;
-    const allOtherPromises = [
-      axios.get(`/products/${id}/styles`),
-      axios.get(`/products/${id}/related`),
-      axios.get(`/reviews/meta/${id}`)
-    ];
-    putInState.id = id;
-    putInState.name = name;
-    putInState.category = category;
-    putInState.description = description;
-    putInState.slogan = slogan;
-    putInState.features = features;
-
-    return Promise.all(allOtherPromises);
-  };
-
-  const fetchFirstProductInfo = (productsResponse, putInState = {}) => {
-    const { id, name, category, description, slogan } = productsResponse.data[0];
-    const allOtherPromises = [
-      axios.get(`/products/${id}/styles`),
-      axios.get(`/products/${id}/related`),
-      axios.get(`/reviews/meta/${id}`),
-      axios.get(`/products/${id}`)
-    ];
-    putInState.id = id;
-    putInState.name = name;
-    putInState.category = category;
-    putInState.description = description;
-    putInState.slogan = slogan;
-    return Promise.all(allOtherPromises);
-  };
-
-  const fetchNewProductDetails = (id) => {
-    const putInState = {};
-    const serverEndpoint = id ? `/products/${id}` : '/products';
-    axios.get(serverEndpoint)
-      .then((productsResponse) => (
-        id
-          ? fetchProductInfoByID(productsResponse, putInState)
-          : fetchFirstProductInfo(productsResponse, putInState)
-      ))
-      .then((allResponses) => {
-        const [
-          stylesResponse,
-          relatedIDsResponse,
-          metaDataResponse,
-          currentIDResponse
-        ] = allResponses;
-
-        putInState.styles = stylesResponse.data.results;
-        putInState.defaultStyle = getDefaultStyle(putInState.styles);
-        putInState.originalPrice = putInState.defaultStyle.original_price;
-        putInState.salePrice = putInState.defaultStyle.sale_price;
-        putInState.photos = putInState.defaultStyle.photos;
-
-        putInState.relatedProductIDs = relatedIDsResponse.data;
-
-        putInState.metaData = metaDataResponse.data;
-        putInState.averageRating = getAverageRating(metaDataResponse.data.ratings);
-
-        !id ? putInState.features = currentIDResponse.data.features : 0;
-
-        setCurrentProduct({ ...putInState });
-      })
-      .catch((err) => {
-        console.error('error fetching on mount: ', err);
-      });
-  };
-
-  useEffect(() => {
-    fetchNewProductDetails();
-  }, []);
-
   const handleRedirect = (id) => {
-    fetchNewProductDetails(id);
+    fetchNewProductDetails(setCurrentProduct, id);
   };
 
   return (

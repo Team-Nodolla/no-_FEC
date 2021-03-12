@@ -15,13 +15,14 @@ const RatingsAndReviews = ({ onUserClick, productID, metaData, productName, setC
   const [sortOrder, setSortOrder] = useState('relevant');
   const [visibleReviews, setVisibleReviews] = useState(2);
   const [listIsFiltered, setListIsFiltered] = useState(false);
+  const [breakdownSortObj, setBreakdownSortObj] = useState({ 1: false, 2: false, 3: false, 4: false, 5: false, })
 
   // on component mount, use the productID to fetch reviews from the server
   useEffect(() => {
     if (productID) {
       axios.get(`/reviews/sort/${sortOrder}/product/${productID}`) // TODO productID
         .then((response) => {
-          setReviewList(response.data.results);
+          setReviewList(additiveSortFilter(response.data.results));
           setReviewListStorage(response.data.results);
           setCurrentProductReviews(response.data);
         })
@@ -35,7 +36,7 @@ const RatingsAndReviews = ({ onUserClick, productID, metaData, productName, setC
     if (productID) {
       axios.get(`/reviews/sort/${sortOrder}/product/${productID}`) // TODO productID
         .then((response) => {
-          setReviewList(response.data.results);
+          setReviewList(additiveSortFilter(response.data.results));
           setReviewListStorage(response.data.results);
         })
         .catch((err) => {
@@ -44,15 +45,46 @@ const RatingsAndReviews = ({ onUserClick, productID, metaData, productName, setC
     }
   }, [sortOrder]);
 
-  const handleSortClick = (func) => {
-    setReviewList(reviewListStorage.filter(func));
+  useEffect(() => {
+    setReviewList(additiveSortFilter(reviewListStorage));
+  }, [breakdownSortObj]);
+
+  const handleSortClick = (number) => {
+    setBreakdownSortObj({ ...breakdownSortObj, [number]: !breakdownSortObj[number] });
     setListIsFiltered(true);
   };
 
   const handleRemoveFilterClick = (e) => {
     e.preventDefault();
+    setBreakdownSortObj({
+      1: false,
+      2: false,
+      3: false,
+      4: false,
+      5: false,
+    }); // potentially needs change?
     setReviewList(reviewListStorage);
     setListIsFiltered(false);
+  };
+
+  const additiveSortFilter = (reviews) => {
+    let isSorted = breakdownSortObj;
+    if (breakdownSortObj[1] === false && breakdownSortObj[2] === false && breakdownSortObj[3] === false && breakdownSortObj[4] === false && breakdownSortObj[5] === false) {
+      isSorted = {
+        1: true,
+        2: true,
+        3: true,
+        4: true,
+        5: true,
+      };
+    }
+    const filteredReviews = [];
+    for (let i = 0; i < reviews.length; i += 1) {
+      if (isSorted[reviews[i].rating]) {
+        filteredReviews.push(reviews[i]);
+      }
+    }
+    return filteredReviews;
   };
 
   const MoreReviewsButtonRender = () => {
@@ -89,6 +121,8 @@ const RatingsAndReviews = ({ onUserClick, productID, metaData, productName, setC
             metaData={metaData}
             handleSortClick={handleSortClick}
             RemoveAllFiltersRender={RemoveAllFiltersRender}
+            breakdownSortObj={breakdownSortObj}
+            setBreakdownSortObj={setBreakdownSortObj}
           />
         </div>
 

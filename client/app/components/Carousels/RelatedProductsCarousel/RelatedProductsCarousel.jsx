@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/control-has-associated-label */
@@ -6,7 +7,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import propTypes from 'proptypes';
-import { getAverageRating, getDefaultStyle } from '../../helperFunctions/helperFunctions.js';
+import { getAverageRating, getDefaultStyle, fetchNewProductDetails } from '../../helperFunctions/helperFunctions.js';
 import CarouselCard from '../CarouselCard/CarouselCard.jsx';
 import ComparisonWindow from './ComparisonWindow/ComparisonWindow.jsx';
 import NextButton from '../CarouselButtons/CarouselNextButton.jsx';
@@ -43,11 +44,25 @@ const RelatedProductsCarousel = (
     },
   );
 
+  // useEffect(() => {
+  //   if (relatedProductsIDs.length > 0) {
+  //     let uniqueIDs = [...new Set(relatedProductsIDs)]; // Turn it into an array with no dup IDs
+  //     uniqueIDs = uniqueIDs.filter((relatedID) => (
+  //       relatedID !== currentProductID
+  //     ));
+  //     uniqueIDs.forEach((id) => {
+  //       fetchNewProductDetails(setAllRelatedProducts, id);
+  //     });
+  //   }
+  // }, [relatedProductsIDs]);
+
   useEffect(() => {
     if (relatedProductsIDs.length > 0) {
       fetchRelatedProductsData();
     }
   }, [relatedProductsIDs]);
+
+  // console.log('state right now:', allRelatedProducts);
 
   useEffect(() => {
     if (allRelatedProducts.length > 0) {
@@ -109,7 +124,6 @@ const RelatedProductsCarousel = (
         setAllRelatedProducts(putInState);
       })
       .catch((err) => {
-        setAllRelatedProducts(putInState);
         console.error(err);
       });
   };
@@ -169,7 +183,7 @@ const RelatedProductsCarousel = (
         onClick={() => { setCompareModalData({ ...compareModalData, displayModal: false }); }}
       >
         <BackButton atStart={currentlyDisplayed.atStart} handleBack={handleBack} />
-        <ComparisonWindow { ...compareModalData } />
+        <ComparisonWindow {...compareModalData} />
         <div id="related-card-container">
           {currentlyDisplayed.cards.map((displayedProduct) => (
             cardTemplate(displayedProduct)

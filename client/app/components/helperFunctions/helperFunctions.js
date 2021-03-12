@@ -1,5 +1,7 @@
 // takes a characteristic name
 // returns object with descriptions based on the values selected for that characteristic
+import axios from 'axios';
+
 const getCharacteristicDescriptions = (name) => {
   const reviewCharacteristicsObject = {};
 
@@ -87,9 +89,82 @@ const getNumberOfReviews = (reviews) => (
   reviews.results.length
 );
 
+const fetchProductInfoByID = (productIDResponse, putInState) => {
+  const { id, name, category, description, slogan, features } = productIDResponse.data;
+  const allOtherPromises = [
+    axios.get(`/products/${id}/styles`),
+    axios.get(`/products/${id}/related`),
+    axios.get(`/reviews/meta/${id}`),
+  ];
+  putInState.id = id;
+  putInState.name = name;
+  putInState.category = category;
+  putInState.description = description;
+  putInState.slogan = slogan;
+  putInState.features = features;
+
+  return Promise.all(allOtherPromises);
+};
+
+const fetchFirstProductInfo = (productsResponse, putInState = {}) => {
+  const { id, name, category, description, slogan } = productsResponse.data[0];
+  const allOtherPromises = [
+    axios.get(`/products/${id}/styles`),
+    axios.get(`/products/${id}/related`),
+    axios.get(`/reviews/meta/${id}`),
+    axios.get(`/products/${id}`),
+  ];
+  putInState.id = id;
+  putInState.name = name;
+  putInState.category = category;
+  putInState.description = description;
+  putInState.slogan = slogan;
+  return Promise.all(allOtherPromises);
+};
+
+const fetchNewProductDetails = (cb, id) => {
+  const putInState = {};
+  const serverEndpoint = id ? `/products/${id}` : '/products';
+  axios.get(serverEndpoint)
+    .then((productsResponse) => (
+      id
+        ? fetchProductInfoByID(productsResponse, putInState)
+        : fetchFirstProductInfo(productsResponse, putInState)
+    ))
+    .then((allResponses) => {
+      const [
+        stylesResponse,
+        relatedIDsResponse,
+        metaDataResponse,
+        currentIDResponse,
+      ] = allResponses;
+
+      putInState.styles = stylesResponse.data.results;
+      putInState.defaultStyle = getDefaultStyle(putInState.styles);
+      putInState.originalPrice = putInState.defaultStyle.original_price;
+      putInState.salePrice = putInState.defaultStyle.sale_price;
+      putInState.photos = putInState.defaultStyle.photos;
+
+      putInState.relatedProductIDs = relatedIDsResponse.data;
+
+      putInState.metaData = metaDataResponse.data;
+      putInState.averageRating = getAverageRating(metaDataResponse.data.ratings);
+
+      if (!id) {
+        putInState.features = currentIDResponse.data.features;
+      }
+
+      cb(putInState);
+    })
+    .catch((err) => {
+      console.error('error fetching on mount: ', err);
+    });
+};
+
 export {
   getCharacteristicDescriptions,
   getAverageRating,
   getDefaultStyle,
   getNumberOfReviews,
+  fetchNewProductDetails,
 };
