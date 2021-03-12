@@ -1,5 +1,6 @@
 #related-carousel {
   position: relative;
+  overflow: hidden;
   margin-bottom: 100px;
   min-height: 37.5rem;
   border-top: 2px solid rgb(88, 71, 100);
@@ -16,7 +17,7 @@
 
 #related-card-container {
   grid-column: 2;
-  width: auto;
+  /* width: auto; */
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
