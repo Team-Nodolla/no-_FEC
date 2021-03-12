@@ -19,6 +19,7 @@
 
 .selected-image {
   border-style: solid;
+  border-color: rgb(88, 71, 100);
   width: 14%;
 }
 

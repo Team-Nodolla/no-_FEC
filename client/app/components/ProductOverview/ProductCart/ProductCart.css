@@ -26,7 +26,7 @@
   outline: none;
   cursor: pointer;
   display: inline-block;
-  padding: 10px 30px;
+  padding: 10px 20px;
   font-weight: 200;
   font-family: Lato;
   text-decoration: none;
@@ -45,5 +45,30 @@
 .button-area {
   display: block;
   margin-top: 50px;
-  margin-left: -150px;
+  margin-left: -182px;
 }
+
+.check-cart {
+  cursor: pointer;
+  transition: background-color 0.2s, border 0.2s, color 0.2s;
+  background-color: rgba(216, 191, 216, 0.6);
+  border: 2px solid rgb(88, 71, 100);
+  color: rgb(88, 71, 100);
+  padding: 10px;
+  padding-right: 30px;
+  border-radius: 10px;
+}
+
+.check-cart:hover {
+  background-color: thistle;
+}
+
+.product-cart-number {
+  cursor: pointer;
+  color: rgb(88, 71, 100);
+  border-radius: 50%;
+  position: absolute;
+  margin-left: 162px;
+  margin-top: 60px;
+}
+

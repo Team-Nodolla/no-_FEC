@@ -1,6 +1,7 @@
 .image-container {
   display: flex;
   margin-left: 50px;
+  max-height: 600px;
 }
 
 .product-thumbnail {

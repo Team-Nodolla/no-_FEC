@@ -3,7 +3,7 @@
 }
 
 .product-item-summary {
-  width: 1000px;
+  /* width: 1000px; */
   border-right: solid thistle;
   padding-right: 30px;
 }
