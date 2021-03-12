@@ -41,7 +41,7 @@
   appearance: none;
   width: 8px; /* Set a specific slider handle width */
   height: 15px; /* Slider handle height */
-  background: rgb(88, 71, 100);
+  background: var(--Nodolla-purple);
   border-radius: 2px;
 }
 
@@ -50,7 +50,7 @@
   appearance: none;
   width: 8px; /* Set a specific slider handle width */
   height: 15px; /* Slider handle height */
-  background: rgb(88, 71, 100);
+  background: var(--Nodolla-purple);
   border-radius: 2px;
 }
 

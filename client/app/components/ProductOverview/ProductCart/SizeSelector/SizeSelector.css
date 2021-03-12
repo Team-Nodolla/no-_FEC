@@ -3,8 +3,8 @@
   outline: none;
   text-decoration: none;
   border-radius: 10px;
-  border: 2px solid rgb(88, 71, 100);
-  color: rgb(88, 71, 100);
+  border: 2px solid var(--Nodolla-purple);
+  color: var(--Nodolla-purple);
   font-family: Lato;
   padding: 5px;
   transition: background-color 0.2s, border 0.2s, color 0.2s;

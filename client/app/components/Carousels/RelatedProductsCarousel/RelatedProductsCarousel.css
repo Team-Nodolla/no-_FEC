@@ -3,8 +3,8 @@
   overflow: hidden;
   margin-bottom: 100px;
   min-height: 37.5rem;
-  border-top: 2px solid rgb(88, 71, 100);
-  border-bottom: 2px solid rgb(88, 71, 100);
+  border-top: 2px solid var(--Nodolla-purple);
+  border-bottom: 2px solid var(--Nodolla-purple);
   display: grid;
   grid-template-columns: 10% 80% 10%;
   place-items: center;

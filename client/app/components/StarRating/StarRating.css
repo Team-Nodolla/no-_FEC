@@ -24,7 +24,7 @@ div.stars i.full-stars {
 
 .empty-stars {
   z-index: 3;
-  color: rgb(88, 71, 100);
+  color: var(--Nodolla-purple);
 }
 
 .stars-cover {
