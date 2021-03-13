@@ -20,7 +20,7 @@ const ReviewListItemThumbnails = ({ photos }) => {
 
   if (reviewThumbnailModalView) {
     return (
-      <div className={modalClassName}>
+      <div className={modalClassName} onClick={() => {setReviewThumbnailModalView(false)}}>
         <div className="review-item-modal-main">
           <img src={reviewTileSelectedImage} alt="" onClick={(event) => { handleImageClick(event); }}></img>
         </div>
