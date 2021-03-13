@@ -2,12 +2,10 @@
   position: relative;
   overflow: hidden;
   margin-bottom: 100px;
-  /* min-height: 600px; */
   min-height: 37.5rem;
   border-top: 2px solid var(--Nodolla-purple);
   border-bottom: 2px solid var(--Nodolla-purple);
   display: grid;
-  /* grid-template-columns: 4% 92% 4%; */
   grid-template-columns: 10% 80% 10%;
   place-items: center;
   background-color: thistle;
@@ -19,7 +17,6 @@
 }
 
 #outfit-card-container {
-  /* justify-self: start; */
   width: 100%;
   grid-column: 2;
   display: flex;
