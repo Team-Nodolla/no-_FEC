@@ -256,27 +256,26 @@ const ModalWindow = ({ handleClose, modalView, setModalView, productName, produc
               <img src={reviewFileThumbnail[0]} height="21px" alt="" className="review-image-upload-display" />
               {' '}
             </div><br></br>
-            <div className="image-upload-container">
+            <div className="image-upload-container" className={imageTwoClassName}>
               <input ref={register} type="file" name="images" onChange={handleFileChange} className={imageTwoClassName} />
               <img src={reviewFileThumbnail[1]} alt="" height="21px" className={imageTwoClassName} />
               {' '}
             </div><br></br>
-            <div className="image-upload-container">
+            <div className="image-upload-container" className={imageThreeClassName}>
               <input ref={register} type="file" name="images" onChange={handleFileChange} className={imageThreeClassName} />
               <img src={reviewFileThumbnail[2]} alt="" height="21px" className={imageThreeClassName} />
               {' '}
             </div><br></br>
-            <div className="image-upload-container">
+            <div className="image-upload-container" className={imageFourClassName}>
               <input ref={register} type="file" name="images" onChange={handleFileChange} className={imageFourClassName} />
               <img src={reviewFileThumbnail[3]} alt="" height="21px" className={imageFourClassName} />
               {' '}
             </div><br></br>
-            <div className="image-upload-container">
+            <div className="image-upload-container" className={imageFiveClassName} >
               <input ref={register} type="file" name="images" onChange={handleFileChange} className={imageFiveClassName} />
               <img src={reviewFileThumbnail[4]} alt="" height="21px" className={imageFiveClassName} />
               {' '}
             </div><br></br>
-
 
             <input type="submit" value="Submit Review" className="submit-review-button" />
           </form><br></br>
@@ -286,7 +285,6 @@ const ModalWindow = ({ handleClose, modalView, setModalView, productName, produc
               Close
             </button>
           </div>
-
         </div>
       </div>
     );

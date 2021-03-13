@@ -34,7 +34,7 @@
 }
 
 .reviewModalButtonContainer {
-  margin: 0;
+  margin: -45px 0 0 0;
   position: absolute;
   left: 90%;
   -ms-transform: translate(-50%, -50%);
