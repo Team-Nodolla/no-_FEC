@@ -7,8 +7,8 @@
   background-color: #f4f4f4;
   transition: background-color .5s;
   -webkit-transition: background-color .5s;
-  border: 2px solid rgb(88, 71, 100);
-  color: rgb(88, 71, 100);
+  border: 2px solid var(--Nodolla-purple);
+  color: var(--Nodolla-purple);
 }
 
 .carousel-btn-next:hover, .carousel-btn-back:hover {

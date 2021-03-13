@@ -150,6 +150,10 @@ const ModalWindow = ({ handleClose, modalView, setModalView, productName, produc
     setReviewRating(Number(e.target.id));
   };
 
+  const handleModalStopClick = (e) => {
+    e.stopPropagation()
+  };
+
   const OverallRatingStarRating = () => {
     if (reviewRating > 0) {
       return (
@@ -171,8 +175,8 @@ const ModalWindow = ({ handleClose, modalView, setModalView, productName, produc
 
   if (modalView) {
     return (
-      <div className={modalClassName}>
-        <div className="review-modal-main">
+      <div className={modalClassName} onClick={() => {setModalView(false)}}>
+        <div className="review-modal-main" onClick={handleModalStopClick}>
           <div className="review-modal-title">
             <h2>Write your review</h2>
             <h3>About the {productName}</h3>

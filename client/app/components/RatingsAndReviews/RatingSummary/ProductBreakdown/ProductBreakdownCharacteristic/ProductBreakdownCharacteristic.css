@@ -41,7 +41,16 @@
   appearance: none;
   width: 8px; /* Set a specific slider handle width */
   height: 15px; /* Slider handle height */
-  background: rgb(88, 71, 100);
+  background: var(--Nodolla-purple);
+  border-radius: 2px;
+}
+
+.product-breakdown-slider::-moz-range-thumb {
+  -webkit-appearance: none; /* Override default look */
+  appearance: none;
+  width: 8px; /* Set a specific slider handle width */
+  height: 15px; /* Slider handle height */
+  background: var(--Nodolla-purple);
   border-radius: 2px;
 }
 

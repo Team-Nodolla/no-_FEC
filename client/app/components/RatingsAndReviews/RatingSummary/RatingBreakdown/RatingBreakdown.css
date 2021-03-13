@@ -10,15 +10,18 @@
 
 .breakdown-progress-bar {
   height: 12px;
-  background: greenyellow;
+  background: thistle;
   width: 70%;
 }
 
 progress::-webkit-progress-value {
-  background: rgb(88, 71, 100);
+  background: var(--Nodolla-purple);
 }
 
 progress::-webkit-progress-bar {
-  /* background: #d3d3d3; */
   background: thistle;
+}
+
+progress::-moz-progress-bar {
+  background: var(--Nodolla-purple);
 }

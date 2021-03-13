@@ -31,14 +31,14 @@ const OutfitCarousel = ({ onUserClick, productInfo, handleRedirect }) => {
   // After outfitList state is set
   useEffect(() => {
     if (store.size() >= 0) {
-      let {start, atStart, end, atEnd, cards} = currentlyDisplayed;
+      let { start, atStart, end, atEnd, cards } = currentlyDisplayed;
       end = Math.min(2, store.size() - 1);
       atEnd = (end === store.size() - 1);
       cards = outfitList.length === 0
-      ? []
-      : outfitList.filter((card, index) => (
-        index <= end
-      ));
+        ? []
+        : outfitList.filter((card, index) => (
+          index <= end
+        ));
       setCurrentlyDisplayed({ start, atStart, end, atEnd, cards });
     }
   }, [outfitList.length]);

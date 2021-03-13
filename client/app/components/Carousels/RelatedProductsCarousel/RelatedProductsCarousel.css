@@ -1,11 +1,12 @@
 #related-carousel {
   position: relative;
+  overflow: hidden;
   margin-bottom: 100px;
-  min-height: 600px;
-  border-top: 2px solid rgb(88, 71, 100);
-  border-bottom: 2px solid rgb(88, 71, 100);
+  min-height: 37.5rem;
+  border-top: 2px solid var(--Nodolla-purple);
+  border-bottom: 2px solid var(--Nodolla-purple);
   display: grid;
-  grid-template-columns: 4% 92% 4%;
+  grid-template-columns: 10% 80% 10%;
   place-items: center;
   background-color: thistle;
 }
@@ -16,7 +17,7 @@
 
 #related-card-container {
   grid-column: 2;
-  min-width: 1500px;
+  width: 100%;
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
