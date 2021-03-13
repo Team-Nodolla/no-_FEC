@@ -77,21 +77,21 @@ const ProductCart = ({ product, selectedStyle }) => {
     }
     return (
       <>
-      <div className="product-option-selectors">
-        <div className="product-size-dropdown"><SizeSelector selectedSize={selectedSize} onSelectSize={onSelectSize} arraySkus={arrayOfSkus} /></div>
-        <div className="product-quantity-dropdown">
-          <QuantitySelector
-            selectedSize={selectedSize}
-            sizeQuantity={selectedQuantity}
-            arraySkus={arrayOfSkus}
-          />
+        <div className="product-option-selectors">
+          <div className="product-size-dropdown"><SizeSelector selectedSize={selectedSize} onSelectSize={onSelectSize} arraySkus={arrayOfSkus} /></div>
+          <div className="product-quantity-dropdown">
+            <QuantitySelector
+              selectedSize={selectedSize}
+              sizeQuantity={selectedQuantity}
+              arraySkus={arrayOfSkus}
+            />
+          </div>
         </div>
-      </div>
-      <div className="button-area">
+        <div className="button-area">
           <button className="add-to-cart" onClick={onClickAddCart}>Add to Cart</button>
-          <i className="check-cart fas fa-shopping-cart"></i>
+          <i className="check-cart fas fa-shopping-cart" />
           <p className={`product-required-selection-${requiredSelection ? 'active' : 'disabled'}`}>Please select a size!</p>
-          <p className={`product-add-cart-${boughtItem ? 'active' : 'disabled'}`}>Added to Cart! {`(${itemInCart}) item`}</p>
+          <p className={`product-add-cart-${boughtItem ? 'active' : 'disabled'}`}>{`Added to Cart!  (${itemInCart}) item`}</p>
         </div>
         <div className="product-cart-number">{itemInCart}</div>
         <div className="check-cart-modal-active"></div>

@@ -12,10 +12,13 @@ const ExpandedView = ({
   currentPhoto,
   defaultPhoto,
 }) => {
+  const handleModalStopClickScrollThumbnail = (e) => {
+    e.stopPropagation()
+  };
   if (defaultPhoto !== undefined) {
     return (
       <div className="expanded-image">
-        <div className="expanded-product-thumbnail">
+        <div onClick={handleModalStopClickScrollThumbnail} className="expanded-product-thumbnail">
           <ProductThumbnailScroll
             onClickRightChange={onClickRightChange}
             onClickChangeThumbnail={onClickChangeThumbnail}
@@ -25,7 +28,7 @@ const ExpandedView = ({
           />
         </div>
 
-        <div onClick={onClickImage} className="expanded-image-view">
+        <div className="expanded-image-view">
           <ReactImageMagnify {...{
             smallImage: {
               isFluidWidth: true,

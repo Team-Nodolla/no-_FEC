@@ -27,7 +27,7 @@ const ProductImageGallery = ({
             </div>
           )
           : (
-            <div className="product-expanded-modal">
+            <div onClick={onClickZoom} className="product-expanded-modal">
               <ExpandedView
                 onClickRightChange={onClickRightChange}
                 style={style}
