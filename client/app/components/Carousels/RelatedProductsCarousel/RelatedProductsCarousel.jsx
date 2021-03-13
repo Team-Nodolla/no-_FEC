@@ -44,30 +44,17 @@ const RelatedProductsCarousel = (
     },
   );
 
-  // useEffect(() => {
-  //   if (relatedProductsIDs.length > 0) {
-  //     let uniqueIDs = [...new Set(relatedProductsIDs)]; // Turn it into an array with no dup IDs
-  //     uniqueIDs = uniqueIDs.filter((relatedID) => (
-  //       relatedID !== currentProductID
-  //     ));
-  //     uniqueIDs.forEach((id) => {
-  //       fetchNewProductDetails(setAllRelatedProducts, id);
-  //     });
-  //   }
-  // }, [relatedProductsIDs]);
-
   useEffect(() => {
     if (relatedProductsIDs.length > 0) {
       fetchRelatedProductsData();
     }
   }, [relatedProductsIDs]);
 
-  // console.log('state right now:', allRelatedProducts);
-
   useEffect(() => {
     if (allRelatedProducts.length > 0) {
-      const { start, atStart } = currentlyDisplayed;
-      let { end, atEnd, cards } = currentlyDisplayed;
+      let { start, atStart, end, atEnd, cards } = currentlyDisplayed;
+      start = 0;
+      atStart = true;
       end = Math.min(3, allRelatedProducts.length - 1);
       atEnd = (end === allRelatedProducts.length - 1);
       cards = allRelatedProducts.filter((card, index) => (
@@ -75,7 +62,7 @@ const RelatedProductsCarousel = (
       ));
       setCurrentlyDisplayed({ start, atStart, end, atEnd, cards });
     }
-  }, [allRelatedProducts.length]);
+  }, [allRelatedProducts]);
 
   useEffect(() => {
     setCompareModalData({
