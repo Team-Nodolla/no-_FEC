@@ -24,9 +24,9 @@ const ReviewModalStarRating = ({ reviewScore, setMargin = '20px 0 0 0', handleSt
     const missingPercent = `${100 - roundedScore * 20 - quarterOffset}%`;
 
     display = (
-      <div id="star-rating-container" className="review-modal-stars" style={{ margin: setMargin }}>
+      <div className="review-modal-stars star-rating-container" style={{ margin: setMargin }}>
         <EmptyStars handleStarRatingClick={handleStarRatingClick} />
-        <div id="stars-cover" style={{ width: missingPercent }}> </div>
+        <div className="stars-cover" style={{ width: missingPercent }}> </div>
         <FilledStars handleStarRatingClick={handleStarRatingClick} />
       </div>
     );
