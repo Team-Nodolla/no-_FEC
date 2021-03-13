@@ -36,9 +36,26 @@
 .reviewModalButtonContainer {
   margin: 0;
   position: absolute;
-  left: 50%;
+  left: 90%;
   -ms-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
+}
+
+.close-modal-button {
+  border: 3px solid var(--Nodolla-purple);
+  border-radius: 5px;
+  background-color: rgba(216, 191, 216, 0.6);
+  transition: background-color .3s;
+  height: 30px;
+  width: 70px;
+  margin: 10px;
+  color: var(--Nodolla-purple);
+}
+
+.close-modal-button:hover {
+  background-color: rgba(216, 191, 216, 1);
+  transition: background-color .3s;
+  cursor: pointer
 }
 
 .review-modal-star-wrapper {
@@ -54,6 +71,33 @@
   float: left;
 }
 
+.review-image-upload-display {
+  color: var(--Nodolla-purple);
+  background-color: thistle;
+}
+
 .review-image-upload-hide {
   display: none;
+}
+
+.submit-review-button {
+  border: 3px solid var(--Nodolla-purple);
+  border-radius: 5px;
+  background-color: rgba(216, 191, 216, 0.6);
+  transition: background-color .3s;
+  height: 50px;
+  margin: 10px;
+  color: var(--Nodolla-purple);
+}
+
+.submit-review-button:hover {
+  background-color: rgba(216, 191, 216, 1);
+  transition: background-color .3s;
+  cursor: pointer
+}
+
+.image-upload-container {
+  height: 21px;
+  display: flex;
+  justify-content: start;
 }

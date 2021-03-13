@@ -147,12 +147,12 @@ const RatingsAndReviews = ({ onUserClick, productID, metaData, productName, setC
             />
           </>
           <div className="reviewButtonsContainer">
-            <MoreReviewsButtonRender />
             <AddReviewButton
               productName={productName}
               productID={productID}
               metaData={metaData}
             />
+            <MoreReviewsButtonRender />
           </div>
         </div>
       </div>

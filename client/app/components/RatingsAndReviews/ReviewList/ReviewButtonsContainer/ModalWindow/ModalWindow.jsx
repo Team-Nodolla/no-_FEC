@@ -251,29 +251,38 @@ const ModalWindow = ({ handleClose, modalView, setModalView, productName, produc
                 </div>
               </label>
             </div><br></br>
-            <input ref={register} type="file" name="images" onChange={handleFileChange} />
-            <img src={reviewFileThumbnail[0]} alt="" width="30px" />
-            {' '}<br></br>
+            <div className="image-upload-container">
+              <input ref={register} type="file" name="images" onChange={handleFileChange} className="review-image-upload-display" />
+              <img src={reviewFileThumbnail[0]} height="21px" alt="" className="review-image-upload-display" />
+              {' '}
+            </div><br></br>
+            <div className="image-upload-container">
+              <input ref={register} type="file" name="images" onChange={handleFileChange} className={imageTwoClassName} />
+              <img src={reviewFileThumbnail[1]} alt="" height="21px" className={imageTwoClassName} />
+              {' '}
+            </div><br></br>
+            <div className="image-upload-container">
+              <input ref={register} type="file" name="images" onChange={handleFileChange} className={imageThreeClassName} />
+              <img src={reviewFileThumbnail[2]} alt="" height="21px" className={imageThreeClassName} />
+              {' '}
+            </div><br></br>
+            <div className="image-upload-container">
+              <input ref={register} type="file" name="images" onChange={handleFileChange} className={imageFourClassName} />
+              <img src={reviewFileThumbnail[3]} alt="" height="21px" className={imageFourClassName} />
+              {' '}
+            </div><br></br>
+            <div className="image-upload-container">
+              <input ref={register} type="file" name="images" onChange={handleFileChange} className={imageFiveClassName} />
+              <img src={reviewFileThumbnail[4]} alt="" height="21px" className={imageFiveClassName} />
+              {' '}
+            </div><br></br>
 
-            <input ref={register} type="file" name="images" onChange={handleFileChange} className={imageTwoClassName} />
-            <img src={reviewFileThumbnail[1]} alt="" width="30px" className={imageTwoClassName} />
-            {' '}<br></br>
-            <input ref={register} type="file" name="images" onChange={handleFileChange} className={imageThreeClassName} />
-            <img src={reviewFileThumbnail[2]} alt="" width="30px" className={imageThreeClassName} />
-            {' '}<br></br>
-            <input ref={register} type="file" name="images" onChange={handleFileChange} className={imageFourClassName} />
-            <img src={reviewFileThumbnail[3]} alt="" width="30px" className={imageFourClassName} />
-            {' '}<br></br>
-            <input ref={register} type="file" name="images" onChange={handleFileChange} className={imageFiveClassName} />
-            <img src={reviewFileThumbnail[4]} alt="" width="30px" className={imageFiveClassName} />
-            {' '}<br></br>
 
-
-            <input type="submit" value="Submit Review" />
+            <input type="submit" value="Submit Review" className="submit-review-button" />
           </form><br></br>
 
           <div className="reviewModalButtonContainer">
-            <button type="button" className="modalButton" onClick={handleClose}>
+            <button type="button" className="close-modal-button" onClick={handleClose}>
               Close
             </button>
           </div>
