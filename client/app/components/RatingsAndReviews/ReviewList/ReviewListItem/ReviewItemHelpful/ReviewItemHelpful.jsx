@@ -29,6 +29,7 @@ const ReviewItemHelpful = ({ review }) => {
       .catch((err) => {
         console.log(err);
       });
+    alert('This review has been reported, and will be hidden from future users')
   };
 
   return (

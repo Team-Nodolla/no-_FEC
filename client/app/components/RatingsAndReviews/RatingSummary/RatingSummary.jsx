@@ -10,7 +10,6 @@ const RatingSummary = ({ metaData, handleSortClick, RemoveAllFiltersRender, brea
   const [averageScore, setAverageScore] = useState(0);
   const [percentRecommend, setPercentRecommend] = useState(0);
 
-
   useEffect(() => {
     if (metaData?.ratings) {
       let didRecommend = 0;
