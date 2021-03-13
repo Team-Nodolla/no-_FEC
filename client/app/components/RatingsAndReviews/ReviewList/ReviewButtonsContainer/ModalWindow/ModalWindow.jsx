@@ -21,7 +21,8 @@ const ModalWindow = ({ handleClose, modalView, setModalView, productName, produc
   const [reviewUsername, setReviewUsername] = useState('');
   const [reviewEmail, setReviewEmail] = useState('');
   const [reviewFile, setReviewFile] = useState([]);
-  const [reviewFileThumbnail, setReviewFileThumnail] = useState('');
+  const [reviewFileThumbnail, setReviewFileThumnail] = useState([]);
+  const [numberOfImagesUploaded, setNumberOfImagesUploaded] = useState(0);
 
   const { register, handleSubmit } = useForm();
 
@@ -36,10 +37,12 @@ const ModalWindow = ({ handleClose, modalView, setModalView, productName, produc
       recommendRadio: 'true' ? true : false,
     };
     const formData = new FormData();
-    formData.append('image', reviewFile);
+    for (let i = 0; i < reviewFile.length; i += 1) {
+      formData.append('image', reviewFile[i]);
+    }
 
     // make axios post to some image upload API
-    if (reviewFile.arrayBuffer) {
+    if (reviewFile[0].arrayBuffer) {
       axios({
         url: `https://api.imgbb.com/1/upload?key=${config.imgbb}`,
         method: 'POST',
@@ -93,9 +96,19 @@ const ModalWindow = ({ handleClose, modalView, setModalView, productName, produc
   };
 
   const handleFileChange = (e) => {
-    setReviewFile(e.target.files[0]);
-    setReviewFileThumnail(URL.createObjectURL(event.target.files[0]));
+    setReviewFile([...reviewFile, e.target.files[0]]);
+    setReviewFileThumnail([...reviewFileThumbnail, URL.createObjectURL(e.target.files[0])]);
   };
+
+  useEffect(() => {
+    setNumberOfImagesUploaded(numberOfImagesUploaded + 1);
+  }, [reviewFile]);
+
+  const imageTwoClassName = numberOfImagesUploaded >= 2 ? "review-image-upload review-image-upload-display" : "review-image-upload review-image-upload-hide";
+  const imageThreeClassName = numberOfImagesUploaded >= 3 ? "review-image-upload review-image-upload-display" : "review-image-upload review-image-upload-hide";
+  const imageFourClassName = numberOfImagesUploaded >= 4 ? "review-image-upload review-image-upload-display" : "review-image-upload review-image-upload-hide";
+  const imageFiveClassName = numberOfImagesUploaded >= 5 ? "review-image-upload review-image-upload-display" : "review-image-upload review-image-upload-hide";
+
   const modalClassName = modalView ? "review-modal review-modal-display" : "review-modal review-modal-hide";
 
   const ratingExplanationArray = [
@@ -151,7 +164,7 @@ const ModalWindow = ({ handleClose, modalView, setModalView, productName, produc
   };
 
   const handleModalStopClick = (e) => {
-    e.stopPropagation()
+    e.stopPropagation();
   };
 
   const OverallRatingStarRating = () => {
@@ -175,7 +188,7 @@ const ModalWindow = ({ handleClose, modalView, setModalView, productName, produc
 
   if (modalView) {
     return (
-      <div className={modalClassName} onClick={() => {setModalView(false)}}>
+      <div className={modalClassName} onClick={() => { setModalView(false) }}>
         <div className="review-modal-main" onClick={handleModalStopClick}>
           <div className="review-modal-title">
             <h2>Write your review</h2>
@@ -238,18 +251,40 @@ const ModalWindow = ({ handleClose, modalView, setModalView, productName, produc
                 </div>
               </label>
             </div><br></br>
-            <input ref={register} type="file" name="images" onChange={handleFileChange} />
-            <img src={reviewFileThumbnail} alt="" width="30px" />
-            {' '}
-            <input type="submit" value="Submit Review" />
+            <div className="image-upload-container">
+              <input ref={register} type="file" name="images" onChange={handleFileChange} className="review-image-upload-display" />
+              <img src={reviewFileThumbnail[0]} height="21px" alt="" className="review-image-upload-display" />
+              {' '}
+            </div><br></br>
+            <div className="image-upload-container" className={imageTwoClassName}>
+              <input ref={register} type="file" name="images" onChange={handleFileChange} className={imageTwoClassName} />
+              <img src={reviewFileThumbnail[1]} alt="" height="21px" className={imageTwoClassName} />
+              {' '}
+            </div><br></br>
+            <div className="image-upload-container" className={imageThreeClassName}>
+              <input ref={register} type="file" name="images" onChange={handleFileChange} className={imageThreeClassName} />
+              <img src={reviewFileThumbnail[2]} alt="" height="21px" className={imageThreeClassName} />
+              {' '}
+            </div><br></br>
+            <div className="image-upload-container" className={imageFourClassName}>
+              <input ref={register} type="file" name="images" onChange={handleFileChange} className={imageFourClassName} />
+              <img src={reviewFileThumbnail[3]} alt="" height="21px" className={imageFourClassName} />
+              {' '}
+            </div><br></br>
+            <div className="image-upload-container" className={imageFiveClassName} >
+              <input ref={register} type="file" name="images" onChange={handleFileChange} className={imageFiveClassName} />
+              <img src={reviewFileThumbnail[4]} alt="" height="21px" className={imageFiveClassName} />
+              {' '}
+            </div><br></br>
+
+            <input type="submit" value="Submit Review" className="submit-review-button" />
           </form><br></br>
 
           <div className="reviewModalButtonContainer">
-            <button type="button" className="modalButton" onClick={handleClose}>
+            <button type="button" className="close-modal-button" onClick={handleClose}>
               Close
             </button>
           </div>
-
         </div>
       </div>
     );
