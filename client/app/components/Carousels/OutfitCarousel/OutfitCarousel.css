@@ -1,11 +1,14 @@
 #outfit-carousel {
   position: relative;
+  overflow: hidden;
   margin-bottom: 100px;
-  min-height: 600px;
+  /* min-height: 600px; */
+  min-height: 37.5rem;
   border-top: 2px solid var(--Nodolla-purple);
   border-bottom: 2px solid var(--Nodolla-purple);
   display: grid;
-  grid-template-columns: 4% 92% 4%;
+  /* grid-template-columns: 4% 92% 4%; */
+  grid-template-columns: 10% 80% 10%;
   place-items: center;
   background-color: thistle;
 }
@@ -15,26 +18,9 @@
   display: inline-block;
 }
 
-#add-to-outfit-btn {
-  outline: none;
-  margin-right: 100px;
-  margin-left: 5px;
-  border: 3px solid var(--Nodolla-purple);
-  color: var(--Nodolla-purple);
-  font-size: 1.5rem;
-  font-weight: 700;
-  line-height: 36px;
-  background-color: rgba(242, 242, 242, .6);
-}
-
-.fa-plus-square {
-  font-size: 36px;
-  font-weight: 500;
-}
-
 #outfit-card-container {
-  justify-self: start;
-  width: auto;
+  /* justify-self: start; */
+  width: 100%;
   grid-column: 2;
   display: flex;
   flex-direction: row;
@@ -42,4 +28,36 @@
   padding: 5px 0;
   flex-wrap: nowrap;
   overflow: hidden;
+}
+
+
+#add-to-outfit-btn {
+  outline: none;
+  width: 16rem;
+  height: 580px;
+  margin-right: 100px;
+  margin-left: 5px;
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
+  border: 3px solid var(--Nodolla-purple);
+  color: var(--Nodolla-purple);
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 36px;
+  background-color: rgba(242, 242, 242, .6);
+  box-shadow: 5px 7px 0 #aaaaaa;
+  transition: box-shadow .5s;
+  -webkit-transition: box-shadow .5s;
+}
+
+#add-to-outfit-btn:hover {
+  cursor: pointer;
+  box-shadow: 1px 1px 7px rgb(90, 90, 90);
+  transition: box-shadow .5s;
+  -webkit-transition: box-shadow .5s;
+}
+
+.fa-plus-square {
+  font-size: 36px;
+  font-weight: 500;
 }
