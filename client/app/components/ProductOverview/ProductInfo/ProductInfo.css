@@ -3,7 +3,10 @@
 }
 
 .product-item-summary {
-  /* width: 1000px; */
+  /* max-width: 600px; */
+  display:flex;
+  flex-direction: column;
+  max-width: 1000px;
   border-right: solid thistle;
   padding-right: 30px;
 }
