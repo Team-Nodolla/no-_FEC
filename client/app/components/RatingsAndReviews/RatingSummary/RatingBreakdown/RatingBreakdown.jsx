@@ -26,7 +26,7 @@ const RatingBreakdown = ({ metaData, handleSortClick, breakdownSortObj, setBreak
           handleSortClick(5);
         }}
       >
-        <label htmlFor="breakdown-progress-bar">5 stars</label>
+        <label htmlFor="breakdown-progress-bar" className="breakdown-progress-bar-label">5 stars</label>
         {' '}
         <progress name="breakdown-progress-bar" className="breakdown-progress-bar" value={fiveStarValue} max="100">pogChamp</progress>
         {` ${metaData.ratings["5"] || 0}`}
@@ -37,7 +37,7 @@ const RatingBreakdown = ({ metaData, handleSortClick, breakdownSortObj, setBreak
           handleSortClick(4);
         }}
       >
-        <label htmlFor="breakdown-progress-bar">4 stars</label>
+        <label htmlFor="breakdown-progress-bar" className="breakdown-progress-bar-label">4 stars</label>
         {' '}
         <progress name="breakdown-progress-bar" className="breakdown-progress-bar" value={fourStarValue} max="100">pogChamp</progress>
         {` ${metaData.ratings["4"] || 0}`}
@@ -48,7 +48,7 @@ const RatingBreakdown = ({ metaData, handleSortClick, breakdownSortObj, setBreak
           handleSortClick(3);
         }}
       >
-        <label htmlFor="breakdown-progress-bar">3 stars</label>
+        <label htmlFor="breakdown-progress-bar" className="breakdown-progress-bar-label">3 stars</label>
         {' '}
         <progress name="breakdown-progress-bar" className="breakdown-progress-bar" value={threeStarValue} max="100">pogChamp</progress>
         {` ${metaData.ratings["3"] || 0}`}
@@ -59,7 +59,7 @@ const RatingBreakdown = ({ metaData, handleSortClick, breakdownSortObj, setBreak
           handleSortClick(2);
         }}
       >
-        <label htmlFor="breakdown-progress-bar">2 stars</label>
+        <label htmlFor="breakdown-progress-bar" className="breakdown-progress-bar-label">2 stars</label>
         {' '}
         <progress name="breakdown-progress-bar" className="breakdown-progress-bar" value={twoStarValue} max="100">pogChamp</progress>
         {` ${metaData.ratings["2"] || 0}`}
@@ -70,7 +70,7 @@ const RatingBreakdown = ({ metaData, handleSortClick, breakdownSortObj, setBreak
           handleSortClick(1);
         }}
       >
-        <label htmlFor="breakdown-progress-bar">1 stars</label>
+        <label htmlFor="breakdown-progress-bar" className="breakdown-progress-bar-label">1 stars</label>
         {' '}
         <progress name="breakdown-progress-bar" className="breakdown-progress-bar" value={oneStarValue} max="100">pogChamp</progress>
         {` ${metaData.ratings["1"] || 0}`}

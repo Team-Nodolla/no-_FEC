@@ -1,7 +1,7 @@
 .rating-breakdown-bar {
   display: flex;
   flex-direction: row;
-  justify-content: space-evenly;
+  justify-content: start;
 }
 
 .rating-breakdown-bar:hover {
@@ -12,6 +12,12 @@
   height: 12px;
   background: thistle;
   width: 70%;
+  margin-right: 10px;
+  margin-top: 5px;
+}
+
+.breakdown-progress-bar-label {
+  margin-right: 10px;
 }
 
 progress::-webkit-progress-value {
