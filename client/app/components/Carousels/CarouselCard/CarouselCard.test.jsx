@@ -1,3 +1,7 @@
+/* eslint-disable no-plusplus */
+/* eslint-disable react/jsx-props-no-spreading */
+/* eslint-disable import/extensions */
+/* eslint-disable no-undef */
 import React from 'react';
 import { shallow } from 'enzyme';
 import CarouselCard from './CarouselCard.jsx';
@@ -96,6 +100,28 @@ describe('CarouselCard', () => {
       const productImage = wrapper.find('img');
       const src = productImage.prop('src');
       expect(src).toEqual('https://watertownbusinesscoalition.com/assets/images/no_image_available.jpeg');
+    });
+  });
+
+  describe('Action Button', () => {
+    it('should display the action button', () => {
+      const wrapper = shallow(<CarouselCard {...dummyCard} />);
+      const actionButton = (
+        <button
+          aria-label="Action Button"
+          className="card-action-btn"
+          type="button"
+          onClick={(e) => { e.stopPropagation(); handleActionButton(id, name, features); }}
+        >
+          <i className={
+            carouselType === 'related'
+              ? 'related-action-btn fas fa-star'
+              : 'outfit-action-btn far fa-times-circle'
+          }
+          />
+        </button>
+      );
+      expect(wrapper.contains(actionButton)).toEqual(true);
     });
   });
 
